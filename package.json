@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "scripts": {
         "start": "npm --prefix frontend start",
-        "heroku-postbuild": "npm install --prefix frontend && npm run build -prefix frontend"
+        "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
     }
 }
