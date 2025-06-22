@@ -7,7 +7,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     
     return (
-        <div>
+        <div className="m-2">
             <button className="btn" onClick={() => navigate('/')}>Home</button>
             <button className="btn" onClick={() => navigate('/baseball-home')}>Baseball Game</button>            
         </div>
