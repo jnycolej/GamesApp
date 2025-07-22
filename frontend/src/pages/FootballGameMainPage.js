@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import NavBar from "../components/NavBar";
-import jsonData from '../assets/baseballDeck.json';
+import jsonData from '../assets/deck.json';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
 // import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (opti
 
 import {Howl} from 'howler';
 
-const BaseballGameMainPage = () => {
+const FootballGameMainPage = () => {
     const [hand, setHand] = useState([]);
     const [points, setPoints] = useState(0);
 
@@ -69,7 +69,7 @@ const BaseballGameMainPage = () => {
 
     return(
         <div className="containerStyle">
-            <h1>Baseball Game</h1>
+            <h1>Football Game</h1>
             <NavBar />
             <h3>Deck | Points: {points}</h3>
             <button className="btn btn-danger" onClick={handlePlayBall}>Play ball</button>
@@ -94,4 +94,4 @@ const BaseballGameMainPage = () => {
     )
 };
 
-export default BaseballGameMainPage;
+export default FootballGameMainPage;

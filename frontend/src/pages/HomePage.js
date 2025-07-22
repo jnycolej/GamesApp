@@ -16,7 +16,7 @@ const navigate = useNavigate();
                 <h1 className="display-4 text-center">Games</h1>
 
                 <button className="btn btn-lg btn-warning " onClick={() => navigate('/baseball-home')}>Baseball</button>
-                <button className="btn btn-lg btn-success">Football</button>                
+                <button className="btn btn-lg btn-success" onClick={() => navigate('/football-home')}>Football</button>                
             </div>
 
         </div>
