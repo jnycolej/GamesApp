@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import NavBar from '../components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
@@ -15,8 +15,9 @@ const navigate = useNavigate();
             <div className="container d-grid row-gap-3">
                 <h1 className="display-4 text-center">Games</h1>
 
-                <button className="btn btn-lg btn-warning " onClick={() => navigate('/baseball-home')}>Baseball</button>
-                <button className="btn btn-lg btn-success" onClick={() => navigate('/football-home')}>Football</button>                
+                <Link to="/baseball/mode"><button className="btn btn-lg btn-warning " onClick={() => navigate('/baseball-home')}>Baseball</button></Link>
+                <Link to="/football/mode"><button className="btn btn-lg btn-success" onClick={() => navigate('/football-home')}>Football</button></Link>
+                <Link to="/join"><button>Join / Create a Room</button></Link>                
             </div>
 
         </div>
