@@ -1,13 +1,19 @@
-import {useMemo} from "react";
+import {useMemo, useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {getSocket} from "../shared/socket";
 import {useRoomChannel} from "../shared/useRoomState";
-import { useEffect } from "react";
 
 export default function GameLobby() {
     const { game, code } = useParams();
     const { room, setRoom } = useRoomChannel();
     const nav = useNavigate();
+    
+    //If phase flips to 'playing', take everyone to the game screen
+    useEffect(() => {
+        if (room?.phase === "playing") {
+            nav(`/${game}/game`);
+        }
+    }, [room?.phase, game, nav]);
     
     // If there is no room state yet or it's for a different room, fetch it
     useEffect(() => {
@@ -37,6 +43,11 @@ export default function GameLobby() {
         <div style={{ padding: 24}}>
             <h2>Room {room?.code ?? ""} {room?.gameType ? `- ${room.gameType}` : ""}</h2>
             <p>Players: {room?.players?.length ?? 0}</p>
+            <ul>
+                {room?.players?.map(p => (
+                    <li key={p.id}>{p.name} {p.connected === false ? '(reconnecting...)' : ''}</li>
+                ))}
+            </ul>
             <button onClick={startAndDeal} disabled={!canStart}>Start & Deal</button>
         </div>
     );
