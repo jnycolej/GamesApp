@@ -21,7 +21,9 @@ export default function JoinCreateRoom() {
 
     //Creates a room for the game to take place on base on the type selected
     const createRoom = () => {
-        getSocket().emit("room:create", {gameType: game}, (res) => {
+        const displayName = name || "Player";
+        localStorage.setItem("displayName", displayName);
+        getSocket().emit("room:create", {gameType: game, displayName}, (res) => {
             if (!res?.ok) return alert(res?.error ?? "Failed to create room"); //Error thrown if room creation fails
             setState(res.state);
             nav(`/${game}/lobby/${res.roomCode}`);  //Navigate to room for the gameplay
@@ -30,7 +32,9 @@ export default function JoinCreateRoom() {
 
     //Allows player to join a room that has already been created
     const joinRoom = () => {
-        getSocket().emit("player:join", { roomCode: code.trim().toUpperCase(), displayName: name || "Player"}, (res) => {
+        const displayName = name || "Player";
+        localStorage.setItem("displayName", displayName);
+        getSocket().emit("player:join", { roomCode: code.trim().toUpperCase(), displayName }, (res) => {
             if (!res?.ok) return alert(res?.error ?? "Join failed");    //Error thrown if join is failed
             setState(res.state);
             nav(`/${game}/lobby/${code.trim().toUpperCase()}`);
