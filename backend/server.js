@@ -15,14 +15,28 @@ const app = express();
 //Heroku sits behind a proxy
 app.set("trust proxy", 1);
 
-app.use(cors({ origin:true, credentials:true}));
+const isProd = process.env.NODE_ENV === "production";
+const allowedOrigins = isProd ? true : ["http://localhost:3000"];
+
+app.use(cors({ origin:allowedOrigins, credentials:true}));
 
 //initiates the server
 const server = http.createServer(app);
 const io = new Server(server, {
     // cors: { origin: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"], credentials: true }
-    cors: {origin:true, credentials:true}
+    cors: {origin:allowedOrigins, credentials:true}
 });
+
+//In production serve the frontend from the same app
+if(isProd) {
+    // import path, { dirname } from "path";
+    // import { fileURLToPath } from "url";
+    const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const build = path.join(__dirname, "../frontend/build");
+  app.use(express.static(build));
+  app.get("*", (_req, res) => res.sendFile(path.join(build, "index.html")));
+}
 
 const rooms = createRoomManager();
 
