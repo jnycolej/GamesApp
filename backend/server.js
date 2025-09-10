@@ -1,16 +1,27 @@
 import http from "http";
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import { Server } from "socket.io";
 import { createRoomManager } from "./roomManager.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-app.use(cors({origin: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"], credentials: true}));
+// app.use(cors({origin: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"], credentials: true}));
+
+//Heroku sits behind a proxy
+app.set("trust proxy", 1);
+
+app.use(cors({ origin:true, credentials:true}));
 
 //initiates the server
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: { origin: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"], credentials: true }
+    // cors: { origin: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"], credentials: true }
+    cors: {origin:true, credentials:true}
 });
 
 const rooms = createRoomManager();
@@ -108,4 +119,14 @@ io.on("connection", (socket) => {
 
 });
 
-server.listen(process.env.PORT || 8080, () => console.log("listening on :8080"));
+//Serve the React build in production
+const frontendBuild = path.join(__dirname, "../frontend/build");
+app.use(express.static(frontendBuild));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendBuild, "index.html"));
+});
+
+const PORT = process.env.PORT ||8080;
+server.listen(PORT, () => console.log("listening on :" + PORT));
+
+// server.listen(process.env.PORT || 8080, () => console.log("listening on :8080"));
