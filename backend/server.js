@@ -10,9 +10,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-// app.use(cors({origin: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"], credentials: true}));
-
-//Heroku sits behind a proxy
 app.set("trust proxy", 1);
 
 const isProd = process.env.NODE_ENV === "production";
@@ -23,34 +20,23 @@ app.use(cors({ origin:allowedOrigins, credentials:true}));
 //initiates the server
 const server = http.createServer(app);
 const io = new Server(server, {
-    // cors: { origin: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"], credentials: true }
-    cors: {origin:allowedOrigins, credentials:true}
+    cors: {origin:allowedOrigins, credentials:true},
+    path: "/socket.io",
 });
-
-//In production serve the frontend from the same app
-if(isProd) {
-    // import path, { dirname } from "path";
-    // import { fileURLToPath } from "url";
-    const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  const build = path.join(__dirname, "../frontend/build");
-  app.use(express.static(build));
-  app.get("*", (_req, res) => res.sendFile(path.join(build, "index.html")));
-}
 
 const rooms = createRoomManager();
 
 //Connects the to the socket
 io.on("connection", (socket) => {
-
     //Creates a room based on game type for multiplayer gameplay
     socket.on("room:create", ({ gameType, displayName }, cb) => {
         const code = rooms.createRoom({ creatorSocketId: socket.id, gameType });    //Creates the room based on type
         socket.data.roomCode = code;
         socket.join(code); //Join room
         rooms.addPlayer(code, { id: socket.id, displayName: displayName || "Player" });    //Adds player to the room based on the code
-        cb?.({ ok: true, roomCode: code, state: rooms.getPublicState(code) });
-        io.to(code).emit("room:updated", rooms.getPublicState(code));
+        const state = rooms.getPublicState(code);
+        cb?.({ ok: true, roomCode: code, state});
+        io.to(code).emit("room:updated", state);
     });
 
     //Allows player to join room based on room code
@@ -59,16 +45,9 @@ io.on("connection", (socket) => {
         if(!res.ok) return cb?.(res);
         socket.data.roomCode = roomCode;
         socket.join(roomCode);
-        cb?.({ ok: true, state: rooms.getPublicState(roomCode)});
-        io.to(roomCode).emit("room:updated", rooms.getPublicState(roomCode));
-    });
-
-    //Players disconnect and leave the game room
-    socket.on("disconnect", () => {
-        const code = socket.data.roomCode;
-        if (!code) return;
-        rooms.handleDisconnect(code, socket.id);
-        io.to(code).emit("room:updated", rooms.getPublicState(code));
+        const state = rooms.getPublicState(roomCode);
+        cb?.({ ok: true, state});
+        io.to(roomCode).emit("room:updated", state);
     });
 
     //Get the room code to display the room code
@@ -85,16 +64,17 @@ io.on("connection", (socket) => {
         if (!res.ok) return cb?.(res);
         
         cb?.({ ok: true });
-
+        
         //broadcast the public room state (phase=playing, counts, names, etc.)
-        io.to(code).emit("room:updated", rooms.getPublicState(code));
+        const state = rooms.getPublicState(code);
+        io.to(code).emit("room:updated", state);
 
         //send each player their private hand
         const socketsInRoom = await io.in(code).fetchSockets();
         for (const s of socketsInRoom) {
             //const hand = rooms.getHand(code, s.id);
             io.to(s.id).emit("hand:update", rooms.getHand(code, s.id) || []);
-            io.to(s.id).emit("score:update", rooms.getScore(code, s.id));   //send starting score (0)
+            io.to(s.id).emit("score:update", rooms.getScore(code, s.id) ?? 0);   //send starting score (0)
         }
     });
 
@@ -106,21 +86,19 @@ io.on("connection", (socket) => {
         io.to(socket.id).emit("hand:update", res.hand || []);
         io.to(socket.id).emit("score:update", res.score ?? 0);
         cb?.({ ok: true });
-    });
-
-
+    });    
+    
     //Retrieves user's hand
     socket.on("hand:getMine", (_ , cb) => {
         const code = socket.data.roomCode;
-        const hand = rooms.getHand(code, socket.id);
         cb?.({ ok: true, hand: rooms.getHand(code, socket.id) || []});
-    });
+    });  
 
     //retrieves user's score
     socket.on("score:getMine", (_ , cb) => {
         const code = socket.data.roomCode;
-        cb?.({ ok: true, score: rooms.getScore(code, socket.id)});
-    });
+        cb?.({ ok: true, score: rooms.getScore(code, socket.id) ?? 0});
+    });    
 
     //retrieves opponent(s)'s hand
     socket.on("hand:getOpponents", (_ , cb) => {
@@ -131,16 +109,25 @@ io.on("connection", (socket) => {
         cb?.({ ok: true, opponents: opp});
     });
 
+    //Players disconnect and leave the game room
+    socket.on("disconnect", () => {
+        const code = socket.data.roomCode;
+        if (!code) return;
+        rooms.handleDisconnect(code, socket.id);
+        io.to(code).emit("room:updated", rooms.getPublicState(code));
+    });
 });
 
-//Serve the React build in production
-const frontendBuild = path.join(__dirname, "../frontend/build");
-app.use(express.static(frontendBuild));
-app.get("*", (req, res) => {
-    res.sendFile(path.join(frontendBuild, "index.html"));
-});
+
+//In production serve the frontend from the same app
+if(isProd) {
+    const buildDir = path.join(__dirname, "../frontend/build");
+    app.use(express.static(buildDir));
+
+    app.get("/*", (_req, res) => {
+        res.sendFile(path.join(buildDir, "index.html"));
+    });
+}
 
 const PORT = process.env.PORT ||8080;
 server.listen(PORT, () => console.log("listening on :" + PORT));
-
-// server.listen(process.env.PORT || 8080, () => console.log("listening on :8080"));

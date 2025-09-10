@@ -56,7 +56,7 @@ const FootballGameMainPage = () => {
             <div className="container">
                 <div className="row">
                     {hand.map((card, idx) => (
-                        <div className="col m-2" key={hand.id}>
+                        <div className="col m-2" key={card.id || `card-${idx}`}>
                             <button className="card playingCard p-3" onClick={() => handleCardClick(idx, card.points)}>
                                 <p className="card-text">{card.description}</p>
                                 <p className="card-text">{card.penalty}</p>
