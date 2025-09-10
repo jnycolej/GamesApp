@@ -15,12 +15,12 @@ app.set("trust proxy", 1);
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd ? true : ["http://localhost:3000"];
 
-app.use(cors({ origin:allowedOrigins, credentials:true}));
+app.use(cors({ origin: allowedOrigins, credentials: true}));
 
 //initiates the server
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: {origin:allowedOrigins, credentials:true},
+    cors: {origin: allowedOrigins, credentials: true},
     path: "/socket.io",
 });
 
