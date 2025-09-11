@@ -14,7 +14,6 @@ app.set("trust proxy", 1);
 
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd ? true : ["http://localhost:3000"];
-
 app.use(cors({ origin: allowedOrigins, credentials: true}));
 
 //initiates the server
@@ -120,13 +119,14 @@ io.on("connection", (socket) => {
 
 
 //In production serve the frontend from the same app
-if(isProd) {
-    const buildDir = path.join(__dirname, "../frontend/build");
-    app.use(express.static(buildDir));
+if (isProd) {
+  const buildDir = path.join(__dirname, "../frontend/build");
+  app.use(express.static(buildDir));
 
-    app.get("/*", (_req, res) => {
-        res.sendFile(path.join(buildDir, "index.html"));
-    });
+  // Regex catch-all avoids path-to-regexp pitfalls on newer stacks
+  app.get(/^\/(?!socket\.io\/).*/, (req, res) => {
+    res.sendFile(path.join(buildDir, "index.html"));
+  });
 }
 
 const PORT = process.env.PORT ||8080;
