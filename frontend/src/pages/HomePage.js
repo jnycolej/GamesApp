@@ -14,10 +14,11 @@ const navigate = useNavigate();
             <NavBar />
             <div className="container d-grid row-gap-3">
                 <h1 className="display-4 text-center">Games</h1>
+                <div className="">
+                    <Link to="/baseball/mode"><button className="btn btn-lg btn-warning " onClick={() => navigate('/baseball-home')}>Baseball</button></Link>
+                    <Link to="/football/mode"><button className="btn btn-lg btn-success" onClick={() => navigate('/football-home')}>Football</button></Link>                    
+                </div>
 
-                <Link to="/baseball/mode"><button className="btn btn-lg btn-warning " onClick={() => navigate('/baseball-home')}>Baseball</button></Link>
-                <Link to="/football/mode"><button className="btn btn-lg btn-success" onClick={() => navigate('/football-home')}>Football</button></Link>
-                <Link to="/join"><button>Join / Create a Room</button></Link>                
             </div>
 
         </div>
