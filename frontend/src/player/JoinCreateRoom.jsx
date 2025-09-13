@@ -56,7 +56,8 @@ export default function JoinCreateRoom() {
     };
 
     return (
-        <div className="gap-3" style={backgroundStyle}>
+        <div className="p-5 gap-3" style={backgroundStyle}>
+            <h1 className="display-1 text-center text-light fw-bold">Sports Shuffle</h1>
             <NavBar />
             <h2 className="display-1 text-center text-white">{game?.toUpperCase()} - Multiplayer</h2>
             <div className=" m-2 input-group" style={{marginTop: 16}}>
@@ -68,7 +69,7 @@ export default function JoinCreateRoom() {
                 <input placeholder="YOUR NAME" value={name} onChange={(e)=>setName(e.target.value)} />
                 <button className="btn btn-primary" onClick={joinRoom}>Join</button>
             </div>
-            <pre className="display-4 text-secondary" style={{ marginLeft: 10, marginTop: 16}}>{state ? JSON.stringify(state, null, 2) : "No room yet."}</pre>
+            <pre className="display-4 text-dark fw-bold" style={{ marginLeft: 10, marginTop: 16}}>{state ? JSON.stringify(state, null, 2) : "No room yet."}</pre>
         </div>
     );
 }
