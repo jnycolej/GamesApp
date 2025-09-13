@@ -1,27 +1,23 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import jsonData from '../assets/baseballDeck.json';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
-// import { useNavigate } from "react-router-dom";
-//import bg from '../assets/baseball-background.png';
-
-
-import {Howl} from 'howler';
+import bg from '../assets/baseball-background.png';
 
 const BaseballGameMainPage = () => {
     const [hand, setHand] = useState([]);
     const [points, setPoints] = useState(0);
+    const background = bg;
 
-    const containerStyle = {
-    //backgroundImage: `url(${bg})`,
-    minHeight: '100vh',
-    width: '100%',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed',
-    backgroundSize: 'cover',
-  };
-   //const navigate = useNavigate();
+    const backgroundStyle = {
+        backgroundImage: `url(${background})`,
+        minHeight: '100vh',
+        width: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+    }
 
     const generateCard = () => {
         const randomNum = Math.floor(Math.random() * (jsonData.length - 0) + 0);
@@ -36,23 +32,13 @@ const BaseballGameMainPage = () => {
         return newHand;
     }
 
-    // useEffect(() => {
-    //     setHand(generateHand());
-    // }, []);
-
     const handlePlayBall = () => {
         setHand(generateHand());
     }
 
-    // const hitSound = new Howl({
-    //     src:['sounds/bat-hit.mp3', 'sounds/bat-hit.ogg'],
-    //     volume: 0.7
-    // });
-
     const handleCardClick = (index, cardPoints) => {
-        
+
         setPoints(prev => prev + cardPoints);
-        // hitSound.play();
         const newCard = generateCard();
 
         setHand(prevHand => {
@@ -67,13 +53,16 @@ const BaseballGameMainPage = () => {
         setHand(generateHand());
     }
 
-    return(
-        <div className="containerStyle">
-            <h1>Baseball Game</h1>
+    return (
+        <div className="p-5" style={backgroundStyle}>
+            <h1 className="display-1 fw-bold text-center text-light">Sports Shuffle</h1>
             <NavBar />
-            <h3>Deck | Points: {points}</h3>
-            <button className="btn btn-danger" onClick={handlePlayBall}>Play ball</button>
-            <button className="btn btn-secondary" onClick={restartGame}>Reset</button>
+            <h3 className="display-4 text-center">Points: {points}</h3>
+            <div className="p-3">
+                <button className="btn m-2 btn-danger" onClick={handlePlayBall}>Play ball</button>
+                <button className="btn btn-secondary" onClick={restartGame}>Reset</button>
+            </div>
+
             <div className="container">
                 <div className="row">
                     {hand.map((card, idx) => (
@@ -82,13 +71,13 @@ const BaseballGameMainPage = () => {
                                 <p className="card-text">{card.description}</p>
                                 <p className="card-text">{card.penalty}</p>
                                 <p className="card-text">points: {card.points}</p>
-                            </button>                  
+                            </button>
                         </div>
-                    ))}                    
+                    ))}
                 </div>
-                
+
             </div>
-            
+
 
         </div>
     )

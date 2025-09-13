@@ -9,6 +9,7 @@ import footballBackground from '../assets/football-background.png';
 const FootballGameMainPage = () => {
     const [hand, setHand] = useState([]);
     const [points, setPoints] = useState(0);
+    const fBackground = footballBackground;
 
     const generateCard = () => {
         const randomNum = Math.floor(Math.random() * (jsonData.length - 0) + 0);
@@ -16,7 +17,7 @@ const FootballGameMainPage = () => {
     }
 
     const backgroundStyle = {
-        backgroundImage: `url(${footballBackground})`,
+        backgroundImage: `url(${fBackground})`,
         minHeight: '100vh',
         width: '100%',
         backgroundRepeat: 'no-repeat',
@@ -53,7 +54,7 @@ const FootballGameMainPage = () => {
     }
 
     return (
-        <div className="backgroundStyle">
+        <div style={backgroundStyle}>
             <div className="football-background">
                 <h1 className="display-1 text-center text-light fw-bold">Sports Shuffle</h1>
                 <NavBar />

@@ -42,7 +42,6 @@ export default function ModeSelect() {
                     <div className="row justify-content-center">
                         <div className="col">
                             <button className="btn btn-lg btn-success" onClick={goSingle}>Single Player</button>
-
                         </div>
                         <div className="col">
                             <button className="btn btn-lg btn-warning" onClick={goMulti} style={{ marginLeft: 12 }}>Multiplayer</button>
