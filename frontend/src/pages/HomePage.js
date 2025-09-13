@@ -12,7 +12,7 @@ const HomePage = () => {
 
     return (
         <div className="home-background">
-            <h1 className="display-1 text-center">Home Page</h1>
+            <h1 className="display-1 fw-bold text-center">Sports Shuffle</h1>
             <NavBar />
             <div className="container d-grid row-gap-3">
                 <h1 className="display-4 text-center">Games</h1>

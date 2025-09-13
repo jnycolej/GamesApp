@@ -1,8 +1,26 @@
 import { useParams, useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
+import NavBar from "../components/NavBar";
+
+import footballBackground from '../assets/football-background.png';
+import baseballBackground from '../assets/baseball-background.png';
 
 export default function ModeSelect() {
     const { game } = useParams();       //Chooses which game you are playing
     const nav = useNavigate();
+
+    //Switches background based on type of game
+    const background = game === 'baseball' ? baseballBackground : footballBackground;
+
+    const backgroundStyle = {
+        backgroundImage: `url(${background})`,
+        minHeight: '100vh',
+        width: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+    }
 
     //Single-player
     const goSingle = () => {
@@ -15,10 +33,24 @@ export default function ModeSelect() {
     const goMulti = () => nav(`/${game}/join`);
 
     return (
-        <div style={{padding: 24}}>
-            <h2>{game?.toUpperCase()} - Choose Mode</h2>
-            <button onClick={goSingle}>Single Player</button>
-            <button onClick={goMulti} style={{ marginLeft: 12}}>Multiplayer</button>
+        <div style={backgroundStyle}>
+            <NavBar />
+            <div>
+                <h2 className="display-4 text-center text-white">{game?.toUpperCase()} Game - Choose Mode</h2>
+                <div className="mt-5 container">
+                    <div className="row justify-content-center">
+                        <div className="col">
+                            <button className="btn btn-lg btn-success" onClick={goSingle}>Single Player</button>
+
+                        </div>
+                        <div className="col">
+                            <button className="btn btn-lg btn-outline-success" onClick={goMulti} style={{ marginLeft: 12 }}>Multiplayer</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }

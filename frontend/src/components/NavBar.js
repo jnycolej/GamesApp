@@ -8,9 +8,9 @@ const NavBar = () => {
     
     return (
         <div className="m-2">
-            <button className="btn" onClick={() => navigate('/')}>Home</button>
-            <Link to="/baseball/mode"><button className="btn" onClick={() => navigate('/baseball-home')}>Baseball Game</button></Link>
-            <Link to="/football/mode"><button className="btn" onClick={() => navigate('/football-home')}>Football Game</button></Link>            
+            <button className="btn text-light" onClick={() => navigate('/')}>Home</button>
+            <Link to="/baseball/mode"><button className="btn text-light" onClick={() => navigate('/baseball-home')}>Baseball Game</button></Link>
+            <Link to="/football/mode"><button className="btn text-light" onClick={() => navigate('/football-home')}>Football Game</button></Link>            
         </div>
 
     )

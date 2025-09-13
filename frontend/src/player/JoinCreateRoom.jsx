@@ -4,6 +4,8 @@ import { getSocket } from "../shared/socket";
 import NavBar from '../components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
+import footballBackground from '../assets/football-background.png';
+import baseballBackground from '../assets/baseball-background.png';
 
 export default function JoinCreateRoom() {
     const {game} = useParams();
@@ -11,6 +13,18 @@ export default function JoinCreateRoom() {
     const [code, setCode ] = useState("");
     const [name, setName] = useState("");
     const [state, setState] = useState(null);
+
+    //Switches background based on type of game
+    const background = game === 'baseball' ? baseballBackground : footballBackground;
+
+    const backgroundStyle = {
+        backgroundImage: `url(${background})`,
+        minHeight: '100vh',
+        width: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+    }
 
     useEffect(() => {
         const s = getSocket();
@@ -42,21 +56,19 @@ export default function JoinCreateRoom() {
     };
 
     return (
-        <div style={{ padding: 24 }}>
+        <div className="gap-3" style={backgroundStyle}>
             <NavBar />
-            <h2>{game?.toUpperCase()} - Multiplayer</h2>
-            <div style={{marginTop: 16}}>
+            <h2 className="display-1 text-center text-white">{game?.toUpperCase()} - Multiplayer</h2>
+            <div className=" m-2 input-group" style={{marginTop: 16}}>
                 <input placeholder="YOUR NAME" value={name} onChange={(e)=>setName(e.target.value)} />
-                <button onClick={createRoom}>Create Room</button>                
+                <button className="btn btn-danger" onClick={createRoom}>Create Room</button>                
             </div>
-
-
-            <div style={{ marginTop: 16 }}>
+            <div className="input-group m-2" style={{ marginTop: 16 }}>
                 <input placeholder="ROOM CODE" value={code} onChange={(e)=>setCode(e.target.value)} />
                 <input placeholder="YOUR NAME" value={name} onChange={(e)=>setName(e.target.value)} />
-                <button onClick={joinRoom}>Join</button>
+                <button className="btn btn-primary" onClick={joinRoom}>Join</button>
             </div>
-            <pre style={{marginTop: 16}}>{state ? JSON.stringify(state, null, 2) : "No room yet."}</pre>
+            <pre className="display-4 text-secondary" style={{ marginLeft: 10, marginTop: 16}}>{state ? JSON.stringify(state, null, 2) : "No room yet."}</pre>
         </div>
     );
 }
