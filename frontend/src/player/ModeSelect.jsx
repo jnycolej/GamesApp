@@ -33,11 +33,12 @@ export default function ModeSelect() {
     const goMulti = () => nav(`/${game}/join`);
 
     return (
-        <div style={backgroundStyle}>
+        <div className="p-5" style={backgroundStyle}>
+            <h1 className="display-1 text-light fw-bold text-center">Sports Shuffle</h1>
             <NavBar />
             <div>
                 <h2 className="display-4 text-center text-white">{game?.toUpperCase()} Game - Choose Mode</h2>
-                <div className="mt-5 container">
+                <div className="p-5 container">
                     <div className="row justify-content-center">
                         <div className="col">
                             <button className="btn btn-lg btn-success" onClick={goSingle}>Single Player</button>
