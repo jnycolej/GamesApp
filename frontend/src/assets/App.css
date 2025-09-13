@@ -42,11 +42,29 @@ html, body, #root {
   background-attachment: fixed;
   background-size: cover;
 }
+
 .football-background {
   background-image: url('./football_background.png');
       min-height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
+}
+
+.baseball-home-card-logo {
+  background-image: url('./baseballgamecardlogo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-card {
+  width: 18rem;
+  height: 30rem;
+}
+
+.football-home-card-logo {
+  background-image: url('./football-card-logo.png');
+  background-repeat: no-repeat;
   background-size: cover;
 }
