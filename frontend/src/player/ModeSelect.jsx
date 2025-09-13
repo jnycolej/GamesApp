@@ -45,7 +45,7 @@ export default function ModeSelect() {
 
                         </div>
                         <div className="col">
-                            <button className="btn btn-lg btn-outline-success" onClick={goMulti} style={{ marginLeft: 12 }}>Multiplayer</button>
+                            <button className="btn btn-lg btn-warning" onClick={goMulti} style={{ marginLeft: 12 }}>Multiplayer</button>
 
                         </div>
                     </div>
