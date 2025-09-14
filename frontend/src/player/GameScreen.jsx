@@ -10,13 +10,19 @@ import baseballBackground from '../assets/baseball-background.png';
 
 export default function GameScreen() {
     const { game } = useParams();
-    const { room, myHand, setMyHand } = useRoomChannel();
+    const { room, setRoom, myHand, setMyHand } = useRoomChannel();
     const [opponents, setOpponents] = useState([]);
     const [points, setPoints] = useState(0);
+    const [otherScores, setOtherScores] = useState({});
 
     //Switches background based on type of game
     const background = game === 'baseball' ? baseballBackground : footballBackground;
-
+    useEffect(() => {
+        const s = getSocket();
+        s.emit("room:get", {}, (res) => {
+            if (res?.ok) setRoom(res.state);
+        });
+    }, [setRoom]);
     const backgroundStyle = {
         backgroundImage: `url(${background})`,
         minHeight: '100vh',
@@ -43,6 +49,19 @@ export default function GameScreen() {
         return () => { s.off("hand:update", onHand); s.off("score:update", onScore); };
     }, [setMyHand]);
 
+    // listen for other players' updates (score + handCount)
+    useEffect(() => {
+        const s = getSocket();
+        const onPlayerUpdated = ({ playerId, handCount, score }) => {
+            // keep a local map of others' scores
+            setOtherScores((prev) => ({ ...prev, [playerId]: score }));
+            // you don't need to touch room here; room.handCount updates arrive via "room:updated"
+            // (your useRoomChannel already listens to that and sets `room`)
+        };
+        s.on("player:updated", onPlayerUpdated);
+        return () => s.off("player:updated", onPlayerUpdated);
+    }, []);
+
     useEffect(() => {
         //If someone refreshes mid-game, fetch their hand
         if (!myHand?.length) {
@@ -54,6 +73,7 @@ export default function GameScreen() {
             });
         }
     }, [myHand, setMyHand]);
+
 
     const handleCardClick = (index) => {
         getSocket().emit("game:playCard", { index }, (res) => {
@@ -69,15 +89,44 @@ export default function GameScreen() {
         });
     };
 
+    const players = room?.players ?? [];
 
 
     return (
         <div className="p-5" style={backgroundStyle}>
-             <h1 className="display-1 text-center fw-bold text-light">Sports Shuffle</h1>
-             <NavBar />
+            <h1 className="display-1 text-center fw-bold text-light">Sports Shuffle</h1>
+            <NavBar />
             <h2 className="display-2 text-center text-white">{game?.toUpperCase()} Game</h2>
-           
+
             <h2 className="display-3 text-light text-center">{me?.name || localName || "Player"}</h2>
+
+            {/* ===== Scoreboard ===== */}
+            <div className="container my-3">
+                <div className="row gy-2">
+                    {players.map((p) => {
+                        const isMe = p.id === socketId;
+                        const score = isMe ? points : otherScores[p.id] ?? 0;
+                        const cardCount = isMe ? myHand.length : p.handCount ?? 0;
+
+                        return (
+                            <div key={p.id} className="col-12 col-md-6 col-lg-4">
+                                <div
+                                    className={`d-flex justify-content-between align-items-center p-3 rounded shadow-sm ${isMe ? "bg-light border border-primary" : "bg-white"
+                                        }`}
+                                    title={p.connected ? "Connected" : "Disconnected"}
+                                >
+                                    <div className="fw-semibold">
+                                        {p.name} {isMe ? "(You)" : ""}
+                                    </div>
+                                    <div className="text-nowrap">{score} pts</div>
+                                    <div className="text-nowrap">{cardCount} cards</div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
 
             <h3 className="display-4 text-light text-center">Points: {points}</h3>
             <div className="container">

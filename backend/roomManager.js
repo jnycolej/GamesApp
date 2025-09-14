@@ -13,13 +13,18 @@ function shuffle(arr) {
     }
     return arr;
 }
+// add this helper near the top
+function ensureDeckBase(r) {
+    if (!r.deckBase) r.deckBase = loadDeck(r.gameType || "football");
+}
+
 
 function loadDeck(gameType) {
-    const file = 
+    const file =
         gameType === "baseball"
             ? path.join(__dirname, "data", "baseballDeck.json")
             : path.join(__dirname, "data", "footballDeck.json");
-    
+
     if (!fs.existsSync(file)) {
         throw new Error(`Deck file not found" ${file}`);
     }
@@ -29,10 +34,10 @@ function loadDeck(gameType) {
     //normalize cards and ensure each has an id
     return raw.map((c) => {
 
-        const pts = 
-            Number.isFinite(c.points) ? c.points : 
-            (c.points != null ? Number(c.points) : 0);
-        
+        const pts =
+            Number.isFinite(c.points) ? c.points :
+                (c.points != null ? Number(c.points) : 0);
+
         const desc = c.description ?? c.title ?? c.name ?? "";
         const pen = c.penalty ?? "";
 
@@ -45,15 +50,33 @@ function loadDeck(gameType) {
             description: desc,
             penalty: pen,
             points: pts,
-            
+
             // keep a couple convenience fields if you want
             title: c.title ?? desc ?? "Card",
             text: c.text ?? desc ?? "",
-            meta: { ...(c.meta || {}), penalty: pen, points: pts},            
+            meta: { ...(c.meta || {}), penalty: pen, points: pts },
         };
 
     });
 }
+
+function drawCardFromBase(r) {
+    if (!r) throw new Error("drawCardFromBase called with no room");
+    if (!r.deckBase) r.deckBase = loadDeck(r.gameType || "football");
+    const base = r.deckBase;
+    if (!base?.length) throw new Error("No base deck loaded");
+
+    const tpl = base[Math.floor(Math.random() * base.length)];
+    const instanceId = crypto.randomUUID();
+
+    return {
+        ...tpl,
+        id: instanceId,          // IMPORTANT: keep property name `id` for React keys & your UI
+        instanceId,              // optional: also expose instanceId if you want
+        templateId: tpl.id,      // optional: which template it came from
+    };
+}
+
 export function createRoomManager() {
     const roomMap = new Map();
 
@@ -66,49 +89,50 @@ export function createRoomManager() {
     };
 
     //Creates a room for multiplayer gameplay based on type
-    function createRoom({ creatorSocketId, gameType}) {
+    function createRoom({ creatorSocketId, gameType }) {
         const code = genCode();
         roomMap.set(code, {
             code,
             gameType: gameType || 'football',
             phase: "lobby",
             players: new Map(),
-            drawPile: [],
+            deckMode: "infinite",
+            deckBase: loadDeck(gameType || 'football'),
+            drawCount: 0,
             discardPile: [],
-            settings: { handSize: 5, openHandsAllowed: true }
+            settings: { handSize: 5, openHandsAllowed: true },
+            version: 0,
         });
         return code;
     }
 
     function addPlayer(code, { id, displayName }) {
         const r = roomMap.get(code);
-        if (!r) return { ok: false, error: "room_not_found"};
+        if (!r) return { ok: false, error: "room_not_found" };
         r.players.set(id, { id, name: displayName || "Player", hand: [], connected: true, score: 0 });
         return { ok: true };
     }
 
     function startAndDeal(code) {
         const r = roomMap.get(code);
-        if (!r) return { ok: false, error: "room_not_found"};
-        if (r.players.size === 0) return { ok: false, error: "no_players"};
+        if (!r) return { ok: false, error: "room_not_found" }; // IMPORTANT
 
-        //load and shuffle a fresh deck based on game type
-        const deck = shuffle(loadDeck(r.gameType));
-        r.drawPile = deck;
-        r.discardPile = [];
         r.phase = "playing";
+        r.discardPile = [];
+        r.drawCount = 0;
 
-        //deal
-        const H = (r.settings?.handSize ?? 5);
-        for (const p of r.players.values()) {
-            p.hand = [];
-            p.score = 0;    //reset score at start
-            for (let i = 0; i < H; i++) { 
-                const card = r.drawPile.pop();
-                if (card) p.hand.push(card);
+        const H = r.settings?.handSize ?? 5;
+        for (const player of r.players.values()) {
+            player.hand = [];
+            player.score = 0;
+            for (let i = 0; i < H; i++) {
+                player.hand.push(drawCardFromBase(r));
+                r.drawCount++;
             }
         }
-        return { ok: true };
+
+        r.version += 1;
+        return { ok: true, version: r.version };
     }
 
     function getOpponentsHands(code, requesterId) {
@@ -116,7 +140,7 @@ export function createRoomManager() {
         if (!r) return null;
         if (!r.settings?.openHandsAllowed) return [];
         return [...r.players.values()]
-            .filter((p) => p.id !==requesterId)
+            .filter((p) => p.id !== requesterId)
             .map((p) => ({
                 id: p.id,
                 name: p.name,
@@ -124,32 +148,38 @@ export function createRoomManager() {
             }));
     }
 
-    function playCard(code, socketId, index) { 
+    function playCard(code, socketId, index) {
         const r = roomMap.get(code);
-        if (!r) return { ok: false, error: "room_not_found"};
-        const p = r.players.get(socketId);
-        if (!p) return { ok: false, error: "not_in_room"};
-        if (r.phase !== "playing") return { ok: false, error: "not_playing"};
-        if (index == null || index < 0 || index >= p.hand.length) return {ok: false, error: "bad_index"};
+        if (!r) return { ok: false, error: "room_not_found" };
 
-        const picked = p.hand[index];
+        const player = r.players.get(socketId);   // <- use `player`
+        if (!player) return { ok: false, error: "not_in_room" };
+        if (r.phase !== "playing") return { ok: false, error: "not_playing" };
+        if (index == null || index < 0 || index >= player.hand.length) {
+            return { ok: false, error: "bad_index" };
+        }
+
+        const picked = player.hand[index];
         const pts = Number.isFinite(picked.points) ? picked.points : 0;
-        p.score += pts;
+        player.score += pts;
 
-        //discard the used card
+        // (optional) keep history
         r.discardPile.push(picked);
 
-        //draw a replacement
-        if (r.drawPile.length === 0) {
-            //reshuffle if needed
-            r.drawPile = shuffle(r.discardPile.splice(0));
-        }
-        const replacement = r.drawPile.pop() || null;
-        if (replacement) p.hand[index] = replacement;
-        else p.hand.splice(index, 1);   //no more cards, shrink hand
+        // semi-infinite replacement
+        const replacement = drawCardFromBase(r);
+        player.hand[index] = replacement;        // <- write to `player`, not `p`
+        r.drawCount = (r.drawCount || 0) + 1;
 
-        return { ok: true, hand: p.hand, score: p.score};
+        r.version = (r.version || 0) + 1;
+        return { ok: true, hand: player.hand, score: player.score, version: r.version };
     }
+
+    function getVersion(code) {
+        const r = roomMap.get(code);
+        return r ? r.version : 0;
+    }
+
 
     function getHand(code, socketId) {
         const r = roomMap.get(code);
@@ -173,12 +203,11 @@ export function createRoomManager() {
             gameType: r.gameType,
             phase: r.phase,
             players: [...r.players.values()].map(p => ({
-                id: p.id, 
-                name: p.name, 
-                handCount: p.hand.length, 
+                id: p.id,
+                name: p.name,
+                handCount: p.hand.length,
                 connected: p.connected
             })),
-            deckCount: r.drawPile.length,
             discardCount: r.discardPile.length,
         };
     }
@@ -191,14 +220,16 @@ export function createRoomManager() {
         return { roomClosed: false };
     }
 
-    return { createRoom,
-         addPlayer, 
-         startAndDeal,
-         playCard, 
-         getHand, 
-         getScore,
-         getOpponentsHands,
-         getPublicState, 
-         handleDisconnect 
+    return {
+        createRoom,
+        addPlayer,
+        startAndDeal,
+        playCard,
+        getHand,
+        getScore,
+        getOpponentsHands,
+        getPublicState,
+        handleDisconnect,
+        getVersion
     };
 }
