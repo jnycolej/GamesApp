@@ -106,13 +106,37 @@ export function createRoomManager() {
         return code;
     }
 
-    function addPlayer(code, { id, displayName }) {
+    function addPlayer(code, { id, displayName, key }) {
         const r = roomMap.get(code);
         if (!r) return { ok: false, error: "room_not_found" };
-        r.players.set(id, { id, name: displayName || "Player", hand: [], connected: true, score: 0 });
+        r.players.set(id, {
+            id,
+            key: key || null,            // NEW
+            name: displayName || "Player",
+            hand: [],
+            connected: true,
+            score: 0,
+        });
         return { ok: true };
     }
 
+    // Rebind an old player entry (found by key) to the new socket id
+    function resumePlayer(code, { newSocketId, key, displayName }) {
+        const r = roomMap.get(code);
+        if (!r) return { ok: false, error: "room_not_found" };
+        if (!key) return { ok: false, error: "missing_key" };
+
+        const old = [...r.players.values()].find(p => p.key === key);
+        if (!old) return { ok: false, error: "no_player_for_key" };
+
+        r.players.delete(old.id);       // move entry under new socket id
+        old.id = newSocketId;
+        old.connected = true;
+        if (displayName) old.name = displayName;
+        r.players.set(newSocketId, old);
+
+        return { ok: true, hand: old.hand, score: old.score };
+    }
     function startAndDeal(code) {
         const r = roomMap.get(code);
         if (!r) return { ok: false, error: "room_not_found" }; // IMPORTANT
@@ -216,13 +240,21 @@ export function createRoomManager() {
         const r = roomMap.get(code);
         if (!r) return {};
         const p = r.players.get(socketId);
-        if (p) p.connected = false;
+        if (p) {
+            p.connected = false;
+            clearTimeout(p._evictTimer);
+            p._evictTimer = setTimeout(() => {
+                if (!p.connected) r.players.delete(socketId);
+            }, 120000); // 2 minutes
+        }
         return { roomClosed: false };
     }
+
 
     return {
         createRoom,
         addPlayer,
+        resumePlayer,
         startAndDeal,
         playCard,
         getHand,
