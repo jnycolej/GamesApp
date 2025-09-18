@@ -219,26 +219,31 @@ export function createRoomManager() {
         return p ? p.score : 0;
     }
 
-    function getPublicState(code) {
-        const r = roomMap.get(code);
-        if (!r) return null;
-        return {
-            code: r.code,
-            gameType: r.gameType,
-            phase: r.phase,
-            players: [...r.players.values()].map(p => ({
-                id: p.id,
-                name: p.name,
-                connected: p.connected,
-                ...(open
-                    ? { hand: p.hand }
-                    : { handCount: p.hand.length }
-                ),
-            })),
-            deckCount: r.drawPile ? r.drawPile.length : null,
-            discardCount: r.discardPile.length,
-        };
-    }
+function getPublicState(code) {
+  const r = roomMap.get(code);
+  if (!r) return null;
+
+  // allow full-hand broadcasting when enabled
+  const allowOpenHands = !!(r.settings && r.settings.openHandsAllowed);
+
+  return {
+    code: r.code,
+    gameType: r.gameType,
+    phase: r.phase,
+    players: [...r.players.values()].map((p) => ({
+      id: p.id,
+      name: p.name,
+      connected: !!p.connected,
+      // if open hands, send full hand; otherwise just the count
+      ...(allowOpenHands
+        ? { hand: p.hand }
+        : { handCount: p.hand.length }),
+    })),
+    // in infinite mode deckCount isn't meaningful; keep null/"∞" as you prefer
+    deckCount: r.drawPile ? r.drawPile.length : null,
+    discardCount: r.discardPile ? r.discardPile.length : 0,
+  };
+}
 
     function handleDisconnect(code, socketId) {
         const r = roomMap.get(code);
