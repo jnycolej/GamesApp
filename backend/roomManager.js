@@ -229,9 +229,13 @@ export function createRoomManager() {
             players: [...r.players.values()].map(p => ({
                 id: p.id,
                 name: p.name,
-                handCount: p.hand.length,
-                connected: p.connected
+                connected: p.connected,
+                ...(open
+                    ? { hand: p.hand }
+                    : { handCount: p.hand.length }
+                ),
             })),
+            deckCount: r.drawPile ? r.drawPile.length : null,
             discardCount: r.discardPile.length,
         };
     }
