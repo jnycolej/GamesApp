@@ -11,7 +11,6 @@ import baseballBackground from '../assets/baseball-background.png';
 export default function GameScreen() {
     const { game } = useParams();
     const { room, setRoom, myHand, setMyHand } = useRoomChannel();
-    const [opponents, setOpponents] = useState([]);
     const [points, setPoints] = useState(0);
     const [otherScores, setOtherScores] = useState({});
 
@@ -145,23 +144,32 @@ export default function GameScreen() {
 
             <hr style={{ margin: "24px 0" }} />
 
-            <button onClick={viewOpponents}>View Opponents</button>
-            <div style={{ marginTop: 16 }}>
-                {opponents.map((p) => (
-                    <div key={p.id} style={{ marginBottom: 12 }}>
-                        <strong className="fs-2">{p.name}</strong> ({p.hand.length})
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
-                            {p.hand.map((c) => (
-                                <div className=" p-2 text-center card bg-warning playingCard" key={c.id}>
-                                    <div className="fs-5">{c.description}</div>
-                                    <div className="mt-2 fw-bold">{c.penalty}</div>
-                                    <div className="mt-3 card-text">points: {c.points}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
+            {/* Always-show Opponents */}
+<div style={{ marginTop: 16 }}>
+  {(room?.players ?? [])
+    .filter(p => p.id !== socketId)
+    .map((p) => (
+      <div key={p.id} style={{ marginBottom: 12 }}>
+        <strong className="fs-2">{p.name}</strong>{" "}
+        {p.hand
+          ? <span>({p.hand.length})</span>
+          : <span>({p.handCount ?? 0})</span>}
+
+        {/* If server sent full hands, render them */}
+        {Array.isArray(p.hand) && (
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
+            {p.hand.map((c, i) => (
+              <div className="p-2 text-center card bg-warning playingCard" key={c.id ?? i}>
+                <div className="fs-5">{c.description}</div>
+                <div className="mt-2 fw-bold">{c.penalty}</div>
+                <div className="mt-3 card-text">Points: {Number(c.points || 0)}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+</div>
         </div>
     );
 }
