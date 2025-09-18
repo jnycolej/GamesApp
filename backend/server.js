@@ -11,6 +11,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.set("trust proxy", 1);
+app.get("/healthz", (_req, res) => res.send("ok"));
 
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd ? true : ["http://localhost:3000"];
