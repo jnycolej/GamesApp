@@ -26,6 +26,8 @@ const io = new Server(server, {
 
 const rooms = createRoomManager();
 
+io.on("connection", (socket) => {
+
 //Connects the to the socket
 socket.on("room:create", ({ gameType, displayName, key }, cb) => {
     const code = rooms.createRoom({ creatorSocketId: socket.id, gameType });
@@ -97,25 +99,22 @@ socket.on("game:playCard", ({ index }, cb) => {
     const res = rooms.playCard(code, socket.id, index);
     if (!res.ok) return cb?.(res);
 
-    // 1) Private updates to just this player (full hand + score)
+    // Private updates to just this player (full hand + score)
     io.to(socket.id).emit("hand:update", res.hand || []);
     io.to(socket.id).emit("score:update", res.score ?? 0);
 
-    // 2) Public patch to everyone else: do NOT leak the hand, only count + score
+    // Public patch to everyone else: do NOT leak the hand, only count + score
     socket.to(code).emit("player:updated", {
         playerId: socket.id,
         handCount: res.hand?.length ?? 0,
         score: res.score ?? 0,
-        // version: res.version,            // uncomment if you add versioning in roomManager
     });
 
-    // 3) (optional) Refresh shared public counters (deck/discard/connected flags)
+    // Refresh shared public counters (deck/discard/connected flags)
     const state = rooms.getPublicState(code);
     io.to(code).emit("room:updated", state);
-    // Or, if you prefer a lighter payload, emit a smaller event like:
-    // io.to(code).emit("public:state", { deckCount: state.deckCount, discardCount: state.discardCount });
 
-    cb?.({ ok: true /*, version: res.version */ });
+    cb?.({ ok: true });
 });
 
 //Retrieves user's hand
@@ -146,7 +145,7 @@ socket.on("disconnect", () => {
     rooms.handleDisconnect(code, socket.id);
     io.to(code).emit("room:updated", rooms.getPublicState(code));
 });
-
+});
 
 //In production serve the frontend from the same app
 if (isProd) {
