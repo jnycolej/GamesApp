@@ -101,7 +101,6 @@ export default function GameScreen() {
           {players.map((p) => {
             const isMe = p.id === socketId;
             const score = isMe ? points : otherScores[p.id] ?? 0;
-            const cardCount = isMe ? myHand.length : p.hand?.length ?? p.handCount ?? 0;
 
             return (
               <div key={p.id} className="col-12 col-md-6 col-lg-4">
@@ -115,7 +114,6 @@ export default function GameScreen() {
                     {p.name} {isMe ? "(You)" : ""}
                   </div>
                   <div className="text-nowrap">{score} pts</div>
-                  <div className="text-nowrap">{cardCount} cards</div>
                 </div>
               </div>
             );
@@ -130,7 +128,7 @@ export default function GameScreen() {
       <div className="container">
         <div className="row">
           {myHand.map((card, idx) => (
-            <div className="col m-2" key={card.id ?? idx}>
+            <div className="col" key={card.id ?? idx}>
               <button className="card playingCard p-3" onClick={() => handleCardClick(idx)}>
                 <p className="fs-5 card-text">{card.description}</p>
                 <p className="fw-bold card-text">{card.penalty}</p>
@@ -149,8 +147,7 @@ export default function GameScreen() {
           .filter((p) => p.id !== socketId)
           .map((p) => (
             <div key={p.id} style={{ marginBottom: 12 }}>
-              <strong className="fs-2">{p.name}</strong>{" "}
-              {p.hand ? <span>({p.hand.length})</span> : <span>({p.handCount ?? 0})</span>}
+              <strong className="fs-2 text-light text-center">{p.name}</strong>{" "}
 
               {Array.isArray(p.hand) && (
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
