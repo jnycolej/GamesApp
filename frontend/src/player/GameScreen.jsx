@@ -126,7 +126,7 @@ export default function GameScreen() {
 
       {/* My hand */}
       <div className="container">
-        <div className="row">
+        <div className="row g-2 rows-cols-auto">
           {myHand.map((card, idx) => (
             <div className="col" key={card.id ?? idx}>
               <button className="card playingCard p-3" onClick={() => handleCardClick(idx)}>
