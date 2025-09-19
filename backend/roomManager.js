@@ -118,9 +118,6 @@ export function createRoomManager() {
         return {
             code,
             token,
-            inviteUrl: origin
-                ? buildInviteUrl({ origin, gameType: gameType || "football", code, token })
-                : null,
             isHost: true,
         };
     }
