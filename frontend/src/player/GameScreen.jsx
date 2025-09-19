@@ -105,9 +105,8 @@ export default function GameScreen() {
             return (
               <div key={p.id} className="col-12 col-md-6 col-lg-4">
                 <div
-                  className={`d-flex justify-content-between align-items-center p-3 rounded shadow-sm ${
-                    isMe ? "bg-light border border-primary" : "bg-white"
-                  }`}
+                  className={`d-flex justify-content-between align-items-center p-3 rounded shadow-sm ${isMe ? "bg-light border border-primary" : "bg-white"
+                    }`}
                   title={p.connected ? "Connected" : "Disconnected"}
                 >
                   <div className="fw-semibold">
@@ -150,7 +149,7 @@ export default function GameScreen() {
               <strong className="fs-2 text-light text-center">{p.name}</strong>{" "}
 
               {Array.isArray(p.hand) && (
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
+                <div className="justify-content-center" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
                   {p.hand.map((c, i) => (
                     <div className="p-2 text-center card bg-warning playingCard" key={c.id ?? i}>
                       <div className="fs-5">{c.description}</div>

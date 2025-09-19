@@ -68,3 +68,9 @@ html, body, #root {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.graduate-regular {
+  font-family: "Graduate", serif;
+  font-weight: 400;
+  font-style: normal;
+}
