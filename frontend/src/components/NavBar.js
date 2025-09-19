@@ -8,7 +8,7 @@ const NavBar = () => {
 
     return (
         <div className="m-2">
-            <nav className="navbar navbar-expand-lg">
+            <nav className="navbar navbar-expand-md">
                 <div className="navbar-nav">
                 <button className="btn graduate-regular text-light" onClick={() => navigate('/')}>Home</button>
                 <Link to="/baseball/mode"><button className="nav-link graduate-regular text-light" onClick={() => navigate('/baseball-home')}>Baseball Game</button></Link>
