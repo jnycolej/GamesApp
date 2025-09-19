@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
-import { networkInterfaces } from "os";
+import { error } from "console";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,7 +44,7 @@ function loadDeck(gameType) {
 
         return {
             id: c.id ?? crypto.randomUUID(),
-            // presernve your original fields so the client can render them
+            // Preserve your original fields so the client can render them
             // description: c.description ?? c.title ?? c.name ?? "",
             // penalty: c.penalty ?? "",
             // points: Number.isFinite(c.points) ? c.points : (c.points ? Number(c.points) : 0),
@@ -81,8 +81,9 @@ function drawCardFromBase(r) {
 //Opaque invite token (embed in the deep link)
 const genToken = (bytes = 16) => crypto.randomBytes(bytes).toString("base64url");
 
-const buildInviteUrl = ({ origin, gameType, code, token}) =>
+const buildInviteUrl = ({ origin, gameType, code, token }) =>
     `${origin}/${gameType}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(token)}`;
+
 export function createRoomManager() {
     const roomMap = new Map();
 
@@ -97,13 +98,14 @@ export function createRoomManager() {
     //Creates a room for multiplayer gameplay based on type
     function createRoom({ creatorSocketId, gameType }) {
         const code = genCode();
+        const token = genToken();
         roomMap.set(code, {
             code,
             gameType: gameType || 'football',
             status: "waiting",
             phase: "lobby",
             hostId: creatorSocketId,
-            invite: {token, createdAt: networkInterfaces, ttlMs: 1000 * 60 *60 },
+            invite: { token, createdAt: Date.now(), ttlMs: 1000 * 60 * 60 },
             players: new Map(),
             deckMode: "infinite",
             deckBase: loadDeck(gameType || 'football'),
@@ -160,10 +162,10 @@ export function createRoomManager() {
 
         //Host gate
         if (r.hostId !== requesterId) {
-            return { ok: false, error: "already_started"};
+            return { ok: false, error: "not_host" };
         }
         const minPlayers = r.settings?.minPlayers ?? 1;
-        if(r.players.size < minPlayers) {
+        if (r.players.size < minPlayers) {
             return { ok: false, error: "not_enough_players", need: minPlayers };
         }
 
@@ -246,63 +248,59 @@ export function createRoomManager() {
         return p ? p.score : 0;
     }
 
-function getPublicState(code) {
-  const r = roomMap.get(code);
-  if (!r) return null;
+    function getPublicState(code) {
+        const r = roomMap.get(code);
+        if (!r) return null;
 
-function getClientLobbyState(code, requesterId, origin) {
-    const r = roomMap.get(code);
-    if (!r) return null;
-    const isHost = r.hostId === requesterId;
+        // allow full-hand broadcasting when enabled
+        const allowOpenHands = !!(r.settings && r.settings.openHandsAllowed);
 
-    //build invite URL only for the host
-    let inviteUrl = null;
-    const token = r.invite?.token;
-    if (isHost && origin && token) {
-        const gameType = r.gameType || "football";
-        inviteUrl = `${origin}/${gameType}/join?room=${encodeURIComponent(r.code)}&token=${encodeURIComponent(token)}`;
+        return {
+            code: r.code,
+            gameType: r.gameType,
+            phase: r.phase,
+            players: [...r.players.values()].map((p) => ({
+                id: p.id,
+                name: p.name,
+                connected: !!p.connected,
+                // if open hands, send full hand; otherwise just the count
+                ...(allowOpenHands
+                    ? { hand: p.hand }
+                    : { handCount: p.hand.length }),
+            })),
+            // in infinite mode deckCount isn't meaningful; keep null/"∞" as you prefer
+            deckCount: r.drawPile ? r.drawPile.length : null,
+            discardCount: r.discardPile ? r.discardPile.length : 0,
+        };
     }
-    const pub = getPublicState(code);
 
-    return {
-        ...pub,
-        isHost,
-        inviteUrl,
-    };
-}
+    function getClientLobbyState(code, requesterId, origin) {
+        const r = roomMap.get(code);
+        if (!r) return null;
+        const isHost = r.hostId === requesterId;
 
-function validateInvite(code, token) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found"};
-    const inv = r.invite;
-    if (!inv) return { ok: false, error: "no_invite"};
-    if (inv.token !== token) return { ok:false, error: "bad_token"};
-    if (inv.ttlMs && Date.now() - inv.createdAt > inv.ttlMs) {
-        return { ok: false, error: "token_expired"};
+        let inviteUrl = null;
+        const token = r.invite?.token;
+        if(isHost && origin && token) {
+            const gameType = r.gameType || "football";
+            inviteUrl = buildInviteUrl({ origin, gameType, code: r.code, token });
+        }
+
+        const pub = getPublicState(code);
+        return {...pub, isHost, inviteUrl };
     }
-    return {ok: true};
-}
-  // allow full-hand broadcasting when enabled
-  const allowOpenHands = !!(r.settings && r.settings.openHandsAllowed);
 
-  return {
-    code: r.code,
-    gameType: r.gameType,
-    phase: r.phase,
-    players: [...r.players.values()].map((p) => ({
-      id: p.id,
-      name: p.name,
-      connected: !!p.connected,
-      // if open hands, send full hand; otherwise just the count
-      ...(allowOpenHands
-        ? { hand: p.hand }
-        : { handCount: p.hand.length }),
-    })),
-    // in infinite mode deckCount isn't meaningful; keep null/"∞" as you prefer
-    deckCount: r.drawPile ? r.drawPile.length : null,
-    discardCount: r.discardPile ? r.discardPile.length : 0,
-  };
-}
+    function validateInvite(code, token) {
+        const r = roomMap.get(code);
+        if (!r) return { ok: false, error: "room_not_found"};
+        const inv = r.invite;
+        if (!inv) return { ok: false, error: "no_invite"};
+        if (inv.token !== token) return { ok: false, error: "bad_token"};
+        if (inv.ttlMs && Date.now() - inv.createdAt > inv.ttlMs) {
+            return {ok: false, error: "token_expired"};
+        }
+        return { ok: true};
+    }
 
     function handleDisconnect(code, socketId) {
         const r = roomMap.get(code);
@@ -313,7 +311,7 @@ function validateInvite(code, token) {
             clearTimeout(p._evictTimer);
             p._evictTimer = setTimeout(() => {
                 if (!p.connected) r.players.delete(socketId);
-            }, 120000); // 2 minutes
+            }, 300000); // 5 minutes
         }
         return { roomClosed: false };
     }
@@ -333,5 +331,5 @@ function validateInvite(code, token) {
         validateInvite,
         handleDisconnect,
         getVersion
-    };
-}
+    }
+};
