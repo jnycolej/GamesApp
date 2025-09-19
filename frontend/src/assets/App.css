@@ -69,8 +69,18 @@ html, body, #root {
   background-size: cover;
 }
 
+:root {
+  --ff-grad: "Graduate", ui-serif, Georgia, "Times New Roman", serif;
+}
+
 .graduate-regular {
-  font-family: "Graduate", serif;
+  font-family: var(--ff-grad);
   font-weight: 400;
-  font-style: normal;
+}
+
+.navbar,
+.navbar .navbar-brand,
+.navbar .nav-link {
+  font-family: var(--ff-grad) !important;
+  font-weight: 400;
 }
