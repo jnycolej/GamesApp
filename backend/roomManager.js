@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
+import { networkInterfaces } from "os";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -82,11 +83,18 @@ export function createRoomManager() {
 
     //Generates random for character room code for user input
     const genCode = () => {
-        const A = "ABCDEFGHIJKLMNOPQRSTUVWXYZ23456789";
+        const A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
         let s = "";
-        for (let i = 0; i < 4; i++) s += A[Math.floor(Math.random() * A.length)];
+        for (let i = 0; i < 6; i++) s += A[Math.floor(Math.random() * A.length)];
         return roomMap.has(s) ? genCode() : s;
     };
+
+    //Opaque invite token (embed in the deep link)
+    const genToken = (bytes = 16) => crypto.randomBytes(bytes).toString("base64url");
+
+    //Build a deep link for the frontend
+    const buildInviteUrl = ({ origin, gameType, code, token }) => 
+        `${origin}/${gameType}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(token)}`;
 
     //Creates a room for multiplayer gameplay based on type
     function createRoom({ creatorSocketId, gameType }) {
@@ -94,16 +102,27 @@ export function createRoomManager() {
         roomMap.set(code, {
             code,
             gameType: gameType || 'football',
+            status: "waiting",
             phase: "lobby",
+            hostId: creatorSocketId,
+            invite: {token, createdAt: networkInterfaces, ttlMs: 1000 * 60 *60 },
             players: new Map(),
             deckMode: "infinite",
             deckBase: loadDeck(gameType || 'football'),
             drawCount: 0,
             discardPile: [],
-            settings: { handSize: 5, openHandsAllowed: true },
+            settings: { handSize: 5, openHandsAllowed: true, minPlayers: 1 },
             version: 0,
         });
-        return code;
+
+        return {
+            code,
+            token,
+            inviteUrl: origin
+                ? buildInviteUrl({ origin, gameType: gameType || "football", code, token })
+                : null,
+            isHost: true,
+        };
     }
 
     function addPlayer(code, { id, displayName, key }) {
@@ -137,11 +156,21 @@ export function createRoomManager() {
 
         return { ok: true, hand: old.hand, score: old.score };
     }
-    function startAndDeal(code) {
+    function startAndDeal(code, requesterId) {
         const r = roomMap.get(code);
         if (!r) return { ok: false, error: "room_not_found" }; // IMPORTANT
 
+        //Host gate
+        if (r.hostId !== requesterId) {
+            return { ok: false, error: "already_started"};
+        }
+        const minPlayers = r.settings?.minPlayers ?? 1;
+        if(r.players.size < minPlayers) {
+            return { ok: false, error: "not_enough_players", need: minPlayers };
+        }
+
         r.phase = "playing";
+        r.status = "active";
         r.discardPile = [];
         r.drawCount = 0;
 
@@ -223,6 +252,31 @@ function getPublicState(code) {
   const r = roomMap.get(code);
   if (!r) return null;
 
+function getClientLobbyState(code, requesterId, origin) {
+    const r = roomMap.get(code);
+    if (!r) return null;
+    const isHost = r.hostId === requesterId;
+
+    return {
+        ...getPublicState(code),
+        isHost,
+        inviteUrl: isHost && origin
+            ? buildInviteUrl({ origin, gameType: r.gameType, code: r.code, token: r.invite.token})
+            : null,
+    };
+}
+
+function validateInvite(code, token) {
+    const r = roomMap.get(code);
+    if (!r) return { ok: false, error: "room_not_found"};
+    const inv = r.invite;
+    if (!inv) return { ok: false, error: "no_invite"};
+    if (inv.token !== token) return { ok:false, error: "bad_token"};
+    if (inv.ttlMs && Date.now() - inv.createdAt > inv.ttlMs) {
+        return { ok: false, error: "token_expired"};
+    }
+    return {ok: true};
+}
   // allow full-hand broadcasting when enabled
   const allowOpenHands = !!(r.settings && r.settings.openHandsAllowed);
 
@@ -270,6 +324,8 @@ function getPublicState(code) {
         getScore,
         getOpponentsHands,
         getPublicState,
+        getClientLobbyState,
+        validateInvite,
         handleDisconnect,
         getVersion
     };
