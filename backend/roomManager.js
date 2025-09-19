@@ -78,6 +78,11 @@ function drawCardFromBase(r) {
     };
 }
 
+//Opaque invite token (embed in the deep link)
+const genToken = (bytes = 16) => crypto.randomBytes(bytes).toString("base64url");
+
+const buildInviteUrl = ({ origin, gameType, code, token}) =>
+    `${origin}/${gameType}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(token)}`;
 export function createRoomManager() {
     const roomMap = new Map();
 
@@ -88,13 +93,6 @@ export function createRoomManager() {
         for (let i = 0; i < 6; i++) s += A[Math.floor(Math.random() * A.length)];
         return roomMap.has(s) ? genCode() : s;
     };
-
-    //Opaque invite token (embed in the deep link)
-    const genToken = (bytes = 16) => crypto.randomBytes(bytes).toString("base64url");
-
-    //Build a deep link for the frontend
-    const buildInviteUrl = ({ origin, gameType, code, token }) => 
-        `${origin}/${gameType}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(token)}`;
 
     //Creates a room for multiplayer gameplay based on type
     function createRoom({ creatorSocketId, gameType }) {
@@ -257,12 +255,19 @@ function getClientLobbyState(code, requesterId, origin) {
     if (!r) return null;
     const isHost = r.hostId === requesterId;
 
+    //build invite URL only for the host
+    let inviteUrl = null;
+    const token = r.invite?.token;
+    if (isHost && origin && token) {
+        const gameType = r.gameType || "football";
+        inviteUrl = `${origin}/${gameType}/join?room=${encodeURIComponent(r.code)}&token=${encodeURIComponent(token)}`;
+    }
+    const pub = getPublicState(code);
+
     return {
-        ...getPublicState(code),
+        ...pub,
         isHost,
-        inviteUrl: isHost && origin
-            ? buildInviteUrl({ origin, gameType: r.gameType, code: r.code, token: r.invite.token})
-            : null,
+        inviteUrl,
     };
 }
 
