@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import NavBar from '../components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
@@ -8,11 +8,11 @@ import baseballGameLogo from '../assets/baseballgamecardlogo.png';
 import footballGameLogo from '../assets/football-card-logo.png'
 const HomePage = () => {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <div className="home-background">
-            <h1 className="display-1 fw-bold text-center">Sports Shuffle</h1>
+            <a onClick={() => Navigate('/')}><h1 className="display-1 fw-bold text-center">Sports Shuffle</h1></a>
             <NavBar />
             <div className="container d-grid row-gap-3">
                 <h1 className="display-4 text-center">Games</h1>
