@@ -12,7 +12,7 @@ const HomePage = () => {
 
     return (
         <div className="home-background">
-            <a onClick={() => Navigate('/')}><h1 className="display-1 fw-bold text-center">Sports Shuffle</h1></a>
+            <a onClick={() => Navigate('/')}><h1 className="display-1 fw-bold graduate-regular text-center">Sports Shuffle</h1></a>
             <NavBar />
             <div className="container d-grid row-gap-3">
                 <h1 className="display-4 text-center">Games</h1>

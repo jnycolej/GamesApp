@@ -83,4 +83,5 @@ html, body, #root {
 .navbar .nav-link {
   font-family: var(--ff-grad) !important;
   font-weight: 400;
+  text-decoration: none;
 }
