@@ -37,9 +37,10 @@ export default function ModeSelect() {
             <h1 className="display-1 text-light fw-bold text-center">Sports Shuffle</h1>
             <NavBar />
             <div>
-                <h2 className="display-4 text-center text-white">{game?.toUpperCase()} Game - Choose Mode</h2>
+                <h2 className="display-4 text-center fw-bold text-white">{game?.toUpperCase()}</h2>
+                <h3 className="display-4 text-center text-white">Choose Game Mode</h3>
                 <div className="p-5 container">
-                    <div className="row justify-content-center">
+                    <div className="row justify-content-center ">
                         <div className="col">
                             <button className="btn btn-lg btn-success" onClick={goSingle}>Single Player</button>
                         </div>

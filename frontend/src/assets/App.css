@@ -87,6 +87,12 @@ html, body, #root {
   text-decoration: none;
 }
 
+.display-1, display-2, display-3,
+display-4 {
+  font-family: var(--ff-grad) !important;
+  font-weight: 400;
+  text-decoration: none;
+}
 .card-header {
   font-family: var(--ff-grad) !important;
   font-weight: 400;
@@ -116,3 +122,5 @@ html, body, #root {
   font-weight: 400;
   font-style: normal;
 }
+
+

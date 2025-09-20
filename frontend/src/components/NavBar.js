@@ -11,7 +11,7 @@ const NavBar = () => {
             <nav className="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a className="navbar-brand graduate-regular display-1 fw-bold text-light" href="/">Sports Shuffle</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
