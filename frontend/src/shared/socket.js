@@ -71,10 +71,10 @@ export function createRoom(gameType, displayName, cb) {
   });
 }
 
-export function joinRoom(roomCode, displayName, cb) {
+export function joinRoom(roomCode, displayName, cb, token = null) {
   const s = getSocket();
   const key = getPlayerKey();
-  s.emit("player:join", {roomCode, displayName, key, token}, (res) => {
+  s.emit("player:join", { roomCode, displayName, key, token}, (res) => {
     if (res?.ok) rememberRoom(roomCode, displayName);
     cb?.(res);
   });
