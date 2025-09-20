@@ -1,7 +1,8 @@
 // frontend/src/player/JoinCreateRoom.jsx
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { getSocket, getPlayerKey, rememberRoom } from "../shared/socket";
+import { getSocket, rememberRoom } from "../shared/socket";
+import { getPlayerKey, getDisplayName, setDisplayName } from "../shared/playerIdentity";
 import NavBar from "../components/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -66,14 +67,13 @@ export default function JoinCreateRoom() {
 
   useEffect(() => {
     if (deepRoom) setCode(deepRoom);
-    if (deepRoom && deepToken && name) joinRoom(deepRoom, deepToken);
-  }, [deepRoom, deepToken, name]);
+  }, [deepRoom /*, deepToken, name */]);
 
   const createRoom = () => {
     if (busy) return;
     setBusy(true);
     const displayName = (name || "Player").trim();
-    localStorage.setItem("displayName", displayName);
+    setDisplayName(displayName);
 
     const key = getPlayerKey();
     getSocket().emit("room:create", { gameType: game, displayName, key }, (res) => {
@@ -102,14 +102,17 @@ export default function JoinCreateRoom() {
     setBusy(true);
 
     const displayName = (name || "Player").trim();
-    localStorage.setItem("displayName", displayName);
+    setDisplayName(displayName);
 
     const key = getPlayerKey();
+    console.log("[client] join click", {cleaned, displayName, key, forcedToken, deepToken});
+
     getSocket().emit(
       "player:join",
       { roomCode: cleaned, displayName, key, token: forcedToken ?? deepToken ?? null },
       (res) => {
         setBusy(false);
+        console.log("[client] join result", res);
         if (!res?.ok) return alert(res?.error ?? "Join failed");
         setState(res.state);
         rememberRoom(cleaned, displayName);             // <- save for auto-resume

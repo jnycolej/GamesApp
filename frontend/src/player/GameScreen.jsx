@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSocket } from "../shared/socket";
+import { getSocket, rememberRoom } from "../shared/socket";
+import { getPlayerKey, getDisplayName, setDisplayName } from "../shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
 import NavBar from "../components/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";

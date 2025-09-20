@@ -1,6 +1,7 @@
 import { useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSocket } from "../shared/socket";
+import { getSocket, rememberRoom } from "../shared/socket";
+import { getPlayerKey, getDisplayName, setDisplayName } from "../shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
 import footballBackground from '../assets/football-background.png';
 import baseballBackground from '../assets/baseball-background.png';
@@ -61,7 +62,7 @@ export default function GameLobby() {
         };
 
         const key = ensureKey();
-        const displayName = localStorage.getItem("displayName") || "Player";
+        const displayName = getDisplayName();
 
         // Try to resume first (returns ok if you were previously in this room)
         socket.emit("player:resume", {roomCode: code, displayName, key}, (res) => {
