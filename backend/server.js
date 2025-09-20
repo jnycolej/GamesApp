@@ -33,7 +33,8 @@ socket.on("room:create", ({ gameType, displayName, key }, cb) => {
     const {code, token} = rooms.createRoom({ creatorSocketId: socket.id, gameType });
     socket.data.roomCode = code;
     socket.join(code);
-    const add = rooms.addPlayer(code, { id: socket.id, displayName: displayName || "Player", key }); // pass key
+    const safeName = (displayName || "").trim() || "Host";
+    const add = rooms.addPlayer(code, { id: socket.id, displayName: safeName, key }); // pass key
     if (!add.ok) return cb?.(add);
 
     cb?.({ ok: true, roomCode: code, token });
@@ -45,14 +46,13 @@ socket.on("room:create", ({ gameType, displayName, key }, cb) => {
 
 //Allows player to join room based on room code
 socket.on("player:join", ({ roomCode, displayName, key, token }, cb) => {
-    
-    const check = rooms.validateInvite(roomCode, token ?? "");
-    if (!check.ok) return cb?.(check);
-
+    console.log("[join] code=%s name=%s key=%s", roomCode, displayName, key);
     const res = rooms.addPlayer(roomCode, { id: socket.id, displayName, key });
     if (!res.ok) return cb?.(res);
     socket.data.roomCode = roomCode;
     socket.join(roomCode);
+    const s = rooms.getPublicState(roomCode);
+    console.log("[join] players now=%d", s?.players?.length || 0);
     const state = rooms.getPublicState(roomCode);
     cb?.({ ok: true, state });
     io.to(roomCode).emit("room:updated", state);

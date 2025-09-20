@@ -61,7 +61,7 @@ export default function GameLobby() {
         };
 
         const key = ensureKey();
-        const displayName = localStorage.getItem("playerName") || "Player";
+        const displayName = localStorage.getItem("displayName") || "Player";
 
         // Try to resume first (returns ok if you were previously in this room)
         socket.emit("player:resume", {roomCode: code, displayName, key}, (res) => {
