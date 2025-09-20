@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSocket, rememberRoom } from "../shared/socket";
-import { getPlayerKey, getDisplayName, setDisplayName } from "../shared/playerIdentity";
+import { getSocket } from "../shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
 import NavBar from "../components/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,15 +13,28 @@ export default function GameScreen() {
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
   const [points, setPoints] = useState(0);
   const [otherScores, setOtherScores] = useState({});
+  const socket = getSocket();
+  const [socketId, setSocketId] = useState(socket.id || null);
 
   const background = game === "baseball" ? baseballBackground : footballBackground;
 
   useEffect(() => {
-    const s = getSocket();
-    s.emit("room:get", {}, (res) => res?.ok && setRoom(res.state));
+    const update = () => setSocketId(socket.id || null);
+    update();
+    socket.on("connect", update);
+    socket.on("reconnect", update);
+    socket.on("disconnect", () => setSocketId(null));
+
+    socket.emit("room:get", {}, (res) => es?.ok && setRoom(res.state));
     const onRoom = (st) => setRoom(st);
-    s.on("room:updated", onRoom);
-    return () => s.off("room:updated", onRoom);
+    socket.on("room:updated", onRoom);
+
+    return () => {
+      socket.off("connect", update);
+      socket.off("reconnect", update);
+      socket.off("disconnect", update);
+      socket.off("room:updated", onRoom);
+    };
   }, [socket, setRoom]);
 
   const backgroundStyle = {
@@ -34,68 +46,35 @@ export default function GameScreen() {
     backgroundSize: "cover",
   };
 
-  const socket = getSocket();
-  const [socketId, setSocketId] = useState(socket.id || null);
-  useEffect(() => {
-    const update= () => setSocketId(socket.id || null);
-    socket.on("connect", update);
-    socket.on("reconnect", update);
-    socket.on("disconnect", () => setSocketId(null));
-    // initialize immediately too
-    update();
-    return () => {
-      socket.off("connect", update);
-      socket.off("reconnect", update);
-      socket.off("disconnect", update);
-    };
-  }, [socket]);
-
   const me = useMemo(() => {
     if (!room?.players || !socketId) return null;
     return room.players.find((p) => p.id === socketId) || null;
   }, [room?.players, socketId]);
 
-  const localName =
-    typeof window !== "undefined" ? localStorage.getItem("displayName") : null;
+  const localName = (typeof window !== "undefined" && localStorage.getItem("displayName")) || null;
 
   // my hand + my score
   useEffect(() => {
-    const s = socket;
-    // pull current values immediately
-    s.emit("hand:getMine", {}, (res) => setMyHand(res?.hand || []));
-    s.emit("score:getMine", {}, (res) => setPoints(res?.score ?? 0));
+    socket.emit("hand:getMine", {}, (res) => setMyHand(res?.hand || []));
+    socket.emit("score:getMine", {}, (res) => setPoints(res?.score ?? 0));
     const onHand = (hand) => setMyHand(hand || []);
     const onScore = (score) => setPoints(score ?? 0);
-    s.on("hand:update", onHand);
-    s.on("score:update", onScore);
+    socket.on("hand:update", onHand);
+    socket.on("score:update", onScore);
     return () => {
-      s.off("hand:update", onHand);
-      s.off("score:update", onScore);
+      socket.off("hand:update", onHand);
+      socket.off("score:update", onScore);
     };
   }, [socket, setMyHand]);
 
+  useEffect(() => {
   // others' scores (hand counts come via room:updated)
-  useEffect(() => {
-    const s = getSocket();
-    const onPlayerUpdated = ({ playerId, handCount, score }) => {
-      setOtherScores((prev) => ({ ...prev, [playerId]: score }));
-    };
-    s.on("player:updated", onPlayerUpdated);
-    return () => s.off("player:updated", onPlayerUpdated);
-  }, []);
-
-  // hydrate my hand/score if I refresh mid-game
-  useEffect(() => {
-    if (!myHand?.length) {
-      const s = getSocket();
-      s.emit("hand:getMine", {}, (res) => {
-        if (res?.ok) setMyHand(res.hand ?? []);
-      });
-      s.emit("score:getMine", {}, (res) => {
-        if (res?.ok && typeof res.score === "number") setPoints(res.score);
-      });
-    }
-  }, [myHand, setMyHand]);
+  const onPlayerUpdated = ({ playerId, handCount, score }) => {
+    setOtherScores((prev) => ({ ...prev, [playerId]: score}));
+  };
+  socket.on("player:updated", onPlayerUpdated);
+  return () => socket.off("player:updated", onPlayerUpdated);
+}, [socket]);
 
   const handleCardClick = (index) => {
     getSocket().emit("game:playCard", { index }, (res) => {
@@ -105,7 +84,7 @@ export default function GameScreen() {
 
   const players = room?.players ?? [];
   const opponents = useMemo(
-    () => (socketId ? players.filter(p => p.id !== socketId) : []),
+    () => (socketId ? players.filter((p) => p.id !== socketId) : []),
     [players, socketId]
   );
 
@@ -166,9 +145,7 @@ export default function GameScreen() {
 
       {/* Always-show Opponents */}
       <div style={{ marginTop: 16 }}>
-        {(room?.players ?? [])
-          .filter((p) => p.id !== socketId)
-          .map((p) => (
+        {opponents.map((p) => (
             <div key={p.id} style={{ marginBottom: 12 }}>
               <strong className="fs-2 text-light text-center">{p.name}</strong>{" "}
 
