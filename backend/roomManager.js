@@ -27,7 +27,7 @@ function loadDeck(gameType) {
             : path.join(__dirname, "data", "footballDeck.json");
 
     if (!fs.existsSync(file)) {
-        throw new Error(`Deck file not found" ${file}`);
+        throw new Error(`Deck file not found: ${file}`);
     }
 
     const raw = JSON.parse(fs.readFileSync(file, "utf8"));

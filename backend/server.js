@@ -30,12 +30,16 @@ io.on("connection", (socket) => {
 
 //Connects the to the socket
 socket.on("room:create", ({ gameType, displayName, key }, cb) => {
-    const code = rooms.createRoom({ creatorSocketId: socket.id, gameType });
+    const {code, token} = rooms.createRoom({ creatorSocketId: socket.id, gameType });
     socket.data.roomCode = code;
     socket.join(code);
-    rooms.addPlayer(code, { id: socket.id, displayName: displayName || "Player", key }); // pass key
+    const add = rooms.addPlayer(code, { id: socket.id, displayName: displayName || "Player", key }); // pass key
+    if (!add.ok) return cb?.(add);
+
+    cb?.({ ok: true, roomCode: code, token });
+
+    //Broadcast state so UI shows the host as player1
     const state = rooms.getPublicState(code);
-    cb?.({ ok: true, roomCode: code, state });
     io.to(code).emit("room:updated", state);
 });
 
@@ -79,7 +83,7 @@ socket.on('room:get', (_, cb) => {
 socket.on("game:startAndDeal", async (_payload, cb) => {
     const code = socket.data.roomCode;
     if (!code) return cb?.({ ok: false, error: "not_in_room" });  // guard
-    const res = rooms.startAndDeal(code);
+    const res = rooms.startAndDeal(code, socket.id);
     if (!res.ok) return cb?.(res);
 
     cb?.({ ok: true });

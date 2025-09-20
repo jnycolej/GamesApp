@@ -66,8 +66,8 @@ export default function JoinCreateRoom() {
 
   useEffect(() => {
     if (deepRoom) setCode(deepRoom);
-    // if (deepRoom && deepToken && name) joinRoom(deepRoom, deepToken);
-  }, [deepRoom, deepToken]);
+    if (deepRoom && deepToken && name) joinRoom(deepRoom, deepToken);
+  }, [deepRoom, deepToken, name]);
 
   const createRoom = () => {
     if (busy) return;
@@ -79,11 +79,13 @@ export default function JoinCreateRoom() {
     getSocket().emit("room:create", { gameType: game, displayName, key }, (res) => {
       setBusy(false);
       if (!res?.ok) return alert(res?.error ?? "Failed to create room");
-      setState(res.state);
-      setInviteUrl(res.inviteUrl || null);
-      setIsHost(!!res.isHost);
-      rememberRoom(res.roomCode, displayName);        // <- save for auto-resume
-      nav(`/${game}/lobby/${res.roomCode}`);
+      const { roomCode, token } = res;
+      setIsHost(true);    //creator is host
+      // Build invite URL on the client (no server 'origin' needed)
+      const origin = window.location.origin;
+      setInviteUrl(`${origin}/${game}/join?room=${encodeURIComponent(roomCode)}&token=${encodeURIComponent(token)}`);
+      rememberRoom(roomCode, displayName);
+      nav(`/${game}/lobby/${roomCode}`);
     });
   };
 
