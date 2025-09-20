@@ -167,7 +167,7 @@ export default function JoinCreateRoom() {
           onChange={(e) => setName(e.target.value)}
           className="form-control"
         />
-        <button className="btn btn-primary" onClick={joinRoom} disabled={busy}>
+        <button className="btn btn-primary" onClick={() => joinRoom()} disabled={busy}>
           {busy ? "Joining..." : "Join"}
         </button>
       </div>

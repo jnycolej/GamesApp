@@ -46,33 +46,54 @@ socket.on("room:create", ({ gameType, displayName, key }, cb) => {
 
 //Allows player to join room based on room code
 socket.on("player:join", ({ roomCode, displayName, key, token }, cb) => {
-    console.log("[join] code=%s name=%s key=%s", roomCode, displayName, key);
-    const res = rooms.addPlayer(roomCode, { id: socket.id, displayName, key });
+    const CODE = String(roomCode || "")
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g, "")
+        .slice(0, 8);
+    
+    console.log("[join] incoming", {
+        code: CODE,
+        name: (displayName || "").trim(),
+        key: (key || "").slice(0, 6) + "...",
+        socket: socket.id,
+    });
+
+    // Optional: reject if room doesn't exist
+    const exists = rooms.getPublicState(CODE);
+    if (!exists) {
+        console.warn("[join] room_not_found", CODE);
+        return cb?.({ ok: false, error: "room_not_found"});
+    }
+    const res = rooms.addPlayer(CODE, { id: socket.id, displayName, key });
     if (!res.ok) return cb?.(res);
-    socket.data.roomCode = roomCode;
-    socket.join(roomCode);
-    const s = rooms.getPublicState(roomCode);
+    socket.data.roomCode = CODE;
+    socket.join(CODE);
+    const s = rooms.getPublicState(CODE);
     console.log("[join] players now=%d", s?.players?.length || 0);
-    const state = rooms.getPublicState(roomCode);
+    const state = rooms.getPublicState(CODE);
     cb?.({ ok: true, state });
-    io.to(roomCode).emit("room:updated", state);
+    io.to(CODE).emit("room:updated", state);
 });
 
 // resumes if player disconnects
 socket.on("player:resume", ({ roomCode, displayName, key }, cb) => {
-    const res = rooms.resumePlayer(roomCode, { newSocketId: socket.id, displayName, key });
+    const CODE = String(roomCode || "")
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, "")
+            .slice(0.8);
+    const res = rooms.resumePlayer(CODE, { newSocketId: socket.id, displayName, key});
     if (!res.ok) return cb?.(res);
 
-    socket.data.roomCode = roomCode;
-    socket.join(roomCode);
+    socket.data.roomCode = CODE;
+    socket.join(CODE);
 
     // send private state back to this socket
     io.to(socket.id).emit("hand:update", res.hand || []);
     io.to(socket.id).emit("score:update", res.score ?? 0);
 
     // refresh public state (shows them as connected)
-    const state = rooms.getPublicState(roomCode);
-    io.to(roomCode).emit("room:updated", state);
+    const state = rooms.getPublicState(CODE);
+    io.to(CODE).emit("room:updated", state);
 
     cb?.({ ok: true, state });
 });
