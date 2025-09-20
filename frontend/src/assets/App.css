@@ -73,6 +73,7 @@ html, body, #root {
   --ff-grad: "Graduate", ui-serif, Georgia, "Times New Roman", serif;
 }
 
+
 .graduate-regular {
   font-family: var(--ff-grad);
   font-weight: 400;
@@ -86,6 +87,11 @@ html, body, #root {
   text-decoration: none;
 }
 
+.card-header {
+  font-family: var(--ff-grad) !important;
+  font-weight: 400;
+  text-decoration: none;
+}
 
 .nunito-sans-reg {
   font-family: "Nunito Sans", sans-serif;
