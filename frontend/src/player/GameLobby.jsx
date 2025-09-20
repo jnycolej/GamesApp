@@ -11,7 +11,11 @@ export default function GameLobby() {
     const { room, setRoom } = useRoomChannel();
     const nav = useNavigate();
     const socket = getSocket();
-
+    const inviteToken = (code && localStorage.getItem(`inviteToken:${code}`)) || null;
+    const inviteUrl = 
+        inviteToken
+            ? `${window.location.origin}/${game}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(inviteToken)}`
+            : null;
     const background = game === 'baseball' ? baseballBackground : footballBackground;
 
     const backgroundStyle = {
@@ -94,6 +98,32 @@ export default function GameLobby() {
                 <h1 className="display-1 text-light fw-bold text-center">Sports Shuffle</h1>
                 <NavBar />
                 <h2 className="display-2 text-light">Room {room?.code ?? code ?? ""} {room?.gameType ? `- ${room.gameType} game` : ""}</h2>
+                {inviteUrl && (
+                    <div className="alert alert-light mt-3 d-flex gap2 align-items-center" style={{ opacity: 0.95}}>
+                        <span className="me-2">Invite link ready:</span>
+                        <button
+                            className="btn btn-outline-primary btn-sm"
+                            onClick={async () => {
+                                try {
+                                    if (navigator.share) {
+                                        await navigator.share({ title: "Join my room", text: `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`, url: inviteUrl});
+                                    } else {
+                                        await navigator.clipboard.writeText(`Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`);
+                                        alert("Invite copied!");
+                                    }
+                                } catch {}
+                            }}
+                        >
+                            Share / Copy
+                        </button>
+                        <a 
+                            className="btn btn-outline-success btn-sm"
+                            href={`sms:&body=${encodeURIComponent(`Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`)}`}
+                        >
+                            Text
+                        </a>
+                    </div>
+                )}
                 <p className="m-3 text-secondary text-center fs-2">Players: {room?.players?.length ?? 0}</p>
                 <ul className="">
                     {room?.players?.map(p => (

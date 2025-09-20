@@ -44,7 +44,11 @@ socket.on("room:create", ({ gameType, displayName, key }, cb) => {
 });
 
 //Allows player to join room based on room code
-socket.on("player:join", ({ roomCode, displayName, key }, cb) => {
+socket.on("player:join", ({ roomCode, displayName, key, token }, cb) => {
+    
+    const check = rooms.validateInvite(roomCode, token ?? "");
+    if (!check.ok) return cb?.(check);
+
     const res = rooms.addPlayer(roomCode, { id: socket.id, displayName, key });
     if (!res.ok) return cb?.(res);
     socket.data.roomCode = roomCode;

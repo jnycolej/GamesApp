@@ -80,6 +80,9 @@ export default function JoinCreateRoom() {
       setBusy(false);
       if (!res?.ok) return alert(res?.error ?? "Failed to create room");
       const { roomCode, token } = res;
+      //store token so the lobby can build the invite link for the host
+      localStorage.setItem(`inviteToken:${roomCode}`, token);
+      
       setIsHost(true);    //creator is host
       // Build invite URL on the client (no server 'origin' needed)
       const origin = window.location.origin;
