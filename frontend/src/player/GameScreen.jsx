@@ -19,10 +19,11 @@ export default function GameScreen() {
 
   useEffect(() => {
     const s = getSocket();
-    s.emit("room:get", {}, (res) => {
-      if (res?.ok) setRoom(res.state);
-    });
-  }, [setRoom]);
+    s.emit("room:get", {}, (res) => res?.ok && setRoom(res.state));
+    const onRoom = (st) => setRoom(st);
+    s.on("room:updated", onRoom);
+    return () => s.off("room:updated", onRoom);
+  }, [socket, setRoom]);
 
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
@@ -33,7 +34,22 @@ export default function GameScreen() {
     backgroundSize: "cover",
   };
 
-  const socketId = getSocket().id; // may be undefined briefly after mount
+  const socket = getSocket();
+  const [socketId, setSocketId] = useState(socket.id || null);
+  useEffect(() => {
+    const update= () => setSocketId(socket.id || null);
+    socket.on("connect", update);
+    socket.on("reconnect", update);
+    socket.on("disconnect", () => setSocketId(null));
+    // initialize immediately too
+    update();
+    return () => {
+      socket.off("connect", update);
+      socket.off("reconnect", update);
+      socket.off("disconnect", update);
+    };
+  }, [socket]);
+
   const me = useMemo(() => {
     if (!room?.players || !socketId) return null;
     return room.players.find((p) => p.id === socketId) || null;
@@ -44,7 +60,10 @@ export default function GameScreen() {
 
   // my hand + my score
   useEffect(() => {
-    const s = getSocket();
+    const s = socket;
+    // pull current values immediately
+    s.emit("hand:getMine", {}, (res) => setMyHand(res?.hand || []));
+    s.emit("score:getMine", {}, (res) => setPoints(res?.score ?? 0));
     const onHand = (hand) => setMyHand(hand || []);
     const onScore = (score) => setPoints(score ?? 0);
     s.on("hand:update", onHand);
@@ -53,7 +72,7 @@ export default function GameScreen() {
       s.off("hand:update", onHand);
       s.off("score:update", onScore);
     };
-  }, [setMyHand]);
+  }, [socket, setMyHand]);
 
   // others' scores (hand counts come via room:updated)
   useEffect(() => {
@@ -85,6 +104,10 @@ export default function GameScreen() {
   };
 
   const players = room?.players ?? [];
+  const opponents = useMemo(
+    () => (socketId ? players.filter(p => p.id !== socketId) : []),
+    [players, socketId]
+  );
 
   return (
     <div className="p-5" style={backgroundStyle}>
