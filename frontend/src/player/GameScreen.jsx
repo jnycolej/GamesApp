@@ -25,7 +25,7 @@ export default function GameScreen() {
     socket.on("reconnect", update);
     socket.on("disconnect", () => setSocketId(null));
 
-    socket.emit("room:get", {}, (res) => es?.ok && setRoom(res.state));
+    socket.emit("room:get", {}, (res) => res?.ok && setRoom(res.state));
     const onRoom = (st) => setRoom(st);
     socket.on("room:updated", onRoom);
 
