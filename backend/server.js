@@ -86,7 +86,7 @@ io.on("connection", (socket) => {
         const CODE = String(roomCode || "")
             .toUpperCase()
             .replace(/[^A-Z0-9]/g, "")
-            .slice(0, 8);
+            .slice(0, 6);
         
         const res = rooms.resumePlayer(CODE, { newSocketId: socket.id, displayName, key });
         if (!res.ok) return cb?.(res);

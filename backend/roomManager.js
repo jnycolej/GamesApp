@@ -87,11 +87,13 @@ export function createRoomManager() {
     const roomMap = new Map();
 
     //Generates random for character room code for user input
-    const genCode = () => {
+    const genCode = (len = 6) => {
         const A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-        let s = "";
-        for (let i = 0; i < 6; i++) s += A[Math.floor(Math.random() * A.length)];
-        return roomMap.has(s) ? genCode() : s;
+        let code = "";
+        for (let i = 0; i < len; i++) {
+            code += chars[Math.floor(Math.random() * chars.length)];
+        }
+        return code;
     };
 
     //Creates a room for multiplayer gameplay based on type
