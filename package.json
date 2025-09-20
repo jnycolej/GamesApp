@@ -1,7 +1,7 @@
 {
   "name": "games-app",
   "private": true,
-  "engines": { "node": ">=18.x" },
+  "engines": { "node": "22.x" },
   "scripts": {
     "heroku-prebuild": "npm install --prefix backend",
     "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"

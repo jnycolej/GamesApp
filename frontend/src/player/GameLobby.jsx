@@ -45,8 +45,8 @@ export default function GameLobby() {
             let k = localStorage.getItem("playerKey");
             if (!k) {
                 const gen = 
-                    (self.crypto && self.crypto.randomUUID && self.crypto.randomUUID()) ||
-                    String(Math.random()).slice(2);
+                    (globalThis.crypto?.randomUUID?.()) ||
+                    (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).toUpperCase();
                 localStorage.setItem("playerKey", gen);
                 k = gen;
             }
