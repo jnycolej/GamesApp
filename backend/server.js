@@ -76,7 +76,7 @@ io.on("connection", (socket) => {
         socket.join(CODE);
         
         const state = rooms.getPublicState(CODE);
-        console.log("[join] players now=%d", s?.players?.length || 0);
+        console.log("[join] players now=%d", state?.players?.length || 0);
         cb?.({ ok: true, state });
         io.to(CODE).emit("room:updated", state);
     });
@@ -86,7 +86,7 @@ io.on("connection", (socket) => {
         const CODE = String(roomCode || "")
             .toUpperCase()
             .replace(/[^A-Z0-9]/g, "")
-            .slice(0.8);
+            .slice(0, 8);
         
         const res = rooms.resumePlayer(CODE, { newSocketId: socket.id, displayName, key });
         if (!res.ok) return cb?.(res);
