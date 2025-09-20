@@ -14,7 +14,8 @@ const HomePage = () => {
         <div className="home-background">
             <NavBar />
             <div className="container d-grid row-gap-3">
-                <h1 className="display-4 text-center">Games</h1>
+                <h1 className="display-4 fw-bold text-center">Games</h1>
+                <hr />
             </div>
             <div class="container">
                 <div class="mb-3 row justify-content-start gap-4 text-center">
