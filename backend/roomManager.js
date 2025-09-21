@@ -5,7 +5,21 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const ROOM_CODE_LEN = 6;
+const CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
+function uid(bytes = 16) {
+    return crypto.randomBytes(bytes).toString("hex");
+}
+
+function genCode(len = ROOM_CODE_LEN) {
+    let out = "";
+    for (let i = 0; i < len; i++) {
+        const idx = crypto.randomInt(0, CODE_ALPHABET.length);
+        out += CODE_ALPHABET[idx];
+    }
+    return out;
+}
 function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -98,11 +112,22 @@ export function createRoomManager() {
 
     //Creates a room for multiplayer gameplay based on type
     function createRoom({ creatorSocketId, gameType }) {
-        const code = genCode();
-        const token = genToken();
-        roomMap.set(code, {
+        let code;
+        for(let attempts = 0; attempts < 5; attempts++) {
+            code = genCode();
+            if (!rooms.has(code)) break;
+            code = null;
+        }
+        if(!code) {
+            // as a last resort
+            code = genCode(ROOM_CODE_LEN + 1);
+        }
+
+        const room = {
             code,
-            gameType: gameType || 'football',
+            gameType,
+            createdAt: Date.now(),
+            players: new Map(),
             status: "waiting",
             phase: "lobby",
             hostId: creatorSocketId,
@@ -114,12 +139,13 @@ export function createRoomManager() {
             discardPile: [],
             settings: { handSize: 5, openHandsAllowed: true, minPlayers: 1 },
             version: 0,
-        });
+        };
+        rooms.set(code, room);
+        const token = uid(8);
 
         return {
             code,
-            token,
-            isHost: true,
+            token
         };
     }
 
@@ -331,7 +357,9 @@ export function createRoomManager() {
         getClientLobbyState,
         validateInvite,
         handleDisconnect,
-        listCodes,
+        listCodes() {
+            return Array.from(rooms.keys());
+        },
         getVersion
     }
 };
