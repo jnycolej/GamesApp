@@ -314,6 +314,9 @@ export function createRoomManager() {
         return { roomClosed: false };
     }
 
+    function listCodes() {
+        return Array.from(rooms.keys());
+    }
 
     return {
         createRoom,
@@ -328,6 +331,7 @@ export function createRoomManager() {
         getClientLobbyState,
         validateInvite,
         handleDisconnect,
+        listCodes,
         getVersion
     }
 };

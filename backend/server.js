@@ -1,5 +1,5 @@
 import http from "http";
-import express from "express";
+import express, { application } from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -12,6 +12,14 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.set("trust proxy", 1);
 app.get("/healthz", (_req, res) => res.send("ok"));
+app.get("/debug/rooms", (_req, res) => {
+    try {
+        const list = rooms.listCodes ? rooms.listCodes() : (rooms.list?.() || []);
+        res.json({ rooms: list});
+    } catch {
+        res.json({ rooms: "no-list-function"});
+    }
+});
 
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd ? true : ["http://localhost:3000"];
@@ -33,20 +41,33 @@ const io = new Server(server, {
 const rooms = createRoomManager();
 
 io.on("connection", (socket) => {
+    console.log("[socket] connected", socket.id);
+
     //Connects the to the socket
     socket.on("room:create", ({ gameType, displayName, key }, cb) => {
+        try {
         const { code, token } = rooms.createRoom({ creatorSocketId: socket.id, gameType });
+        if(!code) throw new Error("createRoom_no_code");
+        console.log("[create] room code:", code, "gameType:", gameType);
+
         socket.data.roomCode = code;
         socket.join(code);
+        
         const safeName = (displayName || "").trim() || "Host";
         const add = rooms.addPlayer(code, { id: socket.id, displayName: safeName, key }); // pass key
-        if (!add.ok) return cb?.(add);
+        if (!add.ok) {
+            console.warn("[create] addPlayer failed:", add);
+            return cb?.(add || {ok: false, error: "add_player_failed"});
+        }
 
-        cb?.({ ok: true, roomCode: code, token });
-
-        //Broadcast state so UI shows the host as player1
         const state = rooms.getPublicState(code);
         io.to(code).emit("room:updated", state);
+
+        return cb?.({ ok: true, roomCode: code, token, state });
+    } catch (err) {
+        console.error("[create] error:", err);
+        return cb?.({ ok: false, error: "create_failed"});
+    }
     });
 
     //Allows player to join room based on room code
