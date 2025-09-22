@@ -107,9 +107,15 @@ function drawCardFromBase(r) {
     const base = r.deckBase;
     if (!base?.length) throw new Error("No base deck loaded");
 
-    const tpl = base[Math.floor(Math.random() * base.length)];
-    const instanceId = crypto.randomUUID();
+    const total = base.reduce((s, c) => s + (c.weight || 1), 0);
+    let rnum = Math.random() * total;
+    let tpl = base[0];
+    for (const c of base) {
+        rnum -= (c.weight || 1);
+        if (rnum <= 0) { tpl = c; break; }
+    }
 
+    const instanceId = crypto.randomUUID();
     return {
         ...tpl,
         id: instanceId,          // IMPORTANT: keep property name `id` for React keys & your UI
@@ -127,34 +133,24 @@ const buildInviteUrl = ({ origin, gameType, code, token }) =>
 export function createRoomManager() {
     const roomMap = new Map();
 
-    //Generates random for character room code for user input
-    const genCode = (len = 6) => {
-        const A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-        let code = "";
-        for (let i = 0; i < len; i++) {
-            code += chars[Math.floor(Math.random() * chars.length)];
-        }
-        return code;
-    };
-
     //Creates a room for multiplayer gameplay based on type
     function createRoom({ creatorSocketId, gameType }) {
         let code;
         for(let attempts = 0; attempts < 5; attempts++) {
             code = genCode();
-            if (!rooms.has(code)) break;
+            if (!roomMap.has(code)) break;
             code = null;
         }
         if(!code) {
             // as a last resort
             code = genCode(ROOM_CODE_LEN + 1);
         }
+        const token = uid(8);
 
         const room = {
             code,
             gameType,
             createdAt: Date.now(),
-            players: new Map(),
             status: "waiting",
             phase: "lobby",
             hostId: creatorSocketId,
@@ -167,13 +163,9 @@ export function createRoomManager() {
             settings: { handSize: 5, openHandsAllowed: true, minPlayers: 1 },
             version: 0,
         };
-        rooms.set(code, room);
-        const token = uid(8);
+        roomMap.set(code, room);
 
-        return {
-            code,
-            token
-        };
+        return { code, token };
     }
 
     function addPlayer(code, { id, displayName, key }) {
@@ -320,7 +312,7 @@ export function createRoomManager() {
                     : { handCount: p.hand.length }),
             })),
             // in infinite mode deckCount isn't meaningful; keep null/"∞" as you prefer
-            deckCount: r.drawPile ? r.drawPile.length : null,
+            deckCount: r.deckMode === "finite" && r.deck ? r.deck.length : null,
             discardCount: r.discardPile ? r.discardPile.length : 0,
         };
     }
@@ -368,7 +360,7 @@ export function createRoomManager() {
     }
 
     function listCodes() {
-        return Array.from(rooms.keys());
+        return Array.from(roomMap.keys());
     }
 
     return {
@@ -384,9 +376,7 @@ export function createRoomManager() {
         getClientLobbyState,
         validateInvite,
         handleDisconnect,
-        listCodes() {
-            return Array.from(rooms.keys());
-        },
+        listCodes,
         getVersion
     }
 };
