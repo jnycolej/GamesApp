@@ -69,13 +69,13 @@ io.on("connection", (socket) => {
         return cb?.({ ok: false, error: "create_failed"});
     }
     });
-
+try {
     //Allows player to join room based on room code
     socket.on("player:join", ({ roomCode, displayName, key, token }, cb) => {
         const CODE = String(roomCode || "")
             .toUpperCase()
             .replace(/[^A-Z0-9]/g, "")
-            .slice(0, 8);
+            .slice(0, 6);
 
         console.log("[join] incoming", {
             code: CODE,
@@ -100,7 +100,11 @@ io.on("connection", (socket) => {
         console.log("[join] players now=%d", state?.players?.length || 0);
         cb?.({ ok: true, state });
         io.to(CODE).emit("room:updated", state);
-    });
+    } catch (err) {
+        console.error("[join] error:", err);
+        cb?.({ ok:false, error: "join_failed"});
+    }
+});
 
     // resumes if player disconnects
     socket.on("player:resume", ({ roomCode, displayName, key }, cb) => {

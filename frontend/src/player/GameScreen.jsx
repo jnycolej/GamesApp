@@ -15,6 +15,7 @@ export default function GameScreen() {
   const [otherScores, setOtherScores] = useState({});
   const socket = getSocket();
   const [socketId, setSocketId] = useState(socket.id || null);
+  const [lastDealtId, setLastDealtId] = useState(null);
 
   const background = game === "baseball" ? baseballBackground : footballBackground;
 
@@ -81,6 +82,14 @@ export default function GameScreen() {
       if (!res?.ok) alert(res?.error ?? "Could not play card");
     });
   };
+
+  //watch hand for changes
+  useEffect(() => {
+    if (myHand.length > 0) {
+      const newest = myHand[myHand - 1];
+      setLastDealtId(newest.id);
+    }
+  }, [myHand]);
 
   const players = room?.players ?? [];
   const opponents = useMemo(

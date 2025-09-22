@@ -2,22 +2,22 @@
     {
       "description": "If The Camera Shows a Cheerleader",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "If The Camera Shows The Owner",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "If The Camera Shows The Owner or Student Section",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next 3rd Down Conversion",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next 4th Down Conversion",
@@ -27,52 +27,53 @@
     {
       "description": "Next Aerial Camera Shot of The Stadium",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Automatic First Down",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Beer Commercial",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Car Commercial",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Extra Point Made",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Field Goal",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Fumble",
       "penalty": "Shotgun",
-      "points": 3
+      "points": 5,
+      "weight": 1
     },
     {
       "description": "Next Holding Penalty",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Incomplete Pass",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Insurance Commercial",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Interception",
@@ -87,7 +88,7 @@
     {
       "description": "Next Missed Field Goal",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next One-Handed Catch",
@@ -97,7 +98,7 @@
     {
       "description": "Next Pass Play Over 20 Yards",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Pass Play Over 30 Yards",
@@ -107,92 +108,92 @@
     {
       "description": "Next Passing First Down",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Passing Touchdown",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Punt",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Quarterback Rush",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Rush Play over 10 Yards",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Rush Play Over 20 Yards",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Rushing First Down",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Rushing Touchdown",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Sack",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time a Coach Yells At The Ref",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time A Player Runs Out Of Bounds",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time Someone Checks Their Fantasy Team Or Sports Bet",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time the Announcer Says Rookie",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time The Offense Is In The Redzone",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time The Quarterback Throws It Away",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time the Referree Speaks",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time The Reporter Interviews the Coach",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Timeout",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Touchdown Dance",
@@ -202,27 +203,27 @@
     {
       "description": "Next Turnover",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Unnecessary Roughness Penalty",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Touchback",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Rush Play Over 5 Yards",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time The Offense Is Stopped On The Goal Line",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Time a Coach Challenges A Play",
@@ -232,12 +233,12 @@
     {
       "description": "Next Time Offense Is Stopped On the Goal Line",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next False Start Penalty",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     },
     {
       "description": "Next Rush Play Over 30 Yards",
@@ -257,16 +258,17 @@
     {
       "description": "Next Pass Interference Penalty",
       "penalty": "2 Drinks",
-      "points": 2
+      "points" : 2, "weight": 4
     },
     {
       "description": "Next Safety",
       "penalty": "Shotgun",
-      "points": 3
+      "points": 5,
+      "weight": 1
     },
     {
       "description": "Next Tackle For Loss",
       "penalty": "1 Drink",
-      "points": 1
+      "points" : 1, "weight": 5
     }
 ]

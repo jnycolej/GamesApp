@@ -3,271 +3,315 @@
         "id": 1,
         "description": "Next 1-2-3 Inning (Three Up, Three Down)",
         "penalty": "Shotgun",
-        "points": 3
+        "points": 5,
+        "weight": 1
     },
     {
         "id": 2,
         "description": "Next Beer Commercial",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 3,
         "description": "Next Car Commercial",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 4,
         "description": "Next Changeup That's a Strike",
-        "penalty":"1 Drink",
-        "points":1
+        "penalty": "1 Drink",
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 5,
         "description": "Next Curve That's a Strike",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 6,
         "description": "Next Diving Catch",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 7,
         "description": "Next Double",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 8,
         "description": "Next Double Play",
-        "penalty":"2 Drinks",
-        "points": 2
+        "penalty": "2 Drinks",
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 9,
         "description": "Next Foul Ball",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 10,
         "description": "Next Full Count",
-        "penalty":"1 Drink",
-        "points": 1
+        "penalty": "1 Drink",
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 11,
         "description": "Next Home Run",
         "penalty": "Take a Shot",
-        "points": 4
+        "points": 4,
+        "weight": 2
     },
     {
         "id": 12,
         "description": "Next Left Handed Batter",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 13,
         "description": "Next Mound Visit By Coach",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 14,
         "description": "Next Out At Home Base",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 15,
         "description": "Next Out At Third Base",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 16,
         "description": "Next Pop Out Or Flyout",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 17,
         "description": "Next Replay Review",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 18,
         "description": "Next Run",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 19,
         "description": "Next Single",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 20,
         "description": "Next Slider That's A Strike",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 21,
         "description": "Next Out At First Base",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 22,
         "description": "Next Sports Betting Commercial",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 23,
         "description": "Next Steal",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 24,
         "description": "Next Strikeout",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 25,
         "description": "Next Time Announcer Says 'Fast Ball'",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 26,
         "description": "Next Time A Pitcher Attempts To Pickoff A Player",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 27,
         "description": "Next Time A Player Catches A Foul Ball",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 28,
         "description": "Next Time A Player is Filmed Spitting",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 29,
         "description": "Next Time A Player Is In A Pickle",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 30,
         "description": "Next Time A Player Slides",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 31,
         "description": "Next Time An Announcer Mentions A Retired Player",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 32,
         "description": "Next Time Announcer Says 'Left Field'",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 33,
         "description": "Next Time Bases Are Loaded",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 34,
         "description": "Next Time The Announcer Says 'Ground Ball'",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 35,
         "description": "Next Time The Bases Are Loaded",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 36,
         "description": "Next Time The Catcher Drops The Ball",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 37,
         "description": "Next Time The Count is 1-2",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 38,
         "description": "Next Time The Count is 2-0",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 39,
         "description": "Next Time The Count is 2-2",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 40,
         "description": "Next Time There Is 2 Balls In A Row",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 41,
         "description": "Next Time There Is Two Strikes In A Row",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 42,
         "description": "Next Triple",
         "penalty": "3 Drinks",
-        "points": 3
+        "points": 3,
+        "weight": 3
     },
     {
         "id": 43,
         "description": "Next Walk",
         "penalty": "1 Drink",
-        "points": 1
+        "points": 1,
+        "weight": 5
     },
     {
         "id": 44,
         "description": "Next Time A Player Commits An Error",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     },
     {
         "id": 45,
         "description": "Next Shutout Inning",
         "penalty": "2 Drinks",
-        "points": 2
+        "points": 2,
+        "weight": 4
     }
-
 ]
