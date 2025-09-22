@@ -124,9 +124,6 @@ function drawCardFromBase(r) {
     };
 }
 
-//Opaque invite token (embed in the deep link)
-const genToken = (bytes = 16) => crypto.randomBytes(bytes).toString("base64url");
-
 const buildInviteUrl = ({ origin, gameType, code, token }) =>
     `${origin}/${gameType}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(token)}`;
 
@@ -194,6 +191,10 @@ export function createRoomManager() {
         r.players.delete(old.id);       // move entry under new socket id
         old.id = newSocketId;
         old.connected = true;
+        if (old._evictTimer) {
+            clearTimeout(old._evictTimer);
+            old._evictTimer = null;
+        }
         if (displayName) old.name = displayName;
         r.players.set(newSocketId, old);
 
