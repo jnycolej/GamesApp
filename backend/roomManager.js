@@ -32,6 +32,13 @@ function ensureDeckBase(r) {
     if (!r.deckBase) r.deckBase = loadDeck(r.gameType || "football");
 }
 
+const RARITY_TO_WEIGHT = {
+    common: 5,
+    semicommon: 4,
+    uncommon: 3,
+    unusual: 2,
+    rare: 1,
+}
 
 function loadDeck(gameType) {
     const file =
@@ -47,7 +54,6 @@ function loadDeck(gameType) {
 
     //normalize cards and ensure each has an id
     return raw.map((c) => {
-
         const pts =
             Number.isFinite(c.points) ? c.points :
                 (c.points != null ? Number(c.points) : 0);
@@ -55,12 +61,20 @@ function loadDeck(gameType) {
         const desc = c.description ?? c.title ?? c.name ?? "";
         const pen = c.penalty ?? "";
 
+        let w;
+        if (c.weight != null) {
+            const parsed = Number(c.weight);
+            w = Number.isFinite(parsed) ? parsed : 1;
+        } else if (c.rarity) {
+            const key = String(c.rarity).toLowerCase();
+            w = RARITY_TO_WEIGHT[key] ?? 1;
+        } else {
+            w = 1;
+        }
+        const weight = Math.max(1, Math.floor(w));
+
         return {
             id: c.id ?? crypto.randomUUID(),
-            // Preserve your original fields so the client can render them
-            // description: c.description ?? c.title ?? c.name ?? "",
-            // penalty: c.penalty ?? "",
-            // points: Number.isFinite(c.points) ? c.points : (c.points ? Number(c.points) : 0),
             description: desc,
             penalty: pen,
             points: pts,
@@ -69,9 +83,22 @@ function loadDeck(gameType) {
             title: c.title ?? desc ?? "Card",
             text: c.text ?? desc ?? "",
             meta: { ...(c.meta || {}), penalty: pen, points: pts },
-        };
 
+            rarity: c.rarity ?? null,
+            weight,
+        };
     });
+}
+
+function buildWeightedDeck(baseDeck) {
+    const expanded = [];
+    for (const card of baseDeck) {
+        const copies = card.weight || 1;
+        for (let i = 0; i < copies; i++) {
+            expanded.push({ ...card});
+        }
+    }
+    return shuffle(expanded);
 }
 
 function drawCardFromBase(r) {
