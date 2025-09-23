@@ -212,6 +212,8 @@ socket.on("disconnect", () => {
     io.to(code).emit("room:updated", rooms.getPublicState(code));
 });
 
+});
+
 //In production serve the frontend from the same app
 if (isProd) {
     const buildDir = path.join(__dirname, "../frontend/build");
@@ -226,4 +228,3 @@ if (isProd) {
 const PORT = process.env.PORT || 8080;
 console.log("[boot] starting HTTP server on", PORT);
 server.listen(PORT, () => console.log("[boot] listening on :" + PORT));
-});
