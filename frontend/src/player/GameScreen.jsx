@@ -91,7 +91,10 @@ export default function GameScreen() {
     }
   }, [myHand]);
 
-  const players = room?.players ?? [];
+  const players =  Array.isArray(room?.players)
+     ? room.players.filter(p => p && typeof p === "object" && p.id) 
+     : [];
+
   const opponents = useMemo(
     () => (socketId ? players.filter((p) => p.id !== socketId) : []),
     [players, socketId]
@@ -110,7 +113,9 @@ export default function GameScreen() {
       {/* Scoreboard */}
       <div className="container my-3">
         <div className="row gy-2">
-          {players.map((p) => {
+          {players
+            .filter(p => p.id !== socketId)
+            .map((p) => {
             const isMe = p.id === socketId;
             const score = isMe ? points : otherScores[p.id] ?? 0;
 
