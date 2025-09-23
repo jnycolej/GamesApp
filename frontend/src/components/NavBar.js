@@ -19,7 +19,7 @@ const NavBar = () => {
                             <li className="nav-item">
                                 <Link to="/baseball/mode"><a className="nav-link graduate-regular text-light" onClick={() => navigate('/baseball-home')}>Baseball Game</a></Link>
                             </li>
-                            <li className="nav-item"><Link to="/baseball/mode"><a className="nav-link graduate-regular text-light" onClick={() => navigate('/football/home')}>Football Game</a></Link></li>
+                            <li className="nav-item"><Link to="/football/mode"><a className="nav-link graduate-regular text-light" onClick={() => navigate('/football/home')}>Football Game</a></Link></li>
 
                         </ul>
                     </div>
