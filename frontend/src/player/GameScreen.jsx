@@ -27,7 +27,18 @@ export default function GameScreen() {
     socket.on("disconnect", () => setSocketId(null));
 
     socket.emit("room:get", {}, (res) => res?.ok && setRoom(res.state));
-    const onRoom = (st) => setRoom(st);
+
+    const onRoom = (st) => {
+      if(st?.players?.length) {
+        st.players = st.players
+          .filter((p) => p && typeof p === "object" && p.id)
+          .map((p) => ({
+            ...p,
+            hand: Array.isArray(p.hand) ? p.hand.filter(Boolean) : p.hand,
+          }));
+      }
+      setRoom(st);
+    };
     socket.on("room:updated", onRoom);
 
     return () => {
@@ -56,12 +67,15 @@ export default function GameScreen() {
 
   // my hand + my score
   useEffect(() => {
-    socket.emit("hand:getMine", {}, (res) => setMyHand(res?.hand || []));
+    socket.emit("hand:getMine", {}, (res) => setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []));
     socket.emit("score:getMine", {}, (res) => setPoints(res?.score ?? 0));
-    const onHand = (hand) => setMyHand(hand || []);
+
+    const onHand = (hand) => setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
     const onScore = (score) => setPoints(score ?? 0);
+
     socket.on("hand:update", onHand);
     socket.on("score:update", onScore);
+
     return () => {
       socket.off("hand:update", onHand);
       socket.off("score:update", onScore);
@@ -85,9 +99,11 @@ export default function GameScreen() {
 
   //watch hand for changes
   useEffect(() => {
-    if (myHand.length > 0) {
+    if (Array.isArray(myHand) && myHand.length > 0) {
       const newest = myHand[myHand - 1];
-      setLastDealtId(newest.id);
+      setLastDealtId(newest?.id ?? null);
+    } else {
+      setLastDealtId(null);
     }
   }, [myHand]);
 
@@ -143,12 +159,12 @@ export default function GameScreen() {
       {/* My hand */}
       <div className="container">
         <div className="row g-2 row-cols-auto">
-          {myHand.map((card, idx) => (
+          {(Array.isArray(myHand) ? myHand.filter(Boolean) : []).map((card, idx) => (
             <div className="col" key={card.id ?? idx}>
               <button className="card playingCard p-3" onClick={() => handleCardClick(idx)}>
-                <p className="fs-5 card-text">{card.description}</p>
-                <p className="fw-bold card-text">{card.penalty}</p>
-                <p className="card-text">Points: {Number(card.points || 0)}</p>
+                <p className="fs-5 card-text">{card?.description ?? "-"}</p>
+                <p className="fw-bold card-text">{card?.penalty ?? ""}</p>
+                <p className="card-text">Points: {Number(card?.points ?? 0)}</p>
               </button>
             </div>
           ))}
@@ -165,11 +181,11 @@ export default function GameScreen() {
 
               {Array.isArray(p.hand) && (
                 <div className="justify-content-center" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
-                  {p.hand.map((c, i) => (
-                    <div className="p-2 text-center card bg-warning playingCard" key={c.id ?? i}>
-                      <div className="fs-5">{c.description}</div>
-                      <div className="mt-2 fw-bold">{c.penalty}</div>
-                      <div className="mt-3 card-text">Points: {Number(c.points || 0)}</div>
+                  {p.hand.filter(Boolean).map((c, i) => (
+                    <div className="p-2 text-center card bg-warning playingCard" key={c?.id ?? i}>
+                      <div className="fs-5">{c?.description ?? "-"}</div>
+                      <div className="mt-2 fw-bold">{c?.penalty ?? ""}</div>
+                      <div className="mt-3 card-text">Points: {Number(c?.points ?? 0)}</div>
                     </div>
                   ))}
                 </div>

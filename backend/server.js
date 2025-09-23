@@ -62,7 +62,7 @@ io.on("connection", (socket) => {
             }
 
             const state = rooms.getPublicState(code);
-            io.to(code).emit("room:updated", state);
+            io.to(code).emit("room:updated", rooms.safePublicState ? rooms.safePublicState(code) : state);
 
             return cb?.({ ok: true, roomCode: code, token, state });
         } catch (err) {
@@ -149,7 +149,7 @@ socket.on("game:startAndDeal", async (_payload, cb) => {
 
     cb?.({ ok: true });
     const state = rooms.getPublicState(code);
-    io.to(code).emit("room:updated", state);
+    io.to(code).emit("room:updated", rooms.safePublicState ? rooms.safePublicState(code) : state);
 
     const socketsInRoom = await io.in(code).fetchSockets();
     for (const s of socketsInRoom) {
@@ -178,7 +178,7 @@ socket.on("game:playCard", ({ index }, cb) => {
 
     // Refresh shared public counters (deck/discard/connected flags)
     const state = rooms.getPublicState(code);
-    io.to(code).emit("room:updated", state);
+    io.to(code).emit("room:updated", rooms.safePublicState ? rooms.safePublicState(code) : state);
 
     cb?.({ ok: true });
 });

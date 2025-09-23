@@ -95,7 +95,7 @@ function buildWeightedDeck(baseDeck) {
     for (const card of baseDeck) {
         const copies = card.weight || 1;
         for (let i = 0; i < copies; i++) {
-            expanded.push({ ...card});
+            expanded.push({ ...card });
         }
     }
     return shuffle(expanded);
@@ -133,12 +133,12 @@ export function createRoomManager() {
     //Creates a room for multiplayer gameplay based on type
     function createRoom({ creatorSocketId, gameType }) {
         let code;
-        for(let attempts = 0; attempts < 5; attempts++) {
+        for (let attempts = 0; attempts < 5; attempts++) {
             code = genCode();
             if (!roomMap.has(code)) break;
             code = null;
         }
-        if(!code) {
+        if (!code) {
             // as a last resort
             code = genCode(ROOM_CODE_LEN + 1);
         }
@@ -325,25 +325,50 @@ export function createRoomManager() {
 
         let inviteUrl = null;
         const token = r.invite?.token;
-        if(isHost && origin && token) {
+        if (isHost && origin && token) {
             const gameType = r.gameType || "football";
             inviteUrl = buildInviteUrl({ origin, gameType, code: r.code, token });
         }
 
         const pub = getPublicState(code);
-        return {...pub, isHost, inviteUrl };
+        return { ...pub, isHost, inviteUrl };
     }
 
     function validateInvite(code, token) {
         const r = roomMap.get(code);
-        if (!r) return { ok: false, error: "room_not_found"};
+        if (!r) return { ok: false, error: "room_not_found" };
         const inv = r.invite;
-        if (!inv) return { ok: false, error: "no_invite"};
-        if (inv.token !== token) return { ok: false, error: "bad_token"};
+        if (!inv) return { ok: false, error: "no_invite" };
+        if (inv.token !== token) return { ok: false, error: "bad_token" };
         if (inv.ttlMs && Date.now() - inv.createdAt > inv.ttlMs) {
-            return {ok: false, error: "token_expired"};
+            return { ok: false, error: "token_expired" };
         }
-        return { ok: true};
+        return { ok: true };
+    }
+
+    function safePublicState(code) {
+        const s = getPublicState(code);
+        if (!s) return s;
+
+        //drop any bad player entries
+        s.players = Array.isArray(s.players)
+            ? s.players
+                .filter(p => {
+                    // if open hands are present, make sure there are no undefined cards
+                    if (Array.isArray(p.hand)) {
+                        p.hand = p.hand.filter(Boolean).map(card => ({
+                            //normalize a minimal safe shape for the UI
+                            id: card?.id ?? crypto.randomUUID(),
+                            description: card?.description ?? card?.title ?? "Card",
+                            penalty: card?.penalty ?? "",
+                            points: Number.isFinite(card?.points) ? card.points : 0,
+                        }));
+                    }
+                    return p;
+                })
+            : [];
+
+        return s;
     }
 
     function handleDisconnect(code, socketId) {
@@ -378,6 +403,7 @@ export function createRoomManager() {
         validateInvite,
         handleDisconnect,
         listCodes,
-        getVersion
+        getVersion,
+        safePublicState,
     }
 };
