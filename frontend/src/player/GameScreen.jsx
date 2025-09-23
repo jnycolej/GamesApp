@@ -1,24 +1,31 @@
 import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getSocket } from "../shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
 import { motion, AnimatePresence } from "framer-motion";
+
 import NavBar from "../components/NavBar";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 import footballBackground from "../assets/football-background.png";
 import baseballBackground from "../assets/baseball-background.png";
 
 export default function GameScreen() {
   const { game } = useParams();
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
+  
   const [points, setPoints] = useState(0);
   const [otherScores, setOtherScores] = useState({});
+  
   const socket = getSocket();
   const [socketId, setSocketId] = useState(socket.id || null);
+  const navigate = useNavigate();
   const [lastDealtId, setLastDealtId] = useState(null);
 
   const background = game === "baseball" ? baseballBackground : footballBackground;
+
 
   useEffect(() => {
     const update = () => setSocketId(socket.id || null);
@@ -116,6 +123,11 @@ export default function GameScreen() {
     () => (socketId ? players.filter((p) => p.id !== socketId) : []),
     [players, socketId]
   );
+
+  function handleLeaveGame() {
+    socket.emit("leaveRoom");
+    navigate("/multiplayer");
+  }
 
   return (
     <div className="p-5" style={backgroundStyle}>
@@ -245,6 +257,9 @@ export default function GameScreen() {
           </div>
         ))}
       </div>
+        <button className="btn btn-danger" onClick={handleLeaveGame} style={{position: "absolute", top: 16, right: 16}}>
+          Leave Game
+        </button>
     </div>
   );
 }

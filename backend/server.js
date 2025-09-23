@@ -212,6 +212,8 @@ socket.on("disconnect", () => {
     io.to(code).emit("room:updated", rooms.getPublicState(code));
 });
 
+socket.on("leaveRoom", () => {
+    
 });
 
 //In production serve the frontend from the same app
