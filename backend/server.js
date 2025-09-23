@@ -1,5 +1,5 @@
 import http from "http";
-import express, { application } from "express";
+import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -12,12 +12,15 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.set("trust proxy", 1);
 app.get("/healthz", (_req, res) => res.send("ok"));
+const rooms = createRoomManager();
+console.log("[boot] room manager ready");
 app.get("/debug/rooms", (_req, res) => {
     try {
-        const list = rooms.listCodes ? rooms.listCodes() : (rooms.list?.() || []);
+        const list = rooms.listCodes ? rooms.listCodes() : [];
         res.json({ rooms: list });
-    } catch {
-        res.json({ rooms: "no-list-function" });
+    } catch (err) {
+        console.error("/debug/rooms error", err);
+        res.json({ rooms: "error" });
     }
 });
 
@@ -38,7 +41,6 @@ const io = new Server(server, {
     },
 });
 
-const rooms = createRoomManager();
 
 io.on("connection", (socket) => {
     console.log("[socket] connected", socket.id);
@@ -222,5 +224,6 @@ if (isProd) {
 }
 
 const PORT = process.env.PORT || 8080;
-server.listen(PORT, () => console.log("listening on :" + PORT));
+console.log("[boot] starting HTTP server on", PORT);
+server.listen(PORT, () => console.log("[boot] listening on :" + PORT));
 });

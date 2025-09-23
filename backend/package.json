@@ -6,7 +6,7 @@
   "engines": {"node": ">=18.x"},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "node --enable-source-maps server.js",
     "dev": "node --watch server.js",
     "heroku-postbuild": "npm --prefix ../frontend ci && npm --prefix ../frontend run build && rm -rf ./public && cp -R ../frontend/build ./public"
   },
