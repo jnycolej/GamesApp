@@ -1,7 +1,7 @@
 import { useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSocket, rememberRoom } from "../shared/socket";
-import { getPlayerKey, getDisplayName, setDisplayName } from "../shared/playerIdentity";
+import { getSocket } from "../shared/socket";
+import { getDisplayName } from "../shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
 import footballBackground from '../assets/football-background.png';
 import baseballBackground from '../assets/baseball-background.png';

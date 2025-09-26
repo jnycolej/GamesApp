@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavBar from '../components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)

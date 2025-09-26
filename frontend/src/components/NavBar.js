@@ -17,9 +17,9 @@ const NavBar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">  
                             <li className="nav-item">
-                                <Link to="/baseball/mode"><a className="nav-link graduate-regular text-light" onClick={() => navigate('/baseball-home')}>Baseball Game</a></Link>
+                                <Link to="/baseball/mode"><button className="nav-link graduate-regular text-light" onClick={() => navigate('/baseball-home')}>Baseball Game</button></Link>
                             </li>
-                            <li className="nav-item"><Link to="/football/mode"><a className="nav-link graduate-regular text-light" onClick={() => navigate('/football/home')}>Football Game</a></Link></li>
+                            <li className="nav-item"><Link to="/football/mode"><button className="nav-link graduate-regular text-light" onClick={() => navigate('/football/home')}>Football Game</button></Link></li>
 
                         </ul>
                     </div>

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getSocket, rememberRoom } from "../shared/socket";
-import { getPlayerKey, getDisplayName, setDisplayName } from "../shared/playerIdentity";
+import { getPlayerKey, setDisplayName } from "../shared/playerIdentity";
 import NavBar from "../components/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
