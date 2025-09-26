@@ -108,7 +108,7 @@ export default function GameScreen() {
   //watch hand for changes
   useEffect(() => {
     if (Array.isArray(myHand) && myHand.length > 0) {
-      const newest = myHand[myHand - 1];
+      const newest = myHand[myHand.length - 1];
       setLastDealtId(newest?.id ?? null);
     } else {
       setLastDealtId(null);
@@ -169,71 +169,60 @@ export default function GameScreen() {
       {/* My points */}
       <h3 className="display-4 text-light text-center">Points: {points}</h3>
 
-      {/* My hand */}
-      <AnimatePresence initial={false}>
-        <div className="container">
-          <div className="row g-3" style={{ perspective: 1200 }}>
-            {myHand.map((card, idx) => {
-              const isJustDealt = card.id === lastDealtId;
+{/* My hand */}
+<div className="container">
+  <div className="row g-3" style={{ perspective: 1200 }}>
+    <AnimatePresence initial={false} mode="popLayout">
+      {myHand.map((card, idx) => {
+        const isJustDealt = card.id === lastDealtId;
 
-              // Entry animation for ALL newly mounted cards (deal-in)
-              const initial = { opacity: 0, y: -20, scale: 0.9 };
-              const shadowTransit = {duration: 0.25, repeat: 1, repeatType: "reverse"};
-              const animate = { opacity: 1, y: 0, scale: 1, boxShadow: "0 12px 24px rgba(0,0,0,0.18" };
-              const transition = { type: "spring", stiffness: 500, damping: 30, duration: 0.25 };
+        return (
+          <motion.div
+            key={card.id ?? idx}
+            className="col"
+            layout="position"
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ type: "spring", stiffness: 500, damping: 36 }}
+          >
+            <motion.button
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="card playingCard p-3"
+              style={{
+                transformStyle: "preserve-3d",
+                willChange: "transform, opacity",
+              }}
+              onClick={() => handleCardClick(idx)}
+            >
+              {isJustDealt ? (
+                <motion.div
+                  initial={{ rotateY: 180 }}
+                  animate={{ rotateY: 0 }}
+                  transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
+                  onAnimationComplete={() => setLastDealtId(null)}
+                  style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                >
+                  <p className="fs-5 card-text">{card.description}</p>
+                  <p className="fw-bold card-text">{card.penalty}</p>
+                  <p className="card-text">Points: {Number(card.points || 0)}</p>
+                </motion.div>
+              ) : (
+                <>
+                  <p className="fs-5 card-text">{card.description}</p>
+                  <p className="fw-bold card-text">{card.penalty}</p>
+                  <p className="card-text">Points: {Number(card.points || 0)}</p>
+                </>
+              )}
+            </motion.button>
+          </motion.div>
+        );
+      })}
+    </AnimatePresence>
+  </div>
+</div>
 
-              // Optional flip overlay (only for the most recently dealt)
-              const flipInitial = { rotateY: 180 };
-              const flipAnimate = { rotateY: 0 };
-              const flipTransit = { duration: 0.45, ease: [0.22, 0.61, 0.36, 1] };
-
-              return (
-                <div className="col" key={card.id ?? idx}>
-                  <motion.button
-                    layout
-                    initial={initial}
-                    animate={animate}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={transition}
-                    className="card playingCard p-3"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      willChange: "transform, opacity",
-                      // During the flip, ignore clicks to avoid double actions
-                      pointerEvents: isJustDealt ? "none" : "auto",
-                    }}
-                    onClick={() => handleCardClick(idx)}
-                  >
-                    {/* Flip layer (only renders for just-dealt card) */}
-                    {isJustDealt ? (
-                      <motion.div
-                        initial={flipInitial}
-                        animate={flipAnimate}
-                        transition={flipTransit}
-                        style={{
-                          transformStyle: "preserve-3d",
-                          backfaceVisibility: "hidden",
-                        }}
-                      >
-                        <p className="fs-5 card-text">{card.description}</p>
-                        <p className="fw-bold card-text">{card.penalty}</p>
-                        <p className="card-text">Points: {Number(card.points || 0)}</p>
-                      </motion.div>
-                    ) : (
-                      // Normal (already revealed) content
-                      <>
-                        <p className="fs-5 card-text">{card.description}</p>
-                        <p className="fw-bold card-text">{card.penalty}</p>
-                        <p className="card-text">Points: {Number(card.points || 0)}</p>
-                      </>
-                    )}
-                  </motion.button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </AnimatePresence>
 
       <hr style={{ margin: "24px 0" }} />
 
