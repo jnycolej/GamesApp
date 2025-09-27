@@ -322,5 +322,53 @@
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
+  },
+  {
+    "description": "Next Time the Chain Crew is Shown",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time the Band Plays",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Sideline Reporter Appearance",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time a QB is Shown on the Sideline with a Tablet",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time a Player Adjusts their Helmet or Visor",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time Crowd is Shown with Painted Faces",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time a Ref Huddles with Other Refs",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Screen Pass",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
   }
 ]
