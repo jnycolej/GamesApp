@@ -149,7 +149,7 @@ io.on("connection", (socket) => {
         const code = socket.data.roomCode;
         if (!code) return cb?.({ ok: false, error: "not_in_room" });  // guard
 
-        const requesterKey = payload?.ley || null;
+        const requesterKey = payload?.key || null;
         const res = rooms.startAndDeal(code, socket.id, requesterKey);
         if (!res.ok) return cb?.(res);
 
