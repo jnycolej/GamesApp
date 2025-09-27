@@ -160,6 +160,7 @@ export default function GameLobby() {
                         </a>
                     </div>
                 )}
+                <h4 className="fs-3 text-light text-center m3">Please wait for the host to Start the Game</h4>
                 <p className="m-3 text-light text-center fs-2">Players: {room?.players?.length ?? 0}</p>
                 <ul className="">
                     {room?.players?.map(p => (
