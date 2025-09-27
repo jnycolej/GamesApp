@@ -133,7 +133,7 @@ export default function GameScreen() {
     <div className="p-5" style={backgroundStyle}>
       <h1 className="display-1 text-center fw-bold text-light">Sports Shuffle</h1>
       <NavBar />
-      <h2 className="display-2 text-center text-white">{game?.toUpperCase()} Game</h2>
+      {/* <h2 className="display-2 text-center text-white">{game?.toUpperCase()} Game</h2> */}
 
       <h2 className="display-3 text-light text-center">
         {me?.name || localName || "Player"}

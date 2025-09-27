@@ -1,6 +1,6 @@
 import { useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSocket } from "../shared/socket";
+import { getSocket, getPlayerKey } from "../shared/socket";
 import { getDisplayName } from "../shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
 import footballBackground from '../assets/football-background.png';
@@ -13,7 +13,7 @@ export default function GameLobby() {
     const nav = useNavigate();
     const socket = getSocket();
     const inviteToken = (code && localStorage.getItem(`inviteToken:${code}`)) || null;
-    const inviteUrl = 
+    const inviteUrl =
         inviteToken
             ? `${window.location.origin}/${game}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(inviteToken)}`
             : null;
@@ -49,7 +49,7 @@ export default function GameLobby() {
         const ensureKey = () => {
             let k = localStorage.getItem("playerKey");
             if (!k) {
-                const gen = 
+                const gen =
                     (typeof window !== "undefined" &&
                         window.crypto &&
                         typeof window.crypto.randomUUID === "function" &&
@@ -65,18 +65,52 @@ export default function GameLobby() {
         const displayName = getDisplayName();
 
         // Try to resume first (returns ok if you were previously in this room)
-        socket.emit("player:resume", {roomCode: code, displayName, key}, (res) => {
+        socket.emit("player:resume", { roomCode: code, displayName, key }, (res) => {
             if (res?.ok && res.state) {
                 setRoom(res.state);
                 return;
             }
             //Otherwise, join fresh
-            socket.emit("player:join", { roomCode: code, displayName, key}, (res2) => {
+            socket.emit("player:join", { roomCode: code, displayName, key }, (res2) => {
                 if (res2?.ok && res2.state) setRoom(res2.state);
 
             });
         });
     }, [code, room?.code, setRoom, socket]);
+
+    // Auto-resume when you return from iMessage (focus/visibility)
+    useEffect(() => {
+        if (!code) return;
+
+        const resume = () => {
+            const roomCode = code || localStorage.getItem("roomCode");
+            if (!roomCode) return;
+
+            const displayName = getDisplayName();
+            let key = localStorage.getItem("playerKey");
+            if (!key) {
+                // fallback if key was cleared (keeps behavior consistent with your ensureKey)
+                key =
+                    (window.crypto?.randomUUID?.()) ||
+                    (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).toUpperCase();
+                localStorage.setItem("playerKey", key);
+            }
+
+            socket.emit("player:resume", { roomCode, displayName, key }, (res) => {
+                if (res?.ok && res.state) setRoom(res.state);
+            });
+        };
+
+        const onVisibility = () => { if (!document.hidden) resume(); };
+
+        window.addEventListener("focus", resume);
+        document.addEventListener("visibilitychange", onVisibility);
+
+        return () => {
+            window.removeEventListener("focus", resume);
+            document.removeEventListener("visibilitychange", onVisibility);
+        };
+    }, [socket, code, setRoom]);
 
     //Verifies there is a room with at least two players in it
     const canStart = useMemo(
@@ -87,7 +121,8 @@ export default function GameLobby() {
     //If there is at least 2 players then the game can start
     const startAndDeal = () => {
         if (!canStart) return;
-        getSocket().emit("game:startAndDeal", {}, (res) => {
+        const key = getPlayerKey();
+        getSocket().emit("game:startAndDeal", { key }, (res) => {
             if (!res?.ok) return alert(res.error);
             nav(`/${game}/game`);
         });
@@ -100,24 +135,24 @@ export default function GameLobby() {
                 <NavBar />
                 <h2 className="display-2 text-light">Room {room?.code ?? code ?? ""} {room?.gameType ? `- ${room.gameType} game` : ""}</h2>
                 {inviteUrl && (
-                    <div className="alert alert-light mt-3 d-flex gap2 align-items-center" style={{ opacity: 0.95}}>
+                    <div className="alert alert-light mt-3 d-flex gap2 align-items-center" style={{ opacity: 0.95 }}>
                         <span className="me-2">Invite link ready:</span>
                         <button
                             className="btn btn-outline-primary btn-sm"
                             onClick={async () => {
                                 try {
                                     if (navigator.share) {
-                                        await navigator.share({ title: "Join my room", text: `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`, url: inviteUrl});
+                                        await navigator.share({ title: "Join my room", text: `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`, url: inviteUrl });
                                     } else {
                                         await navigator.clipboard.writeText(`Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`);
                                         alert("Invite copied!");
                                     }
-                                } catch {}
+                                } catch { }
                             }}
                         >
                             Share / Copy
                         </button>
-                        <a 
+                        <a
                             className="btn btn-outline-success btn-sm"
                             href={`sms:&body=${encodeURIComponent(`Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`)}`}
                         >
@@ -125,7 +160,7 @@ export default function GameLobby() {
                         </a>
                     </div>
                 )}
-                <p className="m-3 text-secondary text-center fs-2">Players: {room?.players?.length ?? 0}</p>
+                <p className="m-3 text-light text-center fs-2">Players: {room?.players?.length ?? 0}</p>
                 <ul className="">
                     {room?.players?.map(p => (
                         <li className="text-light text-center fs-4" key={p.id}>{p.name} {p.connected === false ? '(reconnecting...)' : ''}</li>
