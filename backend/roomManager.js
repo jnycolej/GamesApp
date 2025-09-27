@@ -3,6 +3,7 @@ import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
 
+const listeners = process.rawListeners("warning");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOM_CODE_LEN = 6;
@@ -131,7 +132,7 @@ export function createRoomManager() {
     const roomMap = new Map();
 
     //Creates a room for multiplayer gameplay based on type
-    function createRoom({ creatorSocketId, gameType }) {
+    function createRoom({ creatorSocketId, gameType, hostKey }) {
         let code;
         for (let attempts = 0; attempts < 5; attempts++) {
             code = genCode();
@@ -151,6 +152,7 @@ export function createRoomManager() {
             status: "waiting",
             phase: "lobby",
             hostId: creatorSocketId,
+            hostKey: hostKey || null,
             invite: { token, createdAt: Date.now(), ttlMs: 1000 * 60 * 60 },
             players: new Map(),
             deckMode: "infinite",
@@ -168,6 +170,24 @@ export function createRoomManager() {
     function addPlayer(code, { id, displayName, key }) {
         const r = roomMap.get(code);
         if (!r) return { ok: false, error: "room_not_found" };
+
+        //If the joining player has a key that already exists, treat as resume
+        if (key) {
+            const prev = [...r.players.values()].find(p=> p.key === key);
+            if (prev) {
+                r.players.delete(prev.id);
+                prev.id = id;
+                prev.connected = true;
+                if (displayName) prev.name = displayName;
+                r.players.set(id, prev);
+                //If this ket is the host;s key, rebind hostId to the new socket id
+                if (r.hostKey && r.hostKey === key) {
+                    r.hostId = id;
+                }
+                return { ok: true, resumed: true };
+            }
+        }
+
         r.players.set(id, {
             id,
             key: key || null,            // NEW
@@ -176,6 +196,11 @@ export function createRoomManager() {
             connected: true,
             score: 0,
         });
+
+        if (!r.hostKey && key && r.hostId === id) {
+            r.hostKey = key;
+        }
+
         return { ok: true };
     }
 
@@ -197,6 +222,11 @@ export function createRoomManager() {
         }
         if (displayName) old.name = displayName;
         r.players.set(newSocketId, old);
+
+        //If this key is the host, update hostId to the new live socket
+        if (r.hostKey && r.hostKey === key) {
+            r.hostId = newSocketId;
+        }
 
         return { ok: true, hand: old.hand, score: old.score };
     }

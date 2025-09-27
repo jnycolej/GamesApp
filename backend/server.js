@@ -47,7 +47,12 @@ io.on("connection", (socket) => {
     //Connects the to the socket
     socket.on("room:create", ({ gameType, displayName, key }, cb) => {
         try {
-            const { code, token } = rooms.createRoom({ creatorSocketId: socket.id, gameType });
+            const { code, token } = rooms.createRoom({ 
+                creatorSocketId: socket.id,
+                gameType,
+                hostKey: key,    
+            });
+
             if (!code) throw new Error("createRoom_no_code");
             console.log("[create] room code:", code, "gameType:", gameType);
 
@@ -144,7 +149,8 @@ io.on("connection", (socket) => {
         const code = socket.data.roomCode;
         if (!code) return cb?.({ ok: false, error: "not_in_room" });  // guard
 
-        const res = rooms.startAndDeal(code, socket.id);
+        const requesterKey = payload?.ley || null;
+        const res = rooms.startAndDeal(code, socket.id, requesterKey);
         if (!res.ok) return cb?.(res);
 
         cb?.({ ok: true });

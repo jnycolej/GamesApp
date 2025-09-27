@@ -71,8 +71,9 @@ html, body, #root {
 
 :root {
   --ff-grad: "Graduate", ui-serif, Georgia, "Times New Roman", serif;
-  
-
+  --ff-nunito: "Nunito Sans", sans-serif;
+  --ff-teko: "Teko", sans-serif;
+  --ff-russo: "Russo One", sans-serif;
 }
 
 
@@ -102,7 +103,7 @@ display-4 {
 }
 
 .nunito-sans-reg {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: var(--ff-nunito);
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -113,16 +114,21 @@ display-4 {
 
 
 .teko-medium {
-  font-family: "Teko", sans-serif;
+  font-family: var(--ff-teko);
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
 
 .russo-one-regular {
-  font-family: "Russo One", sans-serif;
+  font-family: var(--ff-russo);
   font-weight: 400;
   font-style: normal;
 }
 
-
+p, h3 {
+  font-family: var(--ff-teko) !important;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
