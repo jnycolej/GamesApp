@@ -15,12 +15,16 @@ import baseballBackground from "../assets/baseball-background.png";
 export default function GameScreen() {
   const { game } = useParams();
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
-  
+
   const [points, setPoints] = useState(0);
   const [otherScores, setOtherScores] = useState({});
-  
+
   const socket = getSocket();
   const [socketId, setSocketId] = useState(socket.id || null);
+  const [pendingSacrificeId, setPendingSacrificeId] = useState(null);
+  const [sacrificeTimer, setSacrificeTimer] = useState(null);
+
+
   const navigate = useNavigate();
   const [lastDealtId, setLastDealtId] = useState(null);
 
@@ -56,6 +60,42 @@ export default function GameScreen() {
       socket.off("room:updated", onRoom);
     };
   }, [socket, setRoom]);
+
+
+  // --- replace your handleSacrifice with this
+  const handleSacrifice = (card) => {
+   
+
+    if (!card?.id) return;
+
+    setPendingSacrificeId(card.id);
+    if (sacrificeTimer) { clearTimeout(sacrificeTimer); setSacrificeTimer(null); }
+ console.log("[UI] sacrifice click", { cardId: card.id });
+    socket.emit("player:sacrifice", { cardId: card.id }, (ack) => {
+      if (ack?.error) {
+        console.warn("[sacrifice] error:", ack.error);
+        setPendingSacrificeId(null);
+        return;
+      }
+      setPendingSacrificeId(null);
+    });
+
+    const t = setTimeout(() => setPendingSacrificeId(null), 6000);
+    setSacrificeTimer(t);
+  };
+
+
+  // --- make sure we also clear when a fresh state arrives
+  useEffect(() => {
+    const onState = (next) => {
+      // whenever server pushes a new state, ensure nothing is stuck
+      if (pendingSacrificeId) setPendingSacrificeId(null);
+    };
+    socket.on("room:state", onState);
+    return () => socket.off("room:state", onState);
+    // include pendingSacrificeId in deps so we read the latest
+  }, [socket, pendingSacrificeId]);
+
 
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
@@ -169,64 +209,72 @@ export default function GameScreen() {
       {/* My points */}
       <h3 className="display-4 text-light text-center">Points: {points}</h3>
 
-{/* My hand */}
-<div className="container">
-  <div className="row g-3" style={{ perspective: 1200 }}>
-    <AnimatePresence initial={false} mode="popLayout">
-      {myHand.map((card, idx) => {
-        const isJustDealt = card.id === lastDealtId;
+      {/* My hand */}
+      <div className="container">
+        <div className="row g-2 justify-content-center" style={{ perspective: 1200 }}>
+          <AnimatePresence initial={false} mode="popLayout">
+            {myHand.map((card, idx) => {
+              const isJustDealt = card.id === lastDealtId;
+              const isPending = pendingSacrificeId === card.id;
 
-        return (
-          <motion.div
-            key={card.id ?? idx}
-            className="col"
-            layout="position"
-            initial={{ opacity: 0, y: -20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9, y: 10 }}
-            transition={{ type: "spring", stiffness: 500, damping: 36 }}
-          >
-            <motion.button
-              whileHover={{ y: -4, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="card playingCard p-3"
-              style={{
-                transformStyle: "preserve-3d",
-                willChange: "transform, opacity",
-              }}
-              onClick={() => handleCardClick(idx)}
-            >
-              {isJustDealt ? (
+              return (
                 <motion.div
-                  initial={{ rotateY: 180 }}
-                  animate={{ rotateY: 0 }}
-                  transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
-                  onAnimationComplete={() => setLastDealtId(null)}
-                  style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                  key={card.id ?? idx}
+                  className="col card playingCard gap-3 m-1 p-2"
+                  layout="position"
+                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 36 }}
+                  onClick={() => handleCardClick(idx)}
                 >
-                  <p className="fs-5 card-text">{card.description}</p>
-                  <p className="fw-bold card-text">{card.penalty}</p>
-                  <p className="card-text">Points: {Number(card.points || 0)}</p>
+                  <div className="d-flex flex-column h-100">
+                    <div className="flex-grow-1 overflow-auto">
+                      <div className="d-flex justify-content-between align-items-center">
+                        {typeof card.points === "number" && (
+                          <span className="badge bg-dark-subtle text-dark">
+                            {card.points} pts
+                          </span>
+                        )}
+                      </div>
+
+                      {card.description && (
+                        <p className="fs-6 pt-3 text-muted">{card.description}</p>
+                      )}
+
+                      {card.penalty && (
+                        <p className="fs-5 text-dark">{card.penalty}</p>
+                      )}
+                      
+                    </div>
+
+                    <div className="pt-2 mt-2 border-top">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-outline-danger w-100"
+                        disabled={pendingSacrificeId === card.id}
+                        aria-label="Sacrifice this card to draw a replacement"
+                        onClick={(e) => {
+                          e.stopPropagation();                // ← don’t trigger play
+                          handleSacrifice(card);
+                        }}
+                      >
+                        {pendingSacrificeId === card.id ? "Sacrificing…" : "Sacrifice"}
+                      </button>
+                    </div>
+                  </div>
                 </motion.div>
-              ) : (
-                <>
-                  <p className="fs-5 card-text">{card.description}</p>
-                  <p className="fw-bold card-text">{card.penalty}</p>
-                  <p className="card-text">Points: {Number(card.points || 0)}</p>
-                </>
-              )}
-            </motion.button>
-          </motion.div>
-        );
-      })}
-    </AnimatePresence>
-  </div>
-</div>
+
+              );
+            })}
+          </AnimatePresence>
+        </div>
+      </div>
 
 
       <hr style={{ margin: "24px 0" }} />
 
-      {/* Always-show Opponents */}
+      {/* Opponents */}
       <div style={{ marginTop: 16 }}>
         {opponents.map((p) => (
           <div key={p.id} style={{ marginBottom: 12 }}>
@@ -246,9 +294,9 @@ export default function GameScreen() {
           </div>
         ))}
       </div>
-        <button className="btn btn-danger" onClick={handleLeaveGame} style={{position: "absolute", top: 16, right: 16}}>
-          Leave Game
-        </button>
+      <button className="btn btn-danger" onClick={handleLeaveGame} style={{ position: "absolute", top: 16, right: 16 }}>
+        Leave Game
+      </button>
     </div>
   );
 }

@@ -36,8 +36,8 @@ const io = new Server(server, {
     pingInterval: 25000,
     pingTimeout: 90000,
     connectionStateRecovery: {
-        // allows clients to recover missed packets for up to 10 minutes
-        maxDisconnectionDuration: 10 * 60 * 1000,
+        // allows clients to recover missed packets for up to 30 minutes
+        maxDisconnectionDuration: 30 * 60 * 1000,
     },
 });
 
@@ -47,10 +47,10 @@ io.on("connection", (socket) => {
     //Connects the to the socket
     socket.on("room:create", ({ gameType, displayName, key }, cb) => {
         try {
-            const { code, token } = rooms.createRoom({ 
+            const { code, token } = rooms.createRoom({
                 creatorSocketId: socket.id,
                 gameType,
-                hostKey: key,    
+                hostKey: key,
             });
 
             if (!code) throw new Error("createRoom_no_code");
@@ -209,6 +209,47 @@ io.on("connection", (socket) => {
         // Always OK; if disabled, get OpponentsHands returns []
         cb?.({ ok: true, opponents: opp });
     });
+
+    socket.on("player:sacrifice", async (payload = {}, ack) => {
+        try {
+            const code = socket.data.roomCode;
+            const playerId = socket.id;
+            const cardId = payload?.cardId;
+
+            if (!code) throw new Error("not_in_room");
+            if (!cardId) throw new Error("missing_card");
+
+            const res = rooms.sacrificeCard(code, playerId, cardId);
+            if (res && res.ok === false) throw new Error(res.error || "sacrifice_failed");
+
+            const hand = rooms.getHand(code, playerId) || [];
+            const score = rooms.getScore(code, playerId) ?? 0;
+
+            // PRIVATE to the acting player
+            io.to(playerId).emit("hand:update", hand);
+            io.to(playerId).emit("score:update", score);
+
+            // PUBLIC patch so opponents' scoreboards update
+            socket.to(code).emit("player:updated", {
+                playerId,
+                handCount: hand.length,
+                score, // new score after sacrifice
+            });
+
+            // Shared public counters (deck/discard/etc.)
+            const state = rooms.getPublicState(code);
+            io.to(code).emit("room:updated", rooms.safePublicState ? rooms.safePublicState(code) : state);
+
+            ack?.({ ok: true });
+        } catch (err) {
+            console.error("[player:sacrifice] error:", err);
+            ack?.({ error: err?.message || "Could not sacrifice" });
+            socket.emit("error:action", { action: "sacrifice", message: err?.message || "Could not sacrifice" });
+        }
+    });
+
+
+
 
     //Players disconnect and leave the game room
     socket.on("disconnect", () => {

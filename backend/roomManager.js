@@ -173,7 +173,7 @@ export function createRoomManager() {
 
         //If the joining player has a key that already exists, treat as resume
         if (key) {
-            const prev = [...r.players.values()].find(p=> p.key === key);
+            const prev = [...r.players.values()].find(p => p.key === key);
             if (prev) {
                 r.players.delete(prev.id);
                 prev.id = id;
@@ -401,6 +401,39 @@ export function createRoomManager() {
         return s;
     }
 
+    function sacrificeCard(code, playerId, cardId) {
+        const r = roomMap.get(code);
+        if (!r) return { ok: false, error: "room_not_found" };
+        if (r.phase !== "playing") return { ok: false, error: "not_playing" };
+
+        const player = r.players.get(playerId);
+        if (!player) return { ok: false, error: "not_in_room" };
+        if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand" };
+
+        // find the card by its instance id
+        const idx = player.hand.findIndex(c => c && c.id === cardId);
+        if (idx === -1) return { ok: false, error: "card_not_in_hand" };
+
+        //score changed on sacrifice
+        const picked = player.hand[idx];
+        const pts = Number.isFinite(picked.points) ? picked.points : 0;
+        player.score -= pts;
+            
+        // discard the chosen card
+        const [burned] = player.hand.splice(idx, 1);
+        r.discardPile.push(burned);
+
+        // draw a replacement into the same slot
+        const replacement = drawCardFromBase(r);
+        player.hand.splice(idx, 0, replacement);
+
+        r.drawCount = (r.drawCount || 0) + 1;
+        r.version = (r.version || 0) + 1;
+
+   
+        return { ok: true, hand: player.hand, score: player.score, version: r.version };
+    }
+
     function handleDisconnect(code, socketId) {
         const r = roomMap.get(code);
         if (!r) return {};
@@ -434,6 +467,7 @@ export function createRoomManager() {
         handleDisconnect,
         listCodes,
         getVersion,
+        sacrificeCard,
         safePublicState,
     }
 };
