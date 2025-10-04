@@ -64,13 +64,13 @@ export default function GameScreen() {
 
   // --- replace your handleSacrifice with this
   const handleSacrifice = (card) => {
-   
+
 
     if (!card?.id) return;
 
     setPendingSacrificeId(card.id);
     if (sacrificeTimer) { clearTimeout(sacrificeTimer); setSacrificeTimer(null); }
- console.log("[UI] sacrifice click", { cardId: card.id });
+    console.log("[UI] sacrifice click", { cardId: card.id });
     socket.emit("player:sacrifice", { cardId: card.id }, (ack) => {
       if (ack?.error) {
         console.warn("[sacrifice] error:", ack.error);
@@ -220,15 +220,18 @@ export default function GameScreen() {
               return (
                 <motion.div
                   key={card.id ?? idx}
-                  className="col card playingCard gap-3 m-1 p-2"
+                  className="col-12 col-sm-6 col-md-4 col-lg-3"
                   layout="position"
                   initial={{ opacity: 0, y: -20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9, y: 10 }}
                   transition={{ type: "spring", stiffness: 500, damping: 36 }}
-                  onClick={() => handleCardClick(idx)}
                 >
-                  <div className="d-flex flex-column h-100">
+                  <div
+                    className="card playingCard p-3 d-flex flex-column"
+                    style={{ minHeight: 0 }}
+                    onClick={() => handleCardClick(idx)}
+                  >
                     <div className="flex-grow-1 overflow-auto">
                       <div className="d-flex justify-content-between align-items-center">
                         {typeof card.points === "number" && (
@@ -239,13 +242,13 @@ export default function GameScreen() {
                       </div>
 
                       {card.description && (
-                        <p className="fs-6 pt-3 text-muted">{card.description}</p>
+                        <p className="fs-4 pt-3 text-muted">{card.description}</p>
                       )}
 
                       {card.penalty && (
                         <p className="fs-5 text-dark">{card.penalty}</p>
                       )}
-                      
+
                     </div>
 
                     <div className="pt-2 mt-2 border-top">
@@ -275,18 +278,23 @@ export default function GameScreen() {
       <hr style={{ margin: "24px 0" }} />
 
       {/* Opponents */}
-      <div style={{ marginTop: 16 }}>
+      <div className="container" style={{ marginTop: 16 }}>
         {opponents.map((p) => (
-          <div key={p.id} style={{ marginBottom: 12 }}>
-            <strong className="fs-2 text-light text-center">{p.name}</strong>{" "}
-
+          <div key={p.id} className="mb-3">
+            <strong className="fs-2 text-light text-center d-block">{p.name}</strong>{" "}
             {Array.isArray(p.hand) && (
-              <div className="justify-content-center" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
+              <div className="row g-2 justify-content-center mt-2" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
                 {p.hand.filter(Boolean).map((c, i) => (
-                  <div className="p-2 text-center card bg-warning playingCard" key={c?.id ?? i}>
-                    <div className="fs-5">{c?.description ?? "-"}</div>
-                    <div className="mt-2 fw-bold">{c?.penalty ?? ""}</div>
-                    <div className="mt-3 card-text">Points: {Number(c?.points ?? 0)}</div>
+                  <div key={c?.id ?? i} className="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div className="card bg-warning playingCard p-2 text-center d-flex flex-column" style={{ minHeight: 0 }}>
+                      <div className="flex-grow-1 overflow-auto">
+                        <div className="fs-3"><p>{c?.description ?? "-"}</p></div>
+                        <div className="mt-2 fs-4 fw-bold"><p>{c?.penalty ?? ""}</p></div>
+                        <div className="mt-3 fs-4 card-text"><p>Points: {Number(c?.points ?? 0)}</p></div>                        
+                      </div>
+
+                    </div>
+
                   </div>
                 ))}
               </div>
