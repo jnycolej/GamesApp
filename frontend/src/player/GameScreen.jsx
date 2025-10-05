@@ -32,6 +32,13 @@ export default function GameScreen() {
   const navigate = useNavigate();
   const [lastDealtId, setLastDealtId] = useState(null);
 
+  //Tracks the relative time
+  const [nowTick, setNowTick] = useState(Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setNowTick(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
   const background = game === "baseball" ? baseballBackground : footballBackground;
 
 
@@ -208,6 +215,28 @@ export default function GameScreen() {
 
   const localName = (typeof window !== "undefined" && localStorage.getItem("displayName")) || null;
 
+
+  // Absolute clock: 24h HH:MM:SS
+  function formatClock(at) {
+    if (!at) return "";
+    const d = new Date(at);
+    return d.toLocaleTimeString([], { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  }
+
+  // Relative: "just now", "12s ago", "5m ago", "3h ago", "2d ago"
+  function formatRelative(at, now = Date.now()) {
+    if (!at) return "";
+    let s = Math.max(0, Math.floor((now - at) / 1000));
+    if (s < 60) return "just now";
+    // if (s < 60) return `${s}s ago`;
+    const m = Math.floor(s / 60);
+    if (m < 60) return `${m}m ago`;
+    const h = Math.floor(m / 60);
+    if (h < 24) return `${h}h ago`;
+    const d = Math.floor(h / 24);
+    return `${d}d ago`;
+  }
+
   // my hand + my score
   useEffect(() => {
     socket.emit("hand:getMine", {}, (res) => setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []));
@@ -264,6 +293,8 @@ export default function GameScreen() {
     navigate("/multiplayer");
   }
 
+
+
   return (
     <div className="p-5" style={backgroundStyle}>
       <h1 className="display-1 text-center fw-bold text-light">Sports Shuffle</h1>
@@ -310,11 +341,19 @@ export default function GameScreen() {
                 ev?.deltaPoints > 0 ? "text-success"
                   : ev?.deltaPoints < 0 ? "text-danger"
                     : "text-body";
+              const abs = ev?.at ? formatClock(ev.at) : "";
+              const rel = ev?.at ? formatRelative(ev.at, nowTick) : "";
+
               const ts = ev?.at ? new Date(ev.at).toLocaleTimeString() : "";
 
               return (
-                <li key={ev.id} className={`py-1 ${cls}`} title={ts}>
+                <li key={ev.id} className={`py-1 ${cls}`} title={ev?.at ? new Date(ev.at).toLocaleString() : ""}>
                   {formatUpdate(ev)}
+                  {ev?.at && (
+                    <span className="text-muted ms-2">
+                      · {abs} ({rel})
+                    </span>
+                  )}
                 </li>
               );
             })}

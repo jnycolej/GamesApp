@@ -147,3 +147,5 @@ p, h3 {
 }
 
 .gameUpdates li {list-style: disc;}
+
+.gameUpdates .text-muted { opacity: 0.75; }
