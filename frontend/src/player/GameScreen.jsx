@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSocket } from "../shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
@@ -24,6 +24,10 @@ export default function GameScreen() {
   const [pendingSacrificeId, setPendingSacrificeId] = useState(null);
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
+  //Game updates window
+  const [updates, setUpdates] = useState([]);
+  const MAX_UPDATES = 100;
+  const scrollerRef = useRef(null);
 
   const navigate = useNavigate();
   const [lastDealtId, setLastDealtId] = useState(null);
@@ -65,7 +69,6 @@ export default function GameScreen() {
   // --- replace your handleSacrifice with this
   const handleSacrifice = (card) => {
 
-
     if (!card?.id) return;
 
     setPendingSacrificeId(card.id);
@@ -84,6 +87,98 @@ export default function GameScreen() {
     setSacrificeTimer(t);
   };
 
+  const formatUpdate = (ev) => {
+    const name = ev?.player?.name || "Player";
+    const delta = Number(ev?.deltaPoints ?? 0);
+    const pts = Math.abs(delta);
+    const c = ev?.card || {};
+
+    // Prefer description, then name, then penalty, then an ID fallback
+    const label =
+      c.description ??
+      c.name ??
+      c.penalty ??
+      (c.id ? `#${c.id}` : null);
+
+    const quoted = label ? `"${String(label)}"` : "a card";
+    const ptsWord = pts === 1 ? "pt" : "pts";
+
+    switch (ev?.type) {
+      case "CARD_PLAYED":
+        return `${name} played ${quoted} for ${pts} ${ptsWord}.`;
+      case "CARD_SACRIFICED":
+        return `${name} sacrificed ${quoted} for a loss of ${pts} ${ptsWord}.`;
+      case "SCORE_ADJUSTED":
+        return `${name} ${delta > 0 ? "gains" : "loses"} ${pts} ${ptsWord}.`;
+      case "TURN_STARTED":
+        return `Turn ${ev?.meta?.turn ?? "?"}: ${name}'s move.`;
+      default:
+        return ev?.text || "Update";
+    }
+  };
+
+
+  const scrollIfNearBottom = () => {
+    const el = scrollerRef.current;
+    if (!el || !(el instanceof HTMLElement)) return;
+
+    const maxScroll = el.scrollHeight - el.clientHeight;
+    if (maxScroll <= 0) return;
+
+    const distanceFromBottom = maxScroll - el.scrollTop;
+    if (distanceFromBottom < 80) {
+      // Smooth + safe autoscroll
+      try {
+        // Using scrollTo on the parent element ensures no read-only assignment
+        el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+      } catch {
+        // fallback to requestAnimationFrame if it’s not supported
+        requestAnimationFrame(() => {
+          try {
+            el.scrollTop = el.scrollHeight;
+          } catch {
+            /* ignore */
+          }
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const onUpdate = (ev) => {
+      const id = ev?.id || `${ev?.roomCode ?? "room"}-${ev?.ot ?? Date.now()}-${ev?.type ?? "SYS"}-${ev?.player?.id ?? ""}`;
+      const withId = { id, ...ev };
+      setUpdates((prev) => {
+        const next = [...prev, withId].slice(-MAX_UPDATES);
+        return next;
+      });
+      requestAnimationFrame(scrollIfNearBottom);
+    };
+
+    const onHistory = (arr) => {
+      const trimmed = Array.isArray(arr) ? arr.slice(-MAX_UPDATES) : [];
+      setUpdates(trimmed);
+      requestAnimationFrame(scrollIfNearBottom);
+    };
+
+    const onConnect = () => {
+      socket.emit("game:history:request");
+    };
+
+    socket.on("game:update", onUpdate);
+    socket.on("game:history", onHistory);
+    socket.on("connect", onConnect);
+
+    //Refresh history whenever the room state swaps
+    socket.on("room:updated", () => socket.emit("game:history:request"));
+
+    return () => {
+      socket.off("game:update", onUpdate);
+      socket.off("game:history", onHistory);
+      socket.off("connect", onConnect);
+      socket.off("connect", onConnect);
+    };
+  }, [socket]);
 
   // --- make sure we also clear when a fresh state arrives
   useEffect(() => {
@@ -173,11 +268,6 @@ export default function GameScreen() {
     <div className="p-5" style={backgroundStyle}>
       <h1 className="display-1 text-center fw-bold text-light">Sports Shuffle</h1>
       <NavBar />
-      {/* <h2 className="display-2 text-center text-white">{game?.toUpperCase()} Game</h2> */}
-
-      <h2 className="display-3 text-light text-center">
-        {me?.name || localName || "Player"}
-      </h2>
 
       {/* Scoreboard */}
       <div className="container my-3">
@@ -205,6 +295,37 @@ export default function GameScreen() {
             })}
         </div>
       </div>
+
+      {/* Card Game Play-By-Play */}
+      <div className="bg-success border rounded">
+        <h3 className="text-light">Game Updates:</h3>
+        <div
+          ref={scrollerRef}
+          className="overflow-auto bg-light gameUpdates border rounded p-2"
+          style={{ maxHeight: 120, overflowY: "auto" }}
+        >
+          <ul className="mb-0 ps-3">
+            {updates.map((ev) => {
+              const cls =
+                ev?.deltaPoints > 0 ? "text-success"
+                  : ev?.deltaPoints < 0 ? "text-danger"
+                    : "text-body";
+              const ts = ev?.at ? new Date(ev.at).toLocaleTimeString() : "";
+
+              return (
+                <li key={ev.id} className={`py-1 ${cls}`} title={ts}>
+                  {formatUpdate(ev)}
+                </li>
+              );
+            })}
+            {updates.length === 0 && <li className="text-muted">No updates yet.</li>}
+          </ul>
+        </div>
+      </div>
+
+      <h2 className="display-3 text-light text-center">
+        {me?.name || localName || "Player"}'s Hand
+      </h2>
 
       {/* My points */}
       <h3 className="display-4 text-light text-center">Points: {points}</h3>
@@ -235,7 +356,7 @@ export default function GameScreen() {
                     <div className="flex-grow-1 overflow-auto">
                       <div className="d-flex justify-content-between align-items-center">
                         {typeof card.points === "number" && (
-                          <span className="badge bg-dark-subtle text-dark">
+                          <span className="badge bg-warning text-dark">
                             {card.points} pts
                           </span>
                         )}
@@ -290,7 +411,7 @@ export default function GameScreen() {
                       <div className="flex-grow-1 overflow-auto">
                         <div className="fs-3"><p>{c?.description ?? "-"}</p></div>
                         <div className="mt-2 fs-4 fw-bold"><p>{c?.penalty ?? ""}</p></div>
-                        <div className="mt-3 fs-4 card-text"><p>Points: {Number(c?.points ?? 0)}</p></div>                        
+                        <div className="mt-3 fs-4 card-text"><p>Points: {Number(c?.points ?? 0)}</p></div>
                       </div>
 
                     </div>

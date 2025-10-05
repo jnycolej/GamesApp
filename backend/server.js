@@ -41,6 +41,23 @@ const io = new Server(server, {
     },
 });
 
+const updatesByCode = new Map();
+const MAX_UPDATES = 100;
+
+function pushUpdate(code, ev) {
+    const at = Date.now();
+    const id = ev.id || `${code}-${at}-${ev.type}-${ev?.player?.id ?? ""}-${ev?.card?.id ?? ""}`;
+    const full = { id, at, roomCode: code, ...ev };
+    const arr = updatesByCode.get(code) || [];
+    arr.push(full);
+    if (arr.length > MAX_UPDATES) arr.shift();
+    updatesByCode.set(code, arr);
+    return full;
+}
+
+function getUpdates(code) {
+    return (updatesByCode.get(code) || []).slice(-MAX_UPDATES);
+}
 
 io.on("connection", (socket) => {
     console.log("[socket] connected", socket.id);
@@ -166,28 +183,64 @@ io.on("connection", (socket) => {
 
     socket.on("game:playCard", ({ index }, cb) => {
         const code = socket.data.roomCode;
-        if (!code) return cb?.({ ok: false, error: "not_in_room" });  // guard
+        if (!code) return cb?.({ ok: false, error: "not_in_room" });
+
+        // Capture BEFORE mutating
+        const prevScore = rooms.getScore(code, socket.id) ?? 0;
+        const prevHand = rooms.getHand(code, socket.id) || [];
 
         const res = rooms.playCard(code, socket.id, index);
         if (!res.ok) return cb?.(res);
 
-        // Private updates to just this player (full hand + score)
-        io.to(socket.id).emit("hand:update", res.hand || []);
-        io.to(socket.id).emit("score:update", res.score ?? 0);
+        const nextScore = res.score ?? rooms.getScore(code, socket.id) ?? 0;
+        const delta = nextScore - prevScore;
 
-        // Public patch to everyone else: do NOT leak the hand, only count + score
+        // Try to identify the card played
+        const playedFromResult = res.playedCard ?? null;
+        const playedFromPrevHand = (index != null && index >= 0 && index < prevHand.length) ? prevHand[index] : null;
+        const playedCard = playedFromResult || playedFromPrevHand;
+
+        // Private updates to the acting player
+        io.to(socket.id).emit("hand:update", res.hand || []);
+        io.to(socket.id).emit("score:update", nextScore);
+
+        // Public scoreboard patch
         socket.to(code).emit("player:updated", {
             playerId: socket.id,
             handCount: res.hand?.length ?? 0,
-            score: res.score ?? 0,
+            score: nextScore,
         });
 
-        // Refresh shared public counters (deck/discard/connected flags)
+        // Refresh shared public state
         const state = rooms.getPublicState(code);
         io.to(code).emit("room:updated", rooms.safePublicState ? rooms.safePublicState(code) : state);
 
+        // Game update feed
+        const actor =
+            (state?.players || []).find(p => p.id === socket.id) || {};
+        const actorName = actor.displayName || actor.name || "Player";
+
+        const ev = pushUpdate(code, {
+            type: "CARD_PLAYED",
+            player: { id: socket.id, name: actorName },
+            card: playedCard
+                ? {
+                    id: playedCard.id,
+                    name: playedCard.name,
+                    description: playedCard.description ?? playedCard.desc ?? playedCard.penalty,
+                    points: (typeof playedCard.points === "number") ? playedCard.points : undefined,
+                }
+                : undefined,
+            deltaPoints: Number(delta) || 0,
+            meta: { index },
+        });
+
+        io.to(code).emit("game:update", ev);
+
         cb?.({ ok: true });
     });
+
+
 
     //Retrieves user's hand
     socket.on("hand:getMine", (_, cb) => {
@@ -219,26 +272,57 @@ io.on("connection", (socket) => {
             if (!code) throw new Error("not_in_room");
             if (!cardId) throw new Error("missing_card");
 
+            // Capture BEFORE mutating
+            const prevScore = rooms.getScore(code, playerId) ?? 0;
+            const prevHand = rooms.getHand(code, playerId) || [];
+            const sacrificedFromPrev = prevHand.find(c => c?.id === cardId) || null;
+
             const res = rooms.sacrificeCard(code, playerId, cardId);
             if (res && res.ok === false) throw new Error(res.error || "sacrifice_failed");
 
             const hand = rooms.getHand(code, playerId) || [];
             const score = rooms.getScore(code, playerId) ?? 0;
+            const delta = score - prevScore; // usually negative
 
-            // PRIVATE to the acting player
+            // PRIVATE
             io.to(playerId).emit("hand:update", hand);
             io.to(playerId).emit("score:update", score);
 
-            // PUBLIC patch so opponents' scoreboards update
+            // PUBLIC scoreboard patch
             socket.to(code).emit("player:updated", {
                 playerId,
                 handCount: hand.length,
-                score, // new score after sacrifice
+                score,
             });
 
-            // Shared public counters (deck/discard/etc.)
+            // Refresh shared public state
             const state = rooms.getPublicState(code);
             io.to(code).emit("room:updated", rooms.safePublicState ? rooms.safePublicState(code) : state);
+
+            // Game update feed
+            const actor =
+                (state?.players || []).find(p => p.id === playerId) || {};
+            const actorName = actor.displayName || actor.name || "Player";
+
+            const sacrificedCard = res.sacrificedCard || sacrificedFromPrev;
+
+            const ev = pushUpdate(code, {
+                type: "CARD_SACRIFICED",
+                player: { id: playerId, name: actorName },
+                card: sacrificedCard
+                    ? {
+                        id: sacrificedCard.id,
+                        name: sacrificedCard.name, // if present
+                        description: sacrificedCard.description ?? sacrificedCard.desc ?? sacrificedCard.penalty,
+                        points: (typeof sacrificedCard.points === "number") ? sacrificedCard.points : undefined,
+                    }
+                    : undefined,
+
+                deltaPoints: Number(delta) || -1,
+                meta: { cardId },
+            });
+
+            io.to(code).emit("game:update", ev);
 
             ack?.({ ok: true });
         } catch (err) {
@@ -250,6 +334,11 @@ io.on("connection", (socket) => {
 
 
 
+    socket.on("game:history:request", () => {
+        const code = socket.data.roomCode;
+        if (!code) return;
+        io.to(socket.id).emit("game:history", getUpdates(code));
+    })
 
     //Players disconnect and leave the game room
     socket.on("disconnect", () => {

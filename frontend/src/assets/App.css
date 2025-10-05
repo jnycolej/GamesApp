@@ -128,9 +128,22 @@ display-4 {
   font-style: normal;
 }
 
+h2 {
+  font-family: var(--ff-nunito) !important;
+  font-optical-sizing: auto;
+  font-size: normal;
+}
 p, h3 {
   font-family: var(--ff-teko) !important;
-  font-weight: 500;
+  font-weight: 450;
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+.gameUpdates {
+  font-size: 0.95rem;
+  line-height: 1.25rem;
+  max-height: 5rem;
+}
+
+.gameUpdates li {list-style: disc;}
