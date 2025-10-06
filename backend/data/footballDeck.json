@@ -370,5 +370,23 @@
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
+  },
+  {
+    "description": "Next College commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next time a Sad Fan is shown",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Bathroom Break",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
   }
 ]
