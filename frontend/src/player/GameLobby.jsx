@@ -5,7 +5,11 @@ import { getDisplayName } from "../shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
 import footballBackground from '../assets/football-background.png';
 import baseballBackground from '../assets/baseball-background.png';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
+
 import NavBar from "../components/NavBar";
+import HowToPlay from "../components/HowToPlay";
 
 export default function GameLobby() {
     const { game, code } = useParams();
@@ -131,12 +135,16 @@ export default function GameLobby() {
     return (
         <div className="" style={backgroundStyle}>
             <div className="p-5">
-                <h1 className="display-1 text-light fw-bold text-center">Sports Shuffle</h1>
                 <NavBar />
-                <h2 className="display-2 text-light">Room {room?.code ?? code ?? ""} {room?.gameType ? `- ${room.gameType} game` : ""}</h2>
+                <div className="d-flex justify-content-center">
+                    <HowToPlay />                    
+                </div>
+
+                <h2 className="display-2 text-light">Room <strong>{room?.code ?? code ?? ""}</strong> {room?.gameType ? `- ${room.gameType} game` : ""}</h2>
+                <div>
                 {inviteUrl && (
                     <div className="alert alert-light mt-3 d-flex gap2 align-items-center" style={{ opacity: 0.95 }}>
-                        <span className="me-2">Invite link ready:</span>
+                        <span className="me-2">Invite link:</span>
                         <button
                             className="btn btn-outline-primary btn-sm"
                             onClick={async () => {
@@ -159,7 +167,9 @@ export default function GameLobby() {
                             Text
                         </a>
                     </div>
-                )}
+                )}                    
+                </div>
+
                 <h4 className="fs-3 text-light text-center m3">Please wait for the host to Start the Game</h4>
                 <p className="m-3 text-light text-center fs-2">Players: {room?.players?.length ?? 0}</p>
                 <ul className="">

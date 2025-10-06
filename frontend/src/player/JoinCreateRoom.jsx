@@ -123,7 +123,6 @@ export default function JoinCreateRoom() {
 
   return (
     <div className="p-5 gap-3" style={backgroundStyle}>
-      <h1 className="display-1 text-center text-light fw-bold">Sports Shuffle</h1>
       <NavBar />
       <h2 className="display-1 text-center text-white">{game?.toUpperCase()} - Multiplayer</h2>
 

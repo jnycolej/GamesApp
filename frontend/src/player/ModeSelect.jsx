@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
 import NavBar from "../components/NavBar";
+import HowToPlay from "../components/HowToPlay";
 
 import footballBackground from '../assets/football-background.png';
 import baseballBackground from '../assets/baseball-background.png';
@@ -40,14 +41,16 @@ export default function ModeSelect() {
                 <h2 className="display-4 text-center fw-bold text-white">{game?.toUpperCase()}</h2>
                 <h3 className="display-4 text-center text-white">Choose Game Mode</h3>
                 <div className="p-5 container">
-                    <div className="row justify-content-center ">
-                        <div className="col">
+                    <div className="d-flex flex-row justify-content-center g-2">
+                        <div className="flex-col">
                             <button className="btn btn-lg btn-success" onClick={goSingle}>Single Player</button>
                         </div>
-                        <div className="col">
+                        <div className="flex-col">
                             <button className="btn btn-lg btn-warning" onClick={goMulti} style={{ marginLeft: 12 }}>Multiplayer</button>
-
                         </div>
+                    </div>
+                    <div className="d-flex justify-content-center mt-3 p-2">
+                        <HowToPlay />
                     </div>
                 </div>
             </div>

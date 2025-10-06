@@ -297,7 +297,6 @@ export default function GameScreen() {
 
   return (
     <div className="p-5" style={backgroundStyle}>
-      <h1 className="display-1 text-center fw-bold text-light">Sports Shuffle</h1>
       <NavBar />
 
       {/* Scoreboard */}
