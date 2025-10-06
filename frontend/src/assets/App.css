@@ -153,3 +153,7 @@ p, h3 {
 a {
   text-decoration: none !important;
 }
+
+.gameLobby ul {
+  list-style-type: none !important;
+}

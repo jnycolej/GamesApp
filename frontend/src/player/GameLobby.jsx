@@ -136,11 +136,14 @@ export default function GameLobby() {
         <div className="" style={backgroundStyle}>
             <div className="p-5">
                 <NavBar />
+                
+                 <h2 className="display-2 text-center text-light">ROOM - <strong>{room?.code ?? code ?? ""}</strong></h2>
+                 {/* <h2>{room?.gameType ? `- ${room.gameType} game` : ""}</h2> */}
+               
                 <div className="d-flex justify-content-center">
                     <HowToPlay />                    
                 </div>
 
-                <h2 className="display-2 text-light">Room <strong>{room?.code ?? code ?? ""}</strong> {room?.gameType ? `- ${room.gameType} game` : ""}</h2>
                 <div>
                 {inviteUrl && (
                     <div className="alert alert-light mt-3 d-flex gap2 align-items-center" style={{ opacity: 0.95 }}>
@@ -172,7 +175,8 @@ export default function GameLobby() {
 
                 <h4 className="fs-3 text-light text-center m3">Please wait for the host to Start the Game</h4>
                 <p className="m-3 text-light text-center fs-2">Players: {room?.players?.length ?? 0}</p>
-                <ul className="">
+                {/* List of Players */}
+                <ul className="gameLobby">
                     {room?.players?.map(p => (
                         <li className="text-light text-center fs-4" key={p.id}>{p.name} {p.connected === false ? '(reconnecting...)' : ''}</li>
                     ))}
