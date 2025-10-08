@@ -9,18 +9,22 @@ import NavBar from "../components/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
+//Game card backgrounds
 import footballBackground from "../assets/football-background.png";
 import baseballBackground from "../assets/baseball-background.png";
 
 export default function GameScreen() {
+
   const { game } = useParams();
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
 
-  const [points, setPoints] = useState(0);
-  const [otherScores, setOtherScores] = useState({});
+  const [points, setPoints] = useState(0);  //Your score
+  const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
 
   const socket = getSocket();
   const [socketId, setSocketId] = useState(socket.id || null);
+
+  //Keeps track of the cards that are being sacrficed
   const [pendingSacrificeId, setPendingSacrificeId] = useState(null);
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
@@ -30,6 +34,8 @@ export default function GameScreen() {
   const scrollerRef = useRef(null);
 
   const navigate = useNavigate();
+
+
   const [lastDealtId, setLastDealtId] = useState(null);
 
   //Tracks the relative time
@@ -39,9 +45,10 @@ export default function GameScreen() {
     return () => clearInterval(t);
   }, []);
 
+  //Picks which background to use based on the 'game' being played
   const background = game === "baseball" ? baseballBackground : footballBackground;
 
-
+  //updates the game room
   useEffect(() => {
     const update = () => setSocketId(socket.id || null);
     update();
@@ -73,7 +80,7 @@ export default function GameScreen() {
   }, [socket, setRoom]);
 
 
-  // --- replace your handleSacrifice with this
+  // handles the card sacrifice and the new player score
   const handleSacrifice = (card) => {
 
     if (!card?.id) return;
