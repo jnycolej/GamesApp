@@ -388,5 +388,95 @@
     "penalty": "2 Drinks",
     "points": 2,
     "weight": 4
-  }
+  },
+  {
+    "description": "Next Drink Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Food Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "If a Camera Shows a Mascot",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Replay Review",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+    {
+    "description": "If the Quarterback Hands It Off",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Kicker Practices Swinging on His Leg on the Sideline",
+    "penalty":"2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+{
+  "description": "Next Time A Flag is Thrown",
+  "penalty": "2 Drinks",
+  "points": 2,
+  "weight": 4
+},
+{
+  "description": "Next Time The Defense Blitzes",
+  "penalty": "2 Drinks",
+  "points": 2,
+  "weight": 4
+},
+{
+  "description": "Next Time A Players Points Down the Field After A Play",
+  "penalty": "2 Drinks",
+  "points": 2,
+  "weight": 4
+},
+{
+  "description": "Next Trick Play (Reverse, Flea Flicker, etc.)",
+  "penalty": "3 Drinks",
+  "points": 3,
+  "weight": 3
+},
+{
+  "description": "If A Player Loses Their Helmet During a Play",
+  "penalty": "3 Drinks",
+  "points": 3,
+  "weight": 3
+},
+{
+  "description": "Next Roughing the Passer Penalty",
+  "penalty":"3 Drinks",
+  "points": 3,
+  "weight": 3
+},
+{
+  "description": "Next Missed Tackle That Leads To A Big Gain",
+  "penalty": "3 Drinks",
+  "points": 3,
+  "weight": 3
+},
+{
+  "description": "Next Blocked Punt or Kick",
+  "penalty": "Shot",
+  "points": 4,
+  "weight": 1
+},
+{
+  "description": "Next Fast Food Commercial",
+  "penalty": "1 Drink",
+  "points": 1,
+  "weight": 5
+}
 ]

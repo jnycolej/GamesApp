@@ -37,7 +37,7 @@ const io = new Server(server, {
     pingTimeout: 90000,
     connectionStateRecovery: {
         // allows clients to recover missed packets for up to 30 minutes
-        maxDisconnectionDuration: 30 * 60 * 1000,
+        maxDisconnectionDuration: 60 * 60 * 1000,
     },
 });
 
