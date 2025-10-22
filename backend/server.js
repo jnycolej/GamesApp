@@ -25,7 +25,7 @@ app.get("/debug/rooms", (_req, res) => {
 });
 
 const isProd = process.env.NODE_ENV === "production";
-const allowedOrigins = isProd ? true : ["http://localhost:3000"];
+const allowedOrigins = isProd ? true : ["http://localhost:3000", "http://192.168.1.103:3000"];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 //initiates the server
@@ -195,10 +195,16 @@ io.on("connection", (socket) => {
         const nextScore = res.score ?? rooms.getScore(code, socket.id) ?? 0;
         const delta = nextScore - prevScore;
 
+        
         // Try to identify the card played
         const playedFromResult = res.playedCard ?? null;
         const playedFromPrevHand = (index != null && index >= 0 && index < prevHand.length) ? prevHand[index] : null;
-        const playedCard = playedFromResult || playedFromPrevHand;
+        //const playedCard = playedFromResult || playedFromPrevHand;
+
+        const playedCard = res.playedCard
+            || ((index != null && index >= 0 && index < prevHand.length) ? prevHand[index] : null);
+
+        
 
         // Private updates to the acting player
         io.to(socket.id).emit("hand:update", res.hand || []);

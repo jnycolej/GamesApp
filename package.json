@@ -1,12 +1,15 @@
 {
   "name": "games-app",
   "private": true,
-  "engines": { 
+  "engines": {
     "node": "22.x",
     "npm": "10.x"
   },
   "scripts": {
     "heroku-prebuild": "npm install --prefix backend",
     "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "dependencies": {
+    "eslint": "^9.37.0"
   }
 }

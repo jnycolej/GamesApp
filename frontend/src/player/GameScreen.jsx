@@ -393,45 +393,53 @@ export default function GameScreen() {
                   exit={{ opacity: 0, scale: 0.9, y: 10 }}
                   transition={{ type: "spring", stiffness: 500, damping: 36 }}
                 >
-                  <div
-                    className="card playingCard p-3 d-flex flex-column"
-                    style={{ minHeight: 0 }}
-                    onClick={() => handleCardClick(idx)}
+                  <motion.div
+                    whileHover={{scale: 1.1}}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{opacity: 1, scale: 1}}
                   >
-                    <div className="flex-grow-1 overflow-auto">
-                      <div className="d-flex justify-content-between align-items-center">
-                        {typeof card.points === "number" && (
-                          <span className="badge bg-warning text-dark">
-                            {card.points} pts
-                          </span>
+                    <div
+                      className="card playingCard p-3 d-flex flex-column"
+                      style={{ minHeight: 0 }}
+                      onClick={() => handleCardClick(idx)}
+                    >
+                      <div className="flex-grow-1 overflow-auto">
+                        <div className="d-flex justify-content-between align-items-center">
+                          {typeof card.points === "number" && (
+                            <span className="badge bg-warning text-dark">
+                              {card.points} pts
+                            </span>
+                          )}
+                        </div>
+
+                        {card.description && (
+                          <p className="fs-4 pt-3 text-muted">{card.description}</p>
                         )}
+
+                        {card.penalty && (
+                          <p className="fs-5 text-dark">{card.penalty}</p>
+                        )}
+
                       </div>
 
-                      {card.description && (
-                        <p className="fs-4 pt-3 text-muted">{card.description}</p>
-                      )}
-
-                      {card.penalty && (
-                        <p className="fs-5 text-dark">{card.penalty}</p>
-                      )}
-
+                      <div className="pt-2 mt-2 border-top">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-outline-danger w-100"
+                          disabled={pendingSacrificeId === card.id}
+                          aria-label="Sacrifice this card to draw a replacement"
+                          onClick={(e) => {
+                            e.stopPropagation();                // ← don’t trigger play
+                            handleSacrifice(card);
+                          }}
+                        >
+                          {pendingSacrificeId === card.id ? "Sacrificing…" : "Sacrifice"}
+                        </button>
+                      </div>
                     </div>
+                  </motion.div>
 
-                    <div className="pt-2 mt-2 border-top">
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-danger w-100"
-                        disabled={pendingSacrificeId === card.id}
-                        aria-label="Sacrifice this card to draw a replacement"
-                        onClick={(e) => {
-                          e.stopPropagation();                // ← don’t trigger play
-                          handleSacrifice(card);
-                        }}
-                      >
-                        {pendingSacrificeId === card.id ? "Sacrificing…" : "Sacrifice"}
-                      </button>
-                    </div>
-                  </div>
                 </motion.div>
 
               );
