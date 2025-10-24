@@ -138,6 +138,7 @@ const buildInviteUrl = ({ origin, gameType, code, token }) =>
 export function createRoomManager() {
   const roomMap = new Map();
 
+  
   //Creates a room for multiplayer gameplay based on type
   function createRoom({ creatorSocketId, gameType, hostKey }) {
     let code;
@@ -484,6 +485,17 @@ export function createRoomManager() {
     };
   }
 
+  function playCardById(code, socketId, cardId) {
+    const r = roomMap.get(code);
+    if (!r) return { ok: false, error: "room_not_found"};
+    const player = r.players.get(socketId);
+    if (!player) return { ok: false, error: "not_in_room"};
+    if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand"};
+    const idx = player.hand.findIndex(c => c && c.id === cardId);
+    if (idx === -1) return { ok: false, error: "card_not_in_hand"};
+    return playCard(code, socketId, idx);
+  }
+
   function handleDisconnect(code, socketId) {
     const r = roomMap.get(code);
     if (!r) return {};
@@ -508,6 +520,7 @@ export function createRoomManager() {
     resumePlayer,
     startAndDeal,
     playCard,
+    playCardById,
     getHand,
     getScore,
     getOpponentsHands,

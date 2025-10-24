@@ -14,11 +14,10 @@ import footballBackground from "../assets/football-background.png";
 import baseballBackground from "../assets/baseball-background.png";
 
 export default function GameScreen() {
-
   const { game } = useParams();
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
 
-  const [points, setPoints] = useState(0);  //Your score
+  const [points, setPoints] = useState(0); //Your score
   const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
 
   const socket = getSocket();
@@ -35,8 +34,37 @@ export default function GameScreen() {
 
   const navigate = useNavigate();
 
-
   const [lastDealtId, setLastDealtId] = useState(null);
+
+  const SACRIFICE_SHIELD_MS = 400;
+  const SACRFIFICE_COOLDOWN_MS = 2000;
+
+  const sacrificeShieldRef = useRef(false);
+  const playCooldownRef = useRef(new Set());
+  const cardPlayIgnoreUntilRef = useRef(new Map());
+
+  const [sacrificeCooldown, setSacrificeCooldown] = useState({});
+
+  const [sacrificeTick, setSacrificeTick] = useState(Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setSacrificeTick(Date.now()), 100);
+    return () => clearInterval(t);
+  }, []);
+
+  function armSacrificeShield(ms = SACRIFICE_SHIELD_MS) {
+    sacrificeShieldRef.current = true;
+    setTimeout(() => (sacrificeShieldRef.current = false), ms);
+  }
+
+  function playOnce(cardId, fn, ms = 250) {
+    if (playCooldownRef.current.has(cardId)) return;
+    playCooldownRef.current.add(cardId);
+    try {
+      fn();
+    } finally {
+      setTimeout(() => playCooldownRef.current.delete(cardId), ms);
+    }
+  }
 
   //Tracks the relative time
   const [nowTick, setNowTick] = useState(Date.now());
@@ -46,7 +74,8 @@ export default function GameScreen() {
   }, []);
 
   //Picks which background to use based on the 'game' being played
-  const background = game === "baseball" ? baseballBackground : footballBackground;
+  const background =
+    game === "baseball" ? baseballBackground : footballBackground;
 
   //updates the game room
   useEffect(() => {
@@ -79,15 +108,20 @@ export default function GameScreen() {
     };
   }, [socket, setRoom]);
 
-
   // handles the card sacrifice and the new player score
   const handleSacrifice = (card) => {
-
     if (!card?.id) return;
 
+    //ignor plays on this card surface for a short window
+    cardPlayIgnoreUntilRef.current.set(card.id, Date.now() + SACRIFICE_SHIELD_MS);
+
     setPendingSacrificeId(card.id);
-    if (sacrificeTimer) { clearTimeout(sacrificeTimer); setSacrificeTimer(null); }
+    if (sacrificeTimer) {
+      clearTimeout(sacrificeTimer);
+      setSacrificeTimer(null);
+    }
     console.log("[UI] sacrifice click", { cardId: card.id });
+
     socket.emit("player:sacrifice", { cardId: card.id }, (ack) => {
       if (ack?.error) {
         console.warn("[sacrifice] error:", ack.error);
@@ -95,6 +129,12 @@ export default function GameScreen() {
         return;
       }
       setPendingSacrificeId(null);
+
+      //start cooldown for this specific card slot (the replacement has a new id)
+      setSacrificeCooldown((prev) => ({
+        ...prev,
+        [card.id]: Date.now() + SACRFIFICE_COOLDOWN_MS,
+      }));
     });
 
     const t = setTimeout(() => setPendingSacrificeId(null), 6000);
@@ -109,10 +149,7 @@ export default function GameScreen() {
 
     // Prefer description, then name, then penalty, then an ID fallback
     const label =
-      c.description ??
-      c.name ??
-      c.penalty ??
-      (c.id ? `#${c.id}` : null);
+      c.description ?? c.name ?? c.penalty ?? (c.id ? `#${c.id}` : null);
 
     const quoted = label ? `"${String(label)}"` : "a card";
     const ptsWord = pts === 1 ? "pt" : "pts";
@@ -130,7 +167,6 @@ export default function GameScreen() {
         return ev?.text || "Update";
     }
   };
-
 
   const scrollIfNearBottom = () => {
     const el = scrollerRef.current;
@@ -160,7 +196,11 @@ export default function GameScreen() {
 
   useEffect(() => {
     const onUpdate = (ev) => {
-      const id = ev?.id || `${ev?.roomCode ?? "room"}-${ev?.ot ?? Date.now()}-${ev?.type ?? "SYS"}-${ev?.player?.id ?? ""}`;
+      const id =
+        ev?.id ||
+        `${ev?.roomCode ?? "room"}-${ev?.ot ?? Date.now()}-${
+          ev?.type ?? "SYS"
+        }-${ev?.player?.id ?? ""}`;
       const withId = { id, ...ev };
       setUpdates((prev) => {
         const next = [...prev, withId].slice(-MAX_UPDATES);
@@ -205,7 +245,6 @@ export default function GameScreen() {
     // include pendingSacrificeId in deps so we read the latest
   }, [socket, pendingSacrificeId]);
 
-
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
     minHeight: "100vh",
@@ -220,14 +259,20 @@ export default function GameScreen() {
     return room.players.find((p) => p.id === socketId) || null;
   }, [room?.players, socketId]);
 
-  const localName = (typeof window !== "undefined" && localStorage.getItem("displayName")) || null;
-
+  const localName =
+    (typeof window !== "undefined" && localStorage.getItem("displayName")) ||
+    null;
 
   // Absolute clock: 24h HH:MM:SS
   function formatClock(at) {
     if (!at) return "";
     const d = new Date(at);
-    return d.toLocaleTimeString([], { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    return d.toLocaleTimeString([], {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
   }
 
   // Relative: "just now", "12s ago", "5m ago", "3h ago", "2d ago"
@@ -246,10 +291,13 @@ export default function GameScreen() {
 
   // my hand + my score
   useEffect(() => {
-    socket.emit("hand:getMine", {}, (res) => setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []));
+    socket.emit("hand:getMine", {}, (res) =>
+      setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : [])
+    );
     socket.emit("score:getMine", {}, (res) => setPoints(res?.score ?? 0));
 
-    const onHand = (hand) => setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
+    const onHand = (hand) =>
+      setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
     const onScore = (score) => setPoints(score ?? 0);
 
     socket.on("hand:update", onHand);
@@ -287,7 +335,7 @@ export default function GameScreen() {
   }, [myHand]);
 
   const players = Array.isArray(room?.players)
-    ? room.players.filter(p => p && typeof p === "object" && p.id)
+    ? room.players.filter((p) => p && typeof p === "object" && p.id)
     : [];
 
   const opponents = useMemo(
@@ -300,8 +348,6 @@ export default function GameScreen() {
     navigate("/multiplayer");
   }
 
-
-
   return (
     <div className="p-5" style={backgroundStyle}>
       <NavBar />
@@ -310,7 +356,7 @@ export default function GameScreen() {
       <div className="container my-3">
         <div className="row gy-2">
           {players
-            .filter(p => p.id !== socketId)
+            .filter((p) => p.id !== socketId)
             .map((p) => {
               const isMe = p.id === socketId;
               const score = isMe ? points : otherScores[p.id] ?? 0;
@@ -318,8 +364,9 @@ export default function GameScreen() {
               return (
                 <div key={p.id} className="col-12 col-md-6 col-lg-4">
                   <div
-                    className={`d-flex justify-content-between align-items-center p-3 rounded shadow-sm ${isMe ? "bg-light border border-primary" : "bg-white"
-                      }`}
+                    className={`d-flex justify-content-between align-items-center p-3 rounded shadow-sm ${
+                      isMe ? "bg-light border border-primary" : "bg-white"
+                    }`}
                     title={p.connected ? "Connected" : "Disconnected"}
                   >
                     <div className="fw-semibold">
@@ -344,16 +391,22 @@ export default function GameScreen() {
           <ul className="mb-0 ps-3">
             {updates.map((ev) => {
               const cls =
-                ev?.deltaPoints > 0 ? "text-success"
-                  : ev?.deltaPoints < 0 ? "text-danger"
-                    : "text-body";
+                ev?.deltaPoints > 0
+                  ? "text-success"
+                  : ev?.deltaPoints < 0
+                  ? "text-danger"
+                  : "text-body";
               const abs = ev?.at ? formatClock(ev.at) : "";
               const rel = ev?.at ? formatRelative(ev.at, nowTick) : "";
 
               const ts = ev?.at ? new Date(ev.at).toLocaleTimeString() : "";
 
               return (
-                <li key={ev.id} className={`py-1 ${cls}`} title={ev?.at ? new Date(ev.at).toLocaleString() : ""}>
+                <li
+                  key={ev.id}
+                  className={`py-1 ${cls}`}
+                  title={ev?.at ? new Date(ev.at).toLocaleString() : ""}
+                >
                   {formatUpdate(ev)}
                   {ev?.at && (
                     <span className="text-muted ms-2">
@@ -363,7 +416,9 @@ export default function GameScreen() {
                 </li>
               );
             })}
-            {updates.length === 0 && <li className="text-muted">No updates yet.</li>}
+            {updates.length === 0 && (
+              <li className="text-muted">No updates yet.</li>
+            )}
           </ul>
         </div>
       </div>
@@ -377,7 +432,10 @@ export default function GameScreen() {
 
       {/* My hand */}
       <div className="container">
-        <div className="row g-2 justify-content-center" style={{ perspective: 1200 }}>
+        <div
+          className="row g-2 justify-content-center"
+          style={{ perspective: 1200 }}
+        >
           <AnimatePresence initial={false} mode="popLayout">
             {myHand.map((card, idx) => {
               const isJustDealt = card.id === lastDealtId;
@@ -385,7 +443,7 @@ export default function GameScreen() {
 
               return (
                 <motion.div
-                  key={card.id ?? idx}
+                  key={card.id}
                   className="col-12 col-sm-6 col-md-4 col-lg-3"
                   layout="position"
                   initial={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -394,15 +452,31 @@ export default function GameScreen() {
                   transition={{ type: "spring", stiffness: 500, damping: 36 }}
                 >
                   <motion.div
-                    whileHover={{scale: 1.1}}
+                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, scale: 0 }}
-                    animate={{opacity: 1, scale: 1}}
+                    animate={{ opacity: 1, scale: 1 }}
                   >
                     <div
                       className="card playingCard p-3 d-flex flex-column"
-                      style={{ minHeight: 0 }}
-                      onClick={() => handleCardClick(idx)}
+                      style={{
+                        minHeight: 0,
+                        ...(pendingSacrificeId === card.id
+                          ? { opacity: 0.9 }
+                          : {}),
+                      }}
+                      onPointerUp={(e) => {
+                        if (sacrificeShieldRef.current) return; // just sacrificed
+                        
+                        const until = cardPlayIgnoreUntilRef.current.get(card.id) || 0;
+                        if (Date.now() < until) return;
+                        
+                        //ignore if this came from a button
+                        const t = e.target;
+                        if (t && t.closest && t.closest("button")) return;
+                        
+                        playOnce(card.id, () => handleCardClick(idx));
+                      }}
                     >
                       <div className="flex-grow-1 overflow-auto">
                         <div className="d-flex justify-content-between align-items-center">
@@ -414,40 +488,56 @@ export default function GameScreen() {
                         </div>
 
                         {card.description && (
-                          <p className="fs-4 pt-3 text-muted">{card.description}</p>
+                          <p className="fs-4 pt-3 text-muted">
+                            {card.description}
+                          </p>
                         )}
 
                         {card.penalty && (
                           <p className="fs-5 text-dark">{card.penalty}</p>
                         )}
-
                       </div>
 
-                      <div className="pt-2 mt-2 border-top">
-                        <button
-                          type="button"
-                          className="btn btn-sm btn-outline-danger w-100"
-                          disabled={pendingSacrificeId === card.id}
-                          aria-label="Sacrifice this card to draw a replacement"
-                          onClick={(e) => {
-                            e.stopPropagation();                // ← don’t trigger play
-                            handleSacrifice(card);
-                          }}
-                        >
-                          {pendingSacrificeId === card.id ? "Sacrificing…" : "Sacrifice"}
-                        </button>
-                      </div>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-outline-danger w-100"
+                        disabled={
+                          pendingSacrificeId === card.id || (sacrificeCooldown[card.id] ?? 0) > sacrificeTick
+                        }
+                        aria-label="Sacrifice this card to draw a replacement"
+                        onPointerDown={(e) => {
+                          // arm shield BEFORE container's pointerup
+                          e.stopPropagation(); // no preventDefault here
+                          armSacrificeShield();
+                        }}
+                        onPointerUp={(e) => {
+                          // run sacrifice and cancel the click entirely
+                          e.stopPropagation();
+                          e.preventDefault(); // suppress the upcoming click
+                          handleSacrifice(card); // SACRIFICE by id
+                        }}
+                        onClick={(e) => {
+                          // belt & suspenders; click should be suppressed already
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                      >
+                        {(() => {
+                          const until = sacrificeCooldown[card.id] ?? 0;
+                          const remain = Math.max(0, until - sacrificeTick);
+                          if (pendingSacrificeId === card.id) return "Sacrificing...";
+                          if (remain > 0) return `Ready in ${(remain/1000).toFixed(1)}s`;
+                          return "Sacrifice";
+                        })()}
+                      </button>
                     </div>
                   </motion.div>
-
                 </motion.div>
-
               );
             })}
           </AnimatePresence>
         </div>
       </div>
-
 
       <hr style={{ margin: "24px 0" }} />
 
@@ -455,20 +545,40 @@ export default function GameScreen() {
       <div className="container" style={{ marginTop: 16 }}>
         {opponents.map((p) => (
           <div key={p.id} className="mb-3">
-            <strong className="fs-2 text-light text-center d-block">{p.name}</strong>{" "}
+            <strong className="fs-2 text-light text-center d-block">
+              {p.name}
+            </strong>{" "}
             {Array.isArray(p.hand) && (
-              <div className="row g-2 justify-content-center mt-2" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
+              <div
+                className="row g-2 justify-content-center mt-2"
+                style={{
+                  display: "flex",
+                  gap: 8,
+                  flexWrap: "wrap",
+                  marginTop: 6,
+                }}
+              >
                 {p.hand.filter(Boolean).map((c, i) => (
-                  <div key={c?.id ?? i} className="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div className="card bg-warning playingCard p-2 text-center d-flex flex-column" style={{ minHeight: 0 }}>
+                  <div
+                    key={c?.id ?? i}
+                    className="col-12 col-sm-6 col-md-4 col-lg-3"
+                  >
+                    <div
+                      className="card bg-warning playingCard p-2 text-center d-flex flex-column"
+                      style={{ minHeight: 0 }}
+                    >
                       <div className="flex-grow-1 overflow-auto">
-                        <div className="fs-3"><p>{c?.description ?? "-"}</p></div>
-                        <div className="mt-2 fs-4 fw-bold"><p>{c?.penalty ?? ""}</p></div>
-                        <div className="mt-3 fs-4 card-text"><p>Points: {Number(c?.points ?? 0)}</p></div>
+                        <div className="fs-3">
+                          <p>{c?.description ?? "-"}</p>
+                        </div>
+                        <div className="mt-2 fs-4 fw-bold">
+                          <p>{c?.penalty ?? ""}</p>
+                        </div>
+                        <div className="mt-3 fs-4 card-text">
+                          <p>Points: {Number(c?.points ?? 0)}</p>
+                        </div>
                       </div>
-
                     </div>
-
                   </div>
                 ))}
               </div>
@@ -476,7 +586,11 @@ export default function GameScreen() {
           </div>
         ))}
       </div>
-      <button className="btn btn-danger" onClick={handleLeaveGame} style={{ position: "absolute", top: 16, right: 16 }}>
+      <button
+        className="btn btn-danger"
+        onClick={handleLeaveGame}
+        style={{ position: "absolute", top: 16, right: 16 }}
+      >
         Leave Game
       </button>
     </div>
