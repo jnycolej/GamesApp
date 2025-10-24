@@ -1,3 +1,4 @@
+//generates a unique player id and stores their display name
 export function getPlayerKey() {
     let k = localStorage.getItem("playerKey");
     if (!k) {
@@ -13,6 +14,7 @@ export function getPlayerKey() {
     return k;
 }
 
+//Stores the players display name that is entered
 export function getDisplayName() {
     return localStorage.getItem("displayName") || "Player";
 }
