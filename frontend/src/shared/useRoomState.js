@@ -3,16 +3,16 @@ import { getSocket } from "./socket";
 
 export function useRoomChannel() {
 
-    const [room, setRoom] = useState(null);
-    const [myHand, setMyHand] = useState([]);
-    const [myScore, setMyScore] = useState(0);
-    const [scores, setScores] = useState({});
+    const [room, setRoom] = useState(null);     //Multiplayer room
+    const [myHand, setMyHand] = useState([]);   //user's hand
+    const [myScore, setMyScore] = useState(0);  //user's score
+    const [scores, setScores] = useState({});   //opponent's scores
 
     useEffect(() => {
         const s = getSocket();
-        const onUpdated = (state) => setRoom(state);
+        const onUpdated = (state) => setRoom(state);    //Shows the updated room after any plays
         const onHand = (hand) => setMyHand(hand);
-        const onMyScore = (score) => setMyScore(score);
+        const onMyScore = (score) => setMyScore(score);     //Updates players score
 
         const onPlayerUpdated = ({ playerId, handCount, score }) => {
             setRoom((prev) => {
