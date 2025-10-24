@@ -3,26 +3,35 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getSocket, getPlayerKey } from "../shared/socket";
 import { getDisplayName } from "../shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
+
+//Screen Background imports
 import footballBackground from '../assets/football-background.png';
 import baseballBackground from '../assets/baseball-background.png';
+
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
 
+//Component imports
 import NavBar from "../components/NavBar";
 import HowToPlay from "../components/HowToPlay";
+
 
 export default function GameLobby() {
     const { game, code } = useParams();
     const { room, setRoom } = useRoomChannel();
     const nav = useNavigate();
     const socket = getSocket();
+
+    //Invite players using a text or sharing/copying
     const inviteToken = (code && localStorage.getItem(`inviteToken:${code}`)) || null;
     const inviteUrl =
         inviteToken
             ? `${window.location.origin}/${game}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(inviteToken)}`
             : null;
+    
+    //Changes the background of the lobby based on the game type selected
     const background = game === 'baseball' ? baseballBackground : footballBackground;
-
+    //Styles the background image
     const backgroundStyle = {
         backgroundImage: `url(${background})`,
         minHeight: '100vh',
@@ -31,6 +40,7 @@ export default function GameLobby() {
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
     }
+
     //If phase flips to 'playing', take everyone to the game screen
     useEffect(() => {
         if (room?.phase === "playing") {
@@ -45,7 +55,7 @@ export default function GameLobby() {
         return () => socket.off("room:updated", onUpdated);
     }, [socket, setRoom]);
 
-    //Ensure this socket is actually in the room identified by the URL `code`
+    //Ensure this socket is actually in the room identified by the URL code
     useEffect(() => {
         if (!code) return;
         if (room?.code === code) return;
@@ -82,7 +92,7 @@ export default function GameLobby() {
         });
     }, [code, room?.code, setRoom, socket]);
 
-    // Auto-resume when you return from iMessage (focus/visibility)
+    // Auto-resume when you return from message
     useEffect(() => {
         if (!code) return;
 
@@ -93,7 +103,7 @@ export default function GameLobby() {
             const displayName = getDisplayName();
             let key = localStorage.getItem("playerKey");
             if (!key) {
-                // fallback if key was cleared (keeps behavior consistent with your ensureKey)
+                // fallback if key was cleared
                 key =
                     (window.crypto?.randomUUID?.()) ||
                     (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).toUpperCase();
@@ -138,7 +148,6 @@ export default function GameLobby() {
                 <NavBar />
                 
                  <h2 className="display-2 text-center text-light">ROOM - <strong>{room?.code ?? code ?? ""}</strong></h2>
-                 {/* <h2>{room?.gameType ? `- ${room.gameType} game` : ""}</h2> */}
                
                 <div className="d-flex justify-content-center">
                     <HowToPlay />                    
