@@ -49,7 +49,6 @@ export function getSocket() {
 
     if (roomCode) {
       socket.emit("player:resume", { roomCode, displayName, key }, (res) => {
-        // If resume fails (first time, or server restarted), you can optionally fall back to join:
         // if (!res?.ok) socket.emit("player:join", { roomCode, displayName, key }, () => {});
       });
     }
@@ -62,6 +61,7 @@ export function getSocket() {
   return socket;
 }
 
+//Lets a user create a room
 export function createRoom(gameType, displayName, cb) {
   const s = getSocket();
   const key = getPlayerKey();
@@ -71,6 +71,7 @@ export function createRoom(gameType, displayName, cb) {
   });
 }
 
+//Lets a user join a room
 export function joinRoom(roomCode, displayName, cb, token = null) {
   const s = getSocket();
   const key = getPlayerKey();
