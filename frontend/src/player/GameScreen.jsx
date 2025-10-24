@@ -4,8 +4,11 @@ import { getSocket } from "../shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
 import { motion, AnimatePresence } from "framer-motion";
 
+//component imports
 import NavBar from "../components/NavBar";
+import Scoreboard from "../components/Scoreboard";
 
+//Bootstrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -16,11 +19,11 @@ import baseballBackground from "../assets/baseball-background.png";
 export default function GameScreen() {
   const { game } = useParams();
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
+  const socket = getSocket();
 
+  //State declarations
   const [points, setPoints] = useState(0); //Your score
   const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
-
-  const socket = getSocket();
   const [socketId, setSocketId] = useState(socket.id || null);
 
   //Keeps track of the cards that are being sacrficed
@@ -34,8 +37,9 @@ export default function GameScreen() {
 
   const navigate = useNavigate();
 
-  const [lastDealtId, setLastDealtId] = useState(null);
+  const [lastDealtId, setLastDealtId] = useState(null);   //Stores the id of the card dealt before the previous one
 
+  //Gives a buffer for clicking a sacrifice
   const SACRIFICE_SHIELD_MS = 400;
   const SACRFIFICE_COOLDOWN_MS = 2000;
 
@@ -45,6 +49,7 @@ export default function GameScreen() {
 
   const [sacrificeCooldown, setSacrificeCooldown] = useState({});
 
+  //Tracks the time until another card is allowed to be sacrificed
   const [sacrificeTick, setSacrificeTick] = useState(Date.now());
   useEffect(() => {
     const t = setInterval(() => setSacrificeTick(Date.now()), 100);
@@ -73,7 +78,7 @@ export default function GameScreen() {
     return () => clearInterval(t);
   }, []);
 
-  //Picks which background to use based on the 'game' being played
+  //Picks which background to use based on the game being played
   const background =
     game === "baseball" ? baseballBackground : footballBackground;
 
@@ -84,14 +89,13 @@ export default function GameScreen() {
     socket.on("connect", update);
     socket.on("reconnect", update);
     socket.on("disconnect", () => setSocketId(null));
-
     socket.emit("room:get", {}, (res) => res?.ok && setRoom(res.state));
 
     const onRoom = (st) => {
-      if (st?.players?.length) {
+      if (st?.players?.length) {    //Checks to see if there are platers in the room
         st.players = st.players
-          .filter((p) => p && typeof p === "object" && p.id)
-          .map((p) => ({
+          .filter((p) => p && typeof p === "object" && p.id) //Cleans the player list
+          .map((p) => ({    //updates the player array by cloning the previous one and cleans up their hands
             ...p,
             hand: Array.isArray(p.hand) ? p.hand.filter(Boolean) : p.hand,
           }));
@@ -112,8 +116,11 @@ export default function GameScreen() {
   const handleSacrifice = (card) => {
     if (!card?.id) return;
 
-    //ignor plays on this card surface for a short window
-    cardPlayIgnoreUntilRef.current.set(card.id, Date.now() + SACRIFICE_SHIELD_MS);
+    //ignore plays on this card surface for a short window
+    cardPlayIgnoreUntilRef.current.set(
+      card.id,
+      Date.now() + SACRIFICE_SHIELD_MS
+    );
 
     setPendingSacrificeId(card.id);
     if (sacrificeTimer) {
@@ -141,6 +148,7 @@ export default function GameScreen() {
     setSacrificeTimer(t);
   };
 
+  //Puts together the update messages displayed in the game updates component based on the card played
   const formatUpdate = (ev) => {
     const name = ev?.player?.name || "Player";
     const delta = Number(ev?.deltaPoints ?? 0);
@@ -168,6 +176,7 @@ export default function GameScreen() {
     }
   };
 
+  //Formating for the game update text window
   const scrollIfNearBottom = () => {
     const el = scrollerRef.current;
     if (!el || !(el instanceof HTMLElement)) return;
@@ -187,13 +196,14 @@ export default function GameScreen() {
           try {
             el.scrollTop = el.scrollHeight;
           } catch {
-            /* ignore */
+            
           }
         });
       }
     }
   };
 
+  //Tracks when the update was pushed
   useEffect(() => {
     const onUpdate = (ev) => {
       const id =
@@ -234,7 +244,7 @@ export default function GameScreen() {
     };
   }, [socket]);
 
-  // --- make sure we also clear when a fresh state arrives
+  // clear when a fresh state arrives
   useEffect(() => {
     const onState = (next) => {
       // whenever server pushes a new state, ensure nothing is stuck
@@ -242,7 +252,6 @@ export default function GameScreen() {
     };
     socket.on("room:state", onState);
     return () => socket.off("room:state", onState);
-    // include pendingSacrificeId in deps so we read the latest
   }, [socket, pendingSacrificeId]);
 
   const backgroundStyle = {
@@ -352,6 +361,11 @@ export default function GameScreen() {
     <div className="p-5" style={backgroundStyle}>
       <NavBar />
 
+      <Scoreboard
+        players={room?.players ?? []}
+        leaderIds={room?.leaderIds ?? []}
+        currentUserId={socketId}
+      />
       {/* Scoreboard */}
       <div className="container my-3">
         <div className="row gy-2">
@@ -467,14 +481,15 @@ export default function GameScreen() {
                       }}
                       onPointerUp={(e) => {
                         if (sacrificeShieldRef.current) return; // just sacrificed
-                        
-                        const until = cardPlayIgnoreUntilRef.current.get(card.id) || 0;
+
+                        const until =
+                          cardPlayIgnoreUntilRef.current.get(card.id) || 0;
                         if (Date.now() < until) return;
-                        
+
                         //ignore if this came from a button
                         const t = e.target;
                         if (t && t.closest && t.closest("button")) return;
-                        
+
                         playOnce(card.id, () => handleCardClick(idx));
                       }}
                     >
@@ -502,7 +517,8 @@ export default function GameScreen() {
                         type="button"
                         className="btn btn-sm btn-outline-danger w-100"
                         disabled={
-                          pendingSacrificeId === card.id || (sacrificeCooldown[card.id] ?? 0) > sacrificeTick
+                          pendingSacrificeId === card.id ||
+                          (sacrificeCooldown[card.id] ?? 0) > sacrificeTick
                         }
                         aria-label="Sacrifice this card to draw a replacement"
                         onPointerDown={(e) => {
@@ -525,8 +541,10 @@ export default function GameScreen() {
                         {(() => {
                           const until = sacrificeCooldown[card.id] ?? 0;
                           const remain = Math.max(0, until - sacrificeTick);
-                          if (pendingSacrificeId === card.id) return "Sacrificing...";
-                          if (remain > 0) return `Ready in ${(remain/1000).toFixed(1)}s`;
+                          if (pendingSacrificeId === card.id)
+                            return "Sacrificing...";
+                          if (remain > 0)
+                            return `Ready in ${(remain / 1000).toFixed(1)}s`;
                           return "Sacrifice";
                         })()}
                       </button>

@@ -1,17 +1,24 @@
-// frontend/src/player/JoinCreateRoom.jsx
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getSocket, rememberRoom } from "../shared/socket";
 import { getPlayerKey, setDisplayName } from "../shared/playerIdentity";
-import NavBar from "../components/NavBar";
+
+//Bootstrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+//Background image imports
 import footballBackground from "../assets/football-background.png";
 import baseballBackground from "../assets/baseball-background.png";
+
+//Component imports
+import NavBar from "../components/NavBar";
 
 export default function JoinCreateRoom() {
   const { game } = useParams();
   const nav = useNavigate();
+
+  //State declarations
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
   const [state, setState] = useState(null);
@@ -24,7 +31,9 @@ export default function JoinCreateRoom() {
   const deepRoom = (params.get("room") || "").toUpperCase();
   const deepToken = params.get("token") || null;
 
+  //Sets background based on game type
   const background = game === "baseball" ? baseballBackground : footballBackground;
+ 
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
     minHeight: "100vh",
@@ -34,6 +43,7 @@ export default function JoinCreateRoom() {
     backgroundSize: "cover",
   };
 
+  //Text for the link to join the multiplayer game
   const shareText = (url) =>
     `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${url}\nIf the link doesn't open, open the app -> join -> enter the room code.`;
 
@@ -67,8 +77,10 @@ export default function JoinCreateRoom() {
 
   useEffect(() => {
     if (deepRoom) setCode(deepRoom);
-  }, [deepRoom /*, deepToken, name */]);
+  }, [deepRoom]);
 
+
+  //Create a room
   const createRoom = () => {
     if (busy) return;
     setBusy(true);
@@ -92,6 +104,7 @@ export default function JoinCreateRoom() {
     });
   };
 
+  //Join a room
   const joinRoom = (forcedCode, forcedToken) => {
     if (busy) return;
     const cleaned = (forcedCode || code || "")
