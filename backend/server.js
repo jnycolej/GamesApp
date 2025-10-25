@@ -84,7 +84,8 @@ function getUpdates(code) {
 function getEnrichedState(code) {
   // base public snapshot
   const base =
-    (typeof rooms.safePublicState === "function" && rooms.safePublicState(code)) ||
+    (typeof rooms.safePublicState === "function" &&
+      rooms.safePublicState(code)) ||
     rooms.getPublicState(code);
 
   if (!base) return null;
@@ -94,8 +95,15 @@ function getEnrichedState(code) {
     ? base.players
         .filter((p) => p && typeof p === "object" && p.id)
         .map((p) => {
-          const hasPoints = typeof p.points === "number" && Number.isFinite(p.points);
-          const score = hasPoints ? p.points : Number(rooms.getScore(code, p.id) ?? 0);
+          // tolerate both 'points' (preferred) and legacy 'score'
+          const direct =
+            typeof p.points === "number" && Number.isFinite(p.points)
+              ? p.points
+              : typeof p.score === "number" && Number.isFinite(p.score)
+              ? p.score
+              : undefined;
+
+          const score = direct ?? Number(rooms.getScore(code, p.id) ?? 0);
           return { ...p, points: score };
         })
     : [];
@@ -103,7 +111,9 @@ function getEnrichedState(code) {
   // compute leaderIds
   let leaderIds = [];
   if (players.length > 0) {
-    const max = Math.max(...players.map((p) => Number.isFinite(p.points) ? p.points : 0));
+    const max = Math.max(
+      ...players.map((p) => (Number.isFinite(p.points) ? p.points : 0))
+    );
     leaderIds = players.filter((p) => (p.points ?? 0) === max).map((p) => p.id);
   }
 
@@ -124,7 +134,6 @@ function emitRoomState(code) {
   io.to(code).emit("room:updated", state);
   return state;
 }
-
 
 io.on("connection", (socket) => {
   console.log("[socket] connected", socket.id);
@@ -194,7 +203,6 @@ io.on("connection", (socket) => {
       const state = emitRoomState(CODE);
       console.log("[join] players now=%d", state?.players?.length || 0);
       cb?.({ ok: true, state });
-      
     } catch (err) {
       console.error("[join] error:", err);
       cb?.({ ok: false, error: "join_failed" });
@@ -259,7 +267,7 @@ io.on("connection", (socket) => {
 
     const now = Date.now();
     if ((actionLockUntil.get(socket.id) || 0) > now) {
-        return cb?.({ ok: false, error: "locked" });
+      return cb?.({ ok: false, error: "locked" });
     }
 
     const result = withPlayerLock(code, socket.id, () => {
@@ -342,7 +350,6 @@ io.on("connection", (socket) => {
       //Sets a short-time lock to block any follow-up 'play'
       actionLockUntil.set(playerId, Date.now() + ACTION_LOCK_MS);
 
-
       const res = withPlayerLock(code, playerId, () => {
         const prevScore = rooms.getScore(code, playerId) ?? 0;
         const roomHand = rooms.getHand(code, playerId) || [];
@@ -358,8 +365,8 @@ io.on("connection", (socket) => {
         socket
           .to(code)
           .emit("player:updated", { playerId, handCount: hand.length, score });
-        
-          const state = emitRoomState(code);
+
+        const state = emitRoomState(code);
 
         const actor =
           (state?.players || []).find((p) => p.id === playerId) || {};
@@ -389,14 +396,14 @@ io.on("connection", (socket) => {
         return { ok: true };
       });
 
-      if (!res.ok){ 
+      if (!res.ok) {
         actionLockUntil.delete(playerId);
         return ack?.(res);
-    }
+      }
 
       return ack?.({ ok: true });
     } catch (err) {
-        actionLockUntil.delete(socket.id);
+      actionLockUntil.delete(socket.id);
       console.error("[player:sacrifice] error:", err);
       ack?.({ error: err?.message || "Could not sacrifice" });
       socket.emit("error:action", {

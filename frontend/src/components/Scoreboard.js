@@ -7,14 +7,14 @@ const Scoreboard = ({players= [], leaderIds = [], currentUserId }) => {
         const clean = Array.isArray(players)
             ? players.filter((p) => p && typeof p === "object" && p.id)
             : [];
-        return [...clean].sort((a, b) => (Number(b.points ?? 0) - Number(a.points ?? 0)));
+        return [...clean].sort((a, b) => (Number(b.points ?? b.score ?? 0) - Number(a.points ?? a.score ?? 0)));
     }, [players]);
 
     return (
         <div className="container my-3">
             <div className="row gy-2">
                 {sorted.map((p) => {
-                    const score = Number(p.points ?? 0);
+                    const score = Number(p.points ?? p.score ?? 0);
                     const isLeader = Array.isArray(leaderIds) && leaderIds.includes(p.id);
                     const isMe = p.id === currentUserId;
 
