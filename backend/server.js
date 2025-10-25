@@ -81,6 +81,51 @@ function getUpdates(code) {
   return (updatesByCode.get(code) || []).slice(-MAX_UPDATES);
 }
 
+function getEnrichedState(code) {
+  // base public snapshot
+  const base =
+    (typeof rooms.safePublicState === "function" && rooms.safePublicState(code)) ||
+    rooms.getPublicState(code);
+
+  if (!base) return null;
+
+  // normalize players + ensure numeric points
+  const players = Array.isArray(base.players)
+    ? base.players
+        .filter((p) => p && typeof p === "object" && p.id)
+        .map((p) => {
+          const hasPoints = typeof p.points === "number" && Number.isFinite(p.points);
+          const score = hasPoints ? p.points : Number(rooms.getScore(code, p.id) ?? 0);
+          return { ...p, points: score };
+        })
+    : [];
+
+  // compute leaderIds
+  let leaderIds = [];
+  if (players.length > 0) {
+    const max = Math.max(...players.map((p) => Number.isFinite(p.points) ? p.points : 0));
+    leaderIds = players.filter((p) => (p.points ?? 0) === max).map((p) => p.id);
+  }
+
+  // 4) stamp updatedAt
+  const enriched = {
+    ...base,
+    players,
+    leaderIds,
+    updatedAt: Date.now(),
+  };
+
+  return enriched;
+}
+
+function emitRoomState(code) {
+  const state = getEnrichedState(code);
+  if (!state) return null;
+  io.to(code).emit("room:updated", state);
+  return state;
+}
+
+
 io.on("connection", (socket) => {
   console.log("[socket] connected", socket.id);
   //Connects the to the socket
@@ -109,11 +154,7 @@ io.on("connection", (socket) => {
         return cb?.(add || { ok: false, error: "add_player_failed" });
       }
 
-      const state = rooms.getPublicState(code);
-      io.to(code).emit(
-        "room:updated",
-        rooms.safePublicState ? rooms.safePublicState(code) : state
-      );
+      const state = emitRoomState(code);
 
       return cb?.({ ok: true, roomCode: code, token, state });
     } catch (err) {
@@ -150,10 +191,10 @@ io.on("connection", (socket) => {
       socket.data.roomCode = CODE;
       socket.join(CODE);
 
-      const state = rooms.getPublicState(CODE);
+      const state = emitRoomState(CODE);
       console.log("[join] players now=%d", state?.players?.length || 0);
       cb?.({ ok: true, state });
-      io.to(CODE).emit("room:updated", state);
+      
     } catch (err) {
       console.error("[join] error:", err);
       cb?.({ ok: false, error: "join_failed" });
@@ -182,8 +223,7 @@ io.on("connection", (socket) => {
     io.to(socket.id).emit("score:update", res.score ?? 0);
 
     // refresh public state (shows them as connected)
-    const state = rooms.getPublicState(CODE);
-    io.to(CODE).emit("room:updated", state);
+    const state = emitRoomState(CODE);
 
     cb?.({ ok: true, state });
   });
@@ -192,7 +232,7 @@ io.on("connection", (socket) => {
   socket.on("room:get", (_, cb) => {
     const code = socket.data.roomCode;
     if (!code) return cb?.({ ok: false, error: "not_in_room" });
-    cb?.({ ok: true, state: rooms.getPublicState(code) });
+    cb?.({ ok: true, state: getEnrichedState(code) });
   });
 
   socket.on("game:startAndDeal", async (_payload, cb) => {
@@ -204,11 +244,7 @@ io.on("connection", (socket) => {
     if (!res.ok) return cb?.(res);
 
     cb?.({ ok: true });
-    const state = rooms.getPublicState(code);
-    io.to(code).emit(
-      "room:updated",
-      rooms.safePublicState ? rooms.safePublicState(code) : state
-    );
+    emitRoomState(code);
 
     const socketsInRoom = await io.in(code).fetchSockets();
     for (const s of socketsInRoom) {
@@ -242,11 +278,8 @@ io.on("connection", (socket) => {
         handCount: res.hand?.length ?? 0,
         score: nextScore,
       });
-      const state = rooms.getPublicState(code);
-      io.to(code).emit(
-        "room:updated",
-        rooms.safePublicState ? rooms.safePublicState(code) : state
-      );
+      const state = emitRoomState(code);
+
       const actor =
         (state?.players || []).find((p) => p.id === socket.id) || {};
       const actorName = actor.displayName || actor.name || "Player";
@@ -325,11 +358,9 @@ io.on("connection", (socket) => {
         socket
           .to(code)
           .emit("player:updated", { playerId, handCount: hand.length, score });
-        const state = rooms.getPublicState(code);
-        io.to(code).emit(
-          "room:updated",
-          rooms.safePublicState ? rooms.safePublicState(code) : state
-        );
+        
+          const state = emitRoomState(code);
+
         const actor =
           (state?.players || []).find((p) => p.id === playerId) || {};
         const actorName = actor.displayName || actor.name || "Player";
@@ -386,7 +417,7 @@ io.on("connection", (socket) => {
     const code = socket.data.roomCode;
     if (!code) return;
     rooms.handleDisconnect(code, socket.id);
-    io.to(code).emit("room:updated", rooms.getPublicState(code));
+    emitRoomState(code);
   });
 
   socket.on("leaveRoom", (cb) => {
@@ -404,11 +435,7 @@ io.on("connection", (socket) => {
       socket.leave(code);
       socket.data.roomCode = undefined;
 
-      const state = rooms.getPublicState(code);
-      io.to(code).emit(
-        "room:updated",
-        rooms.safePublicState ? rooms.safePublicState(code) : state
-      );
+      emitRoomState(code);
 
       //Let clients know explicitly who left
       socket.to(code).emit("player:left", { playerId: socket.id });

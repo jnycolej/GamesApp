@@ -361,13 +361,14 @@ export default function GameScreen() {
     <div className="p-5" style={backgroundStyle}>
       <NavBar />
 
+
+      {/* Scoreboard */}
       <Scoreboard
         players={room?.players ?? []}
         leaderIds={room?.leaderIds ?? []}
         currentUserId={socketId}
-      />
-      {/* Scoreboard */}
-      <div className="container my-3">
+      />      
+      {/* <div className="container my-3">
         <div className="row gy-2">
           {players
             .filter((p) => p.id !== socketId)
@@ -392,7 +393,7 @@ export default function GameScreen() {
               );
             })}
         </div>
-      </div>
+      </div> */}
 
       {/* Card Game Play-By-Play */}
       <div className="bg-success border rounded">
