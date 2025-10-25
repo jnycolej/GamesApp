@@ -157,3 +157,31 @@ a {
 .gameLobby ul {
   list-style-type: none !important;
 }
+
+.option {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background-color: rgba(255,255,255,0.2);
+  color: #000;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: rgba(255,255,255,0.35);
+  border-color: #ffc107; /* Bootstrap warning color */
+  transform: scale(1.02);
+}
+
+.option.selected {
+  background-color: #ffc107; /* or any highlight color */
+  color: #000;
+  border-color: #ffc107;
+}
+
+.option.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}

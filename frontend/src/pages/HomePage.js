@@ -17,24 +17,24 @@ const HomePage = () => {
                 <h1 className="display-4 fw-bold text-center">Games</h1>
                 <hr />
             </div>
-            <div class="container">
-                <div class="mb-3 row justify-content-start gap-4 text-center">
-                    <div class="card col home-card mb-4 shadow-lg">
-                        <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">Baseball Game</h4>
+            <div className="container">
+                <div className="mb-3 row justify-content-start gap-4 text-center">
+                    <div className="card col home-card mb-4 shadow-lg">
+                        <div className="card-header">
+                            <h4 className="my-0 font-weight-normal">Baseball Game</h4>
                         </div>
                         <div className="baseball-home-card-logo">
-                            <div class="card-body">
+                            <div className="card-body">
                                 <Link to="/baseball/mode"><img className="card-img-top" src={baseballGameLogo} alt="Baseball Game"></img></Link>
                             </div>
                         </div>
                     </div>
-                    <div class="card col home-card mb-4 shadow-lg">
-                        <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">Football Game</h4>
+                    <div className="card col home-card mb-4 shadow-lg">
+                        <div className="card-header">
+                            <h4 className="my-0 font-weight-normal">Football Game</h4>
                         </div>
                         <div className="football-home-card-logo">
-                            <div class="card-body">
+                            <div className="card-body">
                                 <Link to="/football/mode"><img className="card-img-top" src={footballGameLogo} alt="Football Game"></img></Link>
                             </div>
                         </div>

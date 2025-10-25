@@ -338,126 +338,168 @@ io.on("connection", (socket) => {
     cb?.({ ok: true, opponents: opp });
   });
 
-  socket.on("player:sacrifice", async (payload = {}, ack) => {
+  socket.on("score:adjust", ({ delta }, ack) => {
     try {
       const code = socket.data.roomCode;
-      const playerId = socket.id;
-      const cardId = payload?.cardId;
+      if (!code) return ack?.({ error: "not in a room" });
 
-      if (!code) throw new Error("not_in_room");
-      if (!cardId) throw new Error("missing_card");
+      // validate delta
+      const n = Number(delta);
+      const safeDelta = Number.isFinite(n) ? Math.trunc(n) : 0;
+      if (safeDelta === 0) return ack?.({ error: "invalid delta" });
 
-      //Sets a short-time lock to block any follow-up 'play'
-      actionLockUntil.set(playerId, Date.now() + ACTION_LOCK_MS);
+      // get current and apply
+      const pre = rooms.getScore(code, socket.id) ?? 0;
+      const post = pre + safeDelta;
 
-      const res = withPlayerLock(code, playerId, () => {
-        const prevScore = rooms.getScore(code, playerId) ?? 0;
-        const roomHand = rooms.getHand(code, playerId) || [];
-        const sacrificedFromPrev =
-          roomHand.find((c) => c?.id === cardId) || null;
-        const r = rooms.sacrificeCard(code, playerId, cardId);
-        if (r && r.ok === false) return r;
-        const hand = rooms.getHand(code, playerId) || [];
-        const score = rooms.getScore(code, playerId) ?? 0;
-        const delta = score - prevScore; // negative
-        io.to(playerId).emit("hand:update", hand);
-        io.to(playerId).emit("score:update", score);
-        socket
-          .to(code)
-          .emit("player:updated", { playerId, handCount: hand.length, score });
-
-        const state = emitRoomState(code);
-
-        const actor =
-          (state?.players || []).find((p) => p.id === playerId) || {};
-        const actorName = actor.displayName || actor.name || "Player";
-        const sacrificedCard = r.sacrificedCard || sacrificedFromPrev;
-        const ev = pushUpdate(code, {
-          type: "CARD_SACRIFICED",
-          player: { id: playerId, name: actorName },
-          card: sacrificedCard
-            ? {
-                id: sacrificedCard.id,
-                name: sacrificedCard.name,
-                description:
-                  sacrificedCard.description ??
-                  sacrificedCard.desc ??
-                  sacrificedCard.penalty,
-                points:
-                  typeof sacrificedCard.points === "number"
-                    ? sacrificedCard.points
-                    : undefined,
-              }
-            : undefined,
-          deltaPoints: Number(delta) || -1,
-          meta: { cardId },
-        });
-        io.to(code).emit("game:update", ev);
-        return { ok: true };
-      });
-
-      if (!res.ok) {
-        actionLockUntil.delete(playerId);
-        return ack?.(res);
-      }
-
-      return ack?.({ ok: true });
-    } catch (err) {
-      actionLockUntil.delete(socket.id);
-      console.error("[player:sacrifice] error:", err);
-      ack?.({ error: err?.message || "Could not sacrifice" });
-      socket.emit("error:action", {
-        action: "sacrifice",
-        message: err?.message || "Could not sacrifice",
-      });
-    }
-  });
-
-  socket.on("game:history:request", () => {
-    const code = socket.data.roomCode;
-    if (!code) return;
-    io.to(socket.id).emit("game:history", getUpdates(code));
-  });
-
-  //Players disconnect and leave the game room
-  socket.on("disconnect", () => {
-    const code = socket.data.roomCode;
-    if (!code) return;
-    rooms.handleDisconnect(code, socket.id);
-    emitRoomState(code);
-  });
-
-  socket.on("leaveRoom", (cb) => {
-    try {
-      const code = socket.data.roomCode;
-      if (!code) return cb?.({ ok: false, error: "not_in_room" });
-
-      //Update room state
-      if (typeof rooms.removePlayer === "function") {
-        rooms.removePlayer(code, socket.id);
-      } else if (typeof rooms.handleDisconnect === "function") {
-        rooms.handleDisconnect(code, socket.id);
-      }
-
-      socket.leave(code);
-      socket.data.roomCode = undefined;
-
+      rooms.setScore(code, socket.id, post);
       emitRoomState(code);
 
-      //Let clients know explicitly who left
-      socket.to(code).emit("player:left", { playerId: socket.id });
+      const ev = pushUpdate(code, {
+        type: "SCORE_ADJUSTED",
+        deltaPoints: safeDelta,
+        player: {
+          id: socket.id,
+          name: socket.data?.displayName || socket.data?.name || "Player",
+        },
+      });
 
-      //Clear up empty rooms if your manager supports it
-      if (typeof rooms.destroyIfEmpty === "function") {
-        rooms.destroyIfEmpty(code);
-      }
+      io.to(code).emit("game:update", ev);
+      // ack to the caller
+      ack?.({ ok: true, newScore: post });
 
-      cb?.({ ok: true });
+      // push score to this player
+      io.to(socket.id).emit("score:update", post);
+
+      // let everyone know this player's score changed
+      io.to(code).emit("player:updated", {
+        playerId: socket.id,
+        score: post,
+      });
     } catch (err) {
-      console.error("[leaveRoom] error", err);
-      cb?.({ ok: false, error: "leave_failed" });
+      console.error("[score:adjust] error", err);
+      ack?.({ error: "server error" });
     }
   });
+
+socket.on("player:sacrifice", async (payload = {}, ack) => {
+  try {
+    const code = socket.data.roomCode;
+    const playerId = socket.id;
+    const cardId = payload?.cardId;
+
+    if (!code) throw new Error("not_in_room");
+    if (!cardId) throw new Error("missing_card");
+
+    //Sets a short-time lock to block any follow-up 'play'
+    actionLockUntil.set(playerId, Date.now() + ACTION_LOCK_MS);
+
+    const res = withPlayerLock(code, playerId, () => {
+      const prevScore = rooms.getScore(code, playerId) ?? 0;
+      const roomHand = rooms.getHand(code, playerId) || [];
+      const sacrificedFromPrev = roomHand.find((c) => c?.id === cardId) || null;
+      const r = rooms.sacrificeCard(code, playerId, cardId);
+      if (r && r.ok === false) return r;
+      const hand = rooms.getHand(code, playerId) || [];
+      const score = rooms.getScore(code, playerId) ?? 0;
+      const delta = score - prevScore; // negative
+      io.to(playerId).emit("hand:update", hand);
+      io.to(playerId).emit("score:update", score);
+      socket
+        .to(code)
+        .emit("player:updated", { playerId, handCount: hand.length, score });
+
+      const state = emitRoomState(code);
+
+      const actor = (state?.players || []).find((p) => p.id === playerId) || {};
+      const actorName = actor.displayName || actor.name || "Player";
+      const sacrificedCard = r.sacrificedCard || sacrificedFromPrev;
+      const ev = pushUpdate(code, {
+        type: "CARD_SACRIFICED",
+        player: { id: playerId, name: actorName },
+        card: sacrificedCard
+          ? {
+              id: sacrificedCard.id,
+              name: sacrificedCard.name,
+              description:
+                sacrificedCard.description ??
+                sacrificedCard.desc ??
+                sacrificedCard.penalty,
+              points:
+                typeof sacrificedCard.points === "number"
+                  ? sacrificedCard.points
+                  : undefined,
+            }
+          : undefined,
+        deltaPoints: Number(delta) || -1,
+        meta: { cardId },
+      });
+      io.to(code).emit("game:update", ev);
+      return { ok: true };
+    });
+
+    if (!res.ok) {
+      actionLockUntil.delete(playerId);
+      return ack?.(res);
+    }
+
+    return ack?.({ ok: true });
+  } catch (err) {
+    actionLockUntil.delete(socket.id);
+    console.error("[player:sacrifice] error:", err);
+    ack?.({ error: err?.message || "Could not sacrifice" });
+    socket.emit("error:action", {
+      action: "sacrifice",
+      message: err?.message || "Could not sacrifice",
+    });
+  }
+});
+
+socket.on("game:history:request", () => {
+  const code = socket.data.roomCode;
+  if (!code) return;
+  io.to(socket.id).emit("game:history", getUpdates(code));
+});
+
+//Players disconnect and leave the game room
+socket.on("disconnect", () => {
+  const code = socket.data.roomCode;
+  if (!code) return;
+  rooms.handleDisconnect(code, socket.id);
+  emitRoomState(code);
+});
+
+socket.on("leaveRoom", (cb) => {
+  try {
+    const code = socket.data.roomCode;
+    if (!code) return cb?.({ ok: false, error: "not_in_room" });
+
+    //Update room state
+    if (typeof rooms.removePlayer === "function") {
+      rooms.removePlayer(code, socket.id);
+    } else if (typeof rooms.handleDisconnect === "function") {
+      rooms.handleDisconnect(code, socket.id);
+    }
+
+    socket.leave(code);
+    socket.data.roomCode = undefined;
+
+    emitRoomState(code);
+
+    //Let clients know explicitly who left
+    socket.to(code).emit("player:left", { playerId: socket.id });
+
+    //Clear up empty rooms if your manager supports it
+    if (typeof rooms.destroyIfEmpty === "function") {
+      rooms.destroyIfEmpty(code);
+    }
+
+    cb?.({ ok: true });
+  } catch (err) {
+    console.error("[leaveRoom] error", err);
+    cb?.({ ok: false, error: "leave_failed" });
+  }
+});
 });
 
 //In production serve the frontend from the same app

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 //component imports
 import NavBar from "../components/NavBar";
 import Scoreboard from "../components/Scoreboard";
+import TriviaQuiz from "../components/TriviaQuiz";
 
 //Bootstrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,11 +26,33 @@ export default function GameScreen() {
   const [points, setPoints] = useState(0); //Your score
   const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
   const [socketId, setSocketId] = useState(socket.id || null);
+  const [quizUnlocked, setQuizUnlocked] = useState(false);
 
   //Keeps track of the cards that are being sacrficed
   const [pendingSacrificeId, setPendingSacrificeId] = useState(null);
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
+  //setting quiz unlock timer
+  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 1000);
+  const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
+
+  //tick
+  useEffect(() => {
+    const t = setInterval(() => setQuizTimerNow(Date.now()), 250);
+    return () => clearInterval(t);
+  }, []);
+
+  const remainingMs = Math.max(0, unlockAt - quizTimerNow);
+  const isUnlocked = remainingMs === 0;
+
+  function fmt(ms) {
+    const total = Math.ceil(ms / 1000);
+    const m = Math.floor(total / 60)
+      .toString()
+      .padStart(2, "0");
+    const s = (total % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
+  }
   //Game updates window
   const [updates, setUpdates] = useState([]);
   const MAX_UPDATES = 100;
@@ -37,7 +60,7 @@ export default function GameScreen() {
 
   const navigate = useNavigate();
 
-  const [lastDealtId, setLastDealtId] = useState(null);   //Stores the id of the card dealt before the previous one
+  const [lastDealtId, setLastDealtId] = useState(null); //Stores the id of the card dealt before the previous one
 
   //Gives a buffer for clicking a sacrifice
   const SACRIFICE_SHIELD_MS = 400;
@@ -71,6 +94,15 @@ export default function GameScreen() {
     }
   }
 
+  //Timer for displaying the quiz
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setQuizUnlocked(true);
+    }, 10 * 60 * 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   //Tracks the relative time
   const [nowTick, setNowTick] = useState(Date.now());
   useEffect(() => {
@@ -92,10 +124,12 @@ export default function GameScreen() {
     socket.emit("room:get", {}, (res) => res?.ok && setRoom(res.state));
 
     const onRoom = (st) => {
-      if (st?.players?.length) {    //Checks to see if there are platers in the room
+      if (st?.players?.length) {
+        //Checks to see if there are platers in the room
         st.players = st.players
           .filter((p) => p && typeof p === "object" && p.id) //Cleans the player list
-          .map((p) => ({    //updates the player array by cloning the previous one and cleans up their hands
+          .map((p) => ({
+            //updates the player array by cloning the previous one and cleans up their hands
             ...p,
             hand: Array.isArray(p.hand) ? p.hand.filter(Boolean) : p.hand,
           }));
@@ -195,9 +229,7 @@ export default function GameScreen() {
         requestAnimationFrame(() => {
           try {
             el.scrollTop = el.scrollHeight;
-          } catch {
-            
-          }
+          } catch {}
         });
       }
     }
@@ -361,39 +393,15 @@ export default function GameScreen() {
     <div className="p-5" style={backgroundStyle}>
       <NavBar />
 
-
       {/* Scoreboard */}
-      <Scoreboard
-        players={room?.players ?? []}
-        leaderIds={room?.leaderIds ?? []}
-        currentUserId={socketId}
-      />      
-      {/* <div className="container my-3">
-        <div className="row gy-2">
-          {players
-            .filter((p) => p.id !== socketId)
-            .map((p) => {
-              const isMe = p.id === socketId;
-              const score = isMe ? points : otherScores[p.id] ?? 0;
-
-              return (
-                <div key={p.id} className="col-12 col-md-6 col-lg-4">
-                  <div
-                    className={`d-flex justify-content-between align-items-center p-3 rounded shadow-sm ${
-                      isMe ? "bg-light border border-primary" : "bg-white"
-                    }`}
-                    title={p.connected ? "Connected" : "Disconnected"}
-                  >
-                    <div className="fw-semibold">
-                      {p.name} {isMe ? "(You)" : ""}
-                    </div>
-                    <div className="text-nowrap">{score} pts</div>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </div> */}
+      <div className="mb-2 rounded">
+        <h2 className="display-3 text-center text-white">Scoreboard</h2>
+        <Scoreboard
+          players={room?.players ?? []}
+          leaderIds={room?.leaderIds ?? []}
+          currentUserId={socketId}
+        />
+      </div>
 
       {/* Card Game Play-By-Play */}
       <div className="bg-success border rounded">
@@ -435,6 +443,67 @@ export default function GameScreen() {
               <li className="text-muted">No updates yet.</li>
             )}
           </ul>
+        </div>
+      </div>
+
+      {/* Button trigger modal */}
+      <div className="text-center my-3">
+        <button
+          type="button"
+          className="btn btn-danger btn-lg"
+          data-bs-toggle="modal"
+          data-bs-target="#quizModal"
+          disabled={!isUnlocked}
+        >
+          {isUnlocked ? "Bonus Points Quiz" : `Quiz Unlocks in ${fmt(remainingMs)}`}
+        </button>
+
+        {/* helper text for screen readers */}
+        <div className="visually-hidden" aria-live="polite">
+          {isUnlocked ? "Quiz unlocked" : `Quiz unlocks in ${fmt(remainingMs)}`}
+        </div>
+      </div>
+
+      <div
+        className="modal fade"
+        id="quizModal"
+        tabindex={-1}
+        role="dialog"
+        aria-labelledby="quizModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered" role="dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="quizModalLabel">
+                Half-time Quiz
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <TriviaQuiz
+                onAward={(delta) => {
+                  socket.emit("score:adjust", { delta }, (ack) => {
+                    if (!ack?.ok) console.warn("Award failed:", ack?.error);
+                  });
+                }}
+              />
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
