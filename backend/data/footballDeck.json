@@ -6,13 +6,13 @@
     "weight": 5
   },
   {
-    "description": "If The Camera Shows The Owner",
+    "description": "If The Camera Shows The Owner/Coach",
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
   },
   {
-    "description": "If The Camera Shows The Owner or Student Section",
+    "description": "If The Camera Shows The Owner/Coach or Student Section",
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
@@ -409,74 +409,164 @@
   },
   {
     "description": "Next Replay Review",
-    "penalty":"1 Drink",
+    "penalty": "1 Drink",
     "points": 1,
     "weight": 5
   },
-    {
+  {
     "description": "If the Quarterback Hands It Off",
-    "penalty":"1 Drink",
+    "penalty": "1 Drink",
     "points": 1,
     "weight": 5
   },
   {
     "description": "Kicker Practices Swinging on His Leg on the Sideline",
-    "penalty":"2 Drinks",
+    "penalty": "2 Drinks",
     "points": 2,
     "weight": 4
   },
-{
-  "description": "Next Time A Flag is Thrown",
-  "penalty": "2 Drinks",
-  "points": 2,
-  "weight": 4
-},
-{
-  "description": "Next Time The Defense Blitzes",
-  "penalty": "2 Drinks",
-  "points": 2,
-  "weight": 4
-},
-{
-  "description": "Next Time A Players Points Down the Field After A Play",
-  "penalty": "2 Drinks",
-  "points": 2,
-  "weight": 4
-},
-{
-  "description": "Next Trick Play (Reverse, Flea Flicker, etc.)",
-  "penalty": "3 Drinks",
-  "points": 3,
-  "weight": 3
-},
-{
-  "description": "If A Player Loses Their Helmet During a Play",
-  "penalty": "3 Drinks",
-  "points": 3,
-  "weight": 3
-},
-{
-  "description": "Next Roughing the Passer Penalty",
-  "penalty":"3 Drinks",
-  "points": 3,
-  "weight": 3
-},
-{
-  "description": "Next Missed Tackle That Leads To A Big Gain",
-  "penalty": "3 Drinks",
-  "points": 3,
-  "weight": 3
-},
-{
-  "description": "Next Blocked Punt or Kick",
-  "penalty": "Shot",
-  "points": 4,
-  "weight": 1
-},
-{
-  "description": "Next Fast Food Commercial",
-  "penalty": "1 Drink",
-  "points": 1,
-  "weight": 5
-}
+  {
+    "description": "Next Time A Flag is Thrown",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time The Defense Blitzes",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time A Players Points Down the Field After A Play",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Trick Play (Reverse, Flea Flicker, etc.)",
+    "penalty": "3 Drinks",
+    "points": 3,
+    "weight": 3
+  },
+  {
+    "description": "If A Player Loses Their Helmet During a Play",
+    "penalty": "3 Drinks",
+    "points": 3,
+    "weight": 3
+  },
+  {
+    "description": "Next Roughing the Passer Penalty",
+    "penalty": "3 Drinks",
+    "points": 3,
+    "weight": 3
+  },
+  {
+    "description": "Next Missed Tackle That Leads To A Big Gain",
+    "penalty": "3 Drinks",
+    "points": 3,
+    "weight": 3
+  },
+  {
+    "description": "Next Blocked Punt or Kick",
+    "penalty": "Shot",
+    "points": 4,
+    "weight": 1
+  },
+  {
+    "description": "Next Fast Food Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Drink Refill",
+    "penalty": "2 Drink",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "If You're Wearing One of the Team's Colors",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time a Fan Yells at the Camera",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Cleaning Product Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time Announcer Mentions Coach",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Phone Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Lawyer Commercial",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Touchdown Review",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time Someoner in the Room Celebrates a Play",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time Someone in the Room is Mad About A Play",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time You Hear Music in the Background",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time QB Calls Timeout",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Free Card. Enjoy ;)",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time Coaches Shown in Booth",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time a Reporter is Shown",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  }
 ]
