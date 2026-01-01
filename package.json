@@ -3,11 +3,12 @@
   "private": true,
   "engines": {
     "node": "22.x",
-    "npm": "10.x"
+    "pnpm": "10.x"
   },
   "packageManager": "pnpm@10.25.0",
   "scripts": {
-    "heroku-prebuild": "npm install --prefix backend",
-    "heroku-postbuild": "npm install --prefix frontend-vite && npm run build --prefix frontend-vite"
+    "heroku-prebuild": "pnpm install --frozen-lockfile",
+    "heroku-postbuild": "pnpm --filter frontend-vite ... build",
+    "start": "pnpm --filter backend... start"
   }
 }
