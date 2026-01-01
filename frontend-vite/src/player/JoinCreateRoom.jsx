@@ -3,16 +3,16 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getSocket, rememberRoom } from "../shared/socket";
 import { getPlayerKey, setDisplayName } from "../shared/playerIdentity";
 import * as React from "react";
-import { type DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+// import { type DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
+// import { Button } from "@/components/ui/button";
+// import {
+//   DropdownMenu,
+//   DropdownMenuCheckboxItem,
+//   DropdownMenuContent,
+//   DropdownMenuLabel,
+//   DropdownMenuSeparator,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
 
 //Bootstrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,7 +25,7 @@ import baseballBackground from "../assets/baseball-background.png";
 //Component imports
 import NavBar from "../components/NavBar";
 
-type Checked = DropdownMenuCheckboxItemProps["checked"];
+// type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export default function JoinCreateRoom() {
   const { game } = useParams();
@@ -58,42 +58,42 @@ export default function JoinCreateRoom() {
     backgroundSize: "cover",
   };
 
-  function DropdownMenuCheckboxes() {
-    const [showStatusBar, setShowStatusBar] = React.useState < Checked > true;
-    const [showActivityBar, setShowActivityBar] =
-      React.useState < Checked > false;
-    const [showPanel, setShowPanel] = React.useState < Checked > false;
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">Open</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
-          <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuCheckboxItem
-            checked={showStatusBar}
-            onCheckedChange={setShowStatusBar}
-          >
-            Status Bar
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={showActivityBar}
-            onCheckedChange={setShowActivityBar}
-            disabled
-          >
-            Activity Bar
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={showPanel}
-            onCheckedChange={setShowPanel}
-          >
-            Panel
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
-  }
+  // function DropdownMenuCheckboxes() {
+  //   const [showStatusBar, setShowStatusBar] = React.useState < Checked > true;
+  //   const [showActivityBar, setShowActivityBar] =
+  //     React.useState < Checked > false;
+  //   const [showPanel, setShowPanel] = React.useState < Checked > false;
+  //   return (
+  //     <DropdownMenu>
+  //       <DropdownMenuTrigger asChild>
+  //         <Button variant="outline">Open</Button>
+  //       </DropdownMenuTrigger>
+  //       <DropdownMenuContent className="w-56">
+  //         <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+  //         <DropdownMenuSeparator />
+  //         <DropdownMenuCheckboxItem
+  //           checked={showStatusBar}
+  //           onCheckedChange={setShowStatusBar}
+  //         >
+  //           Status Bar
+  //         </DropdownMenuCheckboxItem>
+  //         <DropdownMenuCheckboxItem
+  //           checked={showActivityBar}
+  //           onCheckedChange={setShowActivityBar}
+  //           disabled
+  //         >
+  //           Activity Bar
+  //         </DropdownMenuCheckboxItem>
+  //         <DropdownMenuCheckboxItem
+  //           checked={showPanel}
+  //           onCheckedChange={setShowPanel}
+  //         >
+  //           Panel
+  //         </DropdownMenuCheckboxItem>
+  //       </DropdownMenuContent>
+  //     </DropdownMenu>
+  //   );
+  // }
   //Text for the link to join the multiplayer game
   const shareText = (url) =>
     `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${url}\nIf the link doesn't open, open the app -> join -> enter the room code.`;
