@@ -523,14 +523,15 @@ socket.on("leaveRoom", (cb) => {
 
 //In production serve the frontend from the same app
 if (isProd) {
-  const buildDir = path.join(__dirname, "../frontend/build");
-  app.use(express.static(buildDir));
+  const distDir = path.join(__dirname, "../frontend-vite/dist");
+  app.use(express.static(distDir));
 
-  // Regex catch-all avoids path-to-regexp pitfalls on newer stacks
+  // SPA fallback (avoid socket.io route)
   app.get(/^\/(?!socket\.io\/).*/, (req, res) => {
-    res.sendFile(path.join(buildDir, "index.html"));
+    res.sendFile(path.join(distDir, "index.html"));
   });
 }
+
 
 const PORT = process.env.PORT || 8080;
 console.log("[boot] starting HTTP server on", PORT);
