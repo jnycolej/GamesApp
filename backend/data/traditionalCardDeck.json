@@ -1,0 +1,12 @@
+[
+    {
+        "code": "AC",
+        "value": "Ace",
+        "suit": "Clubs"
+    },
+    {
+        "code": "2C",
+        "value": "2",
+        "suit": "Clubs"
+    }
+]

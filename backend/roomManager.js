@@ -125,8 +125,8 @@ function drawCardFromBase(r) {
   return {
     ...tpl,
     id: instanceId, // IMPORTANT: keep property name `id` for React keys & your UI
-    instanceId, // optional: also expose instanceId if you want
-    templateId: tpl.id, // optional: which template it came from
+    instanceId,
+    templateId: tpl.id, // which template it came from
   };
 }
 
@@ -188,7 +188,7 @@ export function createRoomManager() {
         prev.connected = true;
         if (displayName) prev.name = displayName;
         r.players.set(id, prev);
-        //If this ket is the host;s key, rebind hostId to the new socket id
+        //If this key is the host's key, rebind hostId to the new socket id
         if (r.hostKey && r.hostKey === key) {
           r.hostId = id;
         }
@@ -198,7 +198,7 @@ export function createRoomManager() {
 
     r.players.set(id, {
       id,
-      key: key || null, // NEW
+      key: key || null,
       name: displayName || "Player",
       hand: [],
       connected: true,
@@ -238,6 +238,7 @@ export function createRoomManager() {
 
     return { ok: true, hand: old.hand, score: old.score };
   }
+
   function startAndDeal(code, requesterId) {
     const r = roomMap.get(code);
     if (!r) return { ok: false, error: "room_not_found" }; // IMPORTANT
@@ -354,6 +355,21 @@ export function createRoomManager() {
     const p = r.players.get(socketId);
     return p ? p.score : 0;
   }
+  function adjustScore(code, socketId, delta) {
+    const r = roomMap.get(code);
+    if(!r) return { ok: false, error: "room_not_found"};
+
+    const p = r.players.get(socketId);
+    if(!p) return { ok: false, error: "not_in_room"};
+
+    const d = Number(delta);
+    if (!Number.isFinite(d)) return { ok: false, error: "bad_delta"};
+
+    p.score += d;
+    r.version = (r.version || 0) + 1;
+
+    return { ok: true, score: p.score, version: r.version };
+  }
 
   function getPublicState(code) {
     const r = roomMap.get(code);
@@ -369,6 +385,7 @@ export function createRoomManager() {
       players: [...r.players.values()].map((p) => ({
         id: p.id,
         name: p.name,
+        score: p.score,
         connected: !!p.connected,
         // if open hands, send full hand; otherwise just the count
         ...(allowOpenHands ? { hand: p.hand } : { handCount: p.hand.length }),
@@ -500,12 +517,15 @@ export function createRoomManager() {
     const r = roomMap.get(code);
     if (!r) return {};
     const p = r.players.get(socketId);
+    
+
     if (p) {
+      const playerKey = p.key;
       p.connected = false;
       clearTimeout(p._evictTimer);
       p._evictTimer = setTimeout(() => {
         if (!p.connected) r.players.delete(socketId);
-      }, 300000); // 5 minutes
+      }, 45 * 60 * 1000); // 5 minutes
     }
     return { roomClosed: false };
   }
@@ -513,6 +533,37 @@ export function createRoomManager() {
   function listCodes() {
     return Array.from(roomMap.keys());
   }
+
+  function setScore(code, socketId, score) {
+    const r = roomMap.get(code);
+    if(!r) return false;
+
+    const p = r.players.get(socketId);
+    if (!p) return false;
+
+    const n = Number(score);
+    if (!Number.isFinite(n)) return false;
+
+    p.score = Math.trunc(n);
+    r.version = (r.version || 0) + 1;
+    return true;
+  }
+
+  function adjustScore(code, socketId, delta) {
+  const r = roomMap.get(code);
+  if (!r) return null;
+
+  const p = r.players.get(socketId);
+  if (!p) return null;
+
+  const n = Number(delta);
+  if (!Number.isFinite(n)) return null;
+
+  p.score += Math.trunc(n);
+  r.version = (r.version || 0) + 1;
+  return p.score;
+}
+
 
   return {
     createRoom,
@@ -523,6 +574,8 @@ export function createRoomManager() {
     playCardById,
     getHand,
     getScore,
+    setScore,
+    adjustScore,
     getOpponentsHands,
     getPublicState,
     getClientLobbyState,
@@ -532,5 +585,6 @@ export function createRoomManager() {
     getVersion,
     sacrificeCard,
     safePublicState,
+
   };
 }

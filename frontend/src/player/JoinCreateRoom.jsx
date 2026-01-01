@@ -21,6 +21,7 @@ export default function JoinCreateRoom() {
   //State declarations
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
+  const [team, setTeam] = useState(""); // To change the half-time quiz based on who the player picks as the team they are rooting for
   const [state, setState] = useState(null);
   const [busy, setBusy] = useState(false);
   const [inviteUrl, setInviteUrl] = useState(null);

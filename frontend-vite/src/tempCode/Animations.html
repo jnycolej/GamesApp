@@ -1,0 +1,36 @@
+<!-- Stagger: To stagger the cards when dealt for the first time  -->
+
+<ul class="example">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script type="module">
+    import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm"
+
+    animate(".example li", { opacity: 1, y: [50, 0] }, { delay: stagger(0.05) })
+</script>
+
+<style>
+    ul.example {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul.example li {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: block;
+        background-color: #0cdcf7;
+        opacity: 0;
+        flex: 0 0 50px;
+    }
+</style>

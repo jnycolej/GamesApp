@@ -31,13 +31,28 @@ const ACTION_LOCK_MS = 300;
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd
   ? true
-  : ["http://localhost:3000", "http://192.168.1.103:3000"];
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+  : [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173", 
+    "http://192.168.1.103:5173"
+
+  ];
+
+  // This handles the case where Origin might be undefined in some environments
+const corsOptions = {
+  origin: (origin, cb) => {
+    if (allowedOrigins === true) return cb(null, true);
+    if (!origin) return cb(null, true); // allow same-origin / non-browser clients
+    return cb(null, allowedOrigins.includes(origin));
+  },
+  credentials: false,
+};
+app.use(cors(corsOptions));
 
 //initiates the server
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: allowedOrigins, credentials: true },
+  cors: corsOptions,
   path: "/socket.io",
   pingInterval: 25000,
   pingTimeout: 90000,
@@ -352,7 +367,11 @@ io.on("connection", (socket) => {
       const pre = rooms.getScore(code, socket.id) ?? 0;
       const post = pre + safeDelta;
 
-      rooms.setScore(code, socket.id, post);
+      rooms.adjustScore(code, socket.id, safeDelta);
+      post = rooms.getScore(code, socket.id) ?? 0;
+      const newScore = rooms.adjustScore(code, socket.id, safeDelta);
+      if (newScore == null) return ack?.({ error: "room/player not found"});
+
       emitRoomState(code);
 
       const ev = pushUpdate(code, {
@@ -369,12 +388,12 @@ io.on("connection", (socket) => {
       ack?.({ ok: true, newScore: post });
 
       // push score to this player
-      io.to(socket.id).emit("score:update", post);
+      io.to(socket.id).emit("score:update", newScore);
 
       // let everyone know this player's score changed
       io.to(code).emit("player:updated", {
         playerId: socket.id,
-        score: post,
+        score: newScore,
       });
     } catch (err) {
       console.error("[score:adjust] error", err);

@@ -5,11 +5,9 @@
     "node": "22.x",
     "npm": "10.x"
   },
+  "packageManager": "pnpm@10.25.0",
   "scripts": {
     "heroku-prebuild": "npm install --prefix backend",
-    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
-  },
-  "dependencies": {
-    "eslint": "^9.37.0"
+    "heroku-postbuild": "npm install --prefix frontend-vite && npm run build --prefix frontend-vite"
   }
 }

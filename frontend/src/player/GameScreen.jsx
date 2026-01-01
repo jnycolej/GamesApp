@@ -33,7 +33,7 @@ export default function GameScreen() {
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
   //setting quiz unlock timer
-  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 1000);
+  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 1 * 60 * 1000);
   const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
 
   //tick

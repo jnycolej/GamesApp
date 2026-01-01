@@ -1,0 +1,128 @@
+[
+  {
+    "description": "Next Time The Crowd Chants Defense",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time the Announcer Says 'Big Man'",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time The Announcer Says 'Rookie'",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time The Lead Switches",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Time A Team Is Up By 10+ Points",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Time Someone Mentions a Bet, Fantasy, Or Bracket",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Replay Review",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Timeout",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Player To Reach A Double Double",
+    "penalty": "Shot",
+    "points": 4,
+    "weight": 1
+  },
+  {
+    "description": "Next Time A Player Makes Both Free Throws",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Team To Be In The Bonus (Fouls)",
+    "penalty":"2 Drinks",
+    "points": 2, 
+    "weight": 4
+  },
+  {
+    "description": "Next Player With 20+ Points",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "description": "Next Scoring Celebration",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Steal",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Made Bank Shot",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Block",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Floater",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Dunk",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "description": "Next Missed 3 Pointer",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  }, 
+  {
+    "description": "Next Time A Team Is Up By 5+ Points",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5 
+  },
+  {
+    "description": "Next Aerial Shot Of The City",
+    "penalty":"2 Drinks",
+    "points": 2,
+    "weight": 4
+  }
+]
