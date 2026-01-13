@@ -32,13 +32,12 @@ const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd
   ? true
   : [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173", 
-    "http://192.168.1.103:5173"
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "http://192.168.1.103:5173",
+    ];
 
-  ];
-
-  // This handles the case where Origin might be undefined in some environments
+// This handles the case where Origin might be undefined in some environments
 const corsOptions = {
   origin: (origin, cb) => {
     if (allowedOrigins === true) return cb(null, true);
@@ -153,11 +152,12 @@ function emitRoomState(code) {
 io.on("connection", (socket) => {
   console.log("[socket] connected", socket.id);
   //Connects the to the socket
-  socket.on("room:create", ({ gameType, displayName, key }, cb) => {
+  socket.on("room:create", ({ gameType, displayName, key, matchup }, cb) => {
     try {
       const { code, token } = rooms.createRoom({
         creatorSocketId: socket.id,
         gameType,
+        matchup: matchup ?? null,
         hostKey: key,
       });
 
@@ -370,7 +370,7 @@ io.on("connection", (socket) => {
       rooms.adjustScore(code, socket.id, safeDelta);
       post = rooms.getScore(code, socket.id) ?? 0;
       const newScore = rooms.adjustScore(code, socket.id, safeDelta);
-      if (newScore == null) return ack?.({ error: "room/player not found"});
+      if (newScore == null) return ack?.({ error: "room/player not found" });
 
       emitRoomState(code);
 
@@ -401,124 +401,126 @@ io.on("connection", (socket) => {
     }
   });
 
-socket.on("player:sacrifice", async (payload = {}, ack) => {
-  try {
-    const code = socket.data.roomCode;
-    const playerId = socket.id;
-    const cardId = payload?.cardId;
+  socket.on("player:sacrifice", async (payload = {}, ack) => {
+    try {
+      const code = socket.data.roomCode;
+      const playerId = socket.id;
+      const cardId = payload?.cardId;
 
-    if (!code) throw new Error("not_in_room");
-    if (!cardId) throw new Error("missing_card");
+      if (!code) throw new Error("not_in_room");
+      if (!cardId) throw new Error("missing_card");
 
-    //Sets a short-time lock to block any follow-up 'play'
-    actionLockUntil.set(playerId, Date.now() + ACTION_LOCK_MS);
+      //Sets a short-time lock to block any follow-up 'play'
+      actionLockUntil.set(playerId, Date.now() + ACTION_LOCK_MS);
 
-    const res = withPlayerLock(code, playerId, () => {
-      const prevScore = rooms.getScore(code, playerId) ?? 0;
-      const roomHand = rooms.getHand(code, playerId) || [];
-      const sacrificedFromPrev = roomHand.find((c) => c?.id === cardId) || null;
-      const r = rooms.sacrificeCard(code, playerId, cardId);
-      if (r && r.ok === false) return r;
-      const hand = rooms.getHand(code, playerId) || [];
-      const score = rooms.getScore(code, playerId) ?? 0;
-      const delta = score - prevScore; // negative
-      io.to(playerId).emit("hand:update", hand);
-      io.to(playerId).emit("score:update", score);
-      socket
-        .to(code)
-        .emit("player:updated", { playerId, handCount: hand.length, score });
+      const res = withPlayerLock(code, playerId, () => {
+        const prevScore = rooms.getScore(code, playerId) ?? 0;
+        const roomHand = rooms.getHand(code, playerId) || [];
+        const sacrificedFromPrev =
+          roomHand.find((c) => c?.id === cardId) || null;
+        const r = rooms.sacrificeCard(code, playerId, cardId);
+        if (r && r.ok === false) return r;
+        const hand = rooms.getHand(code, playerId) || [];
+        const score = rooms.getScore(code, playerId) ?? 0;
+        const delta = score - prevScore; // negative
+        io.to(playerId).emit("hand:update", hand);
+        io.to(playerId).emit("score:update", score);
+        socket
+          .to(code)
+          .emit("player:updated", { playerId, handCount: hand.length, score });
 
-      const state = emitRoomState(code);
+        const state = emitRoomState(code);
 
-      const actor = (state?.players || []).find((p) => p.id === playerId) || {};
-      const actorName = actor.displayName || actor.name || "Player";
-      const sacrificedCard = r.sacrificedCard || sacrificedFromPrev;
-      const ev = pushUpdate(code, {
-        type: "CARD_SACRIFICED",
-        player: { id: playerId, name: actorName },
-        card: sacrificedCard
-          ? {
-              id: sacrificedCard.id,
-              name: sacrificedCard.name,
-              description:
-                sacrificedCard.description ??
-                sacrificedCard.desc ??
-                sacrificedCard.penalty,
-              points:
-                typeof sacrificedCard.points === "number"
-                  ? sacrificedCard.points
-                  : undefined,
-            }
-          : undefined,
-        deltaPoints: Number(delta) || -1,
-        meta: { cardId },
+        const actor =
+          (state?.players || []).find((p) => p.id === playerId) || {};
+        const actorName = actor.displayName || actor.name || "Player";
+        const sacrificedCard = r.sacrificedCard || sacrificedFromPrev;
+        const ev = pushUpdate(code, {
+          type: "CARD_SACRIFICED",
+          player: { id: playerId, name: actorName },
+          card: sacrificedCard
+            ? {
+                id: sacrificedCard.id,
+                name: sacrificedCard.name,
+                description:
+                  sacrificedCard.description ??
+                  sacrificedCard.desc ??
+                  sacrificedCard.penalty,
+                points:
+                  typeof sacrificedCard.points === "number"
+                    ? sacrificedCard.points
+                    : undefined,
+              }
+            : undefined,
+          deltaPoints: Number(delta) || -1,
+          meta: { cardId },
+        });
+        io.to(code).emit("game:update", ev);
+        return { ok: true };
       });
-      io.to(code).emit("game:update", ev);
-      return { ok: true };
-    });
 
-    if (!res.ok) {
-      actionLockUntil.delete(playerId);
-      return ack?.(res);
+      if (!res.ok) {
+        actionLockUntil.delete(playerId);
+        return ack?.(res);
+      }
+
+      return ack?.({ ok: true });
+    } catch (err) {
+      actionLockUntil.delete(socket.id);
+      console.error("[player:sacrifice] error:", err);
+      ack?.({ error: err?.message || "Could not sacrifice" });
+      socket.emit("error:action", {
+        action: "sacrifice",
+        message: err?.message || "Could not sacrifice",
+      });
     }
+  });
 
-    return ack?.({ ok: true });
-  } catch (err) {
-    actionLockUntil.delete(socket.id);
-    console.error("[player:sacrifice] error:", err);
-    ack?.({ error: err?.message || "Could not sacrifice" });
-    socket.emit("error:action", {
-      action: "sacrifice",
-      message: err?.message || "Could not sacrifice",
-    });
-  }
-});
-
-socket.on("game:history:request", () => {
-  const code = socket.data.roomCode;
-  if (!code) return;
-  io.to(socket.id).emit("game:history", getUpdates(code));
-});
-
-//Players disconnect and leave the game room
-socket.on("disconnect", () => {
-  const code = socket.data.roomCode;
-  if (!code) return;
-  rooms.handleDisconnect(code, socket.id);
-  emitRoomState(code);
-});
-
-socket.on("leaveRoom", (cb) => {
-  try {
+  socket.on("game:history:request", () => {
     const code = socket.data.roomCode;
-    if (!code) return cb?.({ ok: false, error: "not_in_room" });
+    if (!code) return;
+    io.to(socket.id).emit("game:history", getUpdates(code));
+  });
 
-    //Update room state
-    if (typeof rooms.removePlayer === "function") {
-      rooms.removePlayer(code, socket.id);
-    } else if (typeof rooms.handleDisconnect === "function") {
-      rooms.handleDisconnect(code, socket.id);
-    }
-
-    socket.leave(code);
-    socket.data.roomCode = undefined;
-
+  //Players disconnect and leave the game room
+  socket.on("disconnect", () => {
+    const code = socket.data.roomCode;
+    if (!code) return;
+    rooms.handleDisconnect(code, socket.id);
     emitRoomState(code);
+  });
 
-    //Let clients know explicitly who left
-    socket.to(code).emit("player:left", { playerId: socket.id });
+  socket.on("leaveRoom", (cb) => {
+    try {
+      const code = socket.data.roomCode;
+      if (!code) return cb?.({ ok: false, error: "not_in_room" });
 
-    //Clear up empty rooms if your manager supports it
-    if (typeof rooms.destroyIfEmpty === "function") {
-      rooms.destroyIfEmpty(code);
+      //Update room state
+      if (typeof rooms.removePlayer === "function") {
+        rooms.removePlayer(code, socket.id);
+      } else if (typeof rooms.handleDisconnect === "function") {
+        rooms.handleDisconnect(code, socket.id);
+      }
+
+      socket.leave(code);
+      socket.data.roomCode = undefined;
+
+      emitRoomState(code);
+
+      //Let clients know explicitly who left
+      socket.to(code).emit("player:left", { playerId: socket.id });
+
+      //Clear up empty rooms if your manager supports it
+      if (typeof rooms.destroyIfEmpty === "function") {
+        rooms.destroyIfEmpty(code);
+      }
+
+      cb?.({ ok: true });
+    } catch (err) {
+      console.error("[leaveRoom] error", err);
+      cb?.({ ok: false, error: "leave_failed" });
     }
-
-    cb?.({ ok: true });
-  } catch (err) {
-    console.error("[leaveRoom] error", err);
-    cb?.({ ok: false, error: "leave_failed" });
-  }
-});
+  });
 });
 
 //In production serve the frontend from the same app
@@ -531,7 +533,6 @@ if (isProd) {
     res.sendFile(path.join(distDir, "index.html"));
   });
 }
-
 
 const PORT = process.env.PORT || 8080;
 console.log("[boot] starting HTTP server on", PORT);

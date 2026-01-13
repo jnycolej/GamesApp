@@ -56,7 +56,7 @@ const HomePage = () => {
             </div>
             <div className="football-home-card-logo">
               <div className="card-body">
-                <Link to="/football/mode">
+                <Link to="/basketball/mode">
                   <img
                     className="card-img-top"
                     src={footballGameLogo}

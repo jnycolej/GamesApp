@@ -20,6 +20,7 @@ import baseballBackground from "../assets/baseball-background.png";
 export default function GameScreen() {
   const { game } = useParams();
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
+  const hasMatchup = !!room?.matchup;
   const socket = getSocket();
 
   //State declarations
@@ -447,22 +448,28 @@ export default function GameScreen() {
       </div>
 
       {/* Button trigger modal */}
-      <div className="text-center my-3">
-        <button
-          type="button"
-          className="btn btn-danger btn-lg"
-          data-bs-toggle="modal"
-          data-bs-target="#quizModal"
-          disabled={!isUnlocked}
-        >
-          {isUnlocked ? "Bonus Points Quiz" : `Quiz Unlocks in ${fmt(remainingMs)}`}
-        </button>
+      {room?.matchup && (
+        <div className="text-center my-3">
+          <button
+            type="button"
+            className="btn btn-danger btn-lg"
+            data-bs-toggle="modal"
+            data-bs-target="#quizModal"
+            disabled={!isUnlocked}
+          >
+            {isUnlocked
+              ? "Bonus Points Quiz"
+              : `Quiz Unlocks in ${fmt(remainingMs)}`}
+          </button>
 
-        {/* helper text for screen readers */}
-        <div className="visually-hidden" aria-live="polite">
-          {isUnlocked ? "Quiz unlocked" : `Quiz unlocks in ${fmt(remainingMs)}`}
+          {/* helper text for screen readers */}
+          <div className="visually-hidden" aria-live="polite">
+            {isUnlocked
+              ? "Quiz unlocked"
+              : `Quiz unlocks in ${fmt(remainingMs)}`}
+          </div>
         </div>
-      </div>
+      )}
 
       <div
         className="modal fade"
@@ -487,6 +494,7 @@ export default function GameScreen() {
             </div>
             <div className="modal-body">
               <TriviaQuiz
+                matchup={room?.matchup}
                 onAward={(delta) => {
                   socket.emit("score:adjust", { delta }, (ack) => {
                     if (!ack?.ok) console.warn("Award failed:", ack?.error);

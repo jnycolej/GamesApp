@@ -3,20 +3,19 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getSocket, rememberRoom } from "../shared/socket";
 import { getPlayerKey, setDisplayName } from "../shared/playerIdentity";
 import * as React from "react";
-// import { type DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-// import { Button } from "@/components/ui/button";
-// import {
-//   DropdownMenu,
-//   DropdownMenuCheckboxItem,
-//   DropdownMenuContent,
-//   DropdownMenuLabel,
-//   DropdownMenuSeparator,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
 
-//Bootstrap imports
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { gameSchedule } from "../assets/data/gameSchedules";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 //Background image imports
 import footballBackground from "../assets/football-background.png";
@@ -34,7 +33,7 @@ export default function JoinCreateRoom() {
   //State declarations
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
-  const [team, setTeam] = useState(""); // To change the half-time quiz based on who the player picks as the team they are rooting for
+  const [selectedMatchup, setSelectedMatchup] = useState(null); // To change the half-time quiz based on who the player picks as the team they are rooting for
   const [state, setState] = useState(null);
   const [busy, setBusy] = useState(false);
   const [inviteUrl, setInviteUrl] = useState(null);
@@ -58,43 +57,59 @@ export default function JoinCreateRoom() {
     backgroundSize: "cover",
   };
 
-  // function DropdownMenuCheckboxes() {
-  //   const [showStatusBar, setShowStatusBar] = React.useState < Checked > true;
-  //   const [showActivityBar, setShowActivityBar] =
-  //     React.useState < Checked > false;
-  //   const [showPanel, setShowPanel] = React.useState < Checked > false;
-  //   return (
-  //     <DropdownMenu>
-  //       <DropdownMenuTrigger asChild>
-  //         <Button variant="outline">Open</Button>
-  //       </DropdownMenuTrigger>
-  //       <DropdownMenuContent className="w-56">
-  //         <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-  //         <DropdownMenuSeparator />
-  //         <DropdownMenuCheckboxItem
-  //           checked={showStatusBar}
-  //           onCheckedChange={setShowStatusBar}
-  //         >
-  //           Status Bar
-  //         </DropdownMenuCheckboxItem>
-  //         <DropdownMenuCheckboxItem
-  //           checked={showActivityBar}
-  //           onCheckedChange={setShowActivityBar}
-  //           disabled
-  //         >
-  //           Activity Bar
-  //         </DropdownMenuCheckboxItem>
-  //         <DropdownMenuCheckboxItem
-  //           checked={showPanel}
-  //           onCheckedChange={setShowPanel}
-  //         >
-  //           Panel
-  //         </DropdownMenuCheckboxItem>
-  //       </DropdownMenuContent>
-  //     </DropdownMenu>
-  //   );
-  // }
-  //Text for the link to join the multiplayer game
+  const TeamChoiceDropdown = ({ selected, onSelect }) => {
+    const todaysDate = new Date().toLocaleDateString("en-CA");
+    const todaysGames = gameSchedule.filter((game) => game.date == todaysDate);
+
+    const value = selected
+      ? `${selected.date}:${selected.teams.join("-")}`
+      : "none";
+
+    const handleChange = (val) => {
+      if (val === "none") return onSelect(null);
+      const found = todaysGames.find(
+        (g) => `${g.date}:${g.teams.join("-")}` === val
+      );
+
+      onSelect(found ?? null);
+    };
+    const buttonLabel = selected ? selected.teams.join(" vs ") : "Choose Teams";
+
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">{buttonLabel}</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="bg-light w-56">
+          <DropdownMenuLabel className="text-center">
+            Games Today
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+
+          <DropdownMenuRadioGroup value={value} onValueChange={handleChange}>
+            <DropdownMenuRadioItem value="none">
+              Game not listed
+            </DropdownMenuRadioItem>
+
+            {todaysGames.length ? (
+              todaysGames.map((g) => {
+                const v = `${g.date}:${g.teams.join("-")}`;
+                return (
+                  <DropdownMenuRadioItem key={v} value={v}>
+                    {g.date} : {g.teams.join(" vs ")}
+                  </DropdownMenuRadioItem>
+                );
+              })
+            ) : (
+              <DropdownMenuRadioItem value="top">
+                No Games today
+              </DropdownMenuRadioItem>
+            )}
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  };
   const shareText = (url) =>
     `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${url}\nIf the link doesn't open, open the app -> join -> enter the room code.`;
 
@@ -142,7 +157,7 @@ export default function JoinCreateRoom() {
     const key = getPlayerKey();
     getSocket().emit(
       "room:create",
-      { gameType: game, displayName, key },
+      { gameType: game, displayName, matchup: selectedMatchup, key },
       (res) => {
         setBusy(false);
         if (!res?.ok) return alert(res?.error ?? "Failed to create room");
@@ -218,6 +233,10 @@ export default function JoinCreateRoom() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="form-control"
+        />
+        <TeamChoiceDropdown
+          selected={selectedMatchup}
+          onSelect={setSelectedMatchup}
         />
         <button className="btn btn-danger" onClick={createRoom} disabled={busy}>
           {busy ? "Creating..." : "Create Room"}
