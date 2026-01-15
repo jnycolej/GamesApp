@@ -8,7 +8,9 @@
   background-color: gold;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
 }
@@ -24,12 +26,11 @@ html, body, #root {
   to {
     transform: rotate(360deg);
   }
-} 
+}
+  .baseball-background {
+  background-image: url("./homepage-background.png");
 
-.baseball-background {
-  background-image: url('./homepage-background.png');
-
-    min-height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -37,8 +38,8 @@ html, body, #root {
 }
 
 .home-background {
-  background-image: url('./homepage-background.png');
-      min-height: 100vh;
+  background-image: url("./homepage-background.png");
+  min-height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -46,8 +47,8 @@ html, body, #root {
 }
 
 .football-background {
-  background-image: url('./football_background.png');
-      min-height: 100vh;
+  background-image: url("./football_background.png");
+  min-height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -55,8 +56,23 @@ html, body, #root {
 }
 
 .baseball-home-card-logo {
-  background-image: url('./baseballgamecardlogo.png');
+  background-image: url("./baseballgamecardlogo.png");
   background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.basketball-home-card-logo {
+  background-image: url("./basketballgamecardlogo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.basketball-background {
+    background-image: url("./basketballbackground.png");
+  min-height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -66,7 +82,7 @@ html, body, #root {
 }
 
 .football-home-card-logo {
-  background-image: url('./football-card-logo.png');
+  background-image: url("./football-card-logo.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -77,7 +93,6 @@ html, body, #root {
   --ff-teko: "Teko", sans-serif;
   --ff-russo: "Russo One", sans-serif;
 }
-
 
 .graduate-regular {
   font-family: var(--ff-grad);
@@ -92,7 +107,9 @@ html, body, #root {
   text-decoration: none;
 }
 
-.display-1, display-2, display-3,
+.display-1,
+display-2,
+display-3,
 display-4 {
   font-family: var(--ff-grad) !important;
   font-weight: 400;
@@ -109,11 +126,8 @@ display-4 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100,
-    "YTLC" 500;
+  font-variation-settings: "wdth" 100, "YTLC" 500;
 }
-
 
 .teko-medium {
   font-family: var(--ff-teko);
@@ -133,7 +147,8 @@ h2 {
   font-optical-sizing: auto;
   font-size: normal;
 }
-p, h3 {
+p,
+h3 {
   font-family: var(--ff-teko) !important;
   font-weight: 450;
   font-optical-sizing: auto;
@@ -146,9 +161,13 @@ p, h3 {
   max-height: 5rem;
 }
 
-.gameUpdates li {list-style: disc;}
+.gameUpdates li {
+  list-style: disc;
+}
 
-.gameUpdates .text-muted { opacity: 0.75; }
+.gameUpdates .text-muted {
+  opacity: 0.75;
+}
 
 a {
   text-decoration: none !important;
@@ -163,14 +182,14 @@ a {
   border-radius: 12px;
   padding: 12px 16px;
   margin-bottom: 8px;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   color: #000;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .option:hover {
-  background-color: rgba(255,255,255,0.35);
+  background-color: rgba(255, 255, 255, 0.35);
   border-color: #ffc107; /* Bootstrap warning color */
   transform: scale(1.02);
 }

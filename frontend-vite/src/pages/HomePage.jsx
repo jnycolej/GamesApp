@@ -6,6 +6,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (opti
 
 import baseballGameLogo from "../assets/baseballgamecardlogo.png";
 import footballGameLogo from "../assets/football-card-logo.png";
+import basketballGameLogo from "../assets/basketballgamecardlogo.png";
+
 const HomePage = () => {
   // const navigate = useNavigate();
 
@@ -54,13 +56,13 @@ const HomePage = () => {
             <div className="card-header">
               <h4 className="my-0 font-weight-normal">Basketball Game</h4>
             </div>
-            <div className="football-home-card-logo">
+            <div className="basketball-home-card-logo">
               <div className="card-body">
                 <Link to="/basketball/mode">
                   <img
                     className="card-img-top"
-                    src={footballGameLogo}
-                    alt="Football Game"
+                    src={basketballGameLogo}
+                    alt="Basketball Game"
                   ></img>
                 </Link>
               </div>
