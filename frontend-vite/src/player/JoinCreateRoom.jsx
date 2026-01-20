@@ -56,10 +56,13 @@ export default function JoinCreateRoom() {
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
   };
+ const todaysDate = new Date().toLocaleDateString("en-CA"); 
 
   const TeamChoiceDropdown = ({ selected, onSelect }) => {
-    const todaysDate = new Date().toLocaleDateString("en-CA");
-    const todaysGames = gameSchedule.filter((game) => game.date == todaysDate);
+    
+    const todaysGames = gameSchedule.filter(
+      (gameDay) => gameDay.date === todaysDate && gameDay.sport === game,
+    );
 
     const value = selected
       ? `${selected.date}:${selected.teams.join("-")}`
@@ -68,7 +71,7 @@ export default function JoinCreateRoom() {
     const handleChange = (val) => {
       if (val === "none") return onSelect(null);
       const found = todaysGames.find(
-        (g) => `${g.date}:${g.teams.join("-")}` === val
+        (g) => `${g.date}:${g.teams.join("-")}` === val,
       );
 
       onSelect(found ?? null);
@@ -170,12 +173,12 @@ export default function JoinCreateRoom() {
         const origin = window.location.origin;
         setInviteUrl(
           `${origin}/${game}/join?room=${encodeURIComponent(
-            roomCode
-          )}&token=${encodeURIComponent(token)}`
+            roomCode,
+          )}&token=${encodeURIComponent(token)}`,
         );
         rememberRoom(roomCode, displayName);
         nav(`/${game}/lobby/${roomCode}`);
-      }
+      },
     );
   };
 
@@ -216,7 +219,7 @@ export default function JoinCreateRoom() {
         setState(res.state);
         rememberRoom(cleaned, displayName); // <- save for auto-resume
         nav(`/${game}/lobby/${cleaned}`);
-      }
+      },
     );
   };
 

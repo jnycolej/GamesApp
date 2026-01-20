@@ -9,17 +9,22 @@ import NavBar from "../components/NavBar";
 import Scoreboard from "../components/Scoreboard";
 import TriviaQuiz from "../components/TriviaQuiz";
 
-//Bootstrap imports
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+//Card Decks (temporary while transitioning single player into server)
+import footballDeck from "../assets/footballDeck.json";
+import baseballDeck from "../assets/baseballDeck.json";
+import basketballDeck from "../assets/basketballDeck.json";
 
 //Game card backgrounds
 import footballBackground from "../assets/football-background.png";
 import baseballBackground from "../assets/baseball-background.png";
 
 export default function GameScreen() {
-  const { game } = useParams();
+  const { game, mode } = useParams();
+  const actualMode = mode ?? "multi";
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
+  const uid = () =>
+    globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
+
   const hasMatchup = !!room?.matchup;
   const socket = getSocket();
 
@@ -34,7 +39,7 @@ export default function GameScreen() {
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
   //setting quiz unlock timer
-  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 1000);
+  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 25);
   const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
 
   //tick
@@ -115,8 +120,54 @@ export default function GameScreen() {
   const background =
     game === "baseball" ? baseballBackground : footballBackground;
 
+  useEffect(() => {
+    if (actualMode !== "single") return;
+
+    const decks = {
+      football: footballDeck,
+      baseball: baseballDeck,
+      basketball: basketballDeck,
+    };
+
+    const base = decks[game] ?? footballDeck;
+
+    //normalize cards (match your UI expectations)
+    const normalized = base.map((c, i) => ({
+      id: c.id ?? `${game}-${i}-${uid()}`,
+      description: c.description ?? c.title ?? c.name ?? "",
+      penalty: c.penalty ?? "",
+      points: Number.isFinite(c.points) ? c.points : Number(c.points ?? 0),
+    }));
+
+    //shuffle + deal 5
+    const shuffled = [...normalized].sort(() => Math.random() - 0.5);
+    const hand = shuffled.slice(0, 5);
+
+    setMyHand(hand);
+    setPoints(0);
+
+    //also set a room object so Scoreboard works
+    const displayName =
+      (typeof window !== "undefined" && localStorage.getItem("displayName")) ||
+      "Player";
+
+    const meId = "local-player";
+
+    setRoom({
+      code: "LOCAL",
+      gameType: game,
+      phase: "playing",
+      matchup: null,
+      leaderIds: [meId],
+      players: [{ id: meId, name: displayName, points: 0, score: 0 }],
+    });
+
+    setSocketId(meId);
+  }, [actualMode, game, setMyHand, setPoints, setRoom]);
+
   //updates the game room
   useEffect(() => {
+    if (actualMode === "single") return;
     const update = () => setSocketId(socket.id || null);
     update();
     socket.on("connect", update);
@@ -126,7 +177,7 @@ export default function GameScreen() {
 
     const onRoom = (st) => {
       if (st?.players?.length) {
-        //Checks to see if there are platers in the room
+        //Checks to see if there are players in the room
         st.players = st.players
           .filter((p) => p && typeof p === "object" && p.id) //Cleans the player list
           .map((p) => ({
@@ -145,10 +196,40 @@ export default function GameScreen() {
       socket.off("disconnect", update);
       socket.off("room:updated", onRoom);
     };
-  }, [socket, setRoom]);
+  }, [actualMode, socket, setRoom]);
 
   // handles the card sacrifice and the new player score
   const handleSacrifice = (card) => {
+    if (actualMode === "single") {
+      // local: subtract card points and replace it
+      const pts = Number(card.points ?? 0) || 0;
+      setPoints((p) => p - pts);
+
+      setMyHand((prev) => {
+        const idx = prev.findIndex((c) => c?.id === card.id);
+        if (idx === -1) return prev;
+        const next = [...prev];
+
+        const decks = {
+          football: footballDeck,
+          baseball: baseballDeck,
+          basketball: basketballDeck,
+        };
+        const base = decks[game] ?? footballDeck;
+        const raw = base[Math.floor(Math.random() * base.length)];
+
+        next[idx] = {
+          id: raw.id ?? uid(),
+          description: raw.description ?? raw.title ?? raw.name ?? "",
+          penalty: raw.penalty ?? "",
+          points: Number(raw.points ?? 0),
+        };
+        return next;
+      });
+
+      return;
+    }
+
     if (!card?.id) return;
 
     //ignore plays on this card surface for a short window
@@ -238,6 +319,8 @@ export default function GameScreen() {
 
   //Tracks when the update was pushed
   useEffect(() => {
+    if (actualMode === "single") return;
+
     const onUpdate = (ev) => {
       const id =
         ev?.id ||
@@ -275,17 +358,19 @@ export default function GameScreen() {
       socket.off("connect", onConnect);
       socket.off("connect", onConnect);
     };
-  }, [socket]);
+  }, [actualMode, socket]);
 
   // clear when a fresh state arrives
   useEffect(() => {
+    if (actualMode === "single") return;
+
     const onState = (next) => {
       // whenever server pushes a new state, ensure nothing is stuck
       if (pendingSacrificeId) setPendingSacrificeId(null);
     };
     socket.on("room:state", onState);
     return () => socket.off("room:state", onState);
-  }, [socket, pendingSacrificeId]);
+  }, [actualMode, socket, pendingSacrificeId]);
 
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
@@ -333,6 +418,8 @@ export default function GameScreen() {
 
   // my hand + my score
   useEffect(() => {
+    if (actualMode === "single") return;
+
     socket.emit("hand:getMine", {}, (res) =>
       setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : [])
     );
@@ -349,19 +436,81 @@ export default function GameScreen() {
       socket.off("hand:update", onHand);
       socket.off("score:update", onScore);
     };
-  }, [socket, setMyHand]);
+  }, [actualMode, socket, setMyHand]);
 
-  useEffect(() => {
-    // others' scores (hand counts come via room:updated)
-    const onPlayerUpdated = ({ playerId, handCount, score }) => {
-      setOtherScores((prev) => ({ ...prev, [playerId]: score }));
-    };
-    socket.on("player:updated", onPlayerUpdated);
-    return () => socket.off("player:updated", onPlayerUpdated);
-  }, [socket]);
+useEffect(() => {
+  if (!socket) return;
+
+  const onPlayerUpdated = ({ playerId, score }) => {
+    if (actualMode === "single") return;
+
+    setRoom((prev) => {
+      if (!prev) return prev;
+
+      const players = Array.isArray(prev.players) ? prev.players : [];
+
+      const nextPlayers = players.map((p) =>
+        p?.id === playerId
+          ? { ...p, points: score, score } // keep both for now
+          : p
+      );
+
+      return { ...prev, players: nextPlayers };
+    });
+  };
+
+  socket.on("player:updated", onPlayerUpdated);
+
+  return () => socket.off("player:updated", onPlayerUpdated);
+}, [actualMode, socket]);
+
 
   const handleCardClick = (index) => {
-    getSocket().emit("game:playCard", { index }, (res) => {
+    if (actualMode === "single") {
+      setMyHand((prev) => {
+        const next = [...prev];
+        const picked = next[index];
+        if (!picked) return prev;
+
+        const pts = Number(picked.points ?? 0) || 0;
+        setPoints((p) => p + pts);
+
+        // replace with a new random card
+        const decks = {
+          football: footballDeck,
+          baseball: baseballDeck,
+          basketball: basketballDeck,
+        };
+        const base = decks[game] ?? footballDeck;
+        const raw = base[Math.floor(Math.random() * base.length)];
+        next[index] = {
+          id: raw.id ?? uid(),
+          description: raw.description ?? raw.title ?? raw.name ?? "",
+          penalty: raw.penalty ?? "",
+          points: Number(raw.points ?? 0),
+        };
+        return next;
+      });
+
+      // keep scoreboard in sync
+      setRoom((prev) => {
+        if (!prev?.players?.length) return prev;
+        const meId = "local-player";
+        const next = structuredClone(prev);
+        const me = next.players.find((p) => p.id === meId);
+        if (me) {
+          me.points =
+            (me.points ?? 0) + (Number(myHand?.[index]?.points ?? 0) || 0);
+          me.score = me.points;
+        }
+        next.leaderIds = [meId];
+        return next;
+      });
+
+      return;
+    }
+
+    socket.emit("game:playCard", { index }, (res) => {
       if (!res?.ok) alert(res?.error ?? "Could not play card");
     });
   };
@@ -387,13 +536,14 @@ export default function GameScreen() {
 
   function handleLeaveGame() {
     socket.emit("leaveRoom");
-    navigate("/multiplayer");
+    navigate(`/`);
   }
 
   return (
     <div className="p-5" style={backgroundStyle}>
       <NavBar />
-
+      <h1 className="text-white text-center">{room?.matchup.teams[0]} vs. {room?.matchup.teams[1]}</h1>
+      
       {/* Scoreboard */}
       <div className="mb-2 rounded">
         <h2 className="display-3 text-center text-white">Scoreboard</h2>
@@ -496,6 +646,10 @@ export default function GameScreen() {
               <TriviaQuiz
                 matchup={room?.matchup}
                 onAward={(delta) => {
+                  if (actualMode === "single") {
+                    setPoints((p) => p + Number(delta || 0));
+                    return;
+                  }
                   socket.emit("score:adjust", { delta }, (ack) => {
                     if (!ack?.ok) console.warn("Award failed:", ack?.error);
                   });

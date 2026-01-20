@@ -34,12 +34,7 @@ export default function ModeSelect() {
   };
 
   //Single-player
-  const goSingle = () => {
-    if (game === "baseball") nav("/baseball-home");
-    else if (game === "football") nav("/football-home");
-    else nav("/");
-  };
-
+  const goSingle = () => nav(`/${game}/play/single`);
   //Multiplayer
   const goMulti = () => nav(`/${game}/join`);
 
