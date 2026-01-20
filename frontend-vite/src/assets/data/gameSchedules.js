@@ -1111,4 +1111,12 @@ export const gameSchedule = [
     date: "2026-01-14",
     tag: ["regular"]
   },
+  {
+    teams: ["Cleveland Cavaliers", "Philadelphia 76ers"],
+    league: "NBA",
+    conferences: ["Eastern"],
+    sport: "basketball",
+    date: "2026-01-16",
+    tag: ["regular"]
+  }
 ];

@@ -831,7 +831,7 @@ export const triviaQuestions = [
       "Coach O's gravelly Cajun voice made 'Hold That Tiger' a fan favorite after every win.",
   },
   {
-  id: 101,
+  id: 61,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -842,7 +842,7 @@ export const triviaQuestions = [
     "The franchise rebranded from the New Orleans Hornets to the Pelicans in 2013."
 },
 {
-  id: 102,
+  id: 62,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -853,7 +853,7 @@ export const triviaQuestions = [
     "Zion was one of the most hyped draft prospects in NBA history due to his athleticism."
 },
 {
-  id: 103,
+  id: 63,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -869,7 +869,7 @@ export const triviaQuestions = [
     "The Hornets relocated from Charlotte to New Orleans in 2002."
 },
 {
-  id: 104,
+  id: 64,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -880,7 +880,7 @@ export const triviaQuestions = [
     "Ingram became the Pelicans’ first major individual award winner."
 },
 {
-  id: 105,
+  id: 65,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -896,7 +896,7 @@ export const triviaQuestions = [
     "The arena has been the Pelicans’ home since the franchise moved to New Orleans."
 },
 {
-  id: 106,
+  id: 66,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -907,7 +907,7 @@ export const triviaQuestions = [
     "Davis led the league in blocks and was dominant on both ends of the floor."
 },
 {
-  id: 107,
+  id: 67,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -918,7 +918,7 @@ export const triviaQuestions = [
     "The brown pelican is Louisiana’s official state bird."
 },
 {
-  id: 108,
+  id: 68,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -929,7 +929,7 @@ export const triviaQuestions = [
     "Jones quickly built a reputation as one of the NBA’s top young defenders."
 },
 {
-  id: 109,
+  id: 69,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -940,7 +940,7 @@ export const triviaQuestions = [
     "Led by Anthony Davis, the Pelicans returned to postseason play two years after rebranding."
 },
 {
-  id: 110,
+  id: 70,
   teams: ["New Orleans Pelicans"],
   league: "NBA",
   sport: "basketball",
@@ -951,7 +951,7 @@ export const triviaQuestions = [
     "The trade brought multiple young players and draft picks to New Orleans."
 },
 {
-  id: 201,
+  id: 71,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -962,7 +962,7 @@ export const triviaQuestions = [
     "The Nuggets defeated the Miami Heat to claim their first title."
 },
 {
-  id: 202,
+  id: 72,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -973,7 +973,7 @@ export const triviaQuestions = [
     "Jokić became the first Nuggets player to win Finals MVP."
 },
 {
-  id: 203,
+  id: 73,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -984,7 +984,7 @@ export const triviaQuestions = [
     "Jokić is known for his elite passing ability despite playing center."
 },
 {
-  id: 204,
+  id: 74,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -995,7 +995,7 @@ export const triviaQuestions = [
     "Jokić was drafted during a Taco Bell commercial in the 2014 NBA Draft."
 },
 {
-  id: 205,
+  id: 75,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -1011,7 +1011,7 @@ export const triviaQuestions = [
     "The arena was previously known as the Pepsi Center."
 },
 {
-  id: 206,
+  id: 76,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -1022,7 +1022,7 @@ export const triviaQuestions = [
     "Murray delivered multiple 40-point playoff games during the championship run."
 },
 {
-  id: 207,
+  id: 77,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -1033,7 +1033,7 @@ export const triviaQuestions = [
     "The team changed its name to the Nuggets when joining the NBA in 1976."
 },
 {
-  id: 208,
+  id: 78,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -1044,7 +1044,7 @@ export const triviaQuestions = [
     "Jokić won MVP in 2021, 2022, and 2024."
 },
 {
-  id: 209,
+  id: 79,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -1055,7 +1055,7 @@ export const triviaQuestions = [
     "The Nuggets play in the NBA’s Northwest Division."
 },
 {
-  id: 210,
+  id: 80,
   teams: ["Denver Nuggets"],
   league: "NBA",
   sport: "basketball",
@@ -1064,7 +1064,229 @@ export const triviaQuestions = [
   answer: "Mile High City",
   funFact:
     "Denver’s elevation is often cited as a home-court advantage."
-}
+},
+[
+  {
+    id: 81,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "What is the nickname of the University of Miami football team?",
+    options: ["Hurricanes", "Gators", "Seminoles", "Panthers"],
+    answer: "Hurricanes",
+    funFact:
+      "Miami is often referred to simply as 'The U' in college football culture."
+  },
+  {
+    id: 82,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "What stadium does Miami Hurricanes football currently play in?",
+    options: ["Hard Rock Stadium", "Orange Bowl", "Camping World Stadium", "Raymond James Stadium"],
+    answer: "Hard Rock Stadium",
+    funFact:
+      "Hard Rock Stadium also hosts the Miami Dolphins and major Super Bowls."
+  },
+  {
+    id: 83,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "How many national championships has Miami won in football?",
+    options: ["3", "4", "5", "6"],
+    answer: "5",
+    funFact:
+      "Miami won national titles between 1983 and 2001."
+  },
+  {
+    id: 84,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "What iconic turnover celebration became famous at Miami?",
+    options: ["The Chain", "The Crown", "The Helmet", "The Cane"],
+    answer: "The Chain",
+    funFact:
+      "Miami’s Turnover Chain inspired similar celebrations across college football."
+  },
+  {
+    id: 85,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "Which conference does Miami currently compete in?",
+    options: ["ACC", "SEC", "Big Ten", "Big 12"],
+    answer: "ACC",
+    funFact:
+      "Miami joined the ACC in 2004 after leaving the Big East."
+  },
+  {
+    id: 86,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "Which former Miami quarterback won the Heisman Trophy?",
+    options: ["Vinny Testaverde", "Ken Dorsey", "Jim Kelly", "Bernie Kosar"],
+    answer: "Vinny Testaverde",
+    funFact:
+      "Testaverde won the Heisman in 1986."
+  },
+  {
+    id: 87,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "What colors are traditionally associated with Miami football?",
+    options: ["Orange and Green", "Blue and White", "Red and Black", "Gold and Green"],
+    answer: "Orange and Green",
+    funFact:
+      "Miami’s colors are among the most recognizable in college sports."
+  },
+  {
+    id: 88,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "What former stadium was Miami famously associated with before moving?",
+    options: ["Orange Bowl", "Liberty Bowl", "Cotton Bowl", "Gator Bowl"],
+    answer: "Orange Bowl",
+    funFact:
+      "The Orange Bowl was considered one of college football’s toughest venues."
+  },
+  {
+    id: 89,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "Miami is widely known for producing players at which position?",
+    options: ["Wide Receiver", "Kicker", "Fullback", "Punter"],
+    answer: "Wide Receiver",
+    funFact:
+      "Miami has produced multiple elite NFL wide receivers."
+  },
+  {
+    id: 90,
+    teams: ["Miami Hurricanes"],
+    league: "NCAA",
+    sport: "football",
+    question: "What hand gesture is commonly associated with Miami fans?",
+    options: ["The U", "The Claw", "The Chop", "The Wave"],
+    answer: "The U",
+    funFact:
+      "The U hand sign represents unity and school pride."
+  },
 
+  {
+    id: 91,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "What is the nickname of Indiana University’s football team?",
+    options: ["Hoosiers", "Boilermakers", "Buckeyes", "Spartans"],
+    answer: "Hoosiers",
+    funFact:
+      "The term 'Hoosier' is deeply tied to Indiana’s state identity."
+  },
+  {
+    id: 92,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "What stadium is home to Indiana Hoosiers football?",
+    options: ["Memorial Stadium", "Lucas Oil Stadium", "Assembly Hall", "Ross-Ade Stadium"],
+    answer: "Memorial Stadium",
+    funFact:
+      "Memorial Stadium is located in Bloomington, Indiana."
+  },
+  {
+    id: 93,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "Which conference does Indiana compete in?",
+    options: ["Big Ten", "SEC", "ACC", "Big 12"],
+    answer: "Big Ten",
+    funFact:
+      "Indiana is a founding member of the Big Ten Conference."
+  },
+  {
+    id: 94,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "What are Indiana University’s primary school colors?",
+    options: ["Crimson and Cream", "Red and Black", "Scarlet and Gray", "Maroon and Gold"],
+    answer: "Crimson and Cream",
+    funFact:
+      "Crimson is one of the most iconic colors in college athletics."
+  },
+  {
+    id: 95,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "Which team is Indiana’s main football rival?",
+    options: ["Purdue", "Notre Dame", "Illinois", "Michigan"],
+    answer: "Purdue",
+    funFact:
+      "The rivalry winner receives the Old Oaken Bucket trophy."
+  },
+  {
+    id: 96,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "What trophy is awarded in the Indiana–Purdue rivalry game?",
+    options: ["Old Oaken Bucket", "Paul Bunyan Axe", "Little Brown Jug", "Victory Bell"],
+    answer: "Old Oaken Bucket",
+    funFact:
+      "The bucket has been awarded since 1925."
+  },
+  {
+    id: 97,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "In what city is Indiana University’s main campus located?",
+    options: ["Bloomington", "Indianapolis", "West Lafayette", "Fort Wayne"],
+    answer: "Bloomington",
+    funFact:
+      "Bloomington is also known for Indiana’s strong basketball tradition."
+  },
+  {
+    id: 98,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "Indiana achieved a historic breakout football season in which year?",
+    options: ["2020", "2016", "2012", "2008"],
+    answer: "2020",
+    funFact:
+      "Indiana finished the 2020 season ranked in the Top 10."
+  },
+  {
+    id: 99,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "Indiana football is best known nationally for excelling in which other sport?",
+    options: ["Basketball", "Baseball", "Soccer", "Hockey"],
+    answer: "Basketball",
+    funFact:
+      "Indiana is one of the most storied programs in college basketball history."
+  },
+  {
+    id: 100,
+    teams: ["Indiana Hoosiers"],
+    league: "NCAA",
+    sport: "football",
+    question: "Which Big Ten division has Indiana traditionally competed in?",
+    options: ["East", "West", "North", "Central"],
+    answer: "East",
+    funFact:
+      "The Big Ten East has historically been one of the toughest divisions in college football."
+  }
+]
 
 ];
