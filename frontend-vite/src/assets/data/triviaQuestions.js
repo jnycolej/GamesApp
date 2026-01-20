@@ -1068,7 +1068,7 @@ export const triviaQuestions = [
 [
   {
     id: 81,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "What is the nickname of the University of Miami football team?",
@@ -1079,7 +1079,7 @@ export const triviaQuestions = [
   },
   {
     id: 82,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "What stadium does Miami Hurricanes football currently play in?",
@@ -1090,7 +1090,7 @@ export const triviaQuestions = [
   },
   {
     id: 83,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "How many national championships has Miami won in football?",
@@ -1101,7 +1101,7 @@ export const triviaQuestions = [
   },
   {
     id: 84,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "What iconic turnover celebration became famous at Miami?",
@@ -1112,7 +1112,7 @@ export const triviaQuestions = [
   },
   {
     id: 85,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "Which conference does Miami currently compete in?",
@@ -1123,7 +1123,7 @@ export const triviaQuestions = [
   },
   {
     id: 86,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "Which former Miami quarterback won the Heisman Trophy?",
@@ -1134,7 +1134,7 @@ export const triviaQuestions = [
   },
   {
     id: 87,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "What colors are traditionally associated with Miami football?",
@@ -1145,7 +1145,7 @@ export const triviaQuestions = [
   },
   {
     id: 88,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "What former stadium was Miami famously associated with before moving?",
@@ -1156,7 +1156,7 @@ export const triviaQuestions = [
   },
   {
     id: 89,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "Miami is widely known for producing players at which position?",
@@ -1167,7 +1167,7 @@ export const triviaQuestions = [
   },
   {
     id: 90,
-    teams: ["Miami Hurricanes"],
+    teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
     question: "What hand gesture is commonly associated with Miami fans?",
@@ -1179,7 +1179,7 @@ export const triviaQuestions = [
 
   {
     id: 91,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "What is the nickname of Indiana University’s football team?",
@@ -1190,7 +1190,7 @@ export const triviaQuestions = [
   },
   {
     id: 92,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "What stadium is home to Indiana Hoosiers football?",
@@ -1201,7 +1201,7 @@ export const triviaQuestions = [
   },
   {
     id: 93,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "Which conference does Indiana compete in?",
@@ -1212,7 +1212,7 @@ export const triviaQuestions = [
   },
   {
     id: 94,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "What are Indiana University’s primary school colors?",
@@ -1223,7 +1223,7 @@ export const triviaQuestions = [
   },
   {
     id: 95,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "Which team is Indiana’s main football rival?",
@@ -1234,7 +1234,7 @@ export const triviaQuestions = [
   },
   {
     id: 96,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "What trophy is awarded in the Indiana–Purdue rivalry game?",
@@ -1245,7 +1245,7 @@ export const triviaQuestions = [
   },
   {
     id: 97,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "In what city is Indiana University’s main campus located?",
@@ -1256,7 +1256,7 @@ export const triviaQuestions = [
   },
   {
     id: 98,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "Indiana achieved a historic breakout football season in which year?",
@@ -1267,7 +1267,7 @@ export const triviaQuestions = [
   },
   {
     id: 99,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "Indiana football is best known nationally for excelling in which other sport?",
@@ -1278,7 +1278,7 @@ export const triviaQuestions = [
   },
   {
     id: 100,
-    teams: ["Indiana Hoosiers"],
+    teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
     question: "Which Big Ten division has Indiana traditionally competed in?",

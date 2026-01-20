@@ -424,7 +424,7 @@ export const gameSchedule = [
     tag: ["regular"],
   },
   {
-    teams: ["Univeristy of Miami", "Indiana University"],
+    teams: ["University of Miami", "Indiana University"],
     league: "NCAA",
     conferences: ["Big 10", "ACC"],
     sport: "football",
