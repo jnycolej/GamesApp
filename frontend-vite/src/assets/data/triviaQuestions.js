@@ -831,241 +831,278 @@ export const triviaQuestions = [
       "Coach O's gravelly Cajun voice made 'Hold That Tiger' a fan favorite after every win.",
   },
   {
-  id: 61,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "What year did the New Orleans Pelicans officially adopt the Pelicans name?",
-  options: ["2008", "2010", "2013", "2015"],
-  answer: "2013",
-  funFact:
-    "The franchise rebranded from the New Orleans Hornets to the Pelicans in 2013."
-},
-{
-  id: 62,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which player was selected first overall by the Pelicans in the 2019 NBA Draft?",
-  options: ["Anthony Davis", "Zion Williamson", "Brandon Ingram", "Lonzo Ball"],
-  answer: "Zion Williamson",
-  funFact:
-    "Zion was one of the most hyped draft prospects in NBA history due to his athleticism."
-},
-{
-  id: 63,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Before becoming the Pelicans, what was the team's original name?",
-  options: [
-    "New Orleans Jazz",
-    "New Orleans Hornets",
-    "New Orleans Buccaneers",
-    "Louisiana Swarm"
-  ],
-  answer: "New Orleans Hornets",
-  funFact:
-    "The Hornets relocated from Charlotte to New Orleans in 2002."
-},
-{
-  id: 64,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which Pelicans player won the NBA Most Improved Player Award in 2020?",
-  options: ["Zion Williamson", "Brandon Ingram", "CJ McCollum", "Jrue Holiday"],
-  answer: "Brandon Ingram",
-  funFact:
-    "Ingram became the Pelicans’ first major individual award winner."
-},
-{
-  id: 65,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Where do the New Orleans Pelicans play their home games?",
-  options: [
-    "Smoothie King Center",
-    "Mercedes-Benz Superdome",
-    "Caesars Superdome",
-    "New Orleans Arena"
-  ],
-  answer: "Smoothie King Center",
-  funFact:
-    "The arena has been the Pelicans’ home since the franchise moved to New Orleans."
-},
-{
-  id: 66,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which Pelicans player was named NBA Defensive Player of the Year in 2018?",
-  options: ["Anthony Davis", "Jrue Holiday", "DeMarcus Cousins", "Herb Jones"],
-  answer: "Anthony Davis",
-  funFact:
-    "Davis led the league in blocks and was dominant on both ends of the floor."
-},
-{
-  id: 67,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "What bird does the Pelicans’ team name reference?",
-  options: ["Brown Pelican", "White Pelican", "Golden Eagle", "Seagull"],
-  answer: "Brown Pelican",
-  funFact:
-    "The brown pelican is Louisiana’s official state bird."
-},
-{
-  id: 68,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which Pelicans player is known for elite perimeter defense and steals?",
-  options: ["Herb Jones", "CJ McCollum", "Jonas Valančiūnas", "Zion Williamson"],
-  answer: "Herb Jones",
-  funFact:
-    "Jones quickly built a reputation as one of the NBA’s top young defenders."
-},
-{
-  id: 69,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "What year did the Pelicans make their first playoff appearance under the Pelicans name?",
-  options: ["2013", "2015", "2018", "2020"],
-  answer: "2015",
-  funFact:
-    "Led by Anthony Davis, the Pelicans returned to postseason play two years after rebranding."
-},
-{
-  id: 70,
-  teams: ["New Orleans Pelicans"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which former Pelicans star was traded to the Los Angeles Lakers in 2019?",
-  options: ["Zion Williamson", "Brandon Ingram", "Anthony Davis", "Jrue Holiday"],
-  answer: "Anthony Davis",
-  funFact:
-    "The trade brought multiple young players and draft picks to New Orleans."
-},
-{
-  id: 71,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "What year did the Denver Nuggets win their first NBA championship?",
-  options: ["2019", "2020", "2022", "2023"],
-  answer: "2023",
-  funFact:
-    "The Nuggets defeated the Miami Heat to claim their first title."
-},
-{
-  id: 72,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which Nuggets player won the NBA Finals MVP in 2023?",
-  options: ["Jamal Murray", "Nikola Jokić", "Aaron Gordon", "Michael Porter Jr."],
-  answer: "Nikola Jokić",
-  funFact:
-    "Jokić became the first Nuggets player to win Finals MVP."
-},
-{
-  id: 73,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "What position does Nikola Jokić primarily play?",
-  options: ["Power Forward", "Center", "Small Forward", "Point Guard"],
-  answer: "Center",
-  funFact:
-    "Jokić is known for his elite passing ability despite playing center."
-},
-{
-  id: 74,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which country is Nikola Jokić from?",
-  options: ["Croatia", "Slovenia", "Serbia", "Greece"],
-  answer: "Serbia",
-  funFact:
-    "Jokić was drafted during a Taco Bell commercial in the 2014 NBA Draft."
-},
-{
-  id: 75,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Where do the Denver Nuggets play their home games?",
-  options: [
-    "Ball Arena",
-    "Pepsi Center",
-    "Mile High Arena",
-    "Coors Field"
-  ],
-  answer: "Ball Arena",
-  funFact:
-    "The arena was previously known as the Pepsi Center."
-},
-{
-  id: 76,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which Nuggets player is known for clutch playoff performances alongside Jokić?",
-  options: ["Aaron Gordon", "Jamal Murray", "Bruce Brown", "Kentavious Caldwell-Pope"],
-  answer: "Jamal Murray",
-  funFact:
-    "Murray delivered multiple 40-point playoff games during the championship run."
-},
-{
-  id: 77,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "What was the Nuggets’ original team name before becoming the Nuggets?",
-  options: ["Denver Rockets", "Denver Mountaineers", "Denver Miners", "Denver Gold"],
-  answer: "Denver Rockets",
-  funFact:
-    "The team changed its name to the Nuggets when joining the NBA in 1976."
-},
-{
-  id: 78,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "How many NBA MVP awards has Nikola Jokić won as of 2024?",
-  options: ["1", "2", "3", "4"],
-  answer: "3",
-  funFact:
-    "Jokić won MVP in 2021, 2022, and 2024."
-},
-{
-  id: 79,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "Which conference do the Denver Nuggets compete in?",
-  options: ["Eastern", "Western", "Central", "Pacific"],
-  answer: "Western",
-  funFact:
-    "The Nuggets play in the NBA’s Northwest Division."
-},
-{
-  id: 80,
-  teams: ["Denver Nuggets"],
-  league: "NBA",
-  sport: "basketball",
-  question: "What altitude-related nickname is often associated with playing in Denver?",
-  options: ["Thin Air", "High Mile", "Mile High City", "Rocky Court"],
-  answer: "Mile High City",
-  funFact:
-    "Denver’s elevation is often cited as a home-court advantage."
-},
-[
+    id: 61,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "What year did the New Orleans Pelicans officially adopt the Pelicans name?",
+    options: ["2008", "2010", "2013", "2015"],
+    answer: "2013",
+    funFact:
+      "The franchise rebranded from the New Orleans Hornets to the Pelicans in 2013.",
+  },
+  {
+    id: 62,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which player was selected first overall by the Pelicans in the 2019 NBA Draft?",
+    options: [
+      "Anthony Davis",
+      "Zion Williamson",
+      "Brandon Ingram",
+      "Lonzo Ball",
+    ],
+    answer: "Zion Williamson",
+    funFact:
+      "Zion was one of the most hyped draft prospects in NBA history due to his athleticism.",
+  },
+  {
+    id: 63,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Before becoming the Pelicans, what was the team's original name?",
+    options: [
+      "New Orleans Jazz",
+      "New Orleans Hornets",
+      "New Orleans Buccaneers",
+      "Louisiana Swarm",
+    ],
+    answer: "New Orleans Hornets",
+    funFact: "The Hornets relocated from Charlotte to New Orleans in 2002.",
+  },
+  {
+    id: 64,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which Pelicans player won the NBA Most Improved Player Award in 2020?",
+    options: [
+      "Zion Williamson",
+      "Brandon Ingram",
+      "CJ McCollum",
+      "Jrue Holiday",
+    ],
+    answer: "Brandon Ingram",
+    funFact: "Ingram became the Pelicans’ first major individual award winner.",
+  },
+  {
+    id: 65,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Where do the New Orleans Pelicans play their home games?",
+    options: [
+      "Smoothie King Center",
+      "Mercedes-Benz Superdome",
+      "Caesars Superdome",
+      "New Orleans Arena",
+    ],
+    answer: "Smoothie King Center",
+    funFact:
+      "The arena has been the Pelicans’ home since the franchise moved to New Orleans.",
+  },
+  {
+    id: 66,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which Pelicans player was named NBA Defensive Player of the Year in 2018?",
+    options: [
+      "Anthony Davis",
+      "Jrue Holiday",
+      "DeMarcus Cousins",
+      "Herb Jones",
+    ],
+    answer: "Anthony Davis",
+    funFact:
+      "Davis led the league in blocks and was dominant on both ends of the floor.",
+  },
+  {
+    id: 67,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question: "What bird does the Pelicans’ team name reference?",
+    options: ["Brown Pelican", "White Pelican", "Golden Eagle", "Seagull"],
+    answer: "Brown Pelican",
+    funFact: "The brown pelican is Louisiana’s official state bird.",
+  },
+  {
+    id: 68,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which Pelicans player is known for elite perimeter defense and steals?",
+    options: [
+      "Herb Jones",
+      "CJ McCollum",
+      "Jonas Valančiūnas",
+      "Zion Williamson",
+    ],
+    answer: "Herb Jones",
+    funFact:
+      "Jones quickly built a reputation as one of the NBA’s top young defenders.",
+  },
+  {
+    id: 69,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "What year did the Pelicans make their first playoff appearance under the Pelicans name?",
+    options: ["2013", "2015", "2018", "2020"],
+    answer: "2015",
+    funFact:
+      "Led by Anthony Davis, the Pelicans returned to postseason play two years after rebranding.",
+  },
+  {
+    id: 70,
+    teams: ["New Orleans Pelicans"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which former Pelicans star was traded to the Los Angeles Lakers in 2019?",
+    options: [
+      "Zion Williamson",
+      "Brandon Ingram",
+      "Anthony Davis",
+      "Jrue Holiday",
+    ],
+    answer: "Anthony Davis",
+    funFact:
+      "The trade brought multiple young players and draft picks to New Orleans.",
+  },
+  {
+    id: 71,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "What year did the Denver Nuggets win their first NBA championship?",
+    options: ["2019", "2020", "2022", "2023"],
+    answer: "2023",
+    funFact: "The Nuggets defeated the Miami Heat to claim their first title.",
+  },
+  {
+    id: 72,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which Nuggets player won the NBA Finals MVP in 2023?",
+    options: [
+      "Jamal Murray",
+      "Nikola Jokić",
+      "Aaron Gordon",
+      "Michael Porter Jr.",
+    ],
+    answer: "Nikola Jokić",
+    funFact: "Jokić became the first Nuggets player to win Finals MVP.",
+  },
+  {
+    id: 73,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question: "What position does Nikola Jokić primarily play?",
+    options: ["Power Forward", "Center", "Small Forward", "Point Guard"],
+    answer: "Center",
+    funFact:
+      "Jokić is known for his elite passing ability despite playing center.",
+  },
+  {
+    id: 74,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which country is Nikola Jokić from?",
+    options: ["Croatia", "Slovenia", "Serbia", "Greece"],
+    answer: "Serbia",
+    funFact:
+      "Jokić was drafted during a Taco Bell commercial in the 2014 NBA Draft.",
+  },
+  {
+    id: 75,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Where do the Denver Nuggets play their home games?",
+    options: ["Ball Arena", "Pepsi Center", "Mile High Arena", "Coors Field"],
+    answer: "Ball Arena",
+    funFact: "The arena was previously known as the Pepsi Center.",
+  },
+  {
+    id: 76,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which Nuggets player is known for clutch playoff performances alongside Jokić?",
+    options: [
+      "Aaron Gordon",
+      "Jamal Murray",
+      "Bruce Brown",
+      "Kentavious Caldwell-Pope",
+    ],
+    answer: "Jamal Murray",
+    funFact:
+      "Murray delivered multiple 40-point playoff games during the championship run.",
+  },
+  {
+    id: 77,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "What was the Nuggets’ original team name before becoming the Nuggets?",
+    options: [
+      "Denver Rockets",
+      "Denver Mountaineers",
+      "Denver Miners",
+      "Denver Gold",
+    ],
+    answer: "Denver Rockets",
+    funFact:
+      "The team changed its name to the Nuggets when joining the NBA in 1976.",
+  },
+  {
+    id: 78,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question: "How many NBA MVP awards has Nikola Jokić won as of 2024?",
+    options: ["1", "2", "3", "4"],
+    answer: "3",
+    funFact: "Jokić won MVP in 2021, 2022, and 2024.",
+  },
+  {
+    id: 79,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which conference do the Denver Nuggets compete in?",
+    options: ["Eastern", "Western", "Central", "Pacific"],
+    answer: "Western",
+    funFact: "The Nuggets play in the NBA’s Northwest Division.",
+  },
+  {
+    id: 80,
+    teams: ["Denver Nuggets"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "What altitude-related nickname is often associated with playing in Denver?",
+    options: ["Thin Air", "High Mile", "Mile High City", "Rocky Court"],
+    answer: "Mile High City",
+    funFact: "Denver’s elevation is often cited as a home-court advantage.",
+  },
   {
     id: 81,
     teams: ["University of Miami"],
@@ -1075,7 +1112,7 @@ export const triviaQuestions = [
     options: ["Hurricanes", "Gators", "Seminoles", "Panthers"],
     answer: "Hurricanes",
     funFact:
-      "Miami is often referred to simply as 'The U' in college football culture."
+      "Miami is often referred to simply as 'The U' in college football culture.",
   },
   {
     id: 82,
@@ -1083,10 +1120,15 @@ export const triviaQuestions = [
     league: "NCAA",
     sport: "football",
     question: "What stadium does Miami Hurricanes football currently play in?",
-    options: ["Hard Rock Stadium", "Orange Bowl", "Camping World Stadium", "Raymond James Stadium"],
+    options: [
+      "Hard Rock Stadium",
+      "Orange Bowl",
+      "Camping World Stadium",
+      "Raymond James Stadium",
+    ],
     answer: "Hard Rock Stadium",
     funFact:
-      "Hard Rock Stadium also hosts the Miami Dolphins and major Super Bowls."
+      "Hard Rock Stadium also hosts the Miami Dolphins and major Super Bowls.",
   },
   {
     id: 83,
@@ -1096,8 +1138,7 @@ export const triviaQuestions = [
     question: "How many national championships has Miami won in football?",
     options: ["3", "4", "5", "6"],
     answer: "5",
-    funFact:
-      "Miami won national titles between 1983 and 2001."
+    funFact: "Miami won national titles between 1983 and 2001.",
   },
   {
     id: 84,
@@ -1108,7 +1149,7 @@ export const triviaQuestions = [
     options: ["The Chain", "The Crown", "The Helmet", "The Cane"],
     answer: "The Chain",
     funFact:
-      "Miami’s Turnover Chain inspired similar celebrations across college football."
+      "Miami’s Turnover Chain inspired similar celebrations across college football.",
   },
   {
     id: 85,
@@ -1118,8 +1159,7 @@ export const triviaQuestions = [
     question: "Which conference does Miami currently compete in?",
     options: ["ACC", "SEC", "Big Ten", "Big 12"],
     answer: "ACC",
-    funFact:
-      "Miami joined the ACC in 2004 after leaving the Big East."
+    funFact: "Miami joined the ACC in 2004 after leaving the Big East.",
   },
   {
     id: 86,
@@ -1129,8 +1169,7 @@ export const triviaQuestions = [
     question: "Which former Miami quarterback won the Heisman Trophy?",
     options: ["Vinny Testaverde", "Ken Dorsey", "Jim Kelly", "Bernie Kosar"],
     answer: "Vinny Testaverde",
-    funFact:
-      "Testaverde won the Heisman in 1986."
+    funFact: "Testaverde won the Heisman in 1986.",
   },
   {
     id: 87,
@@ -1138,21 +1177,27 @@ export const triviaQuestions = [
     league: "NCAA",
     sport: "football",
     question: "What colors are traditionally associated with Miami football?",
-    options: ["Orange and Green", "Blue and White", "Red and Black", "Gold and Green"],
+    options: [
+      "Orange and Green",
+      "Blue and White",
+      "Red and Black",
+      "Gold and Green",
+    ],
     answer: "Orange and Green",
     funFact:
-      "Miami’s colors are among the most recognizable in college sports."
+      "Miami’s colors are among the most recognizable in college sports.",
   },
   {
     id: 88,
     teams: ["University of Miami"],
     league: "NCAA",
     sport: "football",
-    question: "What former stadium was Miami famously associated with before moving?",
+    question:
+      "What former stadium was Miami famously associated with before moving?",
     options: ["Orange Bowl", "Liberty Bowl", "Cotton Bowl", "Gator Bowl"],
     answer: "Orange Bowl",
     funFact:
-      "The Orange Bowl was considered one of college football’s toughest venues."
+      "The Orange Bowl was considered one of college football’s toughest venues.",
   },
   {
     id: 89,
@@ -1162,8 +1207,7 @@ export const triviaQuestions = [
     question: "Miami is widely known for producing players at which position?",
     options: ["Wide Receiver", "Kicker", "Fullback", "Punter"],
     answer: "Wide Receiver",
-    funFact:
-      "Miami has produced multiple elite NFL wide receivers."
+    funFact: "Miami has produced multiple elite NFL wide receivers.",
   },
   {
     id: 90,
@@ -1173,10 +1217,8 @@ export const triviaQuestions = [
     question: "What hand gesture is commonly associated with Miami fans?",
     options: ["The U", "The Claw", "The Chop", "The Wave"],
     answer: "The U",
-    funFact:
-      "The U hand sign represents unity and school pride."
+    funFact: "The U hand sign represents unity and school pride.",
   },
-
   {
     id: 91,
     teams: ["Indiana University"],
@@ -1185,8 +1227,7 @@ export const triviaQuestions = [
     question: "What is the nickname of Indiana University’s football team?",
     options: ["Hoosiers", "Boilermakers", "Buckeyes", "Spartans"],
     answer: "Hoosiers",
-    funFact:
-      "The term 'Hoosier' is deeply tied to Indiana’s state identity."
+    funFact: "The term 'Hoosier' is deeply tied to Indiana’s state identity.",
   },
   {
     id: 92,
@@ -1194,10 +1235,14 @@ export const triviaQuestions = [
     league: "NCAA",
     sport: "football",
     question: "What stadium is home to Indiana Hoosiers football?",
-    options: ["Memorial Stadium", "Lucas Oil Stadium", "Assembly Hall", "Ross-Ade Stadium"],
+    options: [
+      "Memorial Stadium",
+      "Lucas Oil Stadium",
+      "Assembly Hall",
+      "Ross-Ade Stadium",
+    ],
     answer: "Memorial Stadium",
-    funFact:
-      "Memorial Stadium is located in Bloomington, Indiana."
+    funFact: "Memorial Stadium is located in Bloomington, Indiana.",
   },
   {
     id: 93,
@@ -1207,8 +1252,7 @@ export const triviaQuestions = [
     question: "Which conference does Indiana compete in?",
     options: ["Big Ten", "SEC", "ACC", "Big 12"],
     answer: "Big Ten",
-    funFact:
-      "Indiana is a founding member of the Big Ten Conference."
+    funFact: "Indiana is a founding member of the Big Ten Conference.",
   },
   {
     id: 94,
@@ -1216,10 +1260,14 @@ export const triviaQuestions = [
     league: "NCAA",
     sport: "football",
     question: "What are Indiana University’s primary school colors?",
-    options: ["Crimson and Cream", "Red and Black", "Scarlet and Gray", "Maroon and Gold"],
+    options: [
+      "Crimson and Cream",
+      "Red and Black",
+      "Scarlet and Gray",
+      "Maroon and Gold",
+    ],
     answer: "Crimson and Cream",
-    funFact:
-      "Crimson is one of the most iconic colors in college athletics."
+    funFact: "Crimson is one of the most iconic colors in college athletics.",
   },
   {
     id: 95,
@@ -1229,8 +1277,7 @@ export const triviaQuestions = [
     question: "Which team is Indiana’s main football rival?",
     options: ["Purdue", "Notre Dame", "Illinois", "Michigan"],
     answer: "Purdue",
-    funFact:
-      "The rivalry winner receives the Old Oaken Bucket trophy."
+    funFact: "The rivalry winner receives the Old Oaken Bucket trophy.",
   },
   {
     id: 96,
@@ -1238,10 +1285,14 @@ export const triviaQuestions = [
     league: "NCAA",
     sport: "football",
     question: "What trophy is awarded in the Indiana–Purdue rivalry game?",
-    options: ["Old Oaken Bucket", "Paul Bunyan Axe", "Little Brown Jug", "Victory Bell"],
+    options: [
+      "Old Oaken Bucket",
+      "Paul Bunyan Axe",
+      "Little Brown Jug",
+      "Victory Bell",
+    ],
     answer: "Old Oaken Bucket",
-    funFact:
-      "The bucket has been awarded since 1925."
+    funFact: "The bucket has been awarded since 1925.",
   },
   {
     id: 97,
@@ -1252,29 +1303,30 @@ export const triviaQuestions = [
     options: ["Bloomington", "Indianapolis", "West Lafayette", "Fort Wayne"],
     answer: "Bloomington",
     funFact:
-      "Bloomington is also known for Indiana’s strong basketball tradition."
+      "Bloomington is also known for Indiana’s strong basketball tradition.",
   },
   {
     id: 98,
     teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
-    question: "Indiana achieved a historic breakout football season in which year?",
+    question:
+      "Indiana achieved a historic breakout football season in which year?",
     options: ["2020", "2016", "2012", "2008"],
     answer: "2020",
-    funFact:
-      "Indiana finished the 2020 season ranked in the Top 10."
+    funFact: "Indiana finished the 2020 season ranked in the Top 10.",
   },
   {
     id: 99,
     teams: ["Indiana University"],
     league: "NCAA",
     sport: "football",
-    question: "Indiana football is best known nationally for excelling in which other sport?",
+    question:
+      "Indiana football is best known nationally for excelling in which other sport?",
     options: ["Basketball", "Baseball", "Soccer", "Hockey"],
     answer: "Basketball",
     funFact:
-      "Indiana is one of the most storied programs in college basketball history."
+      "Indiana is one of the most storied programs in college basketball history.",
   },
   {
     id: 100,
@@ -1285,8 +1337,363 @@ export const triviaQuestions = [
     options: ["East", "West", "North", "Central"],
     answer: "East",
     funFact:
-      "The Big Ten East has historically been one of the toughest divisions in college football."
-  }
-]
-
+      "The Big Ten East has historically been one of the toughest divisions in college football.",
+  },
+  {
+    id: 101,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "What city are the Golden State Warriors currently based in?",
+    options: ["San Francisco", "Oakland", "San Jose", "Los Angeles"],
+    answer: "San Francisco",
+    funFact:
+      "The Warriors moved to San Francisco in 2019 after decades in Oakland.",
+  },
+  {
+    id: 102,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "What arena do the Golden State Warriors play their home games in?",
+    options: [
+      "Chase Center",
+      "Oracle Arena",
+      "Staples Center",
+      "Golden 1 Center",
+    ],
+    answer: "Chase Center",
+    funFact:
+      "Chase Center opened in 2019 and is located in San Francisco’s Mission Bay.",
+  },
+  {
+    id: 103,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "What are the Warriors’ primary team colors?",
+    options: [
+      "Blue and Gold",
+      "Red and White",
+      "Purple and Gold",
+      "Green and Gold",
+    ],
+    answer: "Blue and Gold",
+    funFact: "The color scheme reflects California’s Golden State nickname.",
+  },
+  {
+    id: 104,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which player is known as the greatest shooter in NBA history?",
+    options: ["Stephen Curry", "Klay Thompson", "Ray Allen", "Reggie Miller"],
+    answer: "Stephen Curry",
+    funFact:
+      "Curry revolutionized the game with high-volume three-point shooting.",
+  },
+  {
+    id: 105,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "How many NBA championships have the Warriors won as of 2022?",
+    options: ["5", "6", "7", "8"],
+    answer: "7",
+    funFact:
+      "The Warriors won titles in 1947, 1956, 1975, 2015, 2017, 2018, and 2022.",
+  },
+  {
+    id: 106,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which coach led the Warriors during their recent championship dynasty?",
+    options: ["Steve Kerr", "Mark Jackson", "Doc Rivers", "Erik Spoelstra"],
+    answer: "Steve Kerr",
+    funFact:
+      "Steve Kerr became head coach in 2014 and won a title in his first season.",
+  },
+  {
+    id: 107,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which season did the Warriors set the NBA record for regular-season wins?",
+    options: ["2015–16", "2016–17", "2014–15", "2017–18"],
+    answer: "2015–16",
+    funFact:
+      "The Warriors finished 73–9, the best regular-season record in NBA history.",
+  },
+  {
+    id: 108,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which former Warriors star was known for his elite perimeter defense?",
+    options: [
+      "Klay Thompson",
+      "Andre Iguodala",
+      "Draymond Green",
+      "Kevin Durant",
+    ],
+    answer: "Andre Iguodala",
+    funFact: "Iguodala won Finals MVP in 2015 for his defense on LeBron James.",
+  },
+  {
+    id: 109,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which player is known for his defensive versatility and intensity on the Warriors?",
+    options: [
+      "Draymond Green",
+      "Andrew Wiggins",
+      "Kevon Looney",
+      "Jordan Poole",
+    ],
+    answer: "Draymond Green",
+    funFact:
+      "Green is a former Defensive Player of the Year and emotional leader of the team.",
+  },
+  {
+    id: 110,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which superstar joined the Warriors in free agency in 2016?",
+    options: ["Kevin Durant", "James Harden", "Kyrie Irving", "Chris Paul"],
+    answer: "Kevin Durant",
+    funFact:
+      "Durant helped the Warriors win back-to-back championships in 2017 and 2018.",
+  },
+  {
+    id: 111,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "What was the Warriors’ previous home arena before Chase Center?",
+    options: ["Oracle Arena", "SAP Center", "Cow Palace", "Staples Center"],
+    answer: "Oracle Arena",
+    funFact:
+      "Oracle Arena was located in Oakland and known for its loud atmosphere.",
+  },
+  {
+    id: 112,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which Warriors player is nicknamed 'Splash Brother' alongside Stephen Curry?",
+    options: [
+      "Klay Thompson",
+      "Jordan Poole",
+      "Kevin Durant",
+      "Andrew Wiggins",
+    ],
+    answer: "Klay Thompson",
+    funFact: "The Splash Brothers are famous for their three-point shooting.",
+  },
+  {
+    id: 113,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which year did the Warriors win their first NBA championship in the modern era?",
+    options: ["2015", "2014", "2016", "2017"],
+    answer: "2015",
+    funFact: "The 2015 title ended a 40-year championship drought.",
+  },
+  {
+    id: 114,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which former Warriors center is known for rebounding and screen-setting?",
+    options: ["Kevon Looney", "JaVale McGee", "Zaza Pachulia", "David West"],
+    answer: "Kevon Looney",
+    funFact: "Looney played a key role during multiple championship runs.",
+  },
+  {
+    id: 115,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "What conference do the Golden State Warriors compete in?",
+    options: [
+      "Western Conference",
+      "Eastern Conference",
+      "Pacific Conference",
+      "Central Conference",
+    ],
+    answer: "Western Conference",
+    funFact:
+      "The Warriors play in the Pacific Division of the Western Conference.",
+  },
+  {
+    id: 116,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which team did the Warriors defeat in the 2022 NBA Finals?",
+    options: [
+      "Boston Celtics",
+      "Miami Heat",
+      "Milwaukee Bucks",
+      "Phoenix Suns",
+    ],
+    answer: "Boston Celtics",
+    funFact:
+      "The 2022 title marked the Warriors’ fourth championship in eight seasons.",
+  },
+  {
+    id: 117,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which Warriors player is known for his off-ball movement and shooting stamina?",
+    options: [
+      "Stephen Curry",
+      "Klay Thompson",
+      "Jordan Poole",
+      "Andrew Wiggins",
+    ],
+    answer: "Stephen Curry",
+    funFact:
+      "Curry’s constant motion forces defenses to stay engaged at all times.",
+  },
+  {
+    id: 118,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which Warriors slogan became popular during their dynasty years?",
+    options: ["Strength in Numbers", "Dub Nation", "Run the Bay", "All In"],
+    answer: "Strength in Numbers",
+    funFact: "The slogan highlighted the team’s depth and unselfish play.",
+  },
+  {
+    id: 119,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which nickname refers to the Warriors’ fanbase?",
+    options: ["Dub Nation", "Bay Squad", "Golden Army", "Splash Zone"],
+    answer: "Dub Nation",
+    funFact: "‘Dub Nation’ reflects the Warriors’ global fan following.",
+  },
+  {
+    id: 120,
+    teams: ["Golden State Warriors"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which former Warrior won back-to-back Finals MVP awards?",
+    options: [
+      "Kevin Durant",
+      "Stephen Curry",
+      "Andre Iguodala",
+      "Draymond Green",
+    ],
+    answer: "Kevin Durant",
+    funFact: "Durant earned Finals MVP honors in both 2017 and 2018.",
+  },
+  {
+    id: 421,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question: "How many teams compete in the NBA Western Conference?",
+    options: ["14", "15", "16", "17"],
+    answer: "15",
+    funFact:
+      "The NBA is evenly split between the Eastern and Western Conferences.",
+  },
+  {
+    id: 422,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which division is part of the Western Conference?",
+    options: ["Pacific", "Atlantic", "Central", "Southeast"],
+    answer: "Pacific",
+    funFact:
+      "The Pacific Division includes teams from California and nearby states.",
+  },
+  {
+    id: 423,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "Which conference is known for late-night games due to time zones?",
+    options: [
+      "Western Conference",
+      "Eastern Conference",
+      "Central Conference",
+      "International",
+    ],
+    answer: "Western Conference",
+    funFact: "West Coast games often start after 10 PM Eastern Time.",
+  },
+  {
+    id: 424,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which Western Conference division includes Texas teams?",
+    options: ["Southwest", "Pacific", "Northwest", "Central"],
+    answer: "Southwest",
+    funFact: "Texas teams include Dallas, Houston, and San Antonio.",
+  },
+  {
+    id: 425,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question:
+      "What seed faces the 8th seed in the first round of the playoffs?",
+    options: ["1st", "2nd", "3rd", "4th"],
+    answer: "1st",
+    funFact:
+      "This format rewards the top seed with the lowest-ranked opponent.",
+  },
+  {
+    id: 426,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which Western Conference division includes teams from Canada?",
+    options: ["None", "Pacific", "Northwest", "Southwest"],
+    answer: "None",
+    funFact: "The NBA’s only Canadian team plays in the Eastern Conference.",
+  },
+  {
+    id: 427,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which playoff round determines the Western Conference champion?",
+    options: ["Conference Finals", "Semifinals", "First Round", "NBA Finals"],
+    answer: "Conference Finals",
+    funFact: "The winner advances to the NBA Finals.",
+  },
+  {
+    id: 428,
+    teams: ["NBA Western Conference"],
+    league: "NBA",
+    sport: "basketball",
+    question: "Which division includes Denver and Minnesota?",
+    options: ["Northwest", "Pacific", "Southwest", "Atlantic"],
+    answer: "Northwest",
+    funFact: "The Northwest Division spans a large geographic area.",
+  },
 ];
