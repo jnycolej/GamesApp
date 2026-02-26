@@ -114,8 +114,8 @@ function getEnrichedState(code) {
             typeof p.points === "number" && Number.isFinite(p.points)
               ? p.points
               : typeof p.score === "number" && Number.isFinite(p.score)
-              ? p.score
-              : undefined;
+                ? p.score
+                : undefined;
 
           const score = direct ?? Number(rooms.getScore(code, p.id) ?? 0);
           return { ...p, points: score };
@@ -126,7 +126,7 @@ function getEnrichedState(code) {
   let leaderIds = [];
   if (players.length > 0) {
     const max = Math.max(
-      ...players.map((p) => (Number.isFinite(p.points) ? p.points : 0))
+      ...players.map((p) => (Number.isFinite(p.points) ? p.points : 0)),
     );
     leaderIds = players.filter((p) => (p.points ?? 0) === max).map((p) => p.id);
   }
@@ -168,6 +168,8 @@ io.on("connection", (socket) => {
       socket.join(code);
 
       const safeName = (displayName || "").trim() || "Host";
+      socket.data.displayName = safeName;
+
       const add = rooms.addPlayer(code, {
         id: socket.id,
         displayName: safeName,
@@ -208,8 +210,18 @@ io.on("connection", (socket) => {
         console.warn("[join] room_not_found", CODE);
         return cb?.({ ok: false, error: "room_not_found" });
       }
+      const safeName =
+        String(displayName || "")
+          .trim()
+          .slice(0, 24) || "Player";
 
-      const res = rooms.addPlayer(CODE, { id: socket.id, displayName, key });
+      socket.data.displayName = safeName;
+
+      const res = rooms.addPlayer(CODE, {
+        id: socket.id,
+        displayName: safeName,
+        key,
+      });
       if (!res.ok) return cb?.(res);
 
       socket.data.roomCode = CODE;
@@ -230,10 +242,15 @@ io.on("connection", (socket) => {
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "")
       .slice(0, 6);
+    const safeName =
+      String(displayName || "")
+        .trim()
+        .slice(0, 24) || "Player";
+    socket.data.displayName = safeName;
 
     const res = rooms.resumePlayer(CODE, {
       newSocketId: socket.id,
-      displayName,
+      displayName: safeName,
       key,
     });
     if (!res.ok) return cb?.(res);
@@ -356,48 +373,51 @@ io.on("connection", (socket) => {
   socket.on("score:adjust", ({ delta }, ack) => {
     try {
       const code = socket.data.roomCode;
-      if (!code) return ack?.({ error: "not in a room" });
+      if (!code) return ack?.({ ok: false, error: "not in a room" });
 
       // validate delta
       const n = Number(delta);
       const safeDelta = Number.isFinite(n) ? Math.trunc(n) : 0;
-      if (safeDelta === 0) return ack?.({ error: "invalid delta" });
+      if (safeDelta === 0) return ack?.({ ok: false, error: "invalid delta" });
 
-      // get current and apply
-      const pre = rooms.getScore(code, socket.id) ?? 0;
-      const post = pre + safeDelta;
-
-      rooms.adjustScore(code, socket.id, safeDelta);
-      post = rooms.getScore(code, socket.id) ?? 0;
+      // apply ONCE
       const newScore = rooms.adjustScore(code, socket.id, safeDelta);
-      if (newScore == null) return ack?.({ error: "room/player not found" });
+      if (newScore == null)
+        return ack?.({ ok: false, error: "room/player not found" });
 
-      emitRoomState(code);
+      // broadcast updated room state (whatever your emitRoomState does)
+      const state = emitRoomState(code);
 
+      const actor =
+        (state?.players || []).find((p) => p.id === socket.id) || {};
+      const actorName =
+        actor.displayName || actor.name || socket.data?.displayName || "Player";
+
+      // optional: push feed event
       const ev = pushUpdate(code, {
         type: "SCORE_ADJUSTED",
         deltaPoints: safeDelta,
         player: {
           id: socket.id,
-          name: socket.data?.displayName || socket.data?.name || "Player",
+          name: actorName,
         },
       });
-
       io.to(code).emit("game:update", ev);
-      // ack to the caller
-      ack?.({ ok: true, newScore: post });
 
-      // push score to this player
+      // ack to caller (use the same number)
+      ack?.({ ok: true, score: newScore, version: Date.now() });
+
+      // (optional) direct score update to this player
       io.to(socket.id).emit("score:update", newScore);
 
-      // let everyone know this player's score changed
+      // notify room: player score changed (use ONE field name consistently)
       io.to(code).emit("player:updated", {
         playerId: socket.id,
         score: newScore,
       });
     } catch (err) {
       console.error("[score:adjust] error", err);
-      ack?.({ error: "server error" });
+      ack?.({ ok: false, error: "server error" });
     }
   });
 

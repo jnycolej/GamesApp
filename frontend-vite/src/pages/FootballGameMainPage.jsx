@@ -4,7 +4,7 @@ import jsonData from '../assets/footballDeck.json';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
 // import { useNavigate } from "react-router-dom";
-import footballBackground from '../assets/football-background.png';
+import footballBackground from '@/assets/images/football-background.png';
 
 const FootballGameMainPage = () => {
     const [hand, setHand] = useState([]);

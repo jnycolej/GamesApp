@@ -18,7 +18,7 @@ const HomePage = () => {
         <h1 className="display-4 fw-bold text-center">Games</h1>
         <hr />
       </div>
-      <div className="container">
+      <div className="">
         <div className="mb-3 row justify-content-start gap-4 text-center">
           <div className="card col home-card mb-4 shadow-lg">
             <div className="card-header">

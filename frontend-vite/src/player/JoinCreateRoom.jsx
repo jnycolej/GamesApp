@@ -1,235 +1,104 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { getSocket, rememberRoom } from "../shared/socket";
-import { getPlayerKey, setDisplayName } from "../shared/playerIdentity";
-import * as React from "react";
+// /src/player/JoinCreateRoom.jsx
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import { gameSchedule } from "../assets/data/gameSchedules";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-//Background image imports
-import footballBackground from "../assets/football-background.png";
-import baseballBackground from "../assets/baseball-background.png";
-
-//Component imports
 import NavBar from "../components/NavBar";
+import { getSport, SPORTS } from "@/config/sports";
 
-// type Checked = DropdownMenuCheckboxItemProps["checked"];
+import { MatchupSelect } from "@/features/room/components/MatchupSelect";
+import { useRoomActions } from "@/features/room/hooks/useRoomActions";
+import { openShare, copyInvite } from "@/features/room/hooks/useInviteShare";
+import { inviteShareText } from "@/features/room/utils/invite";
 
 export default function JoinCreateRoom() {
-  const { game } = useParams();
+  const { game } = useParams(); // sportKey in the URL
   const nav = useNavigate();
+  const loc = useLocation();
 
-  //State declarations
+  const sport = getSport(game) ?? SPORTS.baseball;
+
+  // form state
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
-  const [selectedMatchup, setSelectedMatchup] = useState(null); // To change the half-time quiz based on who the player picks as the team they are rooting for
-  const [state, setState] = useState(null);
-  const [busy, setBusy] = useState(false);
+  const [selectedMatchup, setSelectedMatchup] = useState(null);
+
+  // invite UI
   const [inviteUrl, setInviteUrl] = useState(null);
   const [isHost, setIsHost] = useState(false);
 
-  const loc = useLocation();
-  const params = new URLSearchParams(loc.search);
+  // deep link params
+  const params = useMemo(() => new URLSearchParams(loc.search), [loc.search]);
   const deepRoom = (params.get("room") || "").toUpperCase();
   const deepToken = params.get("token") || null;
 
-  //Sets background based on game type
-  const background =
-    game === "baseball" ? baseballBackground : footballBackground;
+  const { busy, createRoom, joinRoom } = useRoomActions();
 
-  const backgroundStyle = {
-    backgroundImage: `url(${background})`,
-    minHeight: "100vh",
-    width: "100%",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    backgroundSize: "cover",
-  };
- const todaysDate = new Date().toLocaleDateString("en-CA"); 
+  // background style
+  const backgroundStyle = useMemo(
+    () => ({
+      backgroundImage: `url(${sport.background})`,
+      minHeight: "100vh",
+      width: "100%",
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      backgroundSize: "cover",
+    }),
+    [sport.background],
+  );
 
-  const TeamChoiceDropdown = ({ selected, onSelect }) => {
-    
-    const todaysGames = gameSchedule.filter(
-      (gameDay) => gameDay.date === todaysDate && gameDay.sport === game,
-    );
-
-    const value = selected
-      ? `${selected.date}:${selected.teams.join("-")}`
-      : "none";
-
-    const handleChange = (val) => {
-      if (val === "none") return onSelect(null);
-      const found = todaysGames.find(
-        (g) => `${g.date}:${g.teams.join("-")}` === val,
-      );
-
-      onSelect(found ?? null);
-    };
-    const buttonLabel = selected ? selected.teams.join(" vs ") : "Choose Teams";
-
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">{buttonLabel}</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-light w-56">
-          <DropdownMenuLabel className="text-center">
-            Games Today
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-
-          <DropdownMenuRadioGroup value={value} onValueChange={handleChange}>
-            <DropdownMenuRadioItem value="none">
-              Game not listed
-            </DropdownMenuRadioItem>
-
-            {todaysGames.length ? (
-              todaysGames.map((g) => {
-                const v = `${g.date}:${g.teams.join("-")}`;
-                return (
-                  <DropdownMenuRadioItem key={v} value={v}>
-                    {g.date} : {g.teams.join(" vs ")}
-                  </DropdownMenuRadioItem>
-                );
-              })
-            ) : (
-              <DropdownMenuRadioItem value="top">
-                No Games today
-              </DropdownMenuRadioItem>
-            )}
-          </DropdownMenuRadioGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
-  };
-  const shareText = (url) =>
-    `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${url}\nIf the link doesn't open, open the app -> join -> enter the room code.`;
-
-  const openShare = async () => {
-    if (!inviteUrl) return;
-    const text = shareText(inviteUrl);
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "Join my room", text, url: inviteUrl });
-      } catch {}
-    } else {
-      //fallback
-      await navigator.clipboard.writeText(text);
-      window.location.href = `sms:&body=${encodeURIComponent(text)}`;
-    }
-  };
-
-  const copyInvite = async () => {
-    if (!inviteUrl) return;
-    await navigator.clipboard.writeText(shareText(inviteUrl));
-    alert("Invite copied!");
-  };
-
+  // load saved display name
   useEffect(() => {
     const saved = localStorage.getItem("displayName");
     if (saved) setName(saved);
-
-    const s = getSocket();
-    const onUpd = (st) => setState(st);
-    s.on("room:updated", onUpd);
-    return () => s.off("room:updated", onUpd);
   }, []);
 
+  // prefill room code if coming from invite link
   useEffect(() => {
     if (deepRoom) setCode(deepRoom);
   }, [deepRoom]);
 
-  //Create a room
-  const createRoom = () => {
-    if (busy) return;
-    setBusy(true);
-    const displayName = (name || "Player").trim();
-    setDisplayName(displayName);
-
-    const key = getPlayerKey();
-    getSocket().emit(
-      "room:create",
-      { gameType: game, displayName, matchup: selectedMatchup, key },
-      (res) => {
-        setBusy(false);
-        if (!res?.ok) return alert(res?.error ?? "Failed to create room");
-        const { roomCode, token } = res;
-        //store token so the lobby can build the invite link for the host
-        localStorage.setItem(`inviteToken:${roomCode}`, token);
-
-        setIsHost(true); //creator is host
-        // Build invite URL on the client (no server 'origin' needed)
-        const origin = window.location.origin;
-        setInviteUrl(
-          `${origin}/${game}/join?room=${encodeURIComponent(
-            roomCode,
-          )}&token=${encodeURIComponent(token)}`,
-        );
-        rememberRoom(roomCode, displayName);
-        nav(`/${game}/lobby/${roomCode}`);
-      },
-    );
-  };
-
-  //Join a room
-  const joinRoom = (forcedCode, forcedToken) => {
-    if (busy) return;
-    const cleaned = (forcedCode || code || "")
-      .toUpperCase()
-      .replace(/[^A-Z0-9]/g, "")
-      .slice(0, 8);
-    if (!cleaned) return alert("Enter a room code");
-    setBusy(true);
-
-    const displayName = (name || "Player").trim();
-    setDisplayName(displayName);
-
-    const key = getPlayerKey();
-    console.log("[client] join click", {
-      cleaned,
-      displayName,
-      key,
-      forcedToken,
-      deepToken,
+  const onCreate = async () => {
+    const res = await createRoom({
+      sportKey: game,
+      name,
+      matchup: selectedMatchup,
     });
 
-    getSocket().emit(
-      "player:join",
-      {
-        roomCode: cleaned,
-        displayName,
-        key,
-        token: forcedToken ?? deepToken ?? null,
-      },
-      (res) => {
-        setBusy(false);
-        console.log("[client] join result", res);
-        if (!res?.ok) return alert(res?.error ?? "Join failed");
-        setState(res.state);
-        rememberRoom(cleaned, displayName); // <- save for auto-resume
-        nav(`/${game}/lobby/${cleaned}`);
-      },
-    );
+    if (!res?.ok) return alert(res?.error ?? "Failed to create room");
+
+    setIsHost(true);
+    setInviteUrl(res.inviteUrl);
+
+    nav(`/${game}/lobby/${res.roomCode}`);
   };
+
+  const onJoin = async ({ forcedCode, forcedToken } = {}) => {
+    const res = await joinRoom({
+      sportKey: game,
+      name,
+      code: forcedCode ?? code,
+      token: forcedToken ?? deepToken ?? null,
+    });
+
+    if (!res?.ok) return alert(res?.error ?? "Join failed");
+
+    nav(`/${game}/lobby/${res.roomCode}`);
+  };
+
+  const shareText = (url) =>
+    inviteShareText
+      ? inviteShareText({ sportKey: game, url })
+      : `Join my ${String(game).toUpperCase()} room on Sports Shuffle: ${url}\nIf the link doesn't open, open the app -> join -> enter the room code.`;
 
   return (
     <div className="p-5 gap-3" style={backgroundStyle}>
       <NavBar />
+
       <h2 className="display-1 text-center text-white">
-        {game?.toUpperCase()} - Multiplayer
+        {sport.displayName} - Multiplayer
       </h2>
 
+      {/* CREATE */}
       <div className="m-2 input-group" style={{ marginTop: 16 }}>
         <input
           placeholder="YOUR NAME"
@@ -237,11 +106,14 @@ export default function JoinCreateRoom() {
           onChange={(e) => setName(e.target.value)}
           className="form-control"
         />
-        <TeamChoiceDropdown
+
+        <MatchupSelect
+          sportKey={game}
           selected={selectedMatchup}
           onSelect={setSelectedMatchup}
         />
-        <button className="btn btn-danger" onClick={createRoom} disabled={busy}>
+
+        <button className="btn btn-danger" onClick={onCreate} disabled={busy}>
           {busy ? "Creating..." : "Create Room"}
         </button>
 
@@ -251,18 +123,21 @@ export default function JoinCreateRoom() {
             style={{ opacity: 0.95 }}
           >
             <span className="me-2">Invite link ready:</span>
+
             <button
               className="btn btn-outline-primary btn-sm"
-              onClick={openShare}
+              onClick={() => openShare({ sportKey: game, inviteUrl })}
             >
               Share
             </button>
+
             <button
               className="btn btn-outline-secondary btn-sm"
-              onClick={copyInvite}
+              onClick={() => copyInvite({ sportKey: game, inviteUrl })}
             >
               Copy
             </button>
+
             <a
               className="btn btn-outline-success btn-sm"
               href={`sms:&body=${encodeURIComponent(shareText(inviteUrl))}`}
@@ -273,6 +148,7 @@ export default function JoinCreateRoom() {
         )}
       </div>
 
+      {/* JOIN */}
       <div className="input-group m-2" style={{ marginTop: 16 }}>
         <input
           placeholder="ROOM CODE"
@@ -282,34 +158,18 @@ export default function JoinCreateRoom() {
           inputMode="text"
           style={{ textTransform: "uppercase" }}
         />
+
         <input
           placeholder="YOUR NAME"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="form-control"
         />
-        <button
-          className="btn btn-primary"
-          onClick={() => joinRoom()}
-          disabled={busy}
-        >
+
+        <button className="btn btn-primary" onClick={() => onJoin()} disabled={busy}>
           {busy ? "Joining..." : "Join"}
         </button>
       </div>
-
-      <pre
-        className="display-4 text-dark fw-bold"
-        style={{
-          marginLeft: 10,
-          marginTop: 16,
-          fontSize: "1rem",
-          background: "rgba(255,255,255,0.7)",
-          padding: 12,
-          borderRadius: 8,
-        }}
-      >
-        {state ? JSON.stringify(state, null, 2) : "No room yet."}
-      </pre>
     </div>
   );
 }

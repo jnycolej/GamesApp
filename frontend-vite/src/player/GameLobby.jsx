@@ -1,12 +1,12 @@
 import { useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSocket, getPlayerKey } from "../shared/socket";
-import { getDisplayName } from "../shared/playerIdentity";
+import { getSocket } from "@/shared/socket";
+import { getDisplayName, getPlayerKey} from "@/shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
 
 //Screen Background imports
-import footballBackground from '../assets/football-background.png';
-import baseballBackground from '../assets/baseball-background.png';
+import footballBackground from '../assets/images/football-background.png';
+import baseballBackground from '../assets/images/baseball-background.png';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)

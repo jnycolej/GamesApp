@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Scoreboard from "../components/Scoreboard";
 import TriviaQuiz from "../components/TriviaQuiz";
+import EventBar from "@/components/EventBar";
 
 //Card Decks (temporary while transitioning single player into server)
 import footballDeck from "../assets/footballDeck.json";
@@ -15,8 +16,9 @@ import baseballDeck from "../assets/baseballDeck.json";
 import basketballDeck from "../assets/basketballDeck.json";
 
 //Game card backgrounds
-import footballBackground from "../assets/football-background.png";
-import baseballBackground from "../assets/baseball-background.png";
+import footballBackground from "@/assets/images/football-background.png";
+import baseballBackground from "@/assets/images/baseball-background.png";
+import basketballBackground from "@/assets/images/basketballbackground.png";
 
 export default function GameScreen() {
   const { game, mode } = useParams();
@@ -102,9 +104,12 @@ export default function GameScreen() {
 
   //Timer for displaying the quiz
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setQuizUnlocked(true);
-    }, 10 * 60 * 1000);
+    const timer = setTimeout(
+      () => {
+        setQuizUnlocked(true);
+      },
+      10 * 60 * 1000,
+    );
 
     return () => clearTimeout(timer);
   }, []);
@@ -117,8 +122,24 @@ export default function GameScreen() {
   }, []);
 
   //Picks which background to use based on the game being played
-  const background =
-    game === "baseball" ? baseballBackground : footballBackground;
+  let background;
+
+  switch (game) {
+    case "baseball":
+      background = baseballBackground;
+      break;
+    case "basketball":
+      background = basketballBackground;
+      break;
+    case "football":
+      background = footballBackground;
+      break;
+    default:
+      background = footballBackground;
+      break;
+  }
+
+  game === "baseball" ? baseballBackground : footballBackground;
 
   useEffect(() => {
     if (actualMode !== "single") return;
@@ -180,11 +201,16 @@ export default function GameScreen() {
         //Checks to see if there are players in the room
         st.players = st.players
           .filter((p) => p && typeof p === "object" && p.id) //Cleans the player list
-          .map((p) => ({
+          .map((p) => {
+            const pts = Number(p.points ?? p.score ?? 0) || 0;
             //updates the player array by cloning the previous one and cleans up their hands
-            ...p,
-            hand: Array.isArray(p.hand) ? p.hand.filter(Boolean) : p.hand,
-          }));
+            return {
+              ...p,
+              points: pts,
+              score: pts,
+              hand: Array.isArray(p.hand) ? p.hand.filter(Boolean) : p.hand,
+            };
+          });
       }
       setRoom(st);
     };
@@ -235,7 +261,7 @@ export default function GameScreen() {
     //ignore plays on this card surface for a short window
     cardPlayIgnoreUntilRef.current.set(
       card.id,
-      Date.now() + SACRIFICE_SHIELD_MS
+      Date.now() + SACRIFICE_SHIELD_MS,
     );
 
     setPendingSacrificeId(card.id);
@@ -243,7 +269,7 @@ export default function GameScreen() {
       clearTimeout(sacrificeTimer);
       setSacrificeTimer(null);
     }
-    console.log("[UI] sacrifice click", { cardId: card.id });
+    //console.log("[UI] sacrifice click", { cardId: card.id });
 
     socket.emit("player:sacrifice", { cardId: card.id }, (ack) => {
       if (ack?.error) {
@@ -266,7 +292,12 @@ export default function GameScreen() {
 
   //Puts together the update messages displayed in the game updates component based on the card played
   const formatUpdate = (ev) => {
-    const name = ev?.player?.name || "Player";
+    const id = ev?.player?.id || ev?.playerId;
+    const fromRoom =
+      room?.players?.find((p) => p.id === id)?.displayName ||
+      room?.players?.find((p) => p.id === id)?.name;
+
+    const name = ev?.player?.name || fromRoom || "Player";
     const delta = Number(ev?.deltaPoints ?? 0);
     const pts = Math.abs(delta);
     const c = ev?.card || {};
@@ -280,9 +311,20 @@ export default function GameScreen() {
 
     switch (ev?.type) {
       case "CARD_PLAYED":
-        return `${name} played ${quoted} for ${pts} ${ptsWord}.`;
+        return (
+          <span className="text-green-500 font-semibold">
+            🟢 +{pts} 
+            <span className="font-bold"> {name} </span> 
+            <span className="text-muted-foreground"> - {quoted}</span>  
+          </span>);
       case "CARD_SACRIFICED":
-        return `${name} sacrificed ${quoted} for a loss of ${pts} ${ptsWord}.`;
+        return (
+          <span className="text-red-500 font-semibold">
+            🔴 -{pts}
+            <span className="font-bold"> {name} </span>
+            <span className="text-muted-foreground"> - {quoted}</span>
+          </span>
+        );
       case "SCORE_ADJUSTED":
         return `${name} ${delta > 0 ? "gains" : "loses"} ${pts} ${ptsWord}.`;
       case "TURN_STARTED":
@@ -421,49 +463,57 @@ export default function GameScreen() {
     if (actualMode === "single") return;
 
     socket.emit("hand:getMine", {}, (res) =>
-      setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : [])
+      setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
     );
     socket.emit("score:getMine", {}, (res) => setPoints(res?.score ?? 0));
 
     const onHand = (hand) =>
       setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
-    const onScore = (score) => setPoints(score ?? 0);
+    const onScore = (payload) => {
+      // accept number OR { score: number } OR { newScore: number }
+      const next =
+        typeof payload === "number"
+          ? payload
+          : typeof payload === "object" && payload
+            ? Number(payload.score ?? payload.newScore ?? 0)
+            : 0;
 
-    socket.on("hand:update", onHand);
+      setPoints(next);
+    };
+
     socket.on("score:update", onScore);
-
+    socket.on("hand:update", onHand);
     return () => {
       socket.off("hand:update", onHand);
       socket.off("score:update", onScore);
     };
   }, [actualMode, socket, setMyHand]);
 
-useEffect(() => {
-  if (!socket) return;
+  useEffect(() => {
+    if (!socket) return;
 
-  const onPlayerUpdated = ({ playerId, score }) => {
-    if (actualMode === "single") return;
+    const onPlayerUpdated = ({ playerId, score }) => {
+      if (actualMode === "single") return;
 
-    setRoom((prev) => {
-      if (!prev) return prev;
+      setRoom((prev) => {
+        if (!prev) return prev;
 
-      const players = Array.isArray(prev.players) ? prev.players : [];
+        const players = Array.isArray(prev.players) ? prev.players : [];
 
-      const nextPlayers = players.map((p) =>
-        p?.id === playerId
-          ? { ...p, points: score, score } // keep both for now
-          : p
-      );
+        const nextPlayers = players.map((p) =>
+          p?.id === playerId
+            ? { ...p, points: score, score } // keep both for now
+            : p,
+        );
 
-      return { ...prev, players: nextPlayers };
-    });
-  };
+        return { ...prev, players: nextPlayers };
+      });
+    };
 
-  socket.on("player:updated", onPlayerUpdated);
+    socket.on("player:updated", onPlayerUpdated);
 
-  return () => socket.off("player:updated", onPlayerUpdated);
-}, [actualMode, socket]);
-
+    return () => socket.off("player:updated", onPlayerUpdated);
+  }, [actualMode, socket]);
 
   const handleCardClick = (index) => {
     if (actualMode === "single") {
@@ -531,7 +581,7 @@ useEffect(() => {
 
   const opponents = useMemo(
     () => (socketId ? players.filter((p) => p.id !== socketId) : []),
-    [players, socketId]
+    [players, socketId],
   );
 
   function handleLeaveGame() {
@@ -542,8 +592,10 @@ useEffect(() => {
   return (
     <div className="p-5" style={backgroundStyle}>
       <NavBar />
-      <h1 className="text-white text-center">{room?.matchup.teams[0]} vs. {room?.matchup.teams[1]}</h1>
-      
+      <h1 className="text-white text-center">
+        {room?.matchup.teams[0]} vs. {room?.matchup.teams[1]}
+      </h1>
+
       {/* Scoreboard */}
       <div className="mb-2 rounded">
         <h2 className="display-3 text-center text-white">Scoreboard</h2>
@@ -568,8 +620,8 @@ useEffect(() => {
                 ev?.deltaPoints > 0
                   ? "text-success"
                   : ev?.deltaPoints < 0
-                  ? "text-danger"
-                  : "text-body";
+                    ? "text-danger"
+                    : "text-body";
               const abs = ev?.at ? formatClock(ev.at) : "";
               const rel = ev?.at ? formatRelative(ev.at, nowTick) : "";
 
@@ -597,6 +649,7 @@ useEffect(() => {
         </div>
       </div>
 
+            <EventBar gameType={game}/>
       {/* Button trigger modal */}
       {room?.matchup && (
         <div className="text-center my-3">
@@ -624,7 +677,7 @@ useEffect(() => {
       <div
         className="modal fade"
         id="quizModal"
-        tabindex={-1}
+        tabIndex={-1}
         role="dialog"
         aria-labelledby="quizModalLabel"
         aria-hidden="true"
@@ -646,12 +699,26 @@ useEffect(() => {
               <TriviaQuiz
                 matchup={room?.matchup}
                 onAward={(delta) => {
-                  if (actualMode === "single") {
-                    setPoints((p) => p + Number(delta || 0));
+                  const d = Number(delta);
+
+                  // ✅ guard: if delta isn't a real number, do nothing (prevents NaN)
+                  if (!Number.isFinite(d)) {
+                    console.warn("onAward received non-numeric delta:", delta);
                     return;
                   }
-                  socket.emit("score:adjust", { delta }, (ack) => {
-                    if (!ack?.ok) console.warn("Award failed:", ack?.error);
+
+                  if (actualMode === "single") {
+                    setPoints((p) => (Number.isFinite(p) ? p : 0) + d);
+                    return;
+                  }
+
+                  socket.emit("score:adjust", { delta: d }, (ack) => {
+                    if (!ack?.ok)
+                      return console.warn("Award failed:", ack?.error);
+
+                    // ✅ your server returns { ok: true, newScore }
+                    const next = Number(ack.newScore);
+                    setPoints(Number.isFinite(next) ? next : 0);
                   });
                 }}
               />

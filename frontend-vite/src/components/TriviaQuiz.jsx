@@ -3,9 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {triviaQuestions} from "../assets/data/triviaQuestions";
 
 const TriviaQuiz = ({matchup, onAward }) => {
-  // const [teamsPlaying, setTeamsPlaying] = useState(["LSU"]);
- const teams = matchup;
-
   //Fisher-Yates shuffle for the question  
   const shuffleInPlace = (arr) => {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -15,33 +12,57 @@ const TriviaQuiz = ({matchup, onAward }) => {
     return arr;
   };
 
-const matchupTeams = matchup?.teams ?? [];
-const matchupSport = matchup?.sport ?? null;
-const matchupLeague = matchup?.league ?? null;
+const normalize = (s) =>
+  String(s || "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 
-const filteredQuestions = triviaQuestions.filter((q) => {
-  // optional tightening:
-  if (matchupSport && q.sport !== matchupSport) return false;
-  if (matchupLeague && q.league !== matchupLeague) return false;
+const TEAM_ALIASES = {
+  "indiana university": ["university of indiana", "indiana", "hoosiers"],
+  "university of miami": ["miami", "miami hurricanes", "the u"],
+  "la clippers": ["los angeles clippers", "clippers"],
+  "new orleans pelicans": ["pelicans", "nola pelicans"],
+  "lsu": ["louisiana state", "louisiana state university", "tigers"],
+};
 
-  // team overlap (any question team appears in matchup teams)
-  return (q.teams ?? []).some((t) => matchupTeams.includes(t));
-});
+const aliasGroups = useMemo(() => {
+  return Object.entries(TEAM_ALIASES).map(([canonical, aliases]) => {
+    const group = new Set([normalize(canonical), ...aliases.map(normalize)]);
+    return group;
+  });
+}, []);
 
-if (!matchup) {
-  return null; // or a message like: "Select a matchup to play halftime trivia."
-}
+const expandTeam = (team) => {
+  const t = normalize(team);
+  const group = aliasGroups.find((g) => g.has(t));
+  return group ? [...group] : [t];
+};
 
-if (filteredQuestions.length === 0) {
-  return (
-    <div className="p-3">
-      <h2>Half-time Lightning Round</h2>
-      <p className="text-muted mb-0">
-        No trivia available for this matchup yet.
-      </p>
-    </div>
-  );
-}
+const filteredQuestions = useMemo(() => {
+  if (!matchup) return [];
+
+  const matchupTeams = matchup?.teams ?? [];
+  const matchupSport = matchup?.sport ?? null;
+  const matchupLeague = matchup?.league ?? null;
+  const matchupTeamSet = new Set(matchupTeams.flatMap((t) => expandTeam(t)));
+
+  return triviaQuestions.filter((q) => {
+    // Keep sport/league checks optional so team-matched questions still show.
+    if (matchupSport && q.sport && normalize(q.sport) !== normalize(matchupSport)) {
+      return false;
+    }
+    if (matchupLeague && q.league && normalize(q.league) !== normalize(matchupLeague)) {
+      return false;
+    }
+
+    return (q.teams ?? [])
+      .flatMap((t) => expandTeam(t))
+      .some((t) => matchupTeamSet.has(t));
+  });
+}, [matchup, aliasGroups]);
+
 
 const questions = useMemo(() => {
   const picked = shuffleInPlace([...filteredQuestions]).slice(0, 5);
@@ -52,8 +73,7 @@ const questions = useMemo(() => {
     }));
     return { ...q, options: shuffleInPlace(optionObjs) };
   });
-}, [matchupSport, matchupLeague, matchupTeams.join("|")]);
-
+}, [filteredQuestions]);
 
   const [currentIndex, setCurrentIndex] = useState(0); //Current question in the block
   const [selectedAnswer, setSelectedAnswer] = useState(""); //Stores the pote ntial answer for the question
@@ -69,7 +89,22 @@ const questions = useMemo(() => {
       awardedRef.current = true;
       onAward?.(quizPoints);
     }
-  }, [showSummary, quizPoints, onAward]);
+  }, [showSummary, quizPoints, onAward]);  
+
+if (!matchup) {
+  return null; // or a message like: "Select a matchup to play halftime trivia."
+}  
+
+if (filteredQuestions.length === 0) {
+  return (
+    <div className="p-3">
+      <h2>Half-time Lightning Round</h2>
+      <p className="text-muted mb-0">
+        No trivia available for this matchup yet.
+      </p>
+    </div>
+  );
+}
 
   if (showSummary) {
     return (

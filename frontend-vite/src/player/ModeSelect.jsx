@@ -7,9 +7,9 @@ import NavBar from "../components/NavBar";
 import HowToPlay from "../components/HowToPlay";
 
 //Background imports
-import footballBackground from "../assets/football-background.png";
-import baseballBackground from "../assets/baseball-background.png";
-import basketballBackground from "../assets/basketballbackground.png";
+import footballBackground from "@/assets/images/football-background.png";
+import baseballBackground from "@/assets/images/baseball-background.png";
+import basketballBackground from "@/assets/images/basketballbackground.png";
 
 export default function ModeSelect() {
   const { game } = useParams(); //Chooses which game you are playing

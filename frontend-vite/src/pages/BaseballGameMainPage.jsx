@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import jsonData from '../assets/baseballDeck.json';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
-import bg from '../assets/baseball-background.png';
+import bg from '@/assets/images/baseball-background.png';
 
 const BaseballGameMainPage = () => {
     const [hand, setHand] = useState([]);
