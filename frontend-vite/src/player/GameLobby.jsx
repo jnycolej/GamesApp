@@ -1,198 +1,188 @@
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { getSocket } from "@/shared/socket";
-import { getDisplayName, getPlayerKey} from "@/shared/playerIdentity";
+import { getDisplayName, getPlayerKey } from "@/shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
 
-//Screen Background imports
-import footballBackground from '../assets/images/football-background.png';
-import baseballBackground from '../assets/images/baseball-background.png';
+import { getSport, SPORTS } from "@/config/sports";
+import { buildInviteUrl, inviteShareText } from "@/features/room/utils/invite";
+import { openShare, copyInvite } from "@/features/room/hooks/useInviteShare";
 
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (optional)
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-//Component imports
 import NavBar from "../components/NavBar";
 import HowToPlay from "../components/HowToPlay";
 
+const normalizeRoomCode = (raw) =>
+  String(raw || "")
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, "")
+    .slice(0, 8);
 
 export default function GameLobby() {
-    const { game, code } = useParams();
-    const { room, setRoom } = useRoomChannel();
-    const nav = useNavigate();
-    const socket = getSocket();
+  const { game, code } = useParams();
+  const roomCode = normalizeRoomCode(code);
 
-    //Invite players using a text or sharing/copying
-    const inviteToken = (code && localStorage.getItem(`inviteToken:${code}`)) || null;
-    const inviteUrl =
-        inviteToken
-            ? `${window.location.origin}/${game}/join?room=${encodeURIComponent(code)}&token=${encodeURIComponent(inviteToken)}`
-            : null;
-    
-    //Changes the background of the lobby based on the game type selected
-    const background = game === 'baseball' ? baseballBackground : footballBackground;
-    //Styles the background image
-    const backgroundStyle = {
-        backgroundImage: `url(${background})`,
-        minHeight: '100vh',
-        width: '100%',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
+  const { room, setRoom } = useRoomChannel();
+  const nav = useNavigate();
+  const socket = getSocket();
+
+  const sport = getSport(game) ?? SPORTS.baseball;
+
+  // Host can invite players using a text or sharing/copying
+  const inviteToken =
+    (roomCode && localStorage.getItem(`inviteToken:${roomCode}`)) || null;
+
+  const inviteUrl = useMemo(() => {
+    if (!inviteToken || !roomCode) return null;
+    return buildInviteUrl({
+      origin: window.location.origin,
+      sportKey: game,
+      roomCode,
+      token: inviteToken,
+    });
+  }, [inviteToken, roomCode, game]);
+
+  const backgroundStyle = useMemo(
+    () => ({
+      backgroundImage: `url(${sport.background})`,
+      minHeight: "100vh",
+      width: "100%",
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      backgroundSize: "cover",
+    }),
+    [sport.background],
+  );
+
+  // If phase flips to 'playing', take everyone to the game screen
+  useEffect(() => {
+    if (room?.phase === "playing") {
+      nav(`/${game}/game`);
     }
+  }, [room?.phase, game, nav]);
 
-    //If phase flips to 'playing', take everyone to the game screen
-    useEffect(() => {
-        if (room?.phase === "playing") {
-            nav(`/${game}/game`);
-        }
-    }, [room?.phase, game, nav]);
+  /**
+   * Ensure this client is in the URL room.
+   * - We do ONE attempt per roomCode per mount
+   * - Try resume first, then join
+   * - No focus/visibility handlers (socket.js already handles reconnect resume)
+   */
+  const ensuredRef = useRef({ roomCode: null, done: false });
 
-    // Keep room state in sync with server broadcasts
-    useEffect(() => {
-        const onUpdated = (state) => setRoom(state);
-        socket.on("room:updated", onUpdated);
-        return () => socket.off("room:updated", onUpdated);
-    }, [socket, setRoom]);
+  useEffect(() => {
+    if (!roomCode) return;
 
-    //Ensure this socket is actually in the room identified by the URL code
-    useEffect(() => {
-        if (!code) return;
-        if (room?.code === code) return;
+    // Already synced to this room in state
+    if (room?.code === roomCode) return;
 
-        const ensureKey = () => {
-            let k = localStorage.getItem("playerKey");
-            if (!k) {
-                const gen =
-                    (typeof window !== "undefined" &&
-                        window.crypto &&
-                        typeof window.crypto.randomUUID === "function" &&
-                        window.crypto.randomUUID()) ||
-                    (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).toUpperCase();
-                localStorage.setItem("playerKey", gen);
-                k = gen;
-            }
-            return k;
-        };
+    // Guard: do not spam resume/join for the same code
+    if (ensuredRef.current.roomCode === roomCode && ensuredRef.current.done) return;
 
-        const key = ensureKey();
-        const displayName = getDisplayName();
+    ensuredRef.current = { roomCode, done: true };
 
-        // Try to resume first (returns ok if you were previously in this room)
-        socket.emit("player:resume", { roomCode: code, displayName, key }, (res) => {
-            if (res?.ok && res.state) {
-                setRoom(res.state);
-                return;
-            }
-            //Otherwise, join fresh
-            socket.emit("player:join", { roomCode: code, displayName, key }, (res2) => {
-                if (res2?.ok && res2.state) setRoom(res2.state);
+    const displayName = getDisplayName();
+    const key = getPlayerKey();
 
-            });
-        });
-    }, [code, room?.code, setRoom, socket]);
+    socket.emit("player:resume", { roomCode, displayName, key }, (res) => {
+      if (res?.ok && res.state) {
+        setRoom(res.state);
+        return;
+      }
 
-    // Auto-resume when you return from message
-    useEffect(() => {
-        if (!code) return;
+      socket.emit("player:join", { roomCode, displayName, key }, (res2) => {
+        if (res2?.ok && res2.state) setRoom(res2.state);
+      });
+    });
+  }, [roomCode, room?.code, socket, setRoom]);
 
-        const resume = () => {
-            const roomCode = code || localStorage.getItem("roomCode");
-            if (!roomCode) return;
+  // Your note says allow start even if alone — keep >= 1
+  const canStart = useMemo(
+    () => !!room && (room.players?.length ?? 0) >= 1,
+    [room],
+  );
 
-            const displayName = getDisplayName();
-            let key = localStorage.getItem("playerKey");
-            if (!key) {
-                // fallback if key was cleared
-                key =
-                    (window.crypto?.randomUUID?.()) ||
-                    (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).toUpperCase();
-                localStorage.setItem("playerKey", key);
-            }
+  const startAndDeal = () => {
+    if (!canStart) return;
 
-            socket.emit("player:resume", { roomCode, displayName, key }, (res) => {
-                if (res?.ok && res.state) setRoom(res.state);
-            });
-        };
+    const key = getPlayerKey();
+    socket.emit("game:startAndDeal", { key }, (res) => {
+      if (!res?.ok) return alert(res?.error ?? "Failed to start");
+      nav(`/${game}/game`);
+    });
+  };
 
-        const onVisibility = () => { if (!document.hidden) resume(); };
+  return (
+    <div style={backgroundStyle}>
+      <div className="p-5">
+        <NavBar />
 
-        window.addEventListener("focus", resume);
-        document.addEventListener("visibilitychange", onVisibility);
+        <h2 className="display-2 text-center text-light">
+          ROOM - <strong>{room?.code ?? roomCode ?? ""}</strong>
+        </h2>
 
-        return () => {
-            window.removeEventListener("focus", resume);
-            document.removeEventListener("visibilitychange", onVisibility);
-        };
-    }, [socket, code, setRoom]);
-
-    //Verifies there is a room with at least two players in it
-    const canStart = useMemo(
-        () => !!room && (room.players?.length ?? 0) >= 1,
-        [room]
-    );
-
-    //If there is at least 2 players then the game can start
-    const startAndDeal = () => {
-        if (!canStart) return;
-        const key = getPlayerKey();
-        getSocket().emit("game:startAndDeal", { key }, (res) => {
-            if (!res?.ok) return alert(res.error);
-            nav(`/${game}/game`);
-        });
-    };
-
-    return (
-        <div className="" style={backgroundStyle}>
-            <div className="p-5">
-                <NavBar />
-                
-                 <h2 className="display-2 text-center text-light">ROOM - <strong>{room?.code ?? code ?? ""}</strong></h2>
-               
-                <div className="d-flex justify-content-center">
-                    <HowToPlay />                    
-                </div>
-
-                <div>
-                {inviteUrl && (
-                    <div className="alert alert-light mt-3 d-flex gap2 align-items-center" style={{ opacity: 0.95 }}>
-                        <span className="me-2">Invite link:</span>
-                        <button
-                            className="btn btn-outline-primary btn-sm"
-                            onClick={async () => {
-                                try {
-                                    if (navigator.share) {
-                                        await navigator.share({ title: "Join my room", text: `Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`, url: inviteUrl });
-                                    } else {
-                                        await navigator.clipboard.writeText(`Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`);
-                                        alert("Invite copied!");
-                                    }
-                                } catch { }
-                            }}
-                        >
-                            Share / Copy
-                        </button>
-                        <a
-                            className="btn btn-outline-success btn-sm"
-                            href={`sms:&body=${encodeURIComponent(`Join my ${game?.toUpperCase()} room on Sports Shuffle: ${inviteUrl}`)}`}
-                        >
-                            Text
-                        </a>
-                    </div>
-                )}                    
-                </div>
-
-                <h4 className="fs-3 text-light text-center m3">Please wait for the host to Start the Game</h4>
-                <p className="m-3 text-light text-center fs-2">Players: {room?.players?.length ?? 0}</p>
-                {/* List of Players */}
-                <ul className="gameLobby">
-                    {room?.players?.map(p => (
-                        <li className="text-light text-center fs-4" key={p.id}>{p.name} {p.connected === false ? '(reconnecting...)' : ''}</li>
-                    ))}
-                </ul>
-                <button className="btn justify-content-center btn-lg btn-light " onClick={startAndDeal} disabled={!canStart}>Start & Deal</button>
-            </div>
-
+        <div className="d-flex justify-content-center">
+          <HowToPlay />
         </div>
-    );
+
+        {inviteUrl && (
+          <div
+            className="alert alert-light mt-3 d-flex gap-2 align-items-center"
+            style={{ opacity: 0.95 }}
+          >
+            <span className="me-2">Invite link:</span>
+
+            <button
+              className="btn btn-outline-primary btn-sm"
+              onClick={() => openShare({ sportKey: game, inviteUrl })}
+            >
+              Share
+            </button>
+
+            <button
+              className="btn btn-outline-secondary btn-sm"
+              onClick={() => copyInvite({ sportKey: game, inviteUrl })}
+            >
+              Copy
+            </button>
+
+            <a
+              className="btn btn-outline-success btn-sm"
+              href={`sms:&body=${encodeURIComponent(
+                inviteShareText({ sportKey: game, url: inviteUrl }),
+              )}`}
+            >
+              Text
+            </a>
+          </div>
+        )}
+
+        <h4 className="fs-3 text-light text-center m3">
+          Please wait for the host to Start the Game
+        </h4>
+
+        <p className="m-3 text-light text-center fs-2">
+          Players: {room?.players?.length ?? 0}
+        </p>
+
+        <ul className="gameLobby">
+          {room?.players?.map((p) => (
+            <li className="text-light text-center fs-4" key={p.id}>
+              {p.name} {p.connected === false ? "(reconnecting...)" : ""}
+            </li>
+          ))}
+        </ul>
+
+        <button
+          className="btn justify-content-center btn-lg btn-light"
+          onClick={startAndDeal}
+          disabled={!canStart}
+        >
+          Start & Deal
+        </button>
+      </div>
+    </div>
+  );
 }

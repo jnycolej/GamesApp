@@ -103,16 +103,16 @@ export default function GameScreen() {
   }
 
   //Timer for displaying the quiz
-  useEffect(() => {
-    const timer = setTimeout(
-      () => {
-        setQuizUnlocked(true);
-      },
-      10 * 60 * 1000,
-    );
+  // useEffect(() => {
+  //   const timer = setTimeout(
+  //     () => {
+  //       setQuizUnlocked(true);
+  //     },
+  //     10 * 60 * 1000,
+  //   );
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   //Tracks the relative time
   const [nowTick, setNowTick] = useState(Date.now());
@@ -138,8 +138,6 @@ export default function GameScreen() {
       background = footballBackground;
       break;
   }
-
-  game === "baseball" ? baseballBackground : footballBackground;
 
   useEffect(() => {
     if (actualMode !== "single") return;
@@ -187,42 +185,24 @@ export default function GameScreen() {
   }, [actualMode, game, setMyHand, setPoints, setRoom]);
 
   //updates the game room
-  useEffect(() => {
-    if (actualMode === "single") return;
-    const update = () => setSocketId(socket.id || null);
-    update();
-    socket.on("connect", update);
-    socket.on("reconnect", update);
-    socket.on("disconnect", () => setSocketId(null));
-    socket.emit("room:get", {}, (res) => res?.ok && setRoom(res.state));
+useEffect(() => {
+  if (actualMode === "single") return;
 
-    const onRoom = (st) => {
-      if (st?.players?.length) {
-        //Checks to see if there are players in the room
-        st.players = st.players
-          .filter((p) => p && typeof p === "object" && p.id) //Cleans the player list
-          .map((p) => {
-            const pts = Number(p.points ?? p.score ?? 0) || 0;
-            //updates the player array by cloning the previous one and cleans up their hands
-            return {
-              ...p,
-              points: pts,
-              score: pts,
-              hand: Array.isArray(p.hand) ? p.hand.filter(Boolean) : p.hand,
-            };
-          });
-      }
-      setRoom(st);
-    };
-    socket.on("room:updated", onRoom);
+  const update = () => setSocketId(socket.id || null);
+  const onDisconnect = () => setSocketId(null);
 
-    return () => {
-      socket.off("connect", update);
-      socket.off("reconnect", update);
-      socket.off("disconnect", update);
-      socket.off("room:updated", onRoom);
-    };
-  }, [actualMode, socket, setRoom]);
+  update();
+
+  socket.on("connect", update);
+  socket.on("reconnect", update);
+  socket.on("disconnect", onDisconnect);
+
+  return () => {
+    socket.off("connect", update);
+    socket.off("reconnect", update);
+    socket.off("disconnect", onDisconnect);
+  };
+}, [actualMode, socket]);
 
   // handles the card sacrifice and the new player score
   const handleSacrifice = (card) => {
@@ -392,12 +372,13 @@ export default function GameScreen() {
     socket.on("connect", onConnect);
 
     //Refresh history whenever the room state swaps
-    socket.on("room:updated", () => socket.emit("game:history:request"));
+const onRoomUpdated = () => socket.emit("game:history:request");
+socket.on("room:updated", onRoomUpdated);
 
-    return () => {
+return () => {
+  socket.off("room:updated", onRoomUpdated);
       socket.off("game:update", onUpdate);
       socket.off("game:history", onHistory);
-      socket.off("connect", onConnect);
       socket.off("connect", onConnect);
     };
   }, [actualMode, socket]);
@@ -459,61 +440,41 @@ export default function GameScreen() {
   }
 
   // my hand + my score
-  useEffect(() => {
-    if (actualMode === "single") return;
+useEffect(() => {
+  if (actualMode === "single") return;
 
-    socket.emit("hand:getMine", {}, (res) =>
-      setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
-    );
-    socket.emit("score:getMine", {}, (res) => setPoints(res?.score ?? 0));
+  // One-time sync on mount (or when mode changes)
+  socket.emit("hand:getMine", {}, (res) =>
+    setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
+  );
 
-    const onHand = (hand) =>
-      setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
-    const onScore = (payload) => {
-      // accept number OR { score: number } OR { newScore: number }
-      const next =
-        typeof payload === "number"
-          ? payload
-          : typeof payload === "object" && payload
-            ? Number(payload.score ?? payload.newScore ?? 0)
-            : 0;
+  socket.emit("score:getMine", {}, (res) =>
+    setPoints(Number(res?.score ?? 0) || 0),
+  );
+}, [actualMode, socket, setMyHand]);
 
-      setPoints(next);
-    };
+  // useEffect(() => {
+  //   if (!socket) return;
 
-    socket.on("score:update", onScore);
-    socket.on("hand:update", onHand);
-    return () => {
-      socket.off("hand:update", onHand);
-      socket.off("score:update", onScore);
-    };
-  }, [actualMode, socket, setMyHand]);
+  //   const onPlayerUpdated = ({ playerId, score }) => {
+  //     if (actualMode === "single") return;
 
-  useEffect(() => {
-    if (!socket) return;
+  //     setRoom((prev) => {
+  //       if (!prev) return prev;
 
-    const onPlayerUpdated = ({ playerId, score }) => {
-      if (actualMode === "single") return;
+  //       const players = Array.isArray(prev.players) ? prev.players : [];
 
-      setRoom((prev) => {
-        if (!prev) return prev;
+  //       const nextPlayers = players.map((p) =>
+  //         p?.id === playerId
+  //           ? { ...p, points: score, score } // keep both for now
+  //           : p,
+  //       );
 
-        const players = Array.isArray(prev.players) ? prev.players : [];
+  //       return { ...prev, players: nextPlayers };
+  //     });
+  //   };
 
-        const nextPlayers = players.map((p) =>
-          p?.id === playerId
-            ? { ...p, points: score, score } // keep both for now
-            : p,
-        );
-
-        return { ...prev, players: nextPlayers };
-      });
-    };
-
-    socket.on("player:updated", onPlayerUpdated);
-
-    return () => socket.off("player:updated", onPlayerUpdated);
-  }, [actualMode, socket]);
+  // }, [actualMode, socket]);
 
   const handleCardClick = (index) => {
     if (actualMode === "single") {
@@ -592,9 +553,11 @@ export default function GameScreen() {
   return (
     <div className="p-5" style={backgroundStyle}>
       <NavBar />
-      <h1 className="text-white text-center">
-        {room?.matchup.teams[0]} vs. {room?.matchup.teams[1]}
-      </h1>
+<h1 className="text-white text-center">
+  {room?.matchup?.teams?.length
+    ? `${room.matchup.teams[0]} vs. ${room.matchup.teams[1]}`
+    : `${game?.toUpperCase()} Game`}
+</h1>
 
       {/* Scoreboard */}
       <div className="mb-2 rounded">

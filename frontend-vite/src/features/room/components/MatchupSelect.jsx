@@ -11,15 +11,46 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function MatchupSelect({ sportKey, selected, onSelect }) {
-  const todaysGames = getTodaysMatchups({ sportKey });
+function matchupSignature(g) {
+  const date = String(g?.date ?? "");
+  const sport = String(g?.sport ?? "");
+  const teams = Array.isArray(g?.teams) ? g.teams : [];
+  // normalize spacing/case for stability
+  const normTeams = teams.map((t) => String(t).trim()).join(" vs ");
+  return `${sport}|${date}|${normTeams}`;
+}
 
-  const value = selected ? `${selected.date}:${selected.teams.join("-")}` : "none";
+export function MatchupSelect({ sportKey, selected, onSelect }) {
+  const raw = getTodaysMatchups({ sportKey });
+
+  // Deduplicate while preserving first occurrence order
+  const seen = new Set();
+  const todaysGames = [];
+  for (const g of raw) {
+    const sig = matchupSignature(g);
+    if (seen.has(sig)) continue;
+    seen.add(sig);
+    todaysGames.push(g);
+  }
+
+  // Use a value that’s stable + unique (index is fine here because list is rebuilt each render)
+  const options = todaysGames.map((g, idx) => ({
+    game: g,
+    value: `${matchupSignature(g)}|${idx}`,
+    key: `${matchupSignature(g)}|${idx}`,
+    label: `${g.date} : ${(g.teams || []).join(" vs ")}`,
+  }));
+
+  const selectedSig = selected ? matchupSignature(selected) : null;
+  const selectedOption =
+    selectedSig ? options.find((o) => o.value.startsWith(selectedSig)) : null;
+
+  const value = selectedOption?.value ?? "none";
 
   const handleChange = (val) => {
     if (val === "none") return onSelect(null);
-    const found = todaysGames.find((g) => `${g.date}:${g.teams.join("-")}` === val);
-    onSelect(found ?? null);
+    const found = options.find((o) => o.value === val)?.game ?? null;
+    onSelect(found);
   };
 
   const buttonLabel = selected ? selected.teams.join(" vs ") : "Choose Teams";
@@ -27,7 +58,7 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="" variant="">{buttonLabel}</Button>
+        <Button variant="outline">{buttonLabel}</Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="bg-light w-56">
@@ -37,15 +68,12 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
         <DropdownMenuRadioGroup value={value} onValueChange={handleChange}>
           <DropdownMenuRadioItem value="none">Game not listed</DropdownMenuRadioItem>
 
-          {todaysGames.length ? (
-            todaysGames.map((g) => {
-              const v = `${g.date}:${g.teams.join("-")}`;
-              return (
-                <DropdownMenuRadioItem key={v} value={v} className="bg-stone-100">
-                  {g.date} : {g.teams.join(" vs ")}
-                </DropdownMenuRadioItem>
-              );
-            })
+          {options.length ? (
+            options.map((o) => (
+              <DropdownMenuRadioItem key={o.key} value={o.value} className="bg-stone-100">
+                {o.label}
+              </DropdownMenuRadioItem>
+            ))
           ) : (
             <DropdownMenuRadioItem value="none" disabled>
               No games today
