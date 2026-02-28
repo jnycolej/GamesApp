@@ -62,7 +62,6 @@ function loadDeck(gameType) {
       break;
   }
 
-
   if (!fs.existsSync(file)) {
     throw new Error(`Deck file not found: ${file}`);
   }
@@ -74,8 +73,8 @@ function loadDeck(gameType) {
     const pts = Number.isFinite(c.points)
       ? c.points
       : c.points != null
-      ? Number(c.points)
-      : 0;
+        ? Number(c.points)
+        : 0;
 
     const desc = c.description ?? c.title ?? c.name ?? "";
     const pen = c.penalty ?? "";
@@ -148,7 +147,7 @@ function drawCardFromBase(r) {
 
 const buildInviteUrl = ({ origin, gameType, code, token }) =>
   `${origin}/${gameType}/join?room=${encodeURIComponent(
-    code
+    code,
   )}&token=${encodeURIComponent(token)}`;
 
 export function createRoomManager() {
@@ -551,12 +550,15 @@ export function createRoomManager() {
     const p = r.players.get(socketId);
 
     if (p) {
-      const playerKey = p.key;
+      // keep player reserved for 60 minutes after disconnect
+      const EVICT_MS = 60 * 60 * 1000;
+
       p.connected = false;
       clearTimeout(p._evictTimer);
       p._evictTimer = setTimeout(() => {
+        // only evict if they never reconnected
         if (!p.connected) r.players.delete(socketId);
-      }, 45 * 60 * 1000); // 5 minutes
+      }, EVICT_MS);
     }
     return { roomClosed: false };
   }

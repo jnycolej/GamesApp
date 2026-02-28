@@ -58,7 +58,7 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">{buttonLabel}</Button>
+        <Button variant="">{buttonLabel}</Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="bg-light w-56">

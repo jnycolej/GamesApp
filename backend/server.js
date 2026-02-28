@@ -381,36 +381,51 @@ io.on("connection", (socket) => {
       if (safeDelta === 0) return ack?.({ ok: false, error: "invalid delta" });
 
       // apply ONCE
-      const newScore = rooms.adjustScore(code, socket.id, safeDelta);
-      if (newScore == null)
-        return ack?.({ ok: false, error: "room/player not found" });
+      // const newScore = rooms.adjustScore(code, socket.id, safeDelta);
+      // if (newScore == null)
+      //   return ack?.({ ok: false, error: "room/player not found" });
 
-      // broadcast updated room state (whatever your emitRoomState does)
-      const state = emitRoomState(code);
+      // // broadcast updated room state (whatever your emitRoomState does)
+      // const state = emitRoomState(code);
 
-      const actor =
-        (state?.players || []).find((p) => p.id === socket.id) || {};
-      const actorName =
-        actor.displayName || actor.name || socket.data?.displayName || "Player";
+      // const actor =
+      //   (state?.players || []).find((p) => p.id === socket.id) || {};
+      // const actorName =
+      //   actor.displayName || actor.name || socket.data?.displayName || "Player";
 
-      // optional: push feed event
-      const ev = pushUpdate(code, {
-        type: "SCORE_ADJUSTED",
-        deltaPoints: safeDelta,
-        player: {
-          id: socket.id,
-          name: actorName,
-        },
-      });
-      io.to(code).emit("game:update", ev);
+      // // optional: push feed event
+      // const ev = pushUpdate(code, {
+      //   type: "SCORE_ADJUSTED",
+      //   deltaPoints: safeDelta,
+      //   player: {
+      //     id: socket.id,
+      //     name: actorName,
+      //   },
+      // });
+      // io.to(code).emit("game:update", ev);
 
-      // ack to caller (use the same number)
-      ack?.({ ok: true, score: newScore, version: Date.now() });
+      // // ack to caller (use the same number)
+      // ack?.({ ok: true, score: newScore, version: Date.now() });
 
-      // (optional) direct score update to this player
+      // // (optional) direct score update to this player
+      // io.to(socket.id).emit("score:update", newScore);
+
+      // // notify room: player score changed (use ONE field name consistently)
+      // io.to(code).emit("player:updated", {
+      //   playerId: socket.id,
+      //   score: newScore,
+      // });
+      const res = rooms.adjustScore(code, socket.id, safeDelta);
+      if (!res || res.ok === false)
+        return ack?.({
+          ok: false,
+          error: res?.error || "room/player not found",
+        });
+
+      const newScore = res.score;
+
+      ack?.({ ok: true, newScore, version: res.version ?? Date.now() });
       io.to(socket.id).emit("score:update", newScore);
-
-      // notify room: player score changed (use ONE field name consistently)
       io.to(code).emit("player:updated", {
         playerId: socket.id,
         score: newScore,

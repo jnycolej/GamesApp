@@ -46,9 +46,29 @@ function maybeResume() {
 
   const key = getPlayerKey();
 
-  socket.emit("player:resume", { roomCode, displayName, key }, () => {
-    resumeInFlight = false;
+  // socket.emit("player:resume", { roomCode, displayName, key }, () => {
+  //   resumeInFlight = false;
+  // });
+  // if server never acks, don't deadlock forever
+let done = false;
+const finish = () => {
+  if (done) return;
+  done = true;
+  resumeInFlight = false;
+};
+
+setTimeout(finish, 3000);
+
+// use socket.io-client timeout wrapper if available
+if (typeof socket.timeout === "function") {
+  socket.timeout(2500).emit("player:resume", { roomCode, displayName, key }, () => {
+    finish();
   });
+} else {
+  socket.emit("player:resume", { roomCode, displayName, key }, () => {
+    finish();
+  });
+}
 }
 
 export function getSocket() {
@@ -66,11 +86,15 @@ export function getSocket() {
     maybeResume();
   });
 
-  socket.on("reconnect", () => {
-    resumeInFlight = false;
-    maybeResume();
-  });
-
+  // socket.on("reconnect", () => {
+  //   resumeInFlight = false;
+  //   maybeResume();
+  // });
+// reconnect event is on the manager in v4
+socket.io.on("reconnect", () => {
+  resumeInFlight = false;
+  maybeResume();
+});
   socket.on("connect_error", (err) => {
     console.warn("[socket] connect_error:", err?.message || err);
   });

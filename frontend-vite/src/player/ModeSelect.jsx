@@ -26,8 +26,8 @@ export default function ModeSelect() {
 
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
-    minHeight: "100vh",
-    width: "100%",
+    // minHeight: "100vh",
+    // width: "100%",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
@@ -39,7 +39,7 @@ export default function ModeSelect() {
   const goMulti = () => nav(`/${game}/join`);
 
   return (
-    <div className="p-5" style={backgroundStyle}>
+    <div className="min-h-screen w-screen" style={backgroundStyle}>
       <h1 className="display-1 text-light fw-bold text-center">
         Sports Shuffle
       </h1>

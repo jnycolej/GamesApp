@@ -48,8 +48,8 @@ export default function GameLobby() {
   const backgroundStyle = useMemo(
     () => ({
       backgroundImage: `url(${sport.background})`,
-      minHeight: "100vh",
-      width: "100%",
+      // minHeight: "100vh",
+      // width: "100%",
       backgroundRepeat: "no-repeat",
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
@@ -115,7 +115,7 @@ export default function GameLobby() {
   };
 
   return (
-    <div style={backgroundStyle}>
+    <div className="min-h-screen w-screen" style={backgroundStyle}>
       <div className="p-5">
         <NavBar />
 

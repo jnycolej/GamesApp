@@ -41,7 +41,7 @@ export default function GameScreen() {
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
   //setting quiz unlock timer
-  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 25);
+  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 400 * 60 * 25);
   const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
 
   //tick
@@ -397,8 +397,8 @@ return () => {
 
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
-    minHeight: "100vh",
-    width: "100%",
+    // minHeight: "100vh",
+    // width: "100%",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
@@ -440,19 +440,59 @@ return () => {
   }
 
   // my hand + my score
+
+// useEffect(() => {
+//   if (actualMode === "single") return;
+
+//   // One-time sync on mount (or when mode changes)
+//   socket.emit("hand:getMine", {}, (res) =>
+//     setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
+//   );
+
+//   socket.emit("score:getMine", {}, (res) =>
+//     setPoints(Number(res?.score ?? 0) || 0),
+//   );
+// }, [actualMode, socket, setMyHand]);
 useEffect(() => {
   if (actualMode === "single") return;
 
-  // One-time sync on mount (or when mode changes)
-  socket.emit("hand:getMine", {}, (res) =>
-    setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
-  );
+  const syncMine = () => {
+    socket.emit("hand:getMine", {}, (res) =>
+      setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
+    );
 
-  socket.emit("score:getMine", {}, (res) =>
-    setPoints(Number(res?.score ?? 0) || 0),
-  );
-}, [actualMode, socket, setMyHand]);
+    socket.emit("score:getMine", {}, (res) =>
+      setPoints(Number(res?.score ?? 0) || 0),
+    );
 
+    // optional but helps UI immediately after resume
+    socket.emit("room:get", {}, (res) => {
+      if (res?.ok && res?.state) setRoom(res.state);
+    });
+  };
+
+  syncMine();
+  socket.on("connect", syncMine);
+
+  return () => {
+    socket.off("connect", syncMine);
+  };
+}, [actualMode, socket, setMyHand, setPoints, setRoom]);
+
+useEffect(() => {
+  if (actualMode === "single") return;
+
+  const onHand = (hand) => setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
+  const onScore = (score) => setPoints(Number(score ?? 0) || 0);
+
+  socket.on("hand:update", onHand);
+  socket.on("score:update", onScore);
+
+  return () => {
+    socket.off("hand:update", onHand);
+    socket.off("score:update", onScore);
+  };
+}, [actualMode, socket, setMyHand, setPoints]);
   // useEffect(() => {
   //   if (!socket) return;
 
@@ -551,7 +591,7 @@ useEffect(() => {
   }
 
   return (
-    <div className="p-5" style={backgroundStyle}>
+    <div className="p-5 min-h-screen w-screen" style={backgroundStyle}>
       <NavBar />
 <h1 className="text-white text-center">
   {room?.matchup?.teams?.length
@@ -704,7 +744,7 @@ useEffect(() => {
       </h2>
 
       {/* My points */}
-      <h3 className="display-4 text-light text-center">Points: {points}</h3>
+      <h3 className="display-4 text-light text-center">Points: {me?.points}</h3>
 
       {/* My hand */}
       <div className="container">

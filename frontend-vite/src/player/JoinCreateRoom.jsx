@@ -33,8 +33,8 @@ export default function JoinCreateRoom() {
 
   const backgroundStyle = {
     backgroundImage: `url(${sport.background})`,
-    minHeight: "100vh",
-    width: "100%",
+    // minHeight: "100vh",
+    // width: "100%",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
@@ -134,7 +134,7 @@ If the link doesn't open, open the app -> join -> enter the room code.`;
   }, [inviteUrl, game]);
 
   return (
-    <div className="p-5 gap-3" style={backgroundStyle}>
+    <div className="min-h-screen w-screen p-5" style={backgroundStyle}>
       <NavBar />
 
       <h2 className="display-1 text-center text-white">
