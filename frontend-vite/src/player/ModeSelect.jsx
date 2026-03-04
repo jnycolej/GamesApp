@@ -40,9 +40,6 @@ export default function ModeSelect() {
 
   return (
     <div className="min-h-screen w-screen" style={backgroundStyle}>
-      <h1 className="display-1 text-light fw-bold text-center">
-        Sports Shuffle
-      </h1>
       <NavBar />
       <div>
         <h2 className="display-4 text-center fw-bold text-white">

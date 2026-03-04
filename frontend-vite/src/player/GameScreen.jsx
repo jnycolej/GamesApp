@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getSocket } from "../shared/socket";
+import { getSocket } from "@/shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaCircle, FaRegCircle } from "react-icons/fa";
 
 //component imports
 import NavBar from "../components/NavBar";
@@ -35,6 +36,15 @@ export default function GameScreen() {
   const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
   const [socketId, setSocketId] = useState(socket.id || null);
   const [quizUnlocked, setQuizUnlocked] = useState(false);
+  const [pendingVote, setPendingVote] = useState(null);
+  const [eventCooldownUntil, setEventCooldownUntil] = useState(0);
+
+  const [voteNow, setVoteNow] = useState(Date.now());
+  useEffect(() => {
+    if (!pendingVote) return;
+    const t = setInterval(() => setVoteNow(Date.now()), 200);
+    return () => clearInterval(t);
+  }, [pendingVote]);
 
   //Keeps track of the cards that are being sacrficed
   const [pendingSacrificeId, setPendingSacrificeId] = useState(null);
@@ -71,8 +81,8 @@ export default function GameScreen() {
   const [lastDealtId, setLastDealtId] = useState(null); //Stores the id of the card dealt before the previous one
 
   //Gives a buffer for clicking a sacrifice
-  const SACRIFICE_SHIELD_MS = 400;
-  const SACRFIFICE_COOLDOWN_MS = 2000;
+  const SACRIFICE_SHIELD_MS = 200;
+  const SACRFIFICE_COOLDOWN_MS = 1000;
 
   const sacrificeShieldRef = useRef(false);
   const playCooldownRef = useRef(new Set());
@@ -86,6 +96,25 @@ export default function GameScreen() {
     const t = setInterval(() => setSacrificeTick(Date.now()), 100);
     return () => clearInterval(t);
   }, []);
+
+  useEffect(() => {
+    if (actualMode === "single") return;
+
+    const onCooldown = (payload) => {
+      const until = Number(payload?.until ?? 0) || 0;
+      setEventCooldownUntil(until);
+    };
+
+    socket.on("event:cooldown", onCooldown);
+    return () => socket.off("event:cooldown", onCooldown);
+  }, [actualMode, socket]);
+
+  const cooldownSeconds = Math.max(
+    0,
+    Math.ceil((eventCooldownUntil - Date.now()) / 1000),
+  );
+  const eventBarDisabled =
+    actualMode !== "single" && (pendingVote != null || cooldownSeconds > 0);
 
   function armSacrificeShield(ms = SACRIFICE_SHIELD_MS) {
     sacrificeShieldRef.current = true;
@@ -102,19 +131,6 @@ export default function GameScreen() {
     }
   }
 
-  //Timer for displaying the quiz
-  // useEffect(() => {
-  //   const timer = setTimeout(
-  //     () => {
-  //       setQuizUnlocked(true);
-  //     },
-  //     10 * 60 * 1000,
-  //   );
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  //Tracks the relative time
   const [nowTick, setNowTick] = useState(Date.now());
   useEffect(() => {
     const t = setInterval(() => setNowTick(Date.now()), 1000);
@@ -139,6 +155,7 @@ export default function GameScreen() {
       break;
   }
 
+  //Shuffles and deals the deck
   useEffect(() => {
     if (actualMode !== "single") return;
 
@@ -185,24 +202,46 @@ export default function GameScreen() {
   }, [actualMode, game, setMyHand, setPoints, setRoom]);
 
   //updates the game room
-useEffect(() => {
-  if (actualMode === "single") return;
+  useEffect(() => {
+    if (actualMode === "single") return;
 
-  const update = () => setSocketId(socket.id || null);
-  const onDisconnect = () => setSocketId(null);
+    const update = () => setSocketId(socket.id || null);
+    const onDisconnect = () => setSocketId(null);
 
-  update();
+    update();
 
-  socket.on("connect", update);
-  socket.on("reconnect", update);
-  socket.on("disconnect", onDisconnect);
+    socket.on("connect", update);
+    socket.on("reconnect", update);
+    socket.on("disconnect", onDisconnect);
 
-  return () => {
-    socket.off("connect", update);
-    socket.off("reconnect", update);
-    socket.off("disconnect", onDisconnect);
-  };
-}, [actualMode, socket]);
+    return () => {
+      socket.off("connect", update);
+      socket.off("reconnect", update);
+      socket.off("disconnect", onDisconnect);
+    };
+  }, [actualMode, socket]);
+
+  const voteSecondsLeft = pendingVote
+    ? Math.max(0, Math.ceil((pendingVote.expiresAt - voteNow) / 1000))
+    : 0;
+
+  useEffect(() => {
+    if (actualMode === "single") return;
+
+    const onProposed = (ev) => setPendingVote(ev);
+    const onUpdated = (ev) => setPendingVote(ev);
+    const onResolved = (_res) => setPendingVote(null);
+
+    socket.on("event:proposed", onProposed);
+    socket.on("event:updated", onUpdated);
+    socket.on("event:resolved", onResolved);
+
+    return () => {
+      socket.off("event:proposed", onProposed);
+      socket.off("event:updated", onUpdated);
+      socket.off("event:resolved", onResolved);
+    };
+  }, [actualMode, socket]);
 
   // handles the card sacrifice and the new player score
   const handleSacrifice = (card) => {
@@ -293,10 +332,11 @@ useEffect(() => {
       case "CARD_PLAYED":
         return (
           <span className="text-green-500 font-semibold">
-            🟢 +{pts} 
-            <span className="font-bold"> {name} </span> 
-            <span className="text-muted-foreground"> - {quoted}</span>  
-          </span>);
+            🟢 +{pts}
+            <span className="font-bold"> {name} </span>
+            <span className="text-muted-foreground"> - {quoted}</span>
+          </span>
+        );
       case "CARD_SACRIFICED":
         return (
           <span className="text-red-500 font-semibold">
@@ -306,13 +346,35 @@ useEffect(() => {
           </span>
         );
       case "SCORE_ADJUSTED":
-        return `${name} ${delta > 0 ? "gains" : "loses"} ${pts} ${ptsWord}.`;
+        return `${name} ${delta > 0 ? "gains" : "loses"} ${pts} ${ptsWord}!`;
       case "TURN_STARTED":
         return `Turn ${ev?.meta?.turn ?? "?"}: ${name}'s move.`;
+      case "EVENT_CONFIRMED":
+        return (
+          <span className="text-primary font-semibold">
+            ✅ <span className="font-bold">{name}</span>{" "}
+            <span className="text-muted-foreground">hit</span>{" "}
+            <span className="text-muted-foreground">{quoted}</span>{" "}
+            <span className="text-muted-foreground">(+{pts})</span>
+          </span>
+        );
       default:
         return ev?.text || "Update";
     }
   };
+
+  useEffect(() => {
+    if (actualMode === "single") return;
+
+    const onAny = (name, ...args) => {
+      if (String(name).startsWith("event:")) {
+        console.log("[UI] recv", name, args[0]);
+      }
+    };
+
+    socket.onAny(onAny);
+    return () => socket.offAny(onAny);
+  }, [actualMode, socket]);
 
   //Formating for the game update text window
   const scrollIfNearBottom = () => {
@@ -372,11 +434,11 @@ useEffect(() => {
     socket.on("connect", onConnect);
 
     //Refresh history whenever the room state swaps
-const onRoomUpdated = () => socket.emit("game:history:request");
-socket.on("room:updated", onRoomUpdated);
+    const onRoomUpdated = () => socket.emit("game:history:request");
+    socket.on("room:updated", onRoomUpdated);
 
-return () => {
-  socket.off("room:updated", onRoomUpdated);
+    return () => {
+      socket.off("room:updated", onRoomUpdated);
       socket.off("game:update", onUpdate);
       socket.off("game:history", onHistory);
       socket.off("connect", onConnect);
@@ -395,10 +457,9 @@ return () => {
     return () => socket.off("room:state", onState);
   }, [actualMode, socket, pendingSacrificeId]);
 
+  //Styles the background image
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
-    // minHeight: "100vh",
-    // width: "100%",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
@@ -439,83 +500,50 @@ return () => {
     return `${d}d ago`;
   }
 
-  // my hand + my score
+  useEffect(() => {
+    if (actualMode === "single") return;
 
-// useEffect(() => {
-//   if (actualMode === "single") return;
+    const syncMine = () => {
+      socket.emit("hand:getMine", {}, (res) =>
+        setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
+      );
 
-//   // One-time sync on mount (or when mode changes)
-//   socket.emit("hand:getMine", {}, (res) =>
-//     setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
-//   );
+      socket.emit("score:getMine", {}, (res) =>
+        setPoints(Number(res?.score ?? 0) || 0),
+      );
 
-//   socket.emit("score:getMine", {}, (res) =>
-//     setPoints(Number(res?.score ?? 0) || 0),
-//   );
-// }, [actualMode, socket, setMyHand]);
-useEffect(() => {
-  if (actualMode === "single") return;
+      // optional but helps UI immediately after resume
+      socket.emit("room:get", {}, (res) => {
+        if (res?.ok && res?.state) setRoom(res.state);
+      });
+    };
 
-  const syncMine = () => {
-    socket.emit("hand:getMine", {}, (res) =>
-      setMyHand(Array.isArray(res?.hand) ? res.hand.filter(Boolean) : []),
-    );
+    syncMine();
+    socket.on("connect", syncMine);
 
-    socket.emit("score:getMine", {}, (res) =>
-      setPoints(Number(res?.score ?? 0) || 0),
-    );
+    return () => {
+      socket.off("connect", syncMine);
+    };
+  }, [actualMode, socket, setMyHand, setPoints, setRoom]);
 
-    // optional but helps UI immediately after resume
-    socket.emit("room:get", {}, (res) => {
-      if (res?.ok && res?.state) setRoom(res.state);
-    });
-  };
+  //updates score and hand in the backend
+  useEffect(() => {
+    if (actualMode === "single") return;
 
-  syncMine();
-  socket.on("connect", syncMine);
+    const onHand = (hand) =>
+      setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
+    const onScore = (score) => setPoints(Number(score ?? 0) || 0);
 
-  return () => {
-    socket.off("connect", syncMine);
-  };
-}, [actualMode, socket, setMyHand, setPoints, setRoom]);
+    socket.on("hand:update", onHand);
+    socket.on("score:update", onScore);
 
-useEffect(() => {
-  if (actualMode === "single") return;
+    return () => {
+      socket.off("hand:update", onHand);
+      socket.off("score:update", onScore);
+    };
+  }, [actualMode, socket, setMyHand, setPoints]);
 
-  const onHand = (hand) => setMyHand(Array.isArray(hand) ? hand.filter(Boolean) : []);
-  const onScore = (score) => setPoints(Number(score ?? 0) || 0);
-
-  socket.on("hand:update", onHand);
-  socket.on("score:update", onScore);
-
-  return () => {
-    socket.off("hand:update", onHand);
-    socket.off("score:update", onScore);
-  };
-}, [actualMode, socket, setMyHand, setPoints]);
-  // useEffect(() => {
-  //   if (!socket) return;
-
-  //   const onPlayerUpdated = ({ playerId, score }) => {
-  //     if (actualMode === "single") return;
-
-  //     setRoom((prev) => {
-  //       if (!prev) return prev;
-
-  //       const players = Array.isArray(prev.players) ? prev.players : [];
-
-  //       const nextPlayers = players.map((p) =>
-  //         p?.id === playerId
-  //           ? { ...p, points: score, score } // keep both for now
-  //           : p,
-  //       );
-
-  //       return { ...prev, players: nextPlayers };
-  //     });
-  //   };
-
-  // }, [actualMode, socket]);
-
+  //replaces card with new one after playing a card
   const handleCardClick = (index) => {
     if (actualMode === "single") {
       setMyHand((prev) => {
@@ -585,6 +613,62 @@ useEffect(() => {
     [players, socketId],
   );
 
+  //adds points based on Event bar buttons
+  const handleEventConfirm = (ev) => {
+    const delta = Number(ev?.points ?? 0) || 0;
+    const title = ev?.title ?? "Event";
+
+    if (!delta) return;
+
+    //Single Player: update local points + scoreboard room
+    if (actualMode === "single") {
+      setPoints((p) => (Number.isFinite(p) ? p : 0) + delta);
+
+      setRoom((prev) => {
+        if (!prev?.players?.length) return prev;
+        const meId = "local-player";
+        const next = structuredClone(prev);
+        const me = next.players.find((p) => p.id === meId);
+        if (me) {
+          me.points = (me.points ?? 0) + delta;
+          me.score = me.points;
+        }
+        next.leaderIds = [meId];
+        return next;
+      });
+
+      //Push into your local updates feed
+      setUpdates((prev) => {
+        const withId = {
+          id: `local-event-${Date.now()}-${Math.random()}`,
+          type: "EVENT_CONFIRMED",
+          at: Date.now(),
+          deltaPoints: delta,
+          playerId: "local-player",
+          card: { description: title },
+          text: `Event: ${title} (+${delta})`,
+        };
+        return [...prev, withId].slice(-MAX_UPDATES);
+      });
+
+      return;
+    }
+
+    //Scoring API
+    socket.emit(
+      "score:adjust",
+      { delta, meta: { source: "eventBar", title } },
+      (ack) => {
+        if (!ack?.ok) {
+          console.warn("Event score adjust failed:", ack?.error);
+          return;
+        }
+        const next = Number(ack.newScore);
+        if (Number.isFinite(next)) setPoints(next);
+      },
+    );
+  };
+
   function handleLeaveGame() {
     socket.emit("leaveRoom");
     navigate(`/`);
@@ -593,11 +677,11 @@ useEffect(() => {
   return (
     <div className="p-5 min-h-screen w-screen" style={backgroundStyle}>
       <NavBar />
-<h1 className="text-white text-center">
-  {room?.matchup?.teams?.length
-    ? `${room.matchup.teams[0]} vs. ${room.matchup.teams[1]}`
-    : `${game?.toUpperCase()} Game`}
-</h1>
+      <h1 className="text-white text-center">
+        {room?.matchup?.teams?.length
+          ? `${room.matchup.teams[0]} vs. ${room.matchup.teams[1]}`
+          : `${game?.toUpperCase()} Game`}
+      </h1>
 
       {/* Scoreboard */}
       <div className="mb-2 rounded">
@@ -652,7 +736,115 @@ useEffect(() => {
         </div>
       </div>
 
-            <EventBar gameType={game}/>
+      <EventBar
+        gameType={game}
+        disabled={eventBarDisabled}
+        cooldownSeconds={cooldownSeconds}
+        onPropose={(ev) => {
+          if (actualMode === "single") {
+            handleEventConfirm(ev); // your local single-player behavior
+            return;
+          }
+          if (!room?.code || room?.phase !== "playing") {
+            console.warn("[UI] cannot propose: not in playing room", {
+              roomCode: room?.code,
+              phase: room?.phase,
+            });
+            return;
+          }
+          console.log("[UI] proposing event", ev, {
+            socketId: socket.id,
+            connected: socket.connected,
+            roomCode: room?.code,
+            phase: room?.phase,
+            players: room?.players?.length,
+          });
+          socket.emit(
+            "event:propose",
+            { title: ev.title, points: ev.points },
+            (ack) => {
+              console.log("[UI] event:propose ACK:", ack);
+
+              if (!ack?.ok) {
+                if (ack?.error === "cooldown" && ack?.until)
+                  setEventCooldownUntil(ack.until);
+                console.warn("event:propose failed:", ack?.error);
+              }
+            },
+          );
+        }}
+      />
+      {pendingVote && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="w-full max-w-md rounded-lg bg-white p-4">
+            <h3 className="text-xl font-bold">
+              {pendingVote.byName} selected: {pendingVote.title}
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-600">
+              Confirm to award <strong>+{pendingVote.points}</strong> points.
+            </p>
+
+            <div className="mt-3 text-sm">
+              Yes: <strong>{pendingVote.yesCount}</strong> /{" "}
+              {pendingVote.neededYes} needed
+              {" · "}
+              No: <strong>{pendingVote.noCount}</strong>
+            </div>
+
+            <div className="mt-2 text-sm text-gray-700">
+              Time left:{" "}
+              <strong>
+                {Math.max(
+                  0,
+                  Math.ceil((pendingVote.expiresAt - voteNow) / 1000),
+                )}
+                s
+              </strong>
+            </div>
+
+            {/* proposer can't vote */}
+            {pendingVote.byPlayerId === socketId ? (
+              <div className="mt-4 text-sm text-gray-500">
+                Waiting for others to vote...
+              </div>
+            ) : (
+              <div className="mt-4 flex gap-2 justify-end">
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() =>
+                    socket.emit(
+                      "event:vote",
+                      { id: pendingVote.id, vote: "no" },
+                      (ack) => {
+                        if (!ack?.ok)
+                          console.warn("[UI] event:vote no failed:", ack);
+                      },
+                    )
+                  }
+                >
+                  No
+                </button>
+                <button
+                  className="btn btn-success"
+                  onClick={() =>
+                    socket.emit(
+                      "event:vote",
+                      { id: pendingVote.id, vote: "yes" },
+                      (ack) => {
+                        if (!ack?.ok)
+                          console.warn("[UI] event:vote yes failed:", ack);
+                      },
+                    )
+                  }
+                >
+                  Yes
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       {/* Button trigger modal */}
       {room?.matchup && (
         <div className="text-center my-3">
