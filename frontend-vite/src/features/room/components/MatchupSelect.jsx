@@ -38,12 +38,13 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
     game: g,
     value: `${matchupSignature(g)}|${idx}`,
     key: `${matchupSignature(g)}|${idx}`,
-    label: `${g.date} : ${(g.teams || []).join(" vs ")}`,
+    label: `${g.date} : ${(g.teams || []).join(" vs ")} @ ${g.time}`,
   }));
 
   const selectedSig = selected ? matchupSignature(selected) : null;
-  const selectedOption =
-    selectedSig ? options.find((o) => o.value.startsWith(selectedSig)) : null;
+  const selectedOption = selectedSig
+    ? options.find((o) => o.value.startsWith(selectedSig))
+    : null;
 
   const value = selectedOption?.value ?? "none";
 
@@ -62,21 +63,25 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="bg-light w-56">
-        <DropdownMenuLabel className="text-center">Games Today</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-center">
+          Games Today
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
 
         <DropdownMenuRadioGroup value={value} onValueChange={handleChange}>
-          <DropdownMenuRadioItem value="none">Game not listed</DropdownMenuRadioItem>
-
           {options.length ? (
             options.map((o) => (
-              <DropdownMenuRadioItem key={o.key} value={o.value} className="bg-stone-100">
+              <DropdownMenuRadioItem
+                key={o.key}
+                value={o.value}
+                className="bg-stone-100"
+              >
                 {o.label}
               </DropdownMenuRadioItem>
             ))
           ) : (
-            <DropdownMenuRadioItem value="none" disabled>
-              No games today
+            <DropdownMenuRadioItem value="none">
+              Game not listed
             </DropdownMenuRadioItem>
           )}
         </DropdownMenuRadioGroup>
