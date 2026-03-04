@@ -582,21 +582,6 @@ export function createRoomManager() {
     return true;
   }
 
-  // function adjustScore(code, socketId, delta) {
-  //   const r = roomMap.get(code);
-  //   if (!r) return null;
-
-  //   const p = r.players.get(socketId);
-  //   if (!p) return null;
-
-  //   const n = Number(delta);
-  //   if (!Number.isFinite(n)) return null;
-
-  //   p.score += Math.trunc(n);
-  //   r.version = (r.version || 0) + 1;
-  //   return p.score;
-  // }
-
   return {
     createRoom,
     addPlayer,

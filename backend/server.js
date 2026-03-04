@@ -64,6 +64,54 @@ const io = new Server(server, {
 const updatesByCode = new Map();
 const MAX_UPDATES = 100;
 
+//Pending vote-to-award events per room
+const pendingEventByCode = new Map();
+// code -> {id, title, points, byPlayerId, byName, createdAt, expiresAt, yes:Set, no:Set, timer }
+
+const eventCooldownByCode = new Map();
+// code -> cooldownUntil (timestamp ms)
+
+const EVENT_COOLDOWN_MS = 2 * 60 * 1000;
+
+function setCooldown(code) {
+  const until = Date.now() + EVENT_COOLDOWN_MS;
+  eventCooldownByCode.set(code, until);
+  io.to(code).emit("event:cooldown", { until });
+  return until;
+}
+
+function majorityNeeded(totalEligibleVoters) {
+  //majority of eligible voters: e.g., 1 of 1, 2 of 3, 3 of 5...
+  return Math.floor(totalEligibleVoters / 2) + 1;
+}
+
+function getPlayerDisplayName(state, playerId) {
+  const p = (state?.players || []).find((x) => x.id === playerId);
+  return p?.displayName || p?.name || "Player";
+}
+
+function summarizePending(p, totalEligibleVoters) {
+  return {
+    id: p.id,
+    title: p.title,
+    points: p.points,
+    byPlayerId: p.byPlayerId,
+    byName: p.byName,
+    createdAt: p.createdAt,
+    expiresAt: p.expiresAt,
+    yesCount: p.yes.size,
+    noCount: p.no.size,
+    totalEligibleVoters,
+    neededYes: majorityNeeded(totalEligibleVoters),
+  };
+}
+
+function clearPending(code) {
+  const p = pendingEventByCode.get(code);
+  if (p?.timer) clearTimeout(p.timer);
+  pendingEventByCode.delete(code);
+}
+
 // Prevent overlapping actions from the same player
 const actionLock = new Map(); // key: `${code}:${playerId}` -> boolean
 
@@ -370,6 +418,237 @@ io.on("connection", (socket) => {
     cb?.({ ok: true, opponents: opp });
   });
 
+  socket.on("event:propose", async (payload = {}, ack) => {
+    try {
+      const code = socket.data.roomCode;
+      if (!code) return ack?.({ ok: false, error: "not_in_room" });
+      console.log("[server] event:propose", { code, from: socket.id, payload });
+      const cooldownUntil = eventCooldownByCode.get(code) || 0;
+      if (Date.now() < cooldownUntil) {
+        return ack?.({ ok: false, error: "cooldown", until: cooldownUntil });
+      }
+
+      const title = String(payload?.title || "").trim();
+      const pointsRaw = Number(payload?.points);
+      const points = Number.isFinite(pointsRaw) ? Math.trunc(pointsRaw) : 0;
+
+      if (!title || points <= 0) {
+        return ack?.({ ok: false, error: "invalid_event" });
+      }
+
+      //Only allow one pending event per room (simple stop-gap)
+      if (pendingEventByCode.has(code)) {
+        return ack?.({ ok: false, error: "event_already_pending" });
+      }
+
+      const state = getEnrichedState(code);
+      if (!state) return ack?.({ ok: false, error: "room_not_found" });
+
+      const byPlayerId = socket.id;
+      const byName = getPlayerDisplayName(state, byPlayerId);
+
+      //Eligible voters = everyone except the proposer
+      const totalPlayers = (state.players || []).length;
+      const totalEligibleVoters = Math.max(0, totalPlayers - 1);
+
+      // If no one else is in the room, do NOT allow vote-award flow
+      if (totalEligibleVoters === 0) {
+        return ack?.({ ok: false, error: "no_voters" });
+      }
+
+      const createdAt = Date.now();
+      const expiresAt = createdAt + 15000;
+
+      const pending = {
+        id: `${code}-${createdAt}-${Math.random().toString(16).slice(2)}`,
+        title,
+        points,
+        byPlayerId,
+        byName,
+        createdAt,
+        expiresAt,
+        yes: new Set(),
+        no: new Set(),
+        timer: null,
+      };
+
+      //Start the 15s timer
+      pending.timer = setTimeout(() => {
+        //Option B: Timeout does NOT auto-award unless someone voted
+        //Approve at timeout only if yes ? no AND at least 1 vote occurred
+        const p = pendingEventByCode.get(code);
+        if (!p) return;
+
+        const yesCount = p.yes.size;
+        const noCount = p.no.size;
+        const totalVotes = yesCount + noCount;
+
+        if (totalVotes === 0) {
+          //nobody voted -> reject
+          io.to(code).emit("event:resolved", {
+            ok: false,
+            id: p.id,
+            reason: "no_votes",
+          });
+          clearPending(code);
+          return;
+        }
+
+        const approved = yesCount > noCount;
+        if (!approved) {
+          io.to(code).emit("event:resolved", {
+            ok: false,
+            id: p.id,
+            reason: "vote_failed",
+          });
+          clearPending(code);
+          return;
+        }
+
+        //Approved at timeout -> award
+        const awardRes = rooms.adjustScore(code, p.byPlayerId, p.points);
+        const newScore =
+          awardRes?.score ?? rooms.getScore(code, p.byPlayerId) ?? 0;
+
+        //update client score immediately
+        io.to(p.byPlayerId).emit("score:update", newScore);
+        io.to(code).emit("player:updated", {
+          playerId: p.byPlayerId,
+          score: newScore,
+        });
+        emitRoomState(code);
+
+        //push update feed
+        const ev = pushUpdate(code, {
+          type: "EVENT_CONFIRMED",
+          player: { id: p.byPlayerId, name: p.byName },
+          card: { description: p.title, points: p.points },
+          deltaPoints: p.points,
+          meta: { source: "eventBar", resolvedBy: "timeout" },
+        });
+        io.to(code).emit("game:update", ev);
+
+        io.to(code).emit("event:resolved", {
+          ok: true,
+          id: p.id,
+          approved: true,
+          resolvedBy: "timeout",
+          title: p.title,
+          points: p.points,
+          byPlayerId: p.byPlayerId,
+          byName: p.byName,
+        });
+        setCooldown(code);
+        clearPending(code);
+      }, 15000);
+
+      pendingEventByCode.set(code, pending);
+
+      //Broadcast proposal to everyone (so all clients open the modal)
+      io.to(code).emit(
+        "event:proposed",
+        summarizePending(pending, totalEligibleVoters),
+      );
+
+      return ack?.({ ok: true, id: pending.id });
+    } catch (err) {
+      console.error("[event:propose] error", err);
+      return ack?.({ ok: false, error: "server_error" });
+    }
+  });
+
+  socket.on("event:vote", (payload = {}, ack) => {
+    try {
+      const code = socket.data.roomCode;
+      if (!code) return ack?.({ ok: false, error: "not_in_room" });
+
+      const pending = pendingEventByCode.get(code);
+      if (!pending) return ack?.({ ok: false, error: "no_pending_event" });
+
+      if (String(payload?.id || "") !== pending.id) {
+        return ack?.({ ok: false, error: "event_id_mismatch" });
+      }
+
+      const vote =
+        payload?.vote === "yes" ? "yes" : payload?.vote === "no" ? "no" : null;
+      if (!vote) return ack?.({ ok: false, error: "invalid_vote" });
+
+      //proposer cannot vote
+      if (socket.id === pending.byPlayerId) {
+        return ack?.({ ok: false, error: "proposer_cannot_vote" });
+      }
+
+      const state = getEnrichedState(code);
+      if (!state) return ack?.({ ok: false, error: "room_not_found" });
+
+      const totalPlayers = (state.players || []).length;
+      const totalEligibleVoters = Math.max(0, totalPlayers - 1);
+      if (totalEligibleVoters === 0)
+        return ack?.({ ok: false, error: "no_voters" });
+
+      //on vote per player: remove from both, the add
+      pending.yes.delete(socket.id);
+      pending.no.delete(socket.id);
+      if (vote === "yes") pending.yes.add(socket.id);
+      else pending.no.add(socket.id);
+
+      //broadcast updated counts so clients update UI
+      io.to(code).emit(
+        "event:updated",
+        summarizePending(pending, totalEligibleVoters),
+      );
+
+      //majority-yes early approval
+      const neededYes = majorityNeeded(totalEligibleVoters);
+      const yesCount = pending.yes.size;
+
+      if (yesCount >= neededYes) {
+        //award points
+        const awardRes = rooms.adjustScore(
+          code,
+          pending.byPlayerId,
+          pending.points,
+        );
+        const newScore =
+          awardRes?.score ?? rooms.getScore(code, pending.byPlayerId) ?? 0;
+
+        io.to(pending.byPlayerId).emit("score:update", newScore);
+        io.to(code).emit("player:updated", {
+          playerId: pending.byPlayerId,
+          score: newScore,
+        });
+        emitRoomState(code);
+
+        const ev = pushUpdate(code, {
+          type: "EVENT_CONFIRMED",
+          player: { id: pending.byPlayerId, name: pending.byName },
+          card: { description: pending.title, points: pending.points },
+          deltaPoints: pending.points,
+          meta: { source: "eventBar", resolvedBy: "votes" },
+        });
+        io.to(code).emit("game:update", ev);
+
+        io.to(code).emit("event:resolved", {
+          ok: true,
+          id: pending.id,
+          approved: true,
+          resolvedBy: "votes",
+          title: pending.title,
+          points: pending.points,
+          byPlayerId: pending.byPlayerId,
+          byName: pending.byName,
+        });
+        setCooldown(code);
+        clearPending(code);
+      }
+
+      return ack?.({ ok: true });
+    } catch (err) {
+      console.error("[event:vote] error", err);
+      return ack?.({ ok: false, error: "server_error" });
+    }
+  });
+
   socket.on("score:adjust", ({ delta }, ack) => {
     try {
       const code = socket.data.roomCode;
@@ -380,41 +659,6 @@ io.on("connection", (socket) => {
       const safeDelta = Number.isFinite(n) ? Math.trunc(n) : 0;
       if (safeDelta === 0) return ack?.({ ok: false, error: "invalid delta" });
 
-      // apply ONCE
-      // const newScore = rooms.adjustScore(code, socket.id, safeDelta);
-      // if (newScore == null)
-      //   return ack?.({ ok: false, error: "room/player not found" });
-
-      // // broadcast updated room state (whatever your emitRoomState does)
-      // const state = emitRoomState(code);
-
-      // const actor =
-      //   (state?.players || []).find((p) => p.id === socket.id) || {};
-      // const actorName =
-      //   actor.displayName || actor.name || socket.data?.displayName || "Player";
-
-      // // optional: push feed event
-      // const ev = pushUpdate(code, {
-      //   type: "SCORE_ADJUSTED",
-      //   deltaPoints: safeDelta,
-      //   player: {
-      //     id: socket.id,
-      //     name: actorName,
-      //   },
-      // });
-      // io.to(code).emit("game:update", ev);
-
-      // // ack to caller (use the same number)
-      // ack?.({ ok: true, score: newScore, version: Date.now() });
-
-      // // (optional) direct score update to this player
-      // io.to(socket.id).emit("score:update", newScore);
-
-      // // notify room: player score changed (use ONE field name consistently)
-      // io.to(code).emit("player:updated", {
-      //   playerId: socket.id,
-      //   score: newScore,
-      // });
       const res = rooms.adjustScore(code, socket.id, safeDelta);
       if (!res || res.ok === false)
         return ack?.({
