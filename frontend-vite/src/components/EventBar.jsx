@@ -1,10 +1,105 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
+
+const REACTIONS = [
+  { key: "nice", label: "🔥 Nice!" },
+  { key: "lucky", label: "😂 Lucky" },
+  { key: "rigged", label: "😤 Rigged" },
+  { key: "brutal", label: "💀 Brutal" },
+];
+
+function fireSideCannons() {
+  const end = Date.now() + 3000;
+  const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
+
+  const frame = () => {
+    if (Date.now() > end) return;
+
+    confetti({
+      particleCount: 2,
+      angle: 60,
+      spread: 55,
+      startVelocity: 60,
+      origin: { x: 0, y: 0.5 },
+      colors,
+    });
+
+    confetti({
+      particleCount: 2,
+      angle: 120,
+      spread: 55,
+      startVelocity: 60,
+      origin: { x: 1, y: 0.5 },
+      colors,
+    });
+
+    requestAnimationFrame(frame);
+  };
+
+  frame();
+}
+
+function fireSportsEmojiBurst(gameType) {
+  const scalar = 2;
+
+  const baseballEmoji = confetti.shapeFromText({ text: "⚾", scalar });
+  const basketballEmoji = confetti.shapeFromText({ text: "🏀", scalar });
+  const footballEmoji = confetti.shapeFromText({ text: "🏈", scalar });
+
+  let chosenShape = baseballEmoji;
+  switch (gameType) {
+    case "football":
+      chosenShape = footballEmoji;
+      break;
+    case "basketball":
+      chosenShape = basketballEmoji;
+      break;
+    case "baseball":
+    default:
+      chosenShape = baseballEmoji;
+      break;
+  }
+
+  const defaults = {
+    spread: 360,
+    ticks: 60,
+    gravity: 0,
+    decay: 0.96,
+    startVelocity: 20,
+    shapes: [chosenShape],
+    scalar,
+  };
+
+  const shoot = () => {
+    confetti({
+      ...defaults,
+      particleCount: 30,
+    });
+
+    confetti({
+      ...defaults,
+      particleCount: 10,
+    });
+
+    confetti({
+      ...defaults,
+      particleCount: 15,
+      scalar: scalar / 2,
+      shapes: ["circle"],
+    });
+  };
+
+  setTimeout(shoot, 0);
+  setTimeout(shoot, 100);
+  setTimeout(shoot, 200);
+}
 
 const EventBar = ({
   gameType,
   onPropose,
+  onReaction,
   disabled = false,
   cooldownSeconds = 0,
   confirmWindowMs = 1500,
@@ -12,7 +107,13 @@ const EventBar = ({
   const [pendingTitle, setPendingTitle] = useState(null);
   const timerRef = useRef(null);
 
-  const EventButtons = useMemo(() => {
+  useEffect(() => {
+  if (disabled || cooldownSeconds > 0) {
+    clearPending();
+  }
+}, [disabled, cooldownSeconds]);
+
+  const eventButtons = useMemo(() => {
     switch (gameType) {
       case "football":
         return [
@@ -25,10 +126,10 @@ const EventBar = ({
       case "baseball":
         return [
           { title: "Score", points: 5 },
-          { title: "3 up, 3 Down", points: 3 },
+          { title: "3 Up, 3 Down", points: 3 },
           { title: "Home Run", points: 5 },
           { title: "Double Score", points: 10 },
-          { title: "Grandslam", points: 15 },
+          { title: "Grand Slam", points: 15 },
         ];
       case "basketball":
         return [
@@ -49,8 +150,16 @@ const EventBar = ({
     }
   };
 
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
   const handleTap = (eventObj) => {
-    // first tap: arm confirmation
+    if (disabled || cooldownSeconds > 0) return;
+
+    // first tap = arm confirmation
     if (pendingTitle !== eventObj.title) {
       setPendingTitle(eventObj.title);
 
@@ -63,47 +172,79 @@ const EventBar = ({
       return;
     }
 
-    // second tap: confirm
+    // second tap = confirm
     clearPending();
     onPropose?.(eventObj);
   };
 
+  const handleReactionClick = (reaction) => {
+    onReaction?.(reaction);
+  };
+
   return (
     <div className="w-full px-3 pt-5">
-      <div className="flex gap-2 overflow-x-auto p-2">
-        {cooldownSeconds > 0 && (
-          <div className="text-center text-sm text-white/80 mb-2">
-            Event Bar cooldown: {cooldownSeconds}s
-          </div>
-        )}
-        {disabled && pendingTitle == null && cooldownSeconds === 0 && (
-          <div className="text-center text-sm text-white/80 mb-2">
-            Voting in progress…
-          </div>
-        )}
+      {(cooldownSeconds > 0 || disabled) && (
+        <div className="mb-2 text-center text-sm text-white/80">
+          {cooldownSeconds > 0
+            ? `Event Bar cooldown: ${cooldownSeconds}s`
+            : "Voting in progress…"}
+        </div>
+      )}
 
-        {EventButtons.map((eventObj) => {
+      <div className="flex gap-2 overflow-x-auto p-2">
+        {eventButtons.map((eventObj) => {
           const isPending = pendingTitle === eventObj.title;
+          const isLocked = disabled || cooldownSeconds > 0;
 
           return (
             <motion.div
               key={eventObj.title}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: isLocked ? 1 : 0.97 }}
               className="shrink-0"
             >
               <Button
                 type="button"
-                disabled={disabled}
-                onClick={() => onPropose?.(eventObj)}
-                variant="default"
-                className={`gap-2 px-4 rounded ${isPending ? "ring-3 ring-yellow-300" : ""}`}
+                disabled={isLocked}
+                onClick={() => handleTap(eventObj)}
+                className={`gap-2 rounded px-4 ${
+                  isPending ? "ring-2 ring-yellow-300" : ""
+                }`}
               >
-                {eventObj.title}
+                <span>{eventObj.title}</span>
                 <span className="opacity-80">+{eventObj.points}</span>
               </Button>
             </motion.div>
           );
         })}
+      </div>
+
+      <div className="flex flex-wrap gap-2 p-2">
+        {REACTIONS.map((reaction) => (
+          <Button
+            key={reaction.key}
+            type="button"
+            className="rounded"
+            onClick={() => handleReactionClick(reaction)}
+          >
+            {reaction.label}
+          </Button>
+        ))}
+
+        <Button
+          type="button"
+          className="rounded"
+          onClick={fireSideCannons}
+        >
+          Fire Side Cannons
+        </Button>
+
+        <Button
+          type="button"
+          className="rounded"
+          onClick={() => fireSportsEmojiBurst(gameType)}
+        >
+          Celebrate
+        </Button>
       </div>
     </div>
   );

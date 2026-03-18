@@ -1,5 +1,6 @@
 import React, {useMemo, useState} from "react";
 import { motion } from "framer-motion";
+import { FaCircle, FaRegCircle } from "react-icons/fa";
 
 const Scoreboard = ({players= [], leaderIds = [], currentUserId }) => {
 
@@ -31,6 +32,7 @@ const Scoreboard = ({players= [], leaderIds = [], currentUserId }) => {
                                 className={`d-flex justify-content-between align-items-center p-3 rounded shadow-sm ${bgClass}`}
                                 title={p.connected ? "Connected" : "Disconnected"}
                             >
+                                <div><FaCircle color="blue" className=""/></div>
                                 <div className="fw-semibold">
                                     {p.displayName || p.name || "Player"} {isMe && <span>(You)</span>}
                                     {isLeader && (

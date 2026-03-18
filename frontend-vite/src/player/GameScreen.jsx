@@ -38,6 +38,8 @@ export default function GameScreen() {
   const [quizUnlocked, setQuizUnlocked] = useState(false);
   const [pendingVote, setPendingVote] = useState(null);
   const [eventCooldownUntil, setEventCooldownUntil] = useState(0);
+  const [roomReactions, setRoomReactions] = useState([]);
+  const [cooldownNow, setCooldownNow] = useState(Date.now());
 
   const [voteNow, setVoteNow] = useState(Date.now());
   useEffect(() => {
@@ -53,6 +55,16 @@ export default function GameScreen() {
   //setting quiz unlock timer
   const [unlockAt, setUnlockAt] = useState(() => Date.now() + 400 * 60 * 25);
   const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
+
+  useEffect(() => {
+    if (eventCooldownUntil <= Date.now()) return;
+
+    const t = setInterval(() => {
+      setCooldownNow(Date.now());
+    }, 250);
+
+    return () => clearInterval(t);
+  }, [eventCooldownUntil]);
 
   //tick
   useEffect(() => {
@@ -111,7 +123,7 @@ export default function GameScreen() {
 
   const cooldownSeconds = Math.max(
     0,
-    Math.ceil((eventCooldownUntil - Date.now()) / 1000),
+    Math.ceil((eventCooldownUntil - cooldownNow) / 1000),
   );
   const eventBarDisabled =
     actualMode !== "single" && (pendingVote != null || cooldownSeconds > 0);
@@ -240,6 +252,24 @@ export default function GameScreen() {
       socket.off("event:proposed", onProposed);
       socket.off("event:updated", onUpdated);
       socket.off("event:resolved", onResolved);
+    };
+  }, [actualMode, socket]);
+
+  useEffect(() => {
+    if (actualMode === "single") return;
+
+    const onReactionShow = (reaction) => {
+      setRoomReactions((prev) => [...prev, reaction]);
+
+      setTimeout(() => {
+        setRoomReactions((prev) => prev.filter((r) => r.id !== reaction.id));
+      }, 2000);
+    };
+
+    socket.on("reaction:show", onReactionShow);
+
+    return () => {
+      socket.off("reaction:show", onReactionShow);
     };
   }, [actualMode, socket]);
 
@@ -693,6 +723,21 @@ export default function GameScreen() {
         />
       </div>
 
+      {roomReactions.length > 0 && (
+        <div className="fixed top-24 left-1/2 z-40 -translate-x-1/2 pointer-events-none">
+          <div className="flex flex-col gap-2 items-center">
+            {roomReactions.map((reaction) => (
+              <div
+                key={reaction.id}
+                className="rounded-full bg-black/75 px-4 py-2 text-white shadow"
+              >
+                <strong>{reaction.playerName}</strong> {reaction.reactionLabel}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Card Game Play-By-Play */}
       <div className="bg-success border rounded">
         <h3 className="text-light">Game Updates:</h3>
@@ -766,9 +811,51 @@ export default function GameScreen() {
               console.log("[UI] event:propose ACK:", ack);
 
               if (!ack?.ok) {
-                if (ack?.error === "cooldown" && ack?.until)
+                if (ack?.error === "cooldown" && ack?.until) {
                   setEventCooldownUntil(ack.until);
+                }
                 console.warn("event:propose failed:", ack?.error);
+              }
+            },
+          );
+        }}
+        onReaction={(reaction) => {
+          if (actualMode === "single") {
+            const localReaction = {
+              id: uid(),
+              playerName: "You",
+              reactionKey: reaction.key,
+              reactionLabel: reaction.label,
+              createdAt: Date.now(),
+            };
+
+            setRoomReactions((prev) => [...prev, localReaction]);
+
+            setTimeout(() => {
+              setRoomReactions((prev) =>
+                prev.filter((r) => r.id !== localReaction.id),
+              );
+            }, 2000);
+
+            return;
+          }
+
+          if (!room?.code || room?.phase !== "playing") {
+            console.warn("[UI] cannot send reaction: not in playing room", {
+              roomCode: room?.code,
+              phase: room?.phase,
+            });
+            return;
+          }
+
+          socket.emit(
+            "reaction:send",
+            {
+              key: reaction.key,
+            },
+            (ack) => {
+              if (!ack?.ok) {
+                console.warn("[UI] reaction:send failed:", ack);
               }
             },
           );
