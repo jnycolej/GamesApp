@@ -254,12 +254,16 @@ export function createRoomManager() {
     return { ok: true, hand: old.hand, score: old.score };
   }
 
-  function startAndDeal(code, requesterId) {
+  function startAndDeal(code, requesterId, requesterKey = null) {
     const r = roomMap.get(code);
     if (!r) return { ok: false, error: "room_not_found" }; // IMPORTANT
 
     //Host gate
-    if (r.hostId !== requesterId) {
+    const isHost =
+      (r.hostKey && requesterKey && r.hostKey === requesterKey) ||
+      r.hostId === requesterId;
+
+    if (!isHost) {
       return { ok: false, error: "not_host" };
     }
     const minPlayers = r.settings?.minPlayers ?? 1;
@@ -404,9 +408,12 @@ export function createRoomManager() {
       matchup: r.matchup ?? null,
       team: r.team ?? null,
       phase: r.phase,
+      hostKey: r.hostKey ?? null,
+      hostId: r.hostId ?? null,
       players: [...r.players.values()].map((p) => ({
         id: p.id,
-        name: p.name,
+        name: p.name ?? p.displayName,
+        key: p.key ?? null,
         score: p.score,
         connected: !!p.connected,
         // if open hands, send full hand; otherwise just the count

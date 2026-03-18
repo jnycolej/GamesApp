@@ -1,7 +1,14 @@
 // src/player/JoinCreateRoom.jsx
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+} from "@/components/ui/button-group";
 import { getSocket } from "@/shared/socket";
 import { useRoomActions } from "@/features/room/hooks/useRoomActions";
 import { getSport, SPORTS } from "@/config/sports";
@@ -149,21 +156,24 @@ If the link doesn't open, open the app -> join -> enter the room code.`;
           onChange={(e) => setName(e.target.value)}
           className="form-control"
         />
-
-        {/* ✅ pass sportKey */}
-        <MatchupSelect
-          sportKey={game}
-          selected={selectedMatchup}
-          onSelect={setSelectedMatchup}
-        />
-
-        <button
-          className="btn btn-danger"
-          onClick={handleCreateRoom}
-          disabled={busy}
-        >
-          {busy ? "Creating..." : "Create Room"}
-        </button>
+        <ButtonGroup>
+          {/* ✅ pass sportKey */}
+          <MatchupSelect
+            sportKey={game}
+            selected={selectedMatchup}
+            onSelect={setSelectedMatchup}
+          />
+          <ButtonGroupSeparator />
+          <Button
+            variant="default"
+            className=""
+            text="Create Room"
+            onClick={handleCreateRoom}
+            disabled={busy}
+          >
+            {busy ? "Creating..." : "Create Room"}
+          </Button>
+        </ButtonGroup>
       </div>
 
       {isHost && inviteUrl && (
@@ -237,7 +247,9 @@ If the link doesn't open, open the app -> join -> enter the room code.`,
           borderRadius: 8,
         }}
       >
-        {state ? JSON.stringify(state, null, 2) : "No room yet."}
+        {state
+          ? "Room Already Created. Start a new room or rejoin old one."
+          : "No room yet."}
       </pre>
     </div>
   );

@@ -9,9 +9,6 @@ import { getSport, SPORTS } from "@/config/sports";
 import { buildInviteUrl, inviteShareText } from "@/features/room/utils/invite";
 import { openShare, copyInvite } from "@/features/room/hooks/useInviteShare";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
 import NavBar from "../components/NavBar";
 import HowToPlay from "../components/HowToPlay";
 
@@ -79,7 +76,8 @@ export default function GameLobby() {
     if (room?.code === roomCode) return;
 
     // Guard: do not spam resume/join for the same code
-    if (ensuredRef.current.roomCode === roomCode && ensuredRef.current.done) return;
+    if (ensuredRef.current.roomCode === roomCode && ensuredRef.current.done)
+      return;
 
     ensuredRef.current = { roomCode, done: true };
 
@@ -97,11 +95,30 @@ export default function GameLobby() {
       });
     });
   }, [roomCode, room?.code, socket, setRoom]);
+  const myKey = getPlayerKey();
+
+  const isHost = useMemo(() => {
+    console.log("room.hostKey:", room?.hostKey);
+    console.log("myKey:", myKey);
+    console.log("equal?", room?.hostKey === myKey);
+    console.log("players:", room?.players);
+
+    if (!room) return false;
+
+    if (room.hostKey && room.hostKey === myKey) return true;
+
+    const me = room.players?.find(
+      (p) => p.key === myKey || p.playerKey === myKey,
+    );
+    if (!me) return false;
+
+    return me.id === room.hostId || me.isHost === true;
+  }, [room, myKey]);
 
   // Your note says allow start even if alone — keep >= 1
   const canStart = useMemo(
-    () => !!room && (room.players?.length ?? 0) >= 1,
-    [room],
+    () => !!room && isHost && (room.players?.length ?? 0) >= 1,
+    [room, isHost],
   );
 
   const startAndDeal = () => {
@@ -159,9 +176,15 @@ export default function GameLobby() {
           </div>
         )}
 
-        <h4 className="fs-3 text-light text-center m3">
-          Please wait for the host to Start the Game
-        </h4>
+        {isHost ? (
+          <h4 className="fs-3 text-light text-center m3">
+            You are the host. Start when ready.
+          </h4>
+        ) : (
+          <h4 className="fs-3 text-light text-center m3">
+            Please wait for the host to Start the Game
+          </h4>
+        )}
 
         <p className="m-3 text-light text-center fs-2">
           Players: {room?.players?.length ?? 0}
@@ -175,13 +198,17 @@ export default function GameLobby() {
           ))}
         </ul>
 
-        <button
-          className="btn justify-content-center btn-lg btn-light"
-          onClick={startAndDeal}
-          disabled={!canStart}
-        >
-          Start & Deal
-        </button>
+        {isHost ? (
+          <button
+            className="btn justify-content-center btn-lg btn-light"
+            onClick={startAndDeal}
+            disabled={!canStart}
+          >
+            Start & Deal
+          </button>
+        ) : (
+          <p> </p>
+        )}
       </div>
     </div>
   );

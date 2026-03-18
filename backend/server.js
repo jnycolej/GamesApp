@@ -28,6 +28,9 @@ app.get("/debug/rooms", (_req, res) => {
 const actionLockUntil = new Map();
 const ACTION_LOCK_MS = 300;
 
+const reactionCooldownByPlayer = new Map();
+const REACTION_COOLDOWN_MS = 1200;
+
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd
   ? true
@@ -202,6 +205,10 @@ io.on("connection", (socket) => {
   //Connects the to the socket
   socket.on("room:create", ({ gameType, displayName, key, matchup }, cb) => {
     try {
+      if (!key) {
+        return cb?.({ ok: false, error: "missing_player_key"});
+      }
+
       const { code, token } = rooms.createRoom({
         creatorSocketId: socket.id,
         gameType,
@@ -323,23 +330,24 @@ io.on("connection", (socket) => {
     cb?.({ ok: true, state: getEnrichedState(code) });
   });
 
-  socket.on("game:startAndDeal", async (_payload, cb) => {
-    const code = socket.data.roomCode;
-    if (!code) return cb?.({ ok: false, error: "not_in_room" }); // guard
+socket.on("game:startAndDeal", async (_payload, cb) => {
+  const code = socket.data.roomCode;
+  if (!code) return cb?.({ ok: false, error: "not_in_room" });
 
-    const requesterKey = _payload?.key || null;
-    const res = rooms.startAndDeal(code, socket.id, requesterKey);
-    if (!res.ok) return cb?.(res);
+  const requesterKey = _payload?.key || null;
 
-    cb?.({ ok: true });
-    emitRoomState(code);
+  const res = rooms.startAndDeal(code, socket.id, requesterKey);
+  if (!res.ok) return cb?.(res);
 
-    const socketsInRoom = await io.in(code).fetchSockets();
-    for (const s of socketsInRoom) {
-      io.to(s.id).emit("hand:update", rooms.getHand(code, s.id) || []);
-      io.to(s.id).emit("score:update", rooms.getScore(code, s.id) ?? 0);
-    }
-  });
+  cb?.({ ok: true });
+  emitRoomState(code);
+
+  const socketsInRoom = await io.in(code).fetchSockets();
+  for (const s of socketsInRoom) {
+    io.to(s.id).emit("hand:update", rooms.getHand(code, s.id) || []);
+    io.to(s.id).emit("score:update", rooms.getScore(code, s.id) ?? 0);
+  }
+});
 
   socket.on("game:playCard", ({ index, cardId }, cb) => {
     const code = socket.data.roomCode;
@@ -648,6 +656,74 @@ io.on("connection", (socket) => {
       return ack?.({ ok: false, error: "server_error" });
     }
   });
+
+socket.on("reaction:send", (payload = {}, ack) => {
+  try {
+    const code = socket.data.roomCode;
+    if (!code) {
+      return ack?.({ ok: false, error: "not_in_room" });
+    }
+
+    const state = getEnrichedState(code);
+    if (!state) {
+      return ack?.({ ok: false, error: "room_not_found" });
+    }
+
+    const player =
+      (state.players || []).find((p) => p.id === socket.id) || null;
+
+    if (!player) {
+      return ack?.({ ok: false, error: "player_not_found" });
+    }
+
+    const now = Date.now();
+    const reactionLockKey = `${code}:${socket.id}`;
+    const lockedUntil = reactionCooldownByPlayer.get(reactionLockKey) || 0;
+
+    if (now < lockedUntil) {
+      return ack?.({
+        ok: false,
+        error: "reaction_cooldown",
+        until: lockedUntil,
+      });
+    }
+
+    reactionCooldownByPlayer.set(
+      reactionLockKey,
+      now + REACTION_COOLDOWN_MS,
+    );
+
+    const allowedReactions = {
+      nice: "🔥 Nice!",
+      lucky: "😂 Lucky",
+      rigged: "😤 Rigged",
+      brutal: "💀 Brutal",
+    };
+
+    const reactionKey = String(payload?.key || "").trim();
+    const reactionLabel = allowedReactions[reactionKey];
+
+    if (!reactionKey || !reactionLabel) {
+      return ack?.({ ok: false, error: "invalid_reaction" });
+    }
+
+    const reaction = {
+      id: `${code}-${socket.id}-${now}-${Math.random().toString(16).slice(2)}`,
+      roomCode: code,
+      playerId: socket.id,
+      playerName: player.displayName || player.name || "Player",
+      reactionKey,
+      reactionLabel,
+      createdAt: now,
+    };
+
+    io.to(code).emit("reaction:show", reaction);
+    return ack?.({ ok: true, reactionId: reaction.id });
+  } catch (err) {
+    console.error("[reaction:send] error", err);
+    return ack?.({ ok: false, error: "server_error" });
+  }
+});
 
   socket.on("score:adjust", ({ delta }, ack) => {
     try {
