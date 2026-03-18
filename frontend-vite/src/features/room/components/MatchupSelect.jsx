@@ -1,6 +1,8 @@
 // features/room/components/MatchupSelect.jsx
 import { getTodaysMatchups } from "../utils/getTodaysMatchups";
 import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,7 +61,10 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="">{buttonLabel}</Button>
+        <Button variant="default">
+          {buttonLabel}
+          <ChevronDown />
+        </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="bg-light w-56">
