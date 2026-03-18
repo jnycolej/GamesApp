@@ -200,7 +200,7 @@ export default function GameLobby() {
 
         {isHost ? (
           <button
-            className="btn justify-content-center btn-lg btn-light"
+            className="rounded text-center justify-content-center animate-bounce text-2xl bg-red-600"
             onClick={startAndDeal}
             disabled={!canStart}
           >
