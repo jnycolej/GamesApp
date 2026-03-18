@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getSocket } from "@/shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
 import { motion, AnimatePresence } from "framer-motion";
+import { AnimatedList } from "@/components/ui/animated-list";
 import { FaCircle, FaRegCircle } from "react-icons/fa";
 
 //component imports
@@ -56,6 +57,7 @@ export default function GameScreen() {
   const [unlockAt, setUnlockAt] = useState(() => Date.now() + 400 * 60 * 25);
   const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
 
+  //Cooldown after pressing one of the Quick Reaction buttons
   useEffect(() => {
     if (eventCooldownUntil <= Date.now()) return;
 
@@ -66,7 +68,7 @@ export default function GameScreen() {
     return () => clearInterval(t);
   }, [eventCooldownUntil]);
 
-  //tick
+  //tick for counting down for the quiz timer
   useEffect(() => {
     const t = setInterval(() => setQuizTimerNow(Date.now()), 250);
     return () => clearInterval(t);
@@ -83,6 +85,7 @@ export default function GameScreen() {
     const s = (total % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
   }
+
   //Game updates window
   const [updates, setUpdates] = useState([]);
   const MAX_UPDATES = 100;
@@ -109,6 +112,7 @@ export default function GameScreen() {
     return () => clearInterval(t);
   }, []);
 
+  //Cooldown after pressing react event
   useEffect(() => {
     if (actualMode === "single") return;
 
@@ -128,11 +132,13 @@ export default function GameScreen() {
   const eventBarDisabled =
     actualMode !== "single" && (pendingVote != null || cooldownSeconds > 0);
 
+  //Sets the timeout timer on the card after a sacrifice is played
   function armSacrificeShield(ms = SACRIFICE_SHIELD_MS) {
     sacrificeShieldRef.current = true;
     setTimeout(() => (sacrificeShieldRef.current = false), ms);
   }
 
+  // Makes sure a person cant play two cards by accident
   function playOnce(cardId, fn, ms = 250) {
     if (playCooldownRef.current.has(cardId)) return;
     playCooldownRef.current.add(cardId);
@@ -143,6 +149,7 @@ export default function GameScreen() {
     }
   }
 
+  //Tracks the current time
   const [nowTick, setNowTick] = useState(Date.now());
   useEffect(() => {
     const t = setInterval(() => setNowTick(Date.now()), 1000);
@@ -151,7 +158,6 @@ export default function GameScreen() {
 
   //Picks which background to use based on the game being played
   let background;
-
   switch (game) {
     case "baseball":
       background = baseballBackground;
@@ -237,6 +243,7 @@ export default function GameScreen() {
     ? Math.max(0, Math.ceil((pendingVote.expiresAt - voteNow) / 1000))
     : 0;
 
+  //Sets upt the vote and tracks the outcome
   useEffect(() => {
     if (actualMode === "single") return;
 
@@ -255,6 +262,7 @@ export default function GameScreen() {
     };
   }, [actualMode, socket]);
 
+  //Controls the output of the react buttons onto the room
   useEffect(() => {
     if (actualMode === "single") return;
 
@@ -361,18 +369,18 @@ export default function GameScreen() {
     switch (ev?.type) {
       case "CARD_PLAYED":
         return (
-          <span className="text-green-500 font-semibold">
+          <span className="text-green-500 text-shadow-lg/20 text-2xl font-semibold">
             🟢 +{pts}
-            <span className="font-bold"> {name} </span>
-            <span className="text-muted-foreground"> - {quoted}</span>
+            <span className="font-bold text-2xl"> {name} </span>
+            <span className="font-normal text-shadow-none text-zinc-900"> - {quoted}</span>
           </span>
         );
       case "CARD_SACRIFICED":
         return (
-          <span className="text-red-500 font-semibold">
+          <span className="text-red-500 text-shadow-lg/20 text-2xl font-semibold">
             🔴 -{pts}
-            <span className="font-bold"> {name} </span>
-            <span className="text-muted-foreground"> - {quoted}</span>
+            <span className="font-bold text-2xl"> {name} </span>
+            <span className="font-normal text-shadow-none text-zinc-900"> - {quoted}</span>
           </span>
         );
       case "SCORE_ADJUSTED":
@@ -724,12 +732,12 @@ export default function GameScreen() {
       </div>
 
       {roomReactions.length > 0 && (
-        <div className="fixed top-24 left-1/2 z-40 -translate-x-1/2 pointer-events-none">
+        <div className="fixed top-104 left-1/2 z-40 -translate-x-1/2 pointer-events-none">
           <div className="flex flex-col gap-2 items-center">
             {roomReactions.map((reaction) => (
               <div
                 key={reaction.id}
-                className="rounded-full bg-black/75 px-4 py-2 text-white shadow"
+                className="rounded-full bg-white/75 px-4 py-2 text-4xl text-black shadow"
               >
                 <strong>{reaction.playerName}</strong> {reaction.reactionLabel}
               </div>
@@ -739,9 +747,41 @@ export default function GameScreen() {
       )}
 
       {/* Card Game Play-By-Play */}
-      <div className="bg-success border rounded">
-        <h3 className="text-light">Game Updates:</h3>
-        <div
+      <div className="">
+        <p className="text-light text-3xl text-center">Play-by-Play</p>
+        <div className="h-40  overflow-scroll ">
+          <AnimatedList>
+            {updates.map((ev) => {
+              const cls =
+                ev?.deltaPoints > 0
+                  ? "text-success bg-emerald-600/40 inset-shadow-sm inset-shadow-emerald-400/60"
+                  : ev?.deltaPoints < 0
+                    ? "text-danger bg-red-600/40 inset-shadow-sm inset-shadow-red-400/60"
+                    : "text-body";
+              const abs = ev?.at ? formatClock(ev.at) : "";
+              const rel = ev?.at ? formatRelative(ev.at, nowTick) : "";
+
+              const ts = ev?.at ? new Date(ev.at).toLocaleTimeString() : "";
+
+              return (
+                <p
+                  key={ev.id}
+                  className={`py-1 ${cls} rounded p-2`}
+                  title={ev?.at ? new Date(ev.at).toLocaleString() : ""}
+                >
+                  {formatUpdate(ev)}
+                  {ev?.at && (
+                    <span className="text-muted ms-2">
+                      · {abs} ({rel})
+                    </span>
+                  )}
+                </p>
+              );
+            })}
+          </AnimatedList>
+        </div>
+
+        {/* <div
           ref={scrollerRef}
           className="overflow-auto bg-light gameUpdates border rounded p-2"
           style={{ maxHeight: 120, overflowY: "auto" }}
@@ -778,7 +818,7 @@ export default function GameScreen() {
               <li className="text-muted">No updates yet.</li>
             )}
           </ul>
-        </div>
+        </div> */}
       </div>
 
       <EventBar
