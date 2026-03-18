@@ -707,6 +707,58 @@ export default function GameScreen() {
     );
   };
 
+  //Detects if a user is actively on screen
+  useEffect(() => {
+  const socket = getSocket();
+
+  const sendStatus = (isActive) => {
+    socket.emit("player:active", { isActive });
+  };
+
+  const handleVisibility = () => {
+    sendStatus(document.visibilityState === "visible");
+  };
+
+  const handleFocus = () => sendStatus(true);
+  const handleBlur = () => sendStatus(false);
+
+  document.addEventListener("visibilitychange", handleVisibility);
+  window.addEventListener("focus", handleFocus);
+  window.addEventListener("blur", handleBlur);
+
+  // send initial state
+  sendStatus(document.visibilityState === "visible");
+
+  return () => {
+    document.removeEventListener("visibilitychange", handleVisibility);
+    window.removeEventListener("focus", handleFocus);
+    window.removeEventListener("blur", handleBlur);
+  };
+}, []);
+
+useEffect(() => {
+  const socket = getSocket();
+
+  const sendActivity = () => {
+    socket.emit("player:activity");
+  };
+
+  const events = ["click", "keydown", "touchstart", "mousemove"];
+
+  events.forEach((e) => window.addEventListener(e, sendActivity));
+
+  // also send on focus
+  window.addEventListener("focus", sendActivity);
+
+  // send initial
+  sendActivity();
+
+  return () => {
+    events.forEach((e) => window.removeEventListener(e, sendActivity));
+    window.removeEventListener("focus", sendActivity);
+  };
+}, []);
+
   function handleLeaveGame() {
     socket.emit("leaveRoom");
     navigate(`/`);
@@ -731,6 +783,7 @@ export default function GameScreen() {
         />
       </div>
 
+        {/* Room Reactions Popup Functionality  */}
       {roomReactions.length > 0 && (
         <div className="fixed top-104 left-1/2 z-40 -translate-x-1/2 pointer-events-none">
           <div className="flex flex-col gap-2 items-center">

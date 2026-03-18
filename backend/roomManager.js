@@ -201,6 +201,8 @@ export function createRoomManager() {
         r.players.delete(prev.id);
         prev.id = id;
         prev.connected = true;
+        prev.isActive = true;
+        prev.lastActiveAt = Date.now();
         if (displayName) prev.name = displayName;
         r.players.set(id, prev);
         //If this key is the host's key, rebind hostId to the new socket id
@@ -217,6 +219,8 @@ export function createRoomManager() {
       name: displayName || "Player",
       hand: [],
       connected: true,
+      isActive: true,
+      lastActiveAt: Date.now(),
       score: 0,
     });
 
@@ -416,6 +420,7 @@ export function createRoomManager() {
         key: p.key ?? null,
         score: p.score,
         connected: !!p.connected,
+        isActive: !!p.isActive,
         // if open hands, send full hand; otherwise just the count
         ...(allowOpenHands ? { hand: p.hand } : { handCount: p.hand.length }),
       })),

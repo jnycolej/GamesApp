@@ -93,6 +93,25 @@ function getPlayerDisplayName(state, playerId) {
   return p?.displayName || p?.name || "Player";
 }
 
+const IDLE_TIMEOUT_MS = 20_000;
+
+function updateIdleStatesForCode(code) {
+  const room = rooms.getRoom?.(code);
+  if (!room || !room.players) return;
+
+  const now = Date.now();
+
+  for (const player of room.players.values()) {
+    if (!player.connected) {
+      player.isActive = false;
+      continue;
+    }
+
+    const lastActiveAt = player.lastActiveAt ?? 0;
+    player.isActive = now - lastActiveAt < IDLE_TIMEOUT_MS;
+  }
+}
+
 function summarizePending(p, totalEligibleVoters) {
   return {
     id: p.id,
@@ -147,6 +166,8 @@ function getUpdates(code) {
 }
 
 function getEnrichedState(code) {
+  updateIdleStatesForCode(code);
+
   // base public snapshot
   const base =
     (typeof rooms.safePublicState === "function" &&
@@ -206,7 +227,7 @@ io.on("connection", (socket) => {
   socket.on("room:create", ({ gameType, displayName, key, matchup }, cb) => {
     try {
       if (!key) {
-        return cb?.({ ok: false, error: "missing_player_key"});
+        return cb?.({ ok: false, error: "missing_player_key" });
       }
 
       const { code, token } = rooms.createRoom({
@@ -330,24 +351,24 @@ io.on("connection", (socket) => {
     cb?.({ ok: true, state: getEnrichedState(code) });
   });
 
-socket.on("game:startAndDeal", async (_payload, cb) => {
-  const code = socket.data.roomCode;
-  if (!code) return cb?.({ ok: false, error: "not_in_room" });
+  socket.on("game:startAndDeal", async (_payload, cb) => {
+    const code = socket.data.roomCode;
+    if (!code) return cb?.({ ok: false, error: "not_in_room" });
 
-  const requesterKey = _payload?.key || null;
+    const requesterKey = _payload?.key || null;
 
-  const res = rooms.startAndDeal(code, socket.id, requesterKey);
-  if (!res.ok) return cb?.(res);
+    const res = rooms.startAndDeal(code, socket.id, requesterKey);
+    if (!res.ok) return cb?.(res);
 
-  cb?.({ ok: true });
-  emitRoomState(code);
+    cb?.({ ok: true });
+    emitRoomState(code);
 
-  const socketsInRoom = await io.in(code).fetchSockets();
-  for (const s of socketsInRoom) {
-    io.to(s.id).emit("hand:update", rooms.getHand(code, s.id) || []);
-    io.to(s.id).emit("score:update", rooms.getScore(code, s.id) ?? 0);
-  }
-});
+    const socketsInRoom = await io.in(code).fetchSockets();
+    for (const s of socketsInRoom) {
+      io.to(s.id).emit("hand:update", rooms.getHand(code, s.id) || []);
+      io.to(s.id).emit("score:update", rooms.getScore(code, s.id) ?? 0);
+    }
+  });
 
   socket.on("game:playCard", ({ index, cardId }, cb) => {
     const code = socket.data.roomCode;
@@ -657,73 +678,70 @@ socket.on("game:startAndDeal", async (_payload, cb) => {
     }
   });
 
-socket.on("reaction:send", (payload = {}, ack) => {
-  try {
-    const code = socket.data.roomCode;
-    if (!code) {
-      return ack?.({ ok: false, error: "not_in_room" });
+  socket.on("reaction:send", (payload = {}, ack) => {
+    try {
+      const code = socket.data.roomCode;
+      if (!code) {
+        return ack?.({ ok: false, error: "not_in_room" });
+      }
+
+      const state = getEnrichedState(code);
+      if (!state) {
+        return ack?.({ ok: false, error: "room_not_found" });
+      }
+
+      const player =
+        (state.players || []).find((p) => p.id === socket.id) || null;
+
+      if (!player) {
+        return ack?.({ ok: false, error: "player_not_found" });
+      }
+
+      const now = Date.now();
+      const reactionLockKey = `${code}:${socket.id}`;
+      const lockedUntil = reactionCooldownByPlayer.get(reactionLockKey) || 0;
+
+      if (now < lockedUntil) {
+        return ack?.({
+          ok: false,
+          error: "reaction_cooldown",
+          until: lockedUntil,
+        });
+      }
+
+      reactionCooldownByPlayer.set(reactionLockKey, now + REACTION_COOLDOWN_MS);
+
+      const allowedReactions = {
+        nice: "🔥 Nice!",
+        lucky: "😂 Lucky",
+        rigged: "😤 Rigged",
+        brutal: "💀 Brutal",
+      };
+
+      const reactionKey = String(payload?.key || "").trim();
+      const reactionLabel = allowedReactions[reactionKey];
+
+      if (!reactionKey || !reactionLabel) {
+        return ack?.({ ok: false, error: "invalid_reaction" });
+      }
+
+      const reaction = {
+        id: `${code}-${socket.id}-${now}-${Math.random().toString(16).slice(2)}`,
+        roomCode: code,
+        playerId: socket.id,
+        playerName: player.displayName || player.name || "Player",
+        reactionKey,
+        reactionLabel,
+        createdAt: now,
+      };
+
+      io.to(code).emit("reaction:show", reaction);
+      return ack?.({ ok: true, reactionId: reaction.id });
+    } catch (err) {
+      console.error("[reaction:send] error", err);
+      return ack?.({ ok: false, error: "server_error" });
     }
-
-    const state = getEnrichedState(code);
-    if (!state) {
-      return ack?.({ ok: false, error: "room_not_found" });
-    }
-
-    const player =
-      (state.players || []).find((p) => p.id === socket.id) || null;
-
-    if (!player) {
-      return ack?.({ ok: false, error: "player_not_found" });
-    }
-
-    const now = Date.now();
-    const reactionLockKey = `${code}:${socket.id}`;
-    const lockedUntil = reactionCooldownByPlayer.get(reactionLockKey) || 0;
-
-    if (now < lockedUntil) {
-      return ack?.({
-        ok: false,
-        error: "reaction_cooldown",
-        until: lockedUntil,
-      });
-    }
-
-    reactionCooldownByPlayer.set(
-      reactionLockKey,
-      now + REACTION_COOLDOWN_MS,
-    );
-
-    const allowedReactions = {
-      nice: "🔥 Nice!",
-      lucky: "😂 Lucky",
-      rigged: "😤 Rigged",
-      brutal: "💀 Brutal",
-    };
-
-    const reactionKey = String(payload?.key || "").trim();
-    const reactionLabel = allowedReactions[reactionKey];
-
-    if (!reactionKey || !reactionLabel) {
-      return ack?.({ ok: false, error: "invalid_reaction" });
-    }
-
-    const reaction = {
-      id: `${code}-${socket.id}-${now}-${Math.random().toString(16).slice(2)}`,
-      roomCode: code,
-      playerId: socket.id,
-      playerName: player.displayName || player.name || "Player",
-      reactionKey,
-      reactionLabel,
-      createdAt: now,
-    };
-
-    io.to(code).emit("reaction:show", reaction);
-    return ack?.({ ok: true, reactionId: reaction.id });
-  } catch (err) {
-    console.error("[reaction:send] error", err);
-    return ack?.({ ok: false, error: "server_error" });
-  }
-});
+  });
 
   socket.on("score:adjust", ({ delta }, ack) => {
     try {
@@ -835,6 +853,22 @@ socket.on("reaction:send", (payload = {}, ack) => {
     const code = socket.data.roomCode;
     if (!code) return;
     io.to(socket.id).emit("game:history", getUpdates(code));
+  });
+
+  socket.on("player:activity", () => {
+    const code = socket.data.roomCode;
+    if (!code) return;
+
+    const room = rooms.getRoom?.(code);
+    if (!room) return;
+
+    const player = room.players.get(socket.id);
+    if (!player) return;
+
+    player.lastActiveAt = Date.now();
+    player.isActive = true;
+
+    emitRoomState(code);
   });
 
   //Players disconnect and leave the game room
