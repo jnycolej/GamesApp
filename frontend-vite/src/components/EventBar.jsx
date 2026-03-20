@@ -1,7 +1,23 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
+import { MoveUp, MoveDown, ArrowBigDown, ArrowBigUp } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const REACTIONS = [
   { key: "nice", label: "🔥 Nice!" },
@@ -108,10 +124,10 @@ const EventBar = ({
   const timerRef = useRef(null);
 
   useEffect(() => {
-  if (disabled || cooldownSeconds > 0) {
-    clearPending();
-  }
-}, [disabled, cooldownSeconds]);
+    if (disabled || cooldownSeconds > 0) {
+      clearPending();
+    }
+  }, [disabled, cooldownSeconds]);
 
   const eventButtons = useMemo(() => {
     switch (gameType) {
@@ -119,16 +135,23 @@ const EventBar = ({
         return [
           { title: "Touchdown", points: 6 },
           { title: "Interception", points: 10 },
-          { title: "Field Goal", points: 3 },
           { title: "Fumble", points: 5 },
           { title: "Big Play (20+ Yards)", points: 10 },
         ];
       case "baseball":
         return [
-          { title: "Score", points: 5 },
-          { title: "3 Up, 3 Down", points: 3 },
+          // { title: "Score", points: 5 },
+          // {
+          //   title: (
+          //     <>
+          //       3 <ArrowBigUp className="inline" />, 3{" "}
+          //       <ArrowBigDown className="inline" />
+          //     </>
+          //   ),
+          //   points: 3,
+          // },
           { title: "Home Run", points: 5 },
-          { title: "Double Score", points: 10 },
+          { title: "2x Score", points: 10 },
           { title: "Grand Slam", points: 15 },
         ];
       case "basketball":
@@ -191,60 +214,75 @@ const EventBar = ({
         </div>
       )}
 
-      <div className="flex gap-2 overflow-x-auto p-2">
-        {eventButtons.map((eventObj) => {
-          const isPending = pendingTitle === eventObj.title;
-          const isLocked = disabled || cooldownSeconds > 0;
+      <div className="flex flex-col items-center gap-3 p-2">
+        {/* Row 1: Reactions */}
+        <div className="bg-zinc-900/30 rounded-lg ">
+        <Accordion type="single" collapsible defaultValue="reactions">
+          <AccordionItem value="reactions">
+            <AccordionTrigger className="!text-stone-50 !text-4xl">
+              Quick Reacts
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="flex flex-wrap justify-center gap-2">
+                {REACTIONS.map((reaction) => (
+                  <Button
+                    key={reaction.key}
+                    className="rounded p-2 bg-stone-700/80 inset-shadow-sm inset-shadow-stone-100 text-zinc-50 font-semibold"
+                    onClick={() => handleReactionClick(reaction)}
+                  >
+                    {reaction.label}
+                  </Button>
+                ))}
+{/* 
+                <Button
+                  type="button"
+                  className="rounded text-stone-100 inset-shadow-sm inset-shadow-stone-100 bg-stone-700/80 "
+                  onClick={fireSideCannons}
+                >
+                  🎉{" "}
+                </Button>
 
-          return (
-            <motion.div
-              key={eventObj.title}
-              whileTap={{ scale: isLocked ? 1 : 0.97 }}
-              className="shrink-0"
-            >
-              <Button
-                type="button"
-                disabled={isLocked}
-                onClick={() => handleTap(eventObj)}
-                className={`gap-2 rounded px-4 ${
-                  isPending ? "ring-2 ring-yellow-300" : ""
-                }`}
+                <Button
+                  className="rounded bg-stone-700/80 inset-shadow-sm inset-shadow-stone-100"
+                  onClick={() =>
+                    handleReactionClick(fireSportsEmojiBurst(gameType))
+                  }
+                >
+                  🎊
+                </Button> */}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>        
+        </div>
+
+
+        {/* Row 2: Event buttons */}
+        <p className="text-4xl text-center text-stone-50">Quick Points</p>
+        <div className="flex flex-wrap justify-center gap-2">
+          {eventButtons.map((eventObj) => {
+            const isPending = pendingTitle === eventObj.title;
+            const isLocked = disabled || cooldownSeconds > 0;
+
+            return (
+              <motion.div
+                key={eventObj.title}
+                whileTap={{ scale: isLocked ? 1 : 0.97 }}
               >
-                <span>{eventObj.title}</span>
-                <span className="opacity-80">+{eventObj.points}</span>
-              </Button>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      <div className="flex flex-wrap gap-2 p-2">
-        {REACTIONS.map((reaction) => (
-          <Button
-            key={reaction.key}
-            type="button"
-            className="rounded"
-            onClick={() => handleReactionClick(reaction)}
-          >
-            {reaction.label}
-          </Button>
-        ))}
-
-        <Button
-          type="button"
-          className="rounded"
-          onClick={fireSideCannons}
-        >
-          Fire Side Cannons
-        </Button>
-
-        <Button
-          type="button"
-          className="rounded"
-          onClick={() => fireSportsEmojiBurst(gameType)}
-        >
-          Celebrate
-        </Button>
+                <Button
+                  disabled={isLocked}
+                  onClick={() => handleTap(eventObj)}
+                  className={`gap-2 bg-rose-700 inset-shadow-sm tracking-tighter font-bold md:!text-xl inset-shadow-rose-300 rounded px-2 ${
+                    isPending ? "ring-2 ring-sky-300/60" : ""
+                  }`}
+                >
+                  <span>{eventObj.title}</span>
+                  {/* <span className="opacity-80 text-sm">{eventObj.points}</span> */}
+                </Button>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
