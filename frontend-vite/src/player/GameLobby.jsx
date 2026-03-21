@@ -9,6 +9,8 @@ import { getSport, SPORTS } from "@/config/sports";
 import { buildInviteUrl, inviteShareText } from "@/features/room/utils/invite";
 import { openShare, copyInvite } from "@/features/room/hooks/useInviteShare";
 
+import { collegeTeams } from "@/assets/data/teams";
+
 import NavBar from "../components/NavBar";
 import HowToPlay from "../components/HowToPlay";
 
@@ -135,7 +137,12 @@ export default function GameLobby() {
     <div className="min-h-screen w-screen" style={backgroundStyle}>
       <div className="p-5">
         <NavBar />
-
+        <h2 className="text-center text-light">
+          {" "}
+          {room?.matchup?.teams?.length
+            ? `${room.matchup.teams[0]} vs. ${room.matchup.teams[1]}`
+            : `${game?.toUpperCase()} Game`}
+        </h2>
         <h2 className="display-2 text-center text-light">
           ROOM - <strong>{room?.code ?? roomCode ?? ""}</strong>
         </h2>

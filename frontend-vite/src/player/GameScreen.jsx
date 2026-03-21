@@ -11,6 +11,13 @@ import NavBar from "../components/NavBar";
 import Scoreboard from "../components/Scoreboard";
 import TriviaQuiz from "../components/TriviaQuiz";
 import EventBar from "@/components/EventBar";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 //Card Decks (temporary while transitioning single player into server)
 import footballDeck from "../assets/footballDeck.json";
@@ -369,18 +376,42 @@ export default function GameScreen() {
     switch (ev?.type) {
       case "CARD_PLAYED":
         return (
-          <span className="text-green-500 text-shadow-lg/20 text-2xl font-semibold">
-            🟢 +{pts}
-            <span className="font-bold text-2xl"> {name} </span>
-            <span className="font-normal text-shadow-none text-zinc-900"> - {quoted}</span>
+          <span className="font-semibold text-shadow-lg/20">
+            <span className="relative inline-flex items-center justify-center w-8 h-8 align-middle">
+              <span className="text-3xl leading-none">🟢</span>
+              <span className="absolute inset-0 z-10 flex items-center justify-center font-bold text-white">
+                +{pts}
+              </span>
+            </span>
+
+            <span className="font-bold text-emerald-300 text-shadow-1 text-lg tracking-wide">
+              {" "}
+              {name}{" "}
+            </span>
+            <span className="font-normal text-shadow-none text-2xl tracking-wide text-zinc-50">
+              {" "}
+              - {quoted.slice(1, quoted.length - 1)}
+            </span>
           </span>
         );
       case "CARD_SACRIFICED":
         return (
-          <span className="text-red-500 text-shadow-lg/20 text-2xl font-semibold">
-            🔴 -{pts}
-            <span className="font-bold text-2xl"> {name} </span>
-            <span className="font-normal text-shadow-none text-zinc-900"> - {quoted}</span>
+          <span className="font-semibold text-shadow-lg/20">
+            <span className="relative inline-flex items-center justify-center w-8 h-8 align-middle">
+              <span className="text-3xl leading-none">🔴</span>
+              <span className="absolute inset-0 z-10 flex items-center justify-center font-bold text-white">
+                -{pts}
+              </span>
+            </span>
+
+            <span className="font-bold text-lg text-red-500 tracking-wide">
+              {" "}
+              {name}{" "}
+            </span>
+            <span className="font-normal text-shadow-none tracking-wide text-2xl text-zinc-50">
+              {" "}
+              - {quoted.slice(1, quoted.length - 1)}
+            </span>
           </span>
         );
       case "SCORE_ADJUSTED":
@@ -391,7 +422,7 @@ export default function GameScreen() {
         return (
           <span className="text-primary font-semibold">
             ✅ <span className="font-bold">{name}</span>{" "}
-            <span className="text-muted-foreground">hit</span>{" "}
+            <span className="text-muted-foreground">scored</span>{" "}
             <span className="text-muted-foreground">{quoted}</span>{" "}
             <span className="text-muted-foreground">(+{pts})</span>
           </span>
@@ -709,55 +740,55 @@ export default function GameScreen() {
 
   //Detects if a user is actively on screen
   useEffect(() => {
-  const socket = getSocket();
+    const socket = getSocket();
 
-  const sendStatus = (isActive) => {
-    socket.emit("player:active", { isActive });
-  };
+    const sendStatus = (isActive) => {
+      socket.emit("player:active", { isActive });
+    };
 
-  const handleVisibility = () => {
+    const handleVisibility = () => {
+      sendStatus(document.visibilityState === "visible");
+    };
+
+    const handleFocus = () => sendStatus(true);
+    const handleBlur = () => sendStatus(false);
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    window.addEventListener("focus", handleFocus);
+    window.addEventListener("blur", handleBlur);
+
+    // send initial state
     sendStatus(document.visibilityState === "visible");
-  };
 
-  const handleFocus = () => sendStatus(true);
-  const handleBlur = () => sendStatus(false);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+      window.removeEventListener("focus", handleFocus);
+      window.removeEventListener("blur", handleBlur);
+    };
+  }, []);
 
-  document.addEventListener("visibilitychange", handleVisibility);
-  window.addEventListener("focus", handleFocus);
-  window.addEventListener("blur", handleBlur);
+  useEffect(() => {
+    const socket = getSocket();
 
-  // send initial state
-  sendStatus(document.visibilityState === "visible");
+    const sendActivity = () => {
+      socket.emit("player:activity");
+    };
 
-  return () => {
-    document.removeEventListener("visibilitychange", handleVisibility);
-    window.removeEventListener("focus", handleFocus);
-    window.removeEventListener("blur", handleBlur);
-  };
-}, []);
+    const events = ["click", "keydown", "touchstart", "mousemove"];
 
-useEffect(() => {
-  const socket = getSocket();
+    events.forEach((e) => window.addEventListener(e, sendActivity));
 
-  const sendActivity = () => {
-    socket.emit("player:activity");
-  };
+    // also send on focus
+    window.addEventListener("focus", sendActivity);
 
-  const events = ["click", "keydown", "touchstart", "mousemove"];
+    // send initial
+    sendActivity();
 
-  events.forEach((e) => window.addEventListener(e, sendActivity));
-
-  // also send on focus
-  window.addEventListener("focus", sendActivity);
-
-  // send initial
-  sendActivity();
-
-  return () => {
-    events.forEach((e) => window.removeEventListener(e, sendActivity));
-    window.removeEventListener("focus", sendActivity);
-  };
-}, []);
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, sendActivity));
+      window.removeEventListener("focus", sendActivity);
+    };
+  }, []);
 
   function handleLeaveGame() {
     socket.emit("leaveRoom");
@@ -783,7 +814,7 @@ useEffect(() => {
         />
       </div>
 
-        {/* Room Reactions Popup Functionality  */}
+      {/* Room Reactions Popup Functionality  */}
       {roomReactions.length > 0 && (
         <div className="fixed top-104 left-1/2 z-40 -translate-x-1/2 pointer-events-none">
           <div className="flex flex-col gap-2 items-center">
@@ -801,15 +832,15 @@ useEffect(() => {
 
       {/* Card Game Play-By-Play */}
       <div className="">
-        <p className="text-light text-3xl text-center">Play-by-Play</p>
-        <div className="h-40  overflow-scroll ">
+        <p className="text-light text-5xl text-center">Play-by-Play</p>
+        <div className="h-40 bg-zinc-900/30 rounded-lg overflow-scroll">
           <AnimatedList>
             {updates.map((ev) => {
               const cls =
                 ev?.deltaPoints > 0
-                  ? "text-success bg-emerald-600/40 inset-shadow-sm inset-shadow-emerald-400/60"
+                  ? "text-success bg-emerald-600/70 inset-shadow-sm tracking-wide inset-shadow-emerald-400/60"
                   : ev?.deltaPoints < 0
-                    ? "text-danger bg-red-600/40 inset-shadow-sm inset-shadow-red-400/60"
+                    ? "text-danger bg-red-600/40 inset-shadow-sm tracking-wide inset-shadow-red-400/60"
                     : "text-body";
               const abs = ev?.at ? formatClock(ev.at) : "";
               const rel = ev?.at ? formatRelative(ev.at, nowTick) : "";
@@ -833,45 +864,6 @@ useEffect(() => {
             })}
           </AnimatedList>
         </div>
-
-        {/* <div
-          ref={scrollerRef}
-          className="overflow-auto bg-light gameUpdates border rounded p-2"
-          style={{ maxHeight: 120, overflowY: "auto" }}
-        >
-          <ul className="mb-0 ps-3">
-            {updates.map((ev) => {
-              const cls =
-                ev?.deltaPoints > 0
-                  ? "text-success"
-                  : ev?.deltaPoints < 0
-                    ? "text-danger"
-                    : "text-body";
-              const abs = ev?.at ? formatClock(ev.at) : "";
-              const rel = ev?.at ? formatRelative(ev.at, nowTick) : "";
-
-              const ts = ev?.at ? new Date(ev.at).toLocaleTimeString() : "";
-
-              return (
-                <li
-                  key={ev.id}
-                  className={`py-1 ${cls}`}
-                  title={ev?.at ? new Date(ev.at).toLocaleString() : ""}
-                >
-                  {formatUpdate(ev)}
-                  {ev?.at && (
-                    <span className="text-muted ms-2">
-                      · {abs} ({rel})
-                    </span>
-                  )}
-                </li>
-              );
-            })}
-            {updates.length === 0 && (
-              <li className="text-muted">No updates yet.</li>
-            )}
-          </ul>
-        </div> */}
       </div>
 
       <EventBar
@@ -1111,12 +1103,12 @@ useEffect(() => {
         </div>
       </div>
 
-      <h2 className="display-3 text-light text-center">
+      <h2 className="!text-6xl !font-light text-shadow-lg text-shadow- text-light text-center">
         {me?.name || localName || "Player"}'s Hand
       </h2>
 
       {/* My points */}
-      <h3 className="display-4 text-light text-center">Points: {me?.points}</h3>
+      <h3 className="!text-4xl tracking-wide !text-stone-50 text-center">Points: {me?.points}</h3>
 
       {/* My hand */}
       <div className="container">
@@ -1170,26 +1162,26 @@ useEffect(() => {
                       <div className="flex-grow-1 overflow-auto">
                         <div className="d-flex justify-content-between align-items-center">
                           {typeof card.points === "number" && (
-                            <span className="badge bg-warning text-dark">
+                            <span className="badge bg-yellow-300 !text-sm !text-stone-900">
                               {card.points} pts
                             </span>
                           )}
                         </div>
 
                         {card.description && (
-                          <p className="fs-4 pt-3 text-muted">
+                          <p className="text-4xl pt-3 text-stone-500">
                             {card.description}
                           </p>
                         )}
 
                         {card.penalty && (
-                          <p className="fs-5 text-dark">{card.penalty}</p>
+                          <p className="text-2xl text-stone-800">{card.penalty}</p>
                         )}
                       </div>
 
                       <button
                         type="button"
-                        className="btn btn-sm btn-outline-danger w-100"
+                        className="font-bold tracking-wide !text-xl border-2 rounded border-red-500 active:bg-red-500 active:text-stone-50 hover:bg-red-500 hover:text-stone-50 w-100"
                         disabled={
                           pendingSacrificeId === card.id ||
                           (sacrificeCooldown[card.id] ?? 0) > sacrificeTick

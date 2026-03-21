@@ -98,16 +98,16 @@ export default function JoinCreateRoom() {
   );
 
   // ✅ auto-join deep link once (so invite links "just work")
-  const autoJoinedRef = useRef(false);
-  useEffect(() => {
-    if (autoJoinedRef.current) return;
-    if (!deepRoom) return;
+  // const autoJoinedRef = useRef(false);
+  // useEffect(() => {
+  //   if (autoJoinedRef.current) return;
+  //   if (!deepRoom) return;
 
-    // only auto-join if we have a token OR the user hit a join link explicitly
-    // (if you want auto-join even without token, remove the deepToken check)
-    autoJoinedRef.current = true;
-    handleJoinRoom(deepRoom, deepToken);
-  }, [deepRoom, deepToken, handleJoinRoom]);
+  //   // only auto-join if we have a token OR the user hit a join link explicitly
+  //   // (if you want auto-join even without token, remove the deepToken check)
+  //   autoJoinedRef.current = true;
+  //   handleJoinRoom(deepRoom, deepToken);
+  // }, [deepRoom, deepToken, handleJoinRoom]);
 
   const handleShare = useCallback(async () => {
     if (!inviteUrl) return;

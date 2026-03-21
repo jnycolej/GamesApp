@@ -1,5 +1,6 @@
 // features/room/components/MatchupSelect.jsx
 import { getTodaysMatchups } from "../utils/getTodaysMatchups";
+import { collegeTeams } from "@/assets/data/teams";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 

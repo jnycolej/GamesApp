@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-
+import { Button } from "@/components/ui/button";
 
 //component imports
 import NavBar from "../components/NavBar";
@@ -25,11 +25,10 @@ export default function ModeSelect() {
 
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
-    // minHeight: "100vh",
-    // width: "100%",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+    backgroundPosition: "center",
   };
 
   //Single-player
@@ -40,29 +39,31 @@ export default function ModeSelect() {
   return (
     <div className="min-h-screen w-screen" style={backgroundStyle}>
       <NavBar />
-      <div>
-        <h2 className="display-4 text-center fw-bold text-white">
+      <div className="px-4 py-6">
+        <p className="text-4xl text-center font-semibold text-stone-200">
           {game?.toUpperCase()}
-        </h2>
-        <h3 className="display-4 text-center text-white">Choose Game Mode</h3>
-        <div className="p-5 container">
-          <div className="d-flex flex-row justify-content-center g-2">
-            <div className="flex-col">
-              <button className="btn btn-lg btn-success" onClick={goSingle}>
+        </p>
+        <p className="text-7xl text-center text-stone-200">Choose Game Mode</p>
+        <div className="p-5 max-w-4xl mx-auto">
+          <div className="flex flex-row sm:flex-row justify-center gap-3 sm:gap-4">
+            <div>
+              <button
+                className="rounded-full bg-yellow-400 font-semibold px-4 py-2 text-base sm:px-5 sm:py-2.5 sm:text-lg md:px-6 md:py-3 md:text-xl"
+                onClick={goSingle}
+              >
                 Single Player
               </button>
             </div>
-            <div className="flex-col">
+            <div>
               <button
-                className="btn btn-lg btn-warning"
+                className="rounded-full bg-emerald-600 font-semibold px-4 py-2 text-base sm:px-5 sm:py-2.5 sm:text-lg md:px-6 md:py-3 md:text-xl"
                 onClick={goMulti}
-                style={{ marginLeft: 12 }}
               >
                 Multiplayer
               </button>
             </div>
           </div>
-          <div className="d-flex justify-content-center mt-3 p-2">
+          <div className="flex justify-center p-2">
             <HowToPlay />
           </div>
         </div>

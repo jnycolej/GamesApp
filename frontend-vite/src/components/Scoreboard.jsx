@@ -41,7 +41,7 @@ const Scoreboard = ({ players = [], leaderIds = [], currentUserId }) => {
                         ? "opacity-100 scale-100"
                         : "opacity-70 scale-90"
                     }`}
-                    color={p.connected ? "blue" : "red"}
+                    color={p.connected ? "white" : "red"}
                   />
                 </div>
                 <div className="font-semibold text-xl">

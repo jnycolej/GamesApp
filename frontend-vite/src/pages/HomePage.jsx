@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-// import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-// import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (optional)
+
 import {
   Card,
   CardAction,
@@ -26,43 +25,49 @@ const HomePage = () => {
         <h1 className="display-4 fw-bold text-center">Games</h1>
         <hr />
       </div>
-      <div className="mx-5">
-        <div className=" row justify-content-start gap-4 text-center">
-          <Card className="col bg-transparent border-transparent">
-            <CardContent className="card-body">
-              <Link to="/baseball/mode">
-                <img
-                  className="card-img-top"
-                  src={baseballGameLogo}
-                  alt="Baseball Game"
-                ></img>
-              </Link>
-            </CardContent>
-          </Card>
+      <div className="mx-4 md:mx-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div className="w-full">
+            <Card className="flex-col bg-transparent border-transparent">
+              <CardContent className="card-body">
+                <Link to="/baseball/mode">
+                  <img
+                    className="card-img-top"
+                    src={baseballGameLogo}
+                    alt="Baseball Game"
+                  ></img>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
 
-          <Card className="col bg-transparent border-transparent">
-            <CardContent className={"card-body"}>
-              <Link to="/football/mode">
-                <img
-                  className="card-img-top"
-                  src={footballGameLogo}
-                  alt="Football Game"
-                ></img>
-              </Link>
-            </CardContent>
-          </Card>
+          <div className="w-full">
+            <Card className="flex-col bg-transparent border-transparent">
+              <CardContent className={"card-body"}>
+                <Link to="/football/mode">
+                  <img
+                    className="card-img-top"
+                    src={footballGameLogo}
+                    alt="Football Game"
+                  ></img>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
 
-          <Card className="col bg-transparent">
-            <CardContent className={"card-body"}>
-              <Link to="/basketball/mode">
-                <img
-                  className="card-img-top"
-                  src={basketballGameLogo}
-                  alt="Basketball Game"
-                ></img>
-              </Link>
-            </CardContent>
-          </Card>
+          <div className="w-full">
+            <Card className="flex-col bg-transparent">
+              <CardContent className={"card-body"}>
+                <Link to="/basketball/mode">
+                  <img
+                    className="card-img-top"
+                    src={basketballGameLogo}
+                    alt="Basketball Game"
+                  ></img>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

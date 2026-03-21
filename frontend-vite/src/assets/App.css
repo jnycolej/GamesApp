@@ -1,6 +1,4 @@
 .playingCard {
-  /* min-width: 25rem;
-  max-width: 30rem; */
   width: 100%;
   aspect-ratio: 5 / 7;
   box-sizing: border-box;
