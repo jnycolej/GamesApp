@@ -11,6 +11,8 @@ import { openShare, copyInvite } from "@/features/room/hooks/useInviteShare";
 
 import { collegeTeams } from "@/assets/data/teams";
 
+import { ArrowRight } from "lucide-react";
+
 import NavBar from "../components/NavBar";
 import HowToPlay from "../components/HowToPlay";
 
@@ -207,11 +209,13 @@ export default function GameLobby() {
 
         {isHost ? (
           <button
-            className="rounded text-center justify-content-center animate-bounce text-2xl bg-red-600"
+            className="text-center font-semibold tracking-wide !text-stone-50 inset-shadow-sm inset-shadow-red-100 text-shadow-stone-800 !text-shadow-sm px-4 !rounded-full !text-2xl bg-red-600"
             onClick={startAndDeal}
             disabled={!canStart}
           >
+            
             Start & Deal
+            
           </button>
         ) : (
           <p> </p>

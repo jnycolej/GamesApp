@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-
+import { BorderBeam } from "@/components/ui/border-beam";
 import {
   Card,
   CardAction,
@@ -29,21 +29,21 @@ const HomePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
           <div className="w-full">
             <Card className="flex-col bg-transparent border-transparent">
-              <CardContent className="card-body">
+              <CardContent className="">
                 <Link to="/baseball/mode">
                   <img
-                    className="card-img-top"
+                    className="rounded-lg"
                     src={baseballGameLogo}
                     alt="Baseball Game"
                   ></img>
-                </Link>
+                </Link>              
               </CardContent>
             </Card>
           </div>
 
           <div className="w-full">
             <Card className="flex-col bg-transparent border-transparent">
-              <CardContent className={"card-body"}>
+              <CardContent className="">
                 <Link to="/football/mode">
                   <img
                     className="card-img-top"
@@ -52,20 +52,22 @@ const HomePage = () => {
                   ></img>
                 </Link>
               </CardContent>
+
             </Card>
           </div>
 
           <div className="w-full">
             <Card className="flex-col bg-transparent">
-              <CardContent className={"card-body"}>
+              <CardContent className="">
                 <Link to="/basketball/mode">
                   <img
                     className="card-img-top"
                     src={basketballGameLogo}
                     alt="Basketball Game"
                   ></img>
-                </Link>
+                </Link>               
               </CardContent>
+
             </Card>
           </div>
         </div>
