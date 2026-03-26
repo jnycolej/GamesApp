@@ -2,10 +2,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSocket } from "@/shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { AnimatedList } from "@/components/ui/animated-list";
 import { FaCircle, FaRegCircle } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 //component imports
 import NavBar from "../components/NavBar";
 import Scoreboard from "../components/Scoreboard";
@@ -36,20 +36,158 @@ export default function GameScreen() {
   const uid = () =>
     globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
 
-  const hasMatchup = !!room?.matchup;
+  //const hasMatchup = !!room?.matchup;
   const socket = getSocket();
 
   //State declarations
-  const [points, setPoints] = useState(0); //Your score
-  const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
   const [socketId, setSocketId] = useState(socket.id || null);
+
+  const [points, setPoints] = useState(0); //Your score
+  // const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
+
   const [quizUnlocked, setQuizUnlocked] = useState(false);
-  const [pendingVote, setPendingVote] = useState(null);
+
+  const [pendingVote, setPendingVote] = useState(null); // Tracks pending vote for extra points
+  const [voteNow, setVoteNow] = useState(Date.now());
+
   const [eventCooldownUntil, setEventCooldownUntil] = useState(0);
   const [roomReactions, setRoomReactions] = useState([]);
   const [cooldownNow, setCooldownNow] = useState(Date.now());
 
-  const [voteNow, setVoteNow] = useState(Date.now());
+  const [opponentDisplayScores, setOpponentDisplayScores] = useState({});
+  const prevScoresRef = useRef({});
+  const hasInteractedRef = useRef(false);
+  const [activeOpponentReaction, setActiveOpponentReaction] = useState(null);
+
+  function getPlayerScore(player) {
+    return Number(player?.score ?? player?.points ?? 0) || 0;
+  }
+
+  //Interaction tracking for sound/vibration
+  useEffect(() => {
+    const markInteracted = () => {
+      hasInteractedRef.current = true;
+    };
+
+    const events = ["click", "keydown", "touchstart", "pointerdown"];
+    events.forEach((e) =>
+      window.addEventListener(e, markInteracted, { once: true }),
+    );
+
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, markInteracted));
+    };
+  }, []);
+
+  //Add the actual opponent score detection effect
+  useEffect(() => {
+    if (actualMode === "single") return;
+    if (!Array.isArray(room?.players) || !socketId) return;
+
+    const currentScores = {};
+
+    for (const p of room.players) {
+      if (!p?.id) continue;
+      currentScores[p.id] = getPlayerScore(p);
+    }
+
+    // first pass: send and exit
+    if (Object.keys(prevScoresRef.current).length === 0) {
+      prevScoresRef.current = currentScores;
+      setOpponentDisplayScores(currentScores);
+      return;
+    }
+
+    for (const p of room.players) {
+      if (!p?.id) continue;
+      if (p.id === socketId) continue; //skip me
+
+      const oldScore = Number(prevScoresRef.current[p.id] ?? 0);
+      const newScore = Number(currentScores[p.id] ?? 0);
+
+      // seed display score if missing
+      setOpponentDisplayScores((prev) => {
+        if (prev[p.id] != null) return prev;
+        return { ...prev, [p.id]: oldScore };
+      });
+
+      if (newScore > oldScore) {
+        const delta = newScore - oldScore;
+
+        setActiveOpponentReaction({
+          id: uid(),
+          playerId: p.id,
+          playerName: p.name || p.displayName || "Opponent",
+          delta,
+          fromScore: oldScore,
+          toScore: newScore,
+          createdAt: Date.now(),
+        });
+      }
+    }
+
+    prevScoresRef.current = currentScores;
+  }, [actualMode, room?.players, socketId]);
+
+  //Auto-clear the reaction
+  useEffect(() => {
+    if (!activeOpponentReaction?.id) return;
+
+    const t = setTimeout(() => {
+      setActiveOpponentReaction(null);
+    }, 1200);
+
+    return () => clearTimeout(t);
+  }, [activeOpponentReaction?.id]);
+
+  //Score count up for the opponent
+  useEffect(() => {
+    if (!activeOpponentReaction) return;
+
+    const { playerId, fromScore, toScore } = activeOpponentReaction;
+
+    let frameId;
+    const duration = 500;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const nextValue = Math.round(
+        fromScore + (toScore - fromScore) * progress,
+      );
+
+      setOpponentDisplayScores((prev) => ({
+        ...prev,
+        [playerId]: nextValue,
+      }));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [activeOpponentReaction]);
+
+  useEffect(() => {
+    if (!activeOpponentReaction?.id) return;
+    if (!hasInteractedRef.current) return;
+
+    const delta = Number(activeOpponentReaction.delta ?? 0);
+
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      if (delta >= 8) navigator.vibrate([20, 30, 20]);
+      else navigator.vibrate(25);
+    }
+
+    // later:
+    // scoreImpactAudioRef.current?.play().catch(() => {});
+  }, [activeOpponentReaction?.id]);
+
   useEffect(() => {
     if (!pendingVote) return;
     const t = setInterval(() => setVoteNow(Date.now()), 200);
@@ -811,6 +949,7 @@ export default function GameScreen() {
           players={room?.players ?? []}
           leaderIds={room?.leaderIds ?? []}
           currentUserId={socketId}
+          activeReaction={activeOpponentReaction}
         />
       </div>
 
@@ -829,7 +968,20 @@ export default function GameScreen() {
           </div>
         </div>
       )}
-
+      <AnimatePresence>
+        {activeOpponentReaction && (
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="rounded-full bg-red-600/85 px-6 py-3 text-white text-3xl font-bold shadow-2xl backdrop-blur-sm"
+          >
+            {activeOpponentReaction.playerName} scored +
+            {activeOpponentReaction.delta}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Card Game Play-By-Play */}
       <div className="">
         <p className="text-light text-5xl text-center">Play-by-Play</p>
@@ -1108,7 +1260,9 @@ export default function GameScreen() {
       </h2>
 
       {/* My points */}
-      <h3 className="!text-4xl tracking-wide !text-stone-50 text-center">Points: {me?.points}</h3>
+      <h3 className="!text-4xl tracking-wide !text-stone-50 text-center">
+        Points: {me?.points}
+      </h3>
 
       {/* My hand */}
       <div className="container">
@@ -1175,7 +1329,9 @@ export default function GameScreen() {
                         )}
 
                         {card.penalty && (
-                          <p className="text-2xl text-stone-800">{card.penalty}</p>
+                          <p className="text-2xl text-stone-800">
+                            {card.penalty}
+                          </p>
                         )}
                       </div>
 
@@ -1227,48 +1383,86 @@ export default function GameScreen() {
 
       {/* Opponents */}
       <div className="container" style={{ marginTop: 16 }}>
-        {opponents.map((p) => (
-          <div key={p.id} className="mb-3">
-            <strong className="fs-2 text-light text-center d-block">
-              {p.name}
-            </strong>{" "}
-            {Array.isArray(p.hand) && (
-              <div
-                className="row g-2 justify-content-center mt-2"
-                style={{
-                  display: "flex",
-                  gap: 8,
-                  flexWrap: "wrap",
-                  marginTop: 6,
-                }}
+        {opponents.map((p) => {
+          const isScoringOpponent = activeOpponentReaction?.playerId === p.id;
+          const displayedScore =
+            opponentDisplayScores[p.id] ?? getPlayerScore(p);
+
+          return (
+            <motion.div
+              key={p.id}
+              className={`mb-3 rounded-xl p-2 transition-all duration-300 ${
+                isScoringOpponent
+                  ? "ring-4 ring-green-400/80 shadow-[0_0_30px_rgba(248,113,113,0.65)]"
+                  : ""
+              }`}
+              animate={
+                isScoringOpponent
+                  ? { x: [0, -8, 8, -6, 6, -3, 3, 0] }
+                  : { x: 0 }
+              }
+              transition={{ duration: 0.2 }}
+            >
+              <p
+                className={`text-center text-5xl d-block transition-all duration-300 ${
+                  isScoringOpponent
+                    ? "text-green-200 drop-shadow-[0_0_10px_rgba(255,120,120,0.95)]"
+                    : "text-stone-50"
+                }`}
               >
-                {p.hand.filter(Boolean).map((c, i) => (
-                  <div
-                    key={c?.id ?? i}
-                    className="col-12 col-sm-6 col-md-4 col-lg-3"
+                {p.name} • {displayedScore} pts
+              </p>{" "}
+              <AnimatePresence>
+                {isScoringOpponent && (
+                  <motion.div
+                    initial={{ y: 0, opacity: 1 }}
+                    animate={{ y: -20, opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-green-300 text-xl text-center"
                   >
+                    +{activeOpponentReaction.delta}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {Array.isArray(p.hand) && (
+                <div
+                  className="row g-2 justify-content-center mt-2"
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    flexWrap: "wrap",
+                    marginTop: 6,
+                  }}
+                >
+                  {p.hand.filter(Boolean).map((c, i) => (
                     <div
-                      className="card bg-warning playingCard p-2 text-center d-flex flex-column"
-                      style={{ minHeight: 0 }}
+                      key={c?.id ?? i}
+                      className="col-12 col-sm-6 col-md-4 col-lg-3"
                     >
-                      <div className="flex-grow-1 overflow-auto">
-                        <div className="fs-3">
-                          <p>{c?.description ?? "-"}</p>
-                        </div>
-                        <div className="mt-2 fs-4 fw-bold">
-                          <p>{c?.penalty ?? ""}</p>
-                        </div>
-                        <div className="mt-3 fs-4 card-text">
-                          <p>Points: {Number(c?.points ?? 0)}</p>
+                      <div
+                        className="card bg-warning playingCard p-2 text-center d-flex flex-column"
+                        style={{ minHeight: 0 }}
+                      >
+                        <div className="flex-grow-1 overflow-auto">
+                          <div className="fs-3">
+                            <p>{c?.description ?? "-"}</p>
+                          </div>
+                          <div className="mt-2 fs-4 fw-bold">
+                            <p>{c?.penalty ?? ""}</p>
+                          </div>
+                          <div className="mt-3 fs-4 card-text">
+                            <p>Points: {Number(c?.points ?? 0)}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
       </div>
       <button
         className="btn btn-danger"
