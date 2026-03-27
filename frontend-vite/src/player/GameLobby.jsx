@@ -1,6 +1,5 @@
 import { useMemo, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { getSocket } from "@/shared/socket";
 import { getDisplayName, getPlayerKey } from "@/shared/playerIdentity";
 import { useRoomChannel } from "../shared/useRoomState";
@@ -15,6 +14,7 @@ import { ArrowRight } from "lucide-react";
 
 import NavBar from "../components/NavBar";
 import HowToPlay from "../components/HowToPlay";
+import { useGameSounds } from "@/shared/useGameSounds";
 
 const normalizeRoomCode = (raw) =>
   String(raw || "")
@@ -23,6 +23,7 @@ const normalizeRoomCode = (raw) =>
     .slice(0, 8);
 
 export default function GameLobby() {
+  const sounds = useGameSounds();
   const { game, code } = useParams();
   const roomCode = normalizeRoomCode(code);
 
@@ -102,10 +103,10 @@ export default function GameLobby() {
   const myKey = getPlayerKey();
 
   const isHost = useMemo(() => {
-    console.log("room.hostKey:", room?.hostKey);
-    console.log("myKey:", myKey);
-    console.log("equal?", room?.hostKey === myKey);
-    console.log("players:", room?.players);
+    // console.log("room.hostKey:", room?.hostKey);
+    // console.log("myKey:", myKey);
+    // console.log("equal?", room?.hostKey === myKey);
+    // console.log("players:", room?.players);
 
     if (!room) return false;
 
@@ -131,6 +132,7 @@ export default function GameLobby() {
     const key = getPlayerKey();
     socket.emit("game:startAndDeal", { key }, (res) => {
       if (!res?.ok) return alert(res?.error ?? "Failed to start");
+      sounds.playStartDeal();
       nav(`/${game}/game`);
     });
   };
@@ -213,9 +215,7 @@ export default function GameLobby() {
             onClick={startAndDeal}
             disabled={!canStart}
           >
-            
             Start & Deal
-            
           </button>
         ) : (
           <p> </p>

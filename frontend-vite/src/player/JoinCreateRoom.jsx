@@ -248,7 +248,7 @@ If the link doesn't open, open the app -> join -> enter the room code.`,
         }}
       >
         {state
-          ? "Room Already Created. Start a new room or rejoin old one."
+          ? `Room Already Created. Start a new room or rejoin old one. ${code}`
           : "No room yet."}
       </pre>
     </div>

@@ -28,8 +28,10 @@ import basketballDeck from "../assets/basketballDeck.json";
 import footballBackground from "@/assets/images/football-background.png";
 import baseballBackground from "@/assets/images/baseball-background.png";
 import basketballBackground from "@/assets/images/basketballbackground.png";
+import { useGameSounds } from "@/shared/useGameSounds";
 
 export default function GameScreen() {
+  const sounds = useGameSounds();
   const { game, mode } = useParams();
   const actualMode = mode ?? "multi";
   const { room, setRoom, myHand, setMyHand } = useRoomChannel();
@@ -185,7 +187,8 @@ export default function GameScreen() {
     }
 
     // later:
-    // scoreImpactAudioRef.current?.play().catch(() => {});
+    if (delta >= 4) sounds.playScoreBig();
+    else sounds.playScoreSmall();
   }, [activeOpponentReaction?.id]);
 
   useEffect(() => {
@@ -480,6 +483,7 @@ export default function GameScreen() {
         return;
       }
       setPendingSacrificeId(null);
+      sounds.playSacrifice();
 
       //start cooldown for this specific card slot (the replacement has a new id)
       setSacrificeCooldown((prev) => ({
@@ -792,13 +796,16 @@ export default function GameScreen() {
         next.leaderIds = [meId];
         return next;
       });
+    sounds.playCard();
 
       return;
     }
 
     socket.emit("game:playCard", { index }, (res) => {
       if (!res?.ok) alert(res?.error ?? "Could not play card");
+      sounds.playCard();
     });
+
   };
 
   //watch hand for changes
@@ -870,6 +877,9 @@ export default function GameScreen() {
           console.warn("Event score adjust failed:", ack?.error);
           return;
         }
+        if (delta < 3) sounds.playScoreSmall();
+        if (delta >= 3) sounds.playScoreBig();
+
         const next = Number(ack.newScore);
         if (Number.isFinite(next)) setPoints(next);
       },
@@ -932,6 +942,34 @@ export default function GameScreen() {
     socket.emit("leaveRoom");
     navigate(`/`);
   }
+
+  //Ouiz unlock sound
+  const prevUnlockedRef = useRef(false);
+
+  useEffect(() => {
+    if (!prevUnlockedRef.current && isUnlocked) {
+      sounds.playQuizOpen();
+    }
+    prevUnlockedRef.current = isUnlocked;
+  }, [isUnlocked, sounds]);
+
+  //Leader switch sound
+  const prevLeaderIdsRef = useRef([]);
+
+  useEffect(() => {
+    const nextLeaders = Array.isArray(room?.leaderIds) ? room.leaderIds : [];
+    const prevLeaders = prevLeaderIdsRef.current;
+
+    const changed =
+      nextLeaders.length !== prevLeaders.length ||
+      nextLeaders.some((id, i) => id !== prevLeaders[i]);
+
+    if (prevLeaders.length > 0 && changed) {
+      sounds.playLeaderChange();
+    }
+
+    prevLeaderIdsRef.current = nextLeaders;
+  }, [room?.leaderIds, sounds]);
 
   return (
     <div className="p-5 min-h-screen w-screen" style={backgroundStyle}>
@@ -1025,6 +1063,8 @@ export default function GameScreen() {
         onPropose={(ev) => {
           if (actualMode === "single") {
             handleEventConfirm(ev); // your local single-player behavior
+                      sounds.playReaction();
+
             return;
           }
           if (!room?.code || room?.phase !== "playing") {
@@ -1096,6 +1136,7 @@ export default function GameScreen() {
               }
             },
           );
+          sounds.playReaction();
         }}
       />
       {pendingVote && (
@@ -1234,7 +1275,7 @@ export default function GameScreen() {
                   socket.emit("score:adjust", { delta: d }, (ack) => {
                     if (!ack?.ok)
                       return console.warn("Award failed:", ack?.error);
-
+                      sounds.playQuizAward();
                     // ✅ your server returns { ok: true, newScore }
                     const next = Number(ack.newScore);
                     setPoints(Number.isFinite(next) ? next : 0);

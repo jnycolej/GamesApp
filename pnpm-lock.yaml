@@ -116,6 +116,9 @@ importers:
       framer-motion:
         specifier: ^12.23.26
         version: 12.23.26(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      howler:
+        specifier: ^2.2.4
+        version: 2.2.4
       lucide-react:
         specifier: ^0.562.0
         version: 0.562.0(react@19.2.3)
@@ -137,6 +140,9 @@ importers:
       react-router-dom:
         specifier: ^7.11.0
         version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react-sounds:
+        specifier: ^1.0.30
+        version: 1.0.30(howler@2.2.4)(react@19.2.3)
       socket.io-client:
         specifier: ^4.8.3
         version: 4.8.3
@@ -2891,6 +2897,13 @@ packages:
     peerDependenciesMeta:
       react-dom:
         optional: true
+
+  react-sounds@1.0.30:
+    resolution: {integrity: sha512-Wd+ttb38/GDV9f9kn/CmKcJGjbGffSPKwKPCo2AF0VOq3JPR86zOaK41nxI7ACRuUGPRUrlSwdfHN5+lbDX2Ew==}
+    hasBin: true
+    peerDependencies:
+      howler: ^2.2.3
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-style-singleton@2.2.3:
     resolution: {integrity: sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==}
@@ -5965,6 +5978,11 @@ snapshots:
       set-cookie-parser: 2.7.2
     optionalDependencies:
       react-dom: 19.2.3(react@19.2.3)
+
+  react-sounds@1.0.30(howler@2.2.4)(react@19.2.3):
+    dependencies:
+      howler: 2.2.4
+      react: 19.2.3
 
   react-style-singleton@2.2.3(@types/react@19.2.7)(react@19.2.3):
     dependencies:

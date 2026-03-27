@@ -1,16 +1,46 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getSocket } from "./socket";
 
 export function useRoomChannel() {
-  const [room, setRoom] = useState(null);      // Multiplayer room
-  const [myHand, setMyHand] = useState([]);    // User's hand
-  const [myScore, setMyScore] = useState(0);   // User's score
-  const [scores, setScores] = useState({});    // Other players' scores
+  const [room, setRoom] = useState(null); // Multiplayer room
+  const [myHand, setMyHand] = useState([]); // User's hand
+  const [myScore, setMyScore] = useState(0); // User's score
+  const [scores, setScores] = useState({}); // Other players' scores
+
+  const prevPlayerCountRef = useRef(null);
+  const joinAudioRef = useRef(0);
+
+  useEffect(() => {
+    joinAudioRef.current = new Audio("/sounds/join.mp3");
+    joinAudioRef.current.preload = "auto";
+  }, []);
 
   useEffect(() => {
     const s = getSocket();
 
-    const onUpdated = (state) => setRoom(state);
+    const onUpdated = (state) => {
+      const newCount = Array.isArray(state?.players) ? state.players.length : 0;
+
+      if (
+        prevPlayerCountRef.current !== null &&
+        newCount > prevPlayerCountRef.current &&
+        joinAudioRef.current
+      ) {
+        console.log("join sound firing", {
+          prev: prevPlayerCountRef.current,
+          next: newCount,
+          time: Date.now(),
+        });
+
+        joinAudioRef.current.currentTime = 0;
+        joinAudioRef.current.play().catch((err) => {
+          console.error("join sound failed", err);
+        });
+      }
+
+      prevPlayerCountRef.current = newCount;
+      setRoom(state);
+    };
 
     const onHand = (payload) => {
       // accept [] OR { hand: [] }
@@ -75,6 +105,7 @@ export function useRoomChannel() {
     setMyHand([]);
     setMyScore(0);
     setScores({});
+    prevPlayerCountRef.current = null;
   };
 
   return {
