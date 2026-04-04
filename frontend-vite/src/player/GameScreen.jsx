@@ -1369,7 +1369,7 @@ export default function GameScreen() {
                           </div>
 
                           {card.description && (
-                            <p className="text-2xl pt-3 text-stone-500">
+                            <p className="text-xl pt-3 text-stone-500">
                               {card.description}
                             </p>
                           )}
