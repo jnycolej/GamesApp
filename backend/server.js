@@ -567,7 +567,7 @@ io.on("connection", (socket) => {
           byPlayerId: p.byPlayerId,
           byName: p.byName,
         });
-        setCooldown(code);
+        // setCooldown(code);
         clearPending(code);
       }, 15000);
 
@@ -667,7 +667,7 @@ io.on("connection", (socket) => {
           byPlayerId: pending.byPlayerId,
           byName: pending.byName,
         });
-        setCooldown(code);
+        // setCooldown(code);
         clearPending(code);
       }
 

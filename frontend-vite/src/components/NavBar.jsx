@@ -8,7 +8,7 @@ const NavBar = () => {
     return (
         <div>
             <a href="/">
-                <h1 className="display-1 text-light fw-bold text-center">Sports Shuffle</h1>
+                <h1 className="!text-8xl !text-shadow-lg text-shadow-stone-800 text-light fw-bold text-center">Sports Shuffle</h1>
             </a>
             <div className="m-2">
                 <nav className="navbar navbar-expand-lg">

@@ -29,6 +29,7 @@ import footballBackground from "@/assets/images/football-background.png";
 import baseballBackground from "@/assets/images/baseball-background.png";
 import basketballBackground from "@/assets/images/basketballbackground.png";
 import { useGameSounds } from "@/shared/useGameSounds";
+import HowToPlay from "@/components/HowToPlay";
 
 export default function GameScreen() {
   const sounds = useGameSounds();
@@ -796,7 +797,6 @@ export default function GameScreen() {
         next.leaderIds = [meId];
         return next;
       });
-    sounds.playCard();
 
       return;
     }
@@ -806,6 +806,7 @@ export default function GameScreen() {
       sounds.playCard();
     });
 
+    sounds.playCard();
   };
 
   //watch hand for changes
@@ -1020,6 +1021,7 @@ export default function GameScreen() {
           </motion.div>
         )}
       </AnimatePresence>
+
       {/* Card Game Play-By-Play */}
       <div className="">
         <p className="text-light text-5xl text-center">Play-by-Play</p>
@@ -1055,7 +1057,9 @@ export default function GameScreen() {
           </AnimatedList>
         </div>
       </div>
-
+      <div className="flex justify-center">
+      <HowToPlay />
+      </div>
       <EventBar
         gameType={game}
         disabled={eventBarDisabled}
@@ -1063,7 +1067,7 @@ export default function GameScreen() {
         onPropose={(ev) => {
           if (actualMode === "single") {
             handleEventConfirm(ev); // your local single-player behavior
-                      sounds.playReaction();
+            sounds.playReaction();
 
             return;
           }
@@ -1275,7 +1279,7 @@ export default function GameScreen() {
                   socket.emit("score:adjust", { delta: d }, (ack) => {
                     if (!ack?.ok)
                       return console.warn("Award failed:", ack?.error);
-                      sounds.playQuizAward();
+                    sounds.playQuizAward();
                     // ✅ your server returns { ok: true, newScore }
                     const next = Number(ack.newScore);
                     setPoints(Number.isFinite(next) ? next : 0);
@@ -1296,127 +1300,129 @@ export default function GameScreen() {
         </div>
       </div>
 
-      <h2 className="!text-6xl !font-light text-shadow-lg text-shadow- text-light text-center">
-        {me?.name || localName || "Player"}'s Hand
-      </h2>
+      <div className="bg-emerald-700/30 py-2">
+        <h2 className="!text-6xl !font-light text-shadow-lg text-shadow- text-light text-center">
+          {me?.name || localName || "Player"}'s Hand
+        </h2>
 
-      {/* My points */}
-      <h3 className="!text-4xl tracking-wide !text-stone-50 text-center">
-        Points: {me?.points}
-      </h3>
+        {/* My points */}
+        <h3 className="!text-4xl tracking-wide !text-stone-50 text-center">
+          Points: {me?.points}
+        </h3>
 
-      {/* My hand */}
-      <div className="container">
-        <div
-          className="row g-2 justify-content-center"
-          style={{ perspective: 1200 }}
-        >
-          <AnimatePresence initial={false} mode="popLayout">
-            {myHand.map((card, idx) => {
-              const isJustDealt = card.id === lastDealtId;
-              const isPending = pendingSacrificeId === card.id;
+        {/* My hand */}
+        <div className="container bg-emerald-700/50 rounded-lg py-3">
+          <div
+            className="row g-2 justify-content-center"
+            style={{ perspective: 1200 }}
+          >
+            <AnimatePresence initial={false} mode="popLayout">
+              {myHand.map((card, idx) => {
+                const isJustDealt = card.id === lastDealtId;
+                const isPending = pendingSacrificeId === card.id;
 
-              return (
-                <motion.div
-                  key={card.id}
-                  className="col-12 col-sm-6 col-md-4 col-lg-3"
-                  layout="position"
-                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 36 }}
-                >
+                return (
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    key={card.id}
+                    className="col-6 col-sm-5 col-md-3 col-lg-2"
+                    layout="position"
+                    initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 36 }}
                   >
-                    <div
-                      className="card playingCard p-3 d-flex flex-column"
-                      style={{
-                        minHeight: 0,
-                        ...(pendingSacrificeId === card.id
-                          ? { opacity: 0.9 }
-                          : {}),
-                      }}
-                      onPointerUp={(e) => {
-                        if (sacrificeShieldRef.current) return; // just sacrificed
-
-                        const until =
-                          cardPlayIgnoreUntilRef.current.get(card.id) || 0;
-                        if (Date.now() < until) return;
-
-                        //ignore if this came from a button
-                        const t = e.target;
-                        if (t && t.closest && t.closest("button")) return;
-
-                        playOnce(card.id, () => handleCardClick(idx));
-                      }}
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
                     >
-                      <div className="flex-grow-1 overflow-auto">
-                        <div className="d-flex justify-content-between align-items-center">
-                          {typeof card.points === "number" && (
-                            <span className="badge bg-yellow-300 !text-sm !text-stone-900">
-                              {card.points} pts
-                            </span>
+                      <div
+                        className="card playingCard p-3 d-flex flex-column"
+                        style={{
+                          minHeight: 0,
+                          ...(pendingSacrificeId === card.id
+                            ? { opacity: 0.9 }
+                            : {}),
+                        }}
+                        onPointerUp={(e) => {
+                          if (sacrificeShieldRef.current) return; // just sacrificed
+
+                          const until =
+                            cardPlayIgnoreUntilRef.current.get(card.id) || 0;
+                          if (Date.now() < until) return;
+
+                          //ignore if this came from a button
+                          const t = e.target;
+                          if (t && t.closest && t.closest("button")) return;
+
+                          playOnce(card.id, () => handleCardClick(idx));
+                        }}
+                      >
+                        <div className="flex-grow-1 overflow-auto">
+                          <div className="d-flex justify-content-between align-items-center">
+                            {typeof card.points === "number" && (
+                              <span className="badge bg-yellow-300 !text-sm !text-stone-900">
+                                {card.points} pts
+                              </span>
+                            )}
+                          </div>
+
+                          {card.description && (
+                            <p className="text-2xl pt-3 text-stone-500">
+                              {card.description}
+                            </p>
+                          )}
+
+                          {card.penalty && (
+                            <p className="text-xl text-stone-800">
+                              {card.penalty}
+                            </p>
                           )}
                         </div>
 
-                        {card.description && (
-                          <p className="text-4xl pt-3 text-stone-500">
-                            {card.description}
-                          </p>
-                        )}
-
-                        {card.penalty && (
-                          <p className="text-2xl text-stone-800">
-                            {card.penalty}
-                          </p>
-                        )}
+                        <button
+                          type="button"
+                          className="font-bold stracking-wide !text-lg border-2 rounded border-red-500 active:bg-red-500 active:text-stone-50 hover:bg-red-500 hover:text-stone-50 h-1/9 w-100"
+                          disabled={
+                            pendingSacrificeId === card.id ||
+                            (sacrificeCooldown[card.id] ?? 0) > sacrificeTick
+                          }
+                          aria-label="Sacrifice this card to draw a replacement"
+                          onPointerDown={(e) => {
+                            // arm shield BEFORE container's pointerup
+                            e.stopPropagation(); // no preventDefault here
+                            armSacrificeShield();
+                          }}
+                          onPointerUp={(e) => {
+                            // run sacrifice and cancel the click entirely
+                            e.stopPropagation();
+                            e.preventDefault(); // suppress the upcoming click
+                            handleSacrifice(card); // SACRIFICE by id
+                          }}
+                          onClick={(e) => {
+                            // belt & suspenders; click should be suppressed already
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
+                        >
+                          {(() => {
+                            const until = sacrificeCooldown[card.id] ?? 0;
+                            const remain = Math.max(0, until - sacrificeTick);
+                            if (pendingSacrificeId === card.id)
+                              return "Sacrificing...";
+                            if (remain > 0)
+                              return `Ready in ${(remain / 1000).toFixed(1)}s`;
+                            return "Sacrifice";
+                          })()}
+                        </button>
                       </div>
-
-                      <button
-                        type="button"
-                        className="font-bold tracking-wide !text-xl border-2 rounded border-red-500 active:bg-red-500 active:text-stone-50 hover:bg-red-500 hover:text-stone-50 w-100"
-                        disabled={
-                          pendingSacrificeId === card.id ||
-                          (sacrificeCooldown[card.id] ?? 0) > sacrificeTick
-                        }
-                        aria-label="Sacrifice this card to draw a replacement"
-                        onPointerDown={(e) => {
-                          // arm shield BEFORE container's pointerup
-                          e.stopPropagation(); // no preventDefault here
-                          armSacrificeShield();
-                        }}
-                        onPointerUp={(e) => {
-                          // run sacrifice and cancel the click entirely
-                          e.stopPropagation();
-                          e.preventDefault(); // suppress the upcoming click
-                          handleSacrifice(card); // SACRIFICE by id
-                        }}
-                        onClick={(e) => {
-                          // belt & suspenders; click should be suppressed already
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                      >
-                        {(() => {
-                          const until = sacrificeCooldown[card.id] ?? 0;
-                          const remain = Math.max(0, until - sacrificeTick);
-                          if (pendingSacrificeId === card.id)
-                            return "Sacrificing...";
-                          if (remain > 0)
-                            return `Ready in ${(remain / 1000).toFixed(1)}s`;
-                          return "Sacrifice";
-                        })()}
-                      </button>
-                    </div>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
+                );
+              })}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 

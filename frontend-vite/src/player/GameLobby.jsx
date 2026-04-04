@@ -141,85 +141,86 @@ export default function GameLobby() {
     <div className="min-h-screen w-screen" style={backgroundStyle}>
       <div className="p-5">
         <NavBar />
-        <h2 className="text-center text-light">
+        <h2 className="text-center !text-5xl bg-stone-600/40 mx-5 mt-5 mb-5 rounded py-1 !text-shadow-lg !text-shadow-stone-70 text-stone-900">
           {" "}
           {room?.matchup?.teams?.length
             ? `${room.matchup.teams[0]} vs. ${room.matchup.teams[1]}`
             : `${game?.toUpperCase()} Game`}
         </h2>
-        <h2 className="display-2 text-center text-light">
+        <h2 className="display-2 text-center text-shadow-lg text-shadow-stone-700 text-light">
           ROOM - <strong>{room?.code ?? roomCode ?? ""}</strong>
         </h2>
 
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mb-5">
           <HowToPlay />
         </div>
+        <div className="bg-green-700/50 py-2 px-4 rounded-xl">
+          {inviteUrl && (
+            <div
+              className="alert alert-light mt-3 !bg-stone-50/90 !rounded-full d-flex gap-2 align-items-center"
+              style={{ opacity: 0.95 }}
+            >
+              <span className="me-2 text-xl font-extrabold tracking-wider">Invite link:</span>
 
-        {inviteUrl && (
-          <div
-            className="alert alert-light mt-3 d-flex gap-2 align-items-center"
-            style={{ opacity: 0.95 }}
-          >
-            <span className="me-2">Invite link:</span>
+              <button
+                className="border border-2 !font-bold !border-blue-600 hover:bg-blue-600 hover:text-stone-50 p-2 !rounded-full"
+                onClick={() => openShare({ sportKey: game, inviteUrl })}
+              >
+                Share
+              </button>
 
+              <button
+                className="border border-2 !font-bold !border-slate-400 p-2 !rounded-full hover:bg-slate-400 hover:text-stone-950"
+                onClick={() => copyInvite({ sportKey: game, inviteUrl })}
+              >
+                Copy
+              </button>
+
+              <a
+                className="border border-2 !font-bold !border-green-700 p-2 !rounded-full !text-green-700 hover:bg-green-600 hover:text-stone-50"
+                href={`sms:&body=${encodeURIComponent(
+                  inviteShareText({ sportKey: game, url: inviteUrl }),
+                )}`}
+              >
+                Text
+              </a>
+            </div>
+          )}
+
+          {isHost ? (
+            <h4 className="fs-3 text-light text-center m3">
+              You are the host. Start when ready.
+            </h4>
+          ) : (
+            <h4 className="fs-3 text-light text-center m3">
+              Please wait for the host to Start the Game
+            </h4>
+          )}
+
+          <p className="m-3 text-light text-center fs-2">
+            Players: {room?.players?.length ?? 0}
+          </p>
+
+          <ul className="gameLobby">
+            {room?.players?.map((p) => (
+              <li className="text-light text-center fs-4" key={p.id}>
+                {p.name} {p.connected === false ? "(reconnecting...)" : ""}
+              </li>
+            ))}
+          </ul>
+
+          {isHost ? (
             <button
-              className="btn btn-outline-primary btn-sm"
-              onClick={() => openShare({ sportKey: game, inviteUrl })}
+              className="text-center font-semibold tracking-wide !text-stone-50 inset-shadow-sm inset-shadow-red-100 text-shadow-stone-800 !text-shadow-sm px-4 !rounded-full !text-2xl bg-red-600"
+              onClick={startAndDeal}
+              disabled={!canStart}
             >
-              Share
+              Start & Deal
             </button>
-
-            <button
-              className="btn btn-outline-secondary btn-sm"
-              onClick={() => copyInvite({ sportKey: game, inviteUrl })}
-            >
-              Copy
-            </button>
-
-            <a
-              className="btn btn-outline-success btn-sm"
-              href={`sms:&body=${encodeURIComponent(
-                inviteShareText({ sportKey: game, url: inviteUrl }),
-              )}`}
-            >
-              Text
-            </a>
-          </div>
-        )}
-
-        {isHost ? (
-          <h4 className="fs-3 text-light text-center m3">
-            You are the host. Start when ready.
-          </h4>
-        ) : (
-          <h4 className="fs-3 text-light text-center m3">
-            Please wait for the host to Start the Game
-          </h4>
-        )}
-
-        <p className="m-3 text-light text-center fs-2">
-          Players: {room?.players?.length ?? 0}
-        </p>
-
-        <ul className="gameLobby">
-          {room?.players?.map((p) => (
-            <li className="text-light text-center fs-4" key={p.id}>
-              {p.name} {p.connected === false ? "(reconnecting...)" : ""}
-            </li>
-          ))}
-        </ul>
-
-        {isHost ? (
-          <button
-            className="text-center font-semibold tracking-wide !text-stone-50 inset-shadow-sm inset-shadow-red-100 text-shadow-stone-800 !text-shadow-sm px-4 !rounded-full !text-2xl bg-red-600"
-            onClick={startAndDeal}
-            disabled={!canStart}
-          >
-            Start & Deal
-          </button>
-        ) : (
-          <p> </p>
-        )}
+          ) : (
+            <p> </p>
+          )}
+        </div>
       </div>
     </div>
   );

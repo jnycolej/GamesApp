@@ -684,5 +684,19 @@
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
+  },
+  {
+    "id": 99,
+    "description": "Next Medicine Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 100,
+    "description": "Next Conference Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
   }
 ]

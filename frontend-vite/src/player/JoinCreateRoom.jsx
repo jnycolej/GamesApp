@@ -144,17 +144,17 @@ If the link doesn't open, open the app -> join -> enter the room code.`;
     <div className="min-h-screen w-screen p-5" style={backgroundStyle}>
       <NavBar />
 
-      <h2 className="display-1 text-center text-white">
+      <h2 className="!text-5xl text-shadow-md py-10 text-shadow-stone-900 text-center text-white">
         {game?.toUpperCase()} - Multiplayer
       </h2>
 
       {/* CREATE */}
-      <div className="m-2 input-group" style={{ marginTop: 16 }}>
+      <div className="m-2 input-group p-3 !rounded" style={{ marginTop: 16 }}>
         <input
           placeholder="YOUR NAME"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="form-control"
+          className="form-control !font-semibold !bg-stone-50/60"
         />
         <ButtonGroup>
           {/* ✅ pass sportKey */}
@@ -165,7 +165,7 @@ If the link doesn't open, open the app -> join -> enter the room code.`;
           />
           <ButtonGroupSeparator />
           <Button
-            variant="default"
+            variant=""
             className=""
             text="Create Room"
             onClick={handleCreateRoom}
@@ -178,7 +178,7 @@ If the link doesn't open, open the app -> join -> enter the room code.`;
 
       {isHost && inviteUrl && (
         <div
-          className="alert alert-light mt-3 d-flex gap-2 align-items-center"
+          className="alert alert-light mt-3 p-3 d-flex gap-2 align-items-center"
           style={{ opacity: 0.95 }}
         >
           <span className="me-2">Invite link ready:</span>
@@ -210,12 +210,12 @@ If the link doesn't open, open the app -> join -> enter the room code.`,
       )}
 
       {/* JOIN */}
-      <div className="input-group m-2" style={{ marginTop: 16 }}>
+      <div className="input-group p-3 m-2" style={{ marginTop: 16 }}>
         <input
           placeholder="ROOM CODE"
           value={code}
           onChange={(e) => setCode(e.target.value)}
-          className="form-control"
+          className="form-control !font-semibold !bg-stone-50/60"
           inputMode="text"
           style={{ textTransform: "uppercase" }}
         />
@@ -224,11 +224,11 @@ If the link doesn't open, open the app -> join -> enter the room code.`,
           placeholder="YOUR NAME"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="form-control"
+          className="form-control !font-semibold !bg-stone-50/60"
         />
 
         <button
-          className="btn btn-primary"
+          className="!text-lg bg-blue-600 px-7 rounded text-stone-50 font-semibold"
           onClick={() => handleJoinRoom()}
           disabled={busy}
         >
@@ -237,7 +237,7 @@ If the link doesn't open, open the app -> join -> enter the room code.`,
       </div>
 
       <pre
-        className="display-4 text-dark fw-bold"
+        className="display-4 text-dark !text-stone-50 text-center !bg-red-600/60 fw-bold"
         style={{
           marginLeft: 10,
           marginTop: 16,

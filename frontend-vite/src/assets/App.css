@@ -66,7 +66,7 @@ body,
 }
 
 .basketball-background {
-    background-image: url("./basketballbackground.png");
+  background-image: url("./basketballbackground.png");
   min-height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
@@ -124,7 +124,9 @@ display-4 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings: "wdth" 100, "YTLC" 500;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
 }
 
 .teko-medium {
@@ -140,13 +142,18 @@ display-4 {
   font-style: normal;
 }
 
-h2 {
+h1, h2, h3 {
+  font-family: var(--ff-grad) !important;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+/* h2 {
   font-family: var(--ff-nunito) !important;
   font-optical-sizing: auto;
   font-size: normal;
-}
-p,
-h3 {
+} */
+p {
   font-family: var(--ff-teko) !important;
   font-weight: 450;
   font-optical-sizing: auto;

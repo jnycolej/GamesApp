@@ -41,7 +41,7 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
     game: g,
     value: `${matchupSignature(g)}|${idx}`,
     key: `${matchupSignature(g)}|${idx}`,
-    label: `${g.date} : ${(g.teams || []).join(" vs ")} @ ${g.time}`,
+    label: `${(g.teams || []).join(" vs ")} @ ${g.time}`,
   }));
 
   const selectedSig = selected ? matchupSignature(selected) : null;
@@ -62,14 +62,14 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="default">
+        <Button variant="" className="!font-semibold !text-lg">
           {buttonLabel}
           <ChevronDown />
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="bg-light w-56">
-        <DropdownMenuLabel className="text-center">
+        <DropdownMenuLabel className="text-center bg-blue-600 rounded text-stone-50 text-lg">
           Games Today
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

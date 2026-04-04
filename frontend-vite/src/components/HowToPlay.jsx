@@ -12,7 +12,7 @@ export default function HowToPlay() {
       {/* Trigger stays in layout exactly where <HowToPlay/> is placed */}
       <button
         type="button"
-        className="btn btn-primary"
+        className="!rounded-full !text-xl !mt-5 !font-bold text-stone-50 bg-blue-600 inset-shadow-sm inset-shadow-blue-300 p-2"
         data-bs-toggle="modal"
         data-bs-target={`#${modalId}`}
       >
@@ -46,10 +46,22 @@ export default function HowToPlay() {
                   <ol className="mb-0">
                     <li>The host starts the game and cards are dealt.</li>
                     <li>Tap cards that match what happens in the live game.</li>
-                    <li>Each tap adds/subtracts points per the card.</li>
+                    <li>
+                      Each tap adds/subtracts points per the card.
+                      <ul>
+                        <li><span className="font-bold">Card tap:</span> adds the points</li>
+                        <li><span className="font-bold">Sacrifice:</span> deals a new card to player but subtracts the points from card.</li>
+                      </ul>
+                    </li>
                     <li>
                       <strong>Win:</strong> Multiplayer = highest points; Single
                       player = just enjoy the game.
+                    </li>
+                    <li><strong>Tips:</strong> 
+                        <ul>
+                          <li><strong>Quick Points:</strong> Be the first to double tap these buttons when the event on the button occurs for <strong>big</strong> points.</li>
+                          <li><strong>Bonus Quiz:</strong> Earn extra points by do the bonus trivia quiz.</li>
+                        </ul>
                     </li>
                   </ol>
                 </div>

@@ -1960,10 +1960,10 @@ export const triviaQuestions = [
     league: "NCAA",
     sport: "baseball",
     question:
-      "How many national championships has LSU baseball won (as of 2023)?",
+      "How many national championships has LSU baseball won (as of 2025)?",
     options: ["5", "6", "7", "8"],
-    answer: "7",
-    funFact: "LSU won titles in 1991, 1993, 1996, 1997, 2000, 2009, and 2023.",
+    answer: "8",
+    funFact: "LSU won titles in 1991, 1993, 1996, 1997, 2000, 2009, 2023, and 2025.",
   },
   {
     id: 150,
