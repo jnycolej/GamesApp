@@ -46,7 +46,7 @@ const HomePage = () => {
               <CardContent className="">
                 <Link to="/football/mode">
                   <img
-                    className="card-img-top"
+                    className="rounded-lg"
                     src={footballGameLogo}
                     alt="Football Game"
                   ></img>
@@ -61,7 +61,7 @@ const HomePage = () => {
               <CardContent className="">
                 <Link to="/basketball/mode">
                   <img
-                    className="card-img-top"
+                    className="rounded-lg"
                     src={basketballGameLogo}
                     alt="Basketball Game"
                   ></img>
