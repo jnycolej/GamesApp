@@ -50,8 +50,6 @@ export default function GameLobby() {
   const backgroundStyle = useMemo(
     () => ({
       backgroundImage: `url(${sport.background})`,
-      // minHeight: "100vh",
-      // width: "100%",
       backgroundRepeat: "no-repeat",
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
@@ -141,26 +139,26 @@ export default function GameLobby() {
     <div className="min-h-screen w-screen" style={backgroundStyle}>
       <div className="p-5">
         <NavBar />
-        <h2 className="text-center !text-5xl bg-stone-600/40 mx-5 mt-5 mb-5 rounded py-1 !text-shadow-lg !text-shadow-stone-70 text-stone-900">
+        <h2 className="text-center !text-4xl bg-stone-600/40 mx-5 mt-5 mb-5 rounded py-1 !text-shadow-lg !text-shadow-stone-70 !text-stone-50">
           {" "}
           {room?.matchup?.teams?.length
             ? `${room.matchup.teams[0]} vs. ${room.matchup.teams[1]}`
             : `${game?.toUpperCase()} Game`}
         </h2>
         <h2 className="display-2 text-center text-shadow-lg text-shadow-stone-700 text-light">
-          ROOM - <strong>{room?.code ?? roomCode ?? ""}</strong>
+          ROOM - <span className="!font-bold">{room?.code ?? roomCode ?? ""}</span>
         </h2>
 
         <div className="d-flex justify-content-center mb-5">
           <HowToPlay />
         </div>
-        <div className="bg-green-700/50 py-2 px-4 rounded-xl">
+        <div className="bg-green-700/50 pt-2 pb-4 px-4 rounded-xl">
           {inviteUrl && (
             <div
-              className="alert alert-light mt-3 !bg-stone-50/90 !rounded-full d-flex gap-2 align-items-center"
+              className="alert alert-light mt-3 !bg-stone-50/90 !rounded-full d-flex gap-2 p-2 align-items-center"
               style={{ opacity: 0.95 }}
             >
-              <span className="me-2 text-xl font-extrabold tracking-wider">Invite link:</span>
+              <span className="ml-2 text-lg font-extrabold tracking-wider">Invite link:</span>
 
               <button
                 className="border border-2 !font-bold !border-blue-600 hover:bg-blue-600 hover:text-stone-50 p-2 !rounded-full"
@@ -188,7 +186,7 @@ export default function GameLobby() {
           )}
 
           {isHost ? (
-            <h4 className="fs-3 text-light text-center m3">
+            <h4 className="fs-3 !text-red-500 text-center m3">
               You are the host. Start when ready.
             </h4>
           ) : (
@@ -197,19 +195,20 @@ export default function GameLobby() {
             </h4>
           )}
 
-          <p className="m-3 text-light text-center fs-2">
+          <p className="m-3 text-light text-center text-3xl">
             Players: {room?.players?.length ?? 0}
           </p>
-
+          <hr />
           <ul className="gameLobby">
             {room?.players?.map((p) => (
-              <li className="text-light text-center fs-4" key={p.id}>
+              <li className="text-light text-center text-2xl font-semibold" key={p.id}>
                 {p.name} {p.connected === false ? "(reconnecting...)" : ""}
               </li>
             ))}
           </ul>
 
-          {isHost ? (
+          {isHost ? (<div className="flex justify-center">
+
             <button
               className="text-center font-semibold tracking-wide !text-stone-50 inset-shadow-sm inset-shadow-red-100 text-shadow-stone-800 !text-shadow-sm px-4 !rounded-full !text-2xl bg-red-600"
               onClick={startAndDeal}
@@ -217,6 +216,7 @@ export default function GameLobby() {
             >
               Start & Deal
             </button>
+            </div>
           ) : (
             <p> </p>
           )}
