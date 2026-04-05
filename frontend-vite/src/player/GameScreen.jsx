@@ -891,8 +891,8 @@ export default function GameScreen() {
           return;
         }
         if (delta < 3) sounds.playScoreSmall();
-        if (delta >= 3) sounds.playScoreBig();
-
+        if (delta >= 3 && delta < 9) sounds.playScoreBig();
+        if (delta >= 9 ) sounds.playQuickPointScore();
         const next = Number(ack.newScore);
         if (Number.isFinite(next)) setPoints(next);
       },

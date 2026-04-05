@@ -19,7 +19,10 @@ export function useGameSounds() {
       reaction: makeAudio("/sounds/button-press.mp3", 0.7),
       startDeal: makeAudio("/sounds/floraphonic-swing-whoosh-in-room-13-234267.mp3", 0.8),
       scoreSmall: makeAudio("/sounds/floraphonic-arcade-ui-1-229498.mp3", 0.7),
+
       scoreBig: makeAudio("/sounds/floraphonic-arcade-ui-26-229495.mp3", 0.8),
+      quickPointScore: makeAudio("/sounds/cartoon-music-soundtrack-retro-game-level-up-508728.mp3", 0.8),
+      questionRight: makeAudio("/sounds/cartoon-music-soundtrack-game-ui-level-complete-alert-504458.mp3", 0.8),
       leaderChange: makeAudio("/sounds/floraphonic-arcade-ui-3-229508.mp3", 0.75),
       quizOpen: makeAudio("/sounds/floraphonic-arcade-ui-18-229517.mp3", 0.7),
       quizAward: makeAudio("/sounds/freesound_crunchpixstudio-purchase-success-384963.mp3", 0.8),
@@ -46,5 +49,7 @@ export function useGameSounds() {
     playLeaderChange: () => replay(soundsRef.current?.leaderChange),
     playQuizOpen: () => replay(soundsRef.current?.quizOpen),
     playQuizAward: () => replay(soundsRef.current?.quizAward),
+    playQuickPointScore: () => replay(soundsRef.current?.quickPointScore),
+    playQuestionRight: () => replay(soundsRef.current?.questionRight),
   }
 }

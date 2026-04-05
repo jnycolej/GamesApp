@@ -1,8 +1,11 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useGameSounds } from "@/shared/useGameSounds";
 import {triviaQuestions} from "../assets/data/triviaQuestions";
 
 const TriviaQuiz = ({matchup, onAward }) => {
+    const sounds = useGameSounds();
+
   //Fisher-Yates shuffle for the question  
   const shuffleInPlace = (arr) => {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -138,6 +141,7 @@ if (filteredQuestions.length === 0) {
     const isRight = q.options.find((o) => o.text === selectedAnswer)?.isCorrect;
     if (isRight) {
       setQuizPoints((p) => p + 1);
+      sounds.playQuestionRight();
       console.log("Your correct!");
     } else {
       console.log("Your answer is wrong");
