@@ -57,6 +57,7 @@ export default function GameScreen() {
   const [roomReactions, setRoomReactions] = useState([]);
   const [cooldownNow, setCooldownNow] = useState(Date.now());
 
+  const [leaderPopup, setLeaderPopup] = useState(null);
   const [opponentDisplayScores, setOpponentDisplayScores] = useState({});
   const prevScoresRef = useRef({});
   const hasInteractedRef = useRef(false);
@@ -563,11 +564,22 @@ export default function GameScreen() {
         return `Turn ${ev?.meta?.turn ?? "?"}: ${name}'s move.`;
       case "EVENT_CONFIRMED":
         return (
-          <span className="text-primary font-semibold">
-            ✅ <span className="font-bold">{name}</span>{" "}
-            <span className="text-muted-foreground">scored</span>{" "}
-            <span className="text-muted-foreground">{quoted}</span>{" "}
-            <span className="text-muted-foreground">(+{pts})</span>
+          <span className="font-semibold text-shadow-lg/20">
+            <span className="relative inline-flex items-center justify-center w-8 h-8 align-middle">
+              <span className="text-3xl leading-none">🟢</span>
+              <span className="absolute inset-0 z-10 flex items-center justify-center font-bold text-white">
+                +{pts}
+              </span>
+            </span>
+
+            <span className="font-bold text-emerald-300 text-shadow-1 text-lg tracking-wide">
+              {" "}
+              {name}{" "}
+            </span>
+            <span className="font-normal text-shadow-none text-2xl tracking-wide text-zinc-50">
+              {" "}
+              - {quoted.slice(1, quoted.length - 1)}
+            </span>
           </span>
         );
       default:
@@ -967,11 +979,36 @@ export default function GameScreen() {
 
     if (prevLeaders.length > 0 && changed) {
       sounds.playLeaderChange();
+
+      const oldLeaderId = prevLeaders[0];
+      const newLeaderId = nextLeaders[0];
+
+      if (oldLeaderId && newLeaderId && oldLeaderId !== newLeaderId) {
+        const oldLeader =
+          room?.players?.find((p) => p.id === oldLeaderId)?.name || "Leader";
+        const newLeader =
+          room?.players.find((p) => p.id === newLeaderId)?.name || "Player";
+
+        setLeaderPopup({
+          id: uid(),
+          oldLeader,
+          newLeader,
+        });
+      }
     }
 
     prevLeaderIdsRef.current = nextLeaders;
-  }, [room?.leaderIds, sounds]);
+  }, [room?.leaderIds, room?.players, sounds]);
 
+  useEffect(() => {
+    if (!leaderPopup?.id) return;
+
+    const t = setTimeout(() => {
+      setLeaderPopup(null);
+    }, 2000);
+
+    return () => clearTimeout(t);
+  }, [leaderPopup?.id]);
   return (
     <div className="p-5 min-h-screen w-screen" style={backgroundStyle}>
       <NavBar />
@@ -994,7 +1031,8 @@ export default function GameScreen() {
 
       {/* Room Reactions Popup Functionality  */}
       {roomReactions.length > 0 && (
-        <div className="fixed top-104 left-1/2 z-40 -translate-x-1/2 pointer-events-none">
+        <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none">
+          {" "}
           <div className="flex flex-col gap-2 items-center">
             {roomReactions.map((reaction) => (
               <div
@@ -1021,7 +1059,21 @@ export default function GameScreen() {
           </motion.div>
         )}
       </AnimatePresence>
-
+      <AnimatePresence>
+        {leaderPopup && (
+          <motion.div
+            initial={{ scale: 0.85, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
+          >
+            <div className="rounded-full bg-yellow-500/90 px-6 py-3 text-black text-2xl md:text-3xl font-bold shadow-2xl backdrop-blur-sm">
+              {leaderPopup.newLeader} dethroned {leaderPopup.oldLeader} 👑
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Card Game Play-By-Play */}
       <div className="">
         <p className="text-light text-5xl text-center">Play-by-Play</p>
@@ -1058,7 +1110,7 @@ export default function GameScreen() {
         </div>
       </div>
       <div className="flex justify-center">
-      <HowToPlay />
+        <HowToPlay />
       </div>
       <EventBar
         gameType={game}
@@ -1475,17 +1527,17 @@ export default function GameScreen() {
               {Array.isArray(p.hand) && (
                 <div
                   className="row g-2 justify-content-center mt-2"
-                  style={{
-                    display: "flex",
-                    gap: 8,
-                    flexWrap: "wrap",
-                    marginTop: 6,
-                  }}
+                  // style={{
+                  //   display: "flex",
+                  //   gap: 8,
+                  //   flexWrap: "wrap",
+                  //   marginTop: 6,
+                  // }}
                 >
                   {p.hand.filter(Boolean).map((c, i) => (
                     <div
                       key={c?.id ?? i}
-                      className="col-12 col-sm-6 col-md-4 col-lg-3"
+                      className="col-6 col-sm-5 col-md-3 col-lg-2"
                     >
                       <div
                         className="card bg-warning playingCard p-2 text-center d-flex flex-column"
@@ -1511,11 +1563,7 @@ export default function GameScreen() {
           );
         })}
       </div>
-      <button
-        className="btn btn-danger"
-        onClick={handleLeaveGame}
-        style={{ position: "absolute", top: 16, right: 16 }}
-      >
+      <button className="btn btn-danger" onClick={handleLeaveGame}>
         Leave Game
       </button>
     </div>

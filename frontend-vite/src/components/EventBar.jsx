@@ -206,13 +206,7 @@ const EventBar = ({
 
   return (
     <div className="w-full px-3 pt-5">
-      {(cooldownSeconds > 0 || disabled) && (
-        <div className="mb-2 text-center text-sm text-white/80">
-          {cooldownSeconds > 0
-            ? `Event Bar cooldown: ${cooldownSeconds}s`
-            : "Voting in progress…"}
-        </div>
-      )}
+
 
       <div className="flex flex-col items-center gap-3 p-2">
         {/* Row 1: Reactions */}
@@ -258,6 +252,14 @@ const EventBar = ({
 
 
         {/* Row 2: Event buttons */}
+      {(cooldownSeconds > 0 || disabled) && (
+        <div className="mb-2 text-center text-lg font-extrabold text-white/80">
+          {cooldownSeconds > 0
+            ? `Quick Points cooldown: ${cooldownSeconds}s`
+            : "Voting in progress…"}
+        </div>
+      )}
+
         <p className="text-4xl text-center text-stone-50">Quick Points</p>
         <div className="flex flex-wrap justify-center gap-2">
           {eventButtons.map((eventObj) => {
