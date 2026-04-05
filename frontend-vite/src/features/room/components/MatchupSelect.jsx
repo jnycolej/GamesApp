@@ -13,7 +13,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group"
 function matchupSignature(g) {
   const date = String(g?.date ?? "");
   const sport = String(g?.sport ?? "");
@@ -57,19 +62,19 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
     onSelect(found);
   };
 
-  const buttonLabel = selected ? selected.teams.join(" vs ") : "Choose Teams";
+  const buttonLabel = selected ? selected.teams.join(" vs ") : "Game";
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="" className="!font-semibold !text-lg">
+        <InputGroupButton variant="" className="!font-semibold bg-zinc-900 !rounded-lg !text-lg">
           {buttonLabel}
           <ChevronDown />
-        </Button>
+        </InputGroupButton>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="bg-light w-56">
-        <DropdownMenuLabel className="text-center bg-blue-600 rounded text-stone-50 text-lg">
+        <DropdownMenuLabel className="text-center bg-green-600 rounded text-stone-50 text-lg">
           Games Today
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

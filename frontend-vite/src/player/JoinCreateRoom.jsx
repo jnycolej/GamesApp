@@ -5,6 +5,16 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@/components/ui/input-group";
+
 import {
   ButtonGroup,
   ButtonGroupSeparator,
@@ -40,8 +50,6 @@ export default function JoinCreateRoom() {
 
   const backgroundStyle = {
     backgroundImage: `url(${sport.background})`,
-    // minHeight: "100vh",
-    // width: "100%",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
@@ -141,39 +149,41 @@ If the link doesn't open, open the app -> join -> enter the room code.`;
   }, [inviteUrl, game]);
 
   return (
-    <div className="min-h-screen w-screen p-5" style={backgroundStyle}>
+    <div className="min-h-screen w-screen p-3" style={backgroundStyle}>
       <NavBar />
 
       <h2 className="!text-5xl text-shadow-md py-10 text-shadow-stone-900 text-center text-white">
-        {game?.toUpperCase()} - Multiplayer
+        {game?.toUpperCase()} - <span className="text-4xl">Multiplayer</span>
       </h2>
 
       {/* CREATE */}
-      <div className="m-2 input-group p-3 !rounded" style={{ marginTop: 16 }}>
-        <input
-          placeholder="YOUR NAME"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="form-control !font-semibold !bg-stone-50/60"
-        />
-        <ButtonGroup>
-          {/* ✅ pass sportKey */}
-          <MatchupSelect
-            sportKey={game}
-            selected={selectedMatchup}
-            onSelect={setSelectedMatchup}
+      <div className=" !rounded" style={{ marginTop: 16 }}>
+        <InputGroup className="flex my-2 !bg-stone-50/60">
+          <InputGroupInput
+            placeholder="YOUR NAME..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className=" !font-semibold"
           />
-          <ButtonGroupSeparator />
-          <Button
-            variant=""
-            className=""
-            text="Create Room"
-            onClick={handleCreateRoom}
-            disabled={busy}
-          >
-            {busy ? "Creating..." : "Create Room"}
-          </Button>
-        </ButtonGroup>
+          <InputGroupAddon className="" align="inline-end">
+            <MatchupSelect
+              sportKey={game}
+              selected={selectedMatchup}
+              onSelect={setSelectedMatchup}
+              className=""
+            />
+            <InputGroupButton
+              variant=""
+              className="!rounded-full !bg-green-500 font-semibold !text-lg"
+              text="Create Room"
+              onClick={handleCreateRoom}
+              disabled={busy}
+            >
+              {busy ? "Creating..." : "Create Room"}
+            </InputGroupButton>
+          </InputGroupAddon>
+        </InputGroup>
+
       </div>
 
       {isHost && inviteUrl && (
@@ -210,30 +220,35 @@ If the link doesn't open, open the app -> join -> enter the room code.`,
       )}
 
       {/* JOIN */}
-      <div className="input-group p-3 m-2" style={{ marginTop: 16 }}>
-        <input
+      <div className="input-group " style={{ marginTop: 16 }}>
+        <InputGroup className="flex !bg-stone-50/60">
+        <InputGroupInput
           placeholder="ROOM CODE"
           value={code}
           onChange={(e) => setCode(e.target.value)}
-          className="form-control !font-semibold !bg-stone-50/60"
+          className="form-control !font-semibold"
           inputMode="text"
           style={{ textTransform: "uppercase" }}
-        />
-
-        <input
+        />   
+        <InputGroupInput
           placeholder="YOUR NAME"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="form-control !font-semibold !bg-stone-50/60"
-        />
-
-        <button
-          className="!text-lg bg-blue-600 px-7 rounded text-stone-50 font-semibold"
+          className="form-control !font-semibold"
+        />  
+        <InputGroupButton
+          className="!text-lg bg-green-500 !mr-2 !rounded-full text-stone-50 font-semibold"
           onClick={() => handleJoinRoom()}
           disabled={busy}
         >
           {busy ? "Joining..." : "Join"}
-        </button>
+        </InputGroupButton>                   
+        </InputGroup>
+
+
+
+
+
       </div>
 
       <pre
