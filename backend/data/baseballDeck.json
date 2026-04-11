@@ -340,7 +340,7 @@
     "description": "Next Balk",
     "penalty": "Everyone Drinks",
     "points": 4,
-    "weight": 2
+    "weight": 1
   },
   {
     "id": 50,
@@ -606,21 +606,21 @@
     "description": "Next Outfield Assist At Home",
     "penalty": "Finish Drink",
     "points": 5,
-    "weight": 2
+    "weight": 1
   },
   {
     "id": 88,
     "description": "Next Diving Stop Saves A Run",
     "penalty": "3 Drinks",
-    "points": 4,
+    "points": 3,
     "weight": 2
   },
   {
     "id": 89,
     "description": "Next Player Hits For The Cycle (Game)",
     "penalty": "Finish Drink",
-    "points": 10,
-    "weight": 2
+    "points": 5,
+    "weight": 1
   },
   {
     "id": 90,
@@ -999,5 +999,19 @@
     "penalty":"2 Drinks",
     "points": 2,
     "weight": 4
+  },
+  {
+    "id": 143,
+    "description": "Next Commercial with Celebrity",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 144,
+    "description": "Next Commercial with a Sports Star",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
   }
 ]
