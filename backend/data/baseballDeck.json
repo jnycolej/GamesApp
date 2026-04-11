@@ -347,14 +347,14 @@
     "description": "Next Caught Stealing",
     "penalty": "Finish Your Drink",
     "points": 4,
-    "weight": 2
+    "weight": 1
   },
   {
     "id": 51,
     "description": "Next Back-to-Back Strikeouts",
     "penalty": "2 Drinks",
     "points": 3,
-    "weight": 3
+    "weight": 4
   },
   {
     "id": 52,
@@ -393,16 +393,16 @@
   },
   {
     "id": 57,
-    "description": "Next Crowd Shot With Face Paint",
-    "penalty": "1 Drink",
-    "points": 1,
+    "description": "Next Crowd Shot With Crazy Outfit",
+    "penalty": "2 Drinks",
+    "points": 2,
     "weight": 4
   },
   {
     "id": 58,
     "description": "Next Dugout Celebration Shown On Camera",
-    "penalty": "1 Drink",
-    "points": 1,
+    "penalty": "2 Drinks",
+    "points": 2,
     "weight": 4
   },
   {
@@ -430,28 +430,28 @@
     "id": 62,
     "description": "Next Grand Slam",
     "penalty": "Finish Your Drink",
-    "points": 8,
+    "points": 5,
     "weight": 1
   },
   {
     "id": 63,
     "description": "Next Walk-Off Win",
     "penalty": "Everyone Drinks",
-    "points": 8,
+    "points": 5,
     "weight": 1
   },
   {
     "id": 64,
     "description": "Next Ejection",
     "penalty": "Finish Your Drink",
-    "points": 7,
+    "points": 5,
     "weight": 1
   },
   {
     "id": 65,
     "description": "Next Inside-the-Park Home Run",
     "penalty": "Finish Your Drink",
-    "points": 9,
+    "points": 5,
     "weight": 1
   },
   {
