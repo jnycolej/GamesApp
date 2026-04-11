@@ -204,7 +204,7 @@ export default function GameScreen() {
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
   //setting quiz unlock timer
-  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 400 * 60 * 25);
+  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 25);
   const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
 
   //Cooldown after pressing one of the Quick Reaction buttons
