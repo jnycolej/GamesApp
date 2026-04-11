@@ -207,7 +207,7 @@ export const gameSchedule = [
     league: "NCAA",
     conferences: ["SEC"],
     sport: "baseball",
-    date: "2026-04-04",
+    date: "2026-04-06",
     time: "5:00PM CT",
     tag: ["regular"],
   },
@@ -477,7 +477,7 @@ export const gameSchedule = [
     league: "NCAA",
     conferences: ["Big10"],
     sport: "baseball",
-    date: "2026-04-04",
+    date: "2026-04-06",
     time: "4:00PM CT",
     tag: ["regular"],
   },
@@ -729,7 +729,7 @@ export const gameSchedule = [
     league: "NCAA",
     conferences: ["SEC"],
     sport: "baseball",
-    date: "2026-04-04",
+    date: "2026-04-06",
     time: "1:00PM CT",
     tag: ["regular"],
   },
@@ -945,7 +945,7 @@ export const gameSchedule = [
     league: "NCAA",
     conferences: ["SEC"],
     sport: "baseball",
-    date: "2026-04-04",
+    date: "2026-04-06",
     time: "1:00PM CT",
     tag: ["regular"],
   },
@@ -1125,7 +1125,7 @@ export const gameSchedule = [
     league: "NCAA",
     conferences: ["ACC"],
     sport: "baseball",
-    date: "2026-04-04",
+    date: "2026-04-06",
     time: "4:00PM CT",
     tag: ["regular"],
   },
@@ -1773,7 +1773,7 @@ export const gameSchedule = [
     league: "NCAA",
     conferences: ["ACC"],
     sport: "baseball",
-    date: "2026-04-04",
+    date: "2026-04-06",
     time: "2:00PM CT",
     tag: ["regular"],
   },
@@ -1786,5 +1786,33 @@ export const gameSchedule = [
     time: "7:00PM CT",
     tag: ["regular"]
   },
+  // {
+  //   teams: ["Michigan", "Eastern Michigan"]
+  // },
+  // {
+  //   teams: ["Cal State", "San Francisco"]
+  // },
+  // {
+  //   teams: ["Oklahoma", "Dallas Baptist"],
+  // },
+  // {
+  //   teams: ["Saint Marys", "UC Davis"]
+  // },
+  // {
+  //   teams: ["Clemson", "Santa Clara"]
+  // },
+  // {
+  //   teams: ["Bellarmine", "Southern Indiana"]
+  // },
+  // {
+  //   teams: ["Oregon State", "Washington State"]
+  // },
+  // {
+  //   teams: ["Gonzaga", "Washington"]
+  // },
+  // {
+  //   teams: ["California Baptist", "Long Beach State"],
+
+  // }
   //NCAA Womens Basketball
 ];

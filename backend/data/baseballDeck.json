@@ -22,14 +22,14 @@
   },
   {
     "id": 4,
-    "description": "Next Changeup That's a Strike",
+    "description": "Next Time Announcer Says 'Strike'",
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
   },
   {
     "id": 5,
-    "description": "Next Curve That's a Strike",
+    "description": "Next Time Announcer Says 'Curve'",
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
@@ -134,7 +134,7 @@
   },
   {
     "id": 20,
-    "description": "Next Slider That's A Strike",
+    "description": "Next Time Annoucer Says 'Slider'",
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
@@ -654,14 +654,14 @@
     "id": 94,
     "description": "Next Triple Play",
     "penalty": "Finish Drink + Celebration",
-    "points": 10,
+    "points": 5,
     "weight": 1
   },
   {
     "id": 95,
     "description": "Next Inside-The-Park Home Run",
     "penalty": "Finish Your Drink",
-    "points": 9,
+    "points": 5,
     "weight": 1
   },
   {
@@ -698,5 +698,271 @@
     "penalty": "1 Drink",
     "points": 1,
     "weight": 5
+  },
+  {
+    "id": 101,
+    "description": "Next Pitch is Outside",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 102,
+    "description": "Next Pitch is Inside",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 103,
+    "description": "Next Pitch is Fouled Straight Back",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 104,
+    "description": "Next Pitch Bounces in Dirt",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 105,
+    "description": "Next Pitch is Taken (No Swing)",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 106,
+    "description": "Next Swing and Miss",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 107,
+    "description": "Next Check Swing",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 108,
+    "description": "Next Times Pitch Clock is Shown",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 109,
+    "description": "Next Batter Steps Out of Box",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 110,
+    "description": "Next Batter Calls Time",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 111,
+    "description": "Next Pitch Shakes Off Catcher",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 112,
+    "description": "Next Catcher Gives Multiple Signs",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 113,
+    "description": "Next Batter Adjusts Battong Gloves Twice",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 114,
+    "description": "Next Time Umpire Signals Strike",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 115,
+    "description": "Next Time Announcer Says 'Breaking Ball'",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 116,
+    "description": "Next Time Announcer Says 'Off-Speed'",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 116,
+    "description": "Next Time Announcer Mentions Pitch Count",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 117,
+    "description": "Next Time Announcer Mentions Bullpen Usage",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 118,
+    "description": "Next Time Announcer Mentions Weather/Wind",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 119,
+    "description": "Next Close-Up Of Pitcher Face",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 120,
+    "description": "Next Crowd Reaction Shot",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 121,
+    "description": "Next Dugout Player Laughing",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 122,
+    "description": "Next Coach on the Walkie/Phone",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 123,
+    "description": "Next Graphic Showing Stats",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 124,
+    "description": "Next 3+ Pitch At Bat",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "id": 125,
+    "description": "Next 4+ Pitch At Bat",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 3
+  },
+  {
+    "id": 126,
+    "description": "Next Batter Reaches 2-Strike Count",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "id": 127,
+    "description": "Next Batter Reaches 3 Balls",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 3
+  },
+  {
+    "id": 128,
+    "description": "Next At-Bat Ends In Under 3 Pitches",
+    "penalty": "2 Drink2",
+    "points": 2,
+    "weight": 3
+  },
+  {
+    "id": 129,
+    "description": "Next Throw Across Diamond",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "id": 130,
+    "description": "Next Outfield Ball Fields On A Bounce",
+    "penalty": "2 Drink",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "id": 131,
+    "description": "Next Leadoff Batter Reaches Base",
+    "penalty": "3 Drink",
+    "points": 3,
+    "weight": 3
+  },
+  {
+    "id": 132,
+    "description": "Next At-Bat Ends In Under 3 Pitches",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 133,
+    "description": "Next Pitch With Runner in Scoring Position",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "id": 134,
+    "description": "Next Inning With No Hits",
+    "penalty": "3 Drinks",
+    "points": 3,
+    "weight": 3
+  },
+  {
+    "id": 135,
+    "description": "Next Loud Crowd Reaction (even if nothing happens)",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "id": 136,
+    "description": "Next Time Annoucer Gets Excited",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
+  },
+  {
+    "id": 137,
+    "description": "Next Replay Shown Twice",
+    "penalty": "2 Drinks",
+    "points": 2,
+    "weight": 4
   }
 ]
