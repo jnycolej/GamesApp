@@ -964,5 +964,40 @@
     "penalty": "2 Drinks",
     "points": 2,
     "weight": 4
+  },
+  {
+    "id": 138,
+    "description": "Next Phone Commercial",
+    "penalty": "1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 139,
+    "description": "Fast Food Commercial",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 140,
+    "description": "Next time Announcer Mentions 'Shift'",
+    "penalty":"1 Drink",
+    "points": 1,
+    "weight": 5
+  },
+  {
+    "id": 141,
+    "description": "Next Time Fans All Get to Their Feet",
+    "penalty": "3 Drinks",
+    "points": 3,
+    "weight": 3
+  },
+  {
+    "id": 142,
+    "description": "Next Time Fans Boo the Ump",
+    "penalty":"2 Drinks",
+    "points": 2,
+    "weight": 4
   }
 ]
