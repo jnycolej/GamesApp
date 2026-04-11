@@ -204,7 +204,7 @@ export default function GameScreen() {
   const [sacrificeTimer, setSacrificeTimer] = useState(null);
 
   //setting quiz unlock timer
-  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 25);
+  const [unlockAt, setUnlockAt] = useState(() => Date.now() + 10 * 60 * 1000);
   const [quizTimerNow, setQuizTimerNow] = useState(Date.now());
 
   //Cooldown after pressing one of the Quick Reaction buttons
@@ -892,7 +892,7 @@ export default function GameScreen() {
         }
         if (delta < 3) sounds.playScoreSmall();
         if (delta >= 3 && delta < 9) sounds.playScoreBig();
-        if (delta >= 9 ) sounds.playQuickPointScore();
+        if (delta >= 9) sounds.playQuickPointScore();
         const next = Number(ack.newScore);
         if (Number.isFinite(next)) setPoints(next);
       },
@@ -1411,7 +1411,7 @@ export default function GameScreen() {
                           playOnce(card.id, () => handleCardClick(idx));
                         }}
                       >
-                        <div className="flex-grow-1 overflow-auto">
+                        <div className="flex-grow-1 overflow-y-auto">
                           <div className="d-flex justify-content-between align-items-center">
                             {typeof card.points === "number" && (
                               <span className="badge bg-yellow-300 !text-sm !text-stone-900">
@@ -1421,7 +1421,7 @@ export default function GameScreen() {
                           </div>
 
                           {card.description && (
-                            <p className="text-xl pt-3 text-stone-500">
+                            <p className="text-xl pt-2 text-stone-500">
                               {card.description}
                             </p>
                           )}
@@ -1435,7 +1435,7 @@ export default function GameScreen() {
 
                         <button
                           type="button"
-                          className="font-bold stracking-wide !text-lg border-2 rounded border-red-500 active:bg-red-500 active:text-stone-50 hover:bg-red-500 hover:text-stone-50 h-1/9 w-100"
+                          className="font-extrabold text-center tracking-wider !text-lg border-2 rounded border-red-500 active:bg-red-500 active:text-stone-50 hover:bg-red-500 hover:text-stone-50 h-1/9 w-100"
                           disabled={
                             pendingSacrificeId === card.id ||
                             (sacrificeCooldown[card.id] ?? 0) > sacrificeTick
@@ -1544,14 +1544,20 @@ export default function GameScreen() {
                         style={{ minHeight: 0 }}
                       >
                         <div className="flex-grow-1 overflow-auto">
-                          <div className="fs-3">
-                            <p>{c?.description ?? "-"}</p>
+                          <div className="d-flex justify-content-between align-items-center">
+                            {typeof c?.points === "number" && (
+                              <span className="badge bg-stone-50 !text-sm !text-stone-900 mb-2 ">
+                                {c?.points} pts
+                              </span>
+                            )}
                           </div>
+                          {c?.description && (
+                            <p className="text-xl pt-3 px-1 text-stone-950">
+                              {c?.description}
+                            </p>
+                          )}
                           <div className="mt-2 fs-4 fw-bold">
                             <p>{c?.penalty ?? ""}</p>
-                          </div>
-                          <div className="mt-3 fs-4 card-text">
-                            <p>Points: {Number(c?.points ?? 0)}</p>
                           </div>
                         </div>
                       </div>
