@@ -68,7 +68,7 @@ const filteredQuestions = useMemo(() => {
 
 
 const questions = useMemo(() => {
-  const picked = shuffleInPlace([...filteredQuestions]).slice(0, 5);
+  const picked = shuffleInPlace([...filteredQuestions]).slice(0, 10);
   return picked.map((q) => {
     const optionObjs = q.options.map((opt) => ({
       text: opt,

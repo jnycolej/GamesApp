@@ -1963,7 +1963,8 @@ export const triviaQuestions = [
       "How many national championships has LSU baseball won (as of 2025)?",
     options: ["5", "6", "7", "8"],
     answer: "8",
-    funFact: "LSU won titles in 1991, 1993, 1996, 1997, 2000, 2009, 2023, and 2025.",
+    funFact:
+      "LSU won titles in 1991, 1993, 1996, 1997, 2000, 2009, 2023, and 2025.",
   },
   {
     id: 150,
@@ -3875,2134 +3876,2280 @@ export const triviaQuestions = [
       "Tech’s red and blue branding is visible across all Bulldog athletics.",
   },
   {
-  id: 313,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is the University of Kentucky’s athletic nickname?",
-  options: ["Wildcats", "Blue Devils", "Commodores", "Cardinals"],
-  answer: "Wildcats",
-  funFact:
-    "Kentucky teams are known as the Wildcats, with the wildcat mascot named Scratch.",
-},
-{
-  id: 314,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Kentucky baseball competes in which conference?",
-  options: ["ACC", "SEC", "Big Ten", "Sun Belt"],
-  answer: "SEC",
-  funFact:
-    "Kentucky competes in the Southeastern Conference, one of the strongest baseball leagues in the country.",
-},
-{
-  id: 315,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Kentucky’s baseball team plays its home games at which stadium?",
-  options: [
-    "Kentucky Proud Park",
-    "Cliff Hagan Stadium",
-    "Wildcat Field",
-    "Bluegrass Diamond"
-  ],
-  answer: "Kentucky Proud Park",
-  funFact:
-    "Kentucky Proud Park opened in 2019 as the Wildcats’ new home stadium.",
-},
-{
-  id: 316,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Before Kentucky Proud Park, the Wildcats played at which longtime stadium?",
-  options: [
-    "Cliff Hagan Stadium",
-    "Commonwealth Field",
-    "Rupp Park",
-    "Hagan Memorial Diamond"
-  ],
-  answer: "Cliff Hagan Stadium",
-  funFact:
-    "Cliff Hagan Stadium served as Kentucky’s baseball home from 1969 to 2018.",
-},
-{
-  id: 317,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Kentucky is located in which city?",
-  options: ["Lexington", "Louisville", "Frankfort", "Bowling Green"],
-  answer: "Lexington",
-  funFact:
-    "The University of Kentucky’s main campus is in Lexington.",
-},
-{
-  id: 318,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Kentucky’s official school colors are which combination?",
-  options: ["Blue and White", "Blue and Gold", "Navy and Silver", "Royal and Black"],
-  answer: "Blue and White",
-  funFact:
-    "Kentucky’s iconic blue and white branding is consistent across all sports.",
-},
-{
-  id: 319,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC rival is located in the same state as Kentucky?",
-  options: ["Tennessee", "Louisville", "Vanderbilt", "Missouri"],
-  answer: "Tennessee",
-  funFact:
-    "Kentucky and Tennessee regularly face off in SEC competition.",
-},
-{
-  id: 320,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Kentucky advanced to the College World Series for the first time in which decade?",
-  options: ["1980s", "1990s", "2000s", "2020s"],
-  answer: "2020s",
-  funFact:
-    "Kentucky made its first College World Series appearance in 2024.",
-},
-{
-  id: 321,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Kentucky baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "Kentucky competes at the highest NCAA level.",
-},
-{
-  id: 322,
-  teams: ["Kentucky"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Kentucky’s baseball program is part of which U.S. region?",
-  options: ["Midwest", "Southeast", "Northeast", "Southwest"],
-  answer: "Southeast",
-  funFact:
-    "Kentucky is considered part of the Southeastern United States.",
-},{
-  id: 323,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern University’s athletic nickname is what?",
-  options: ["Jaguars", "Tigers", "Panthers", "Bulldogs"],
-  answer: "Jaguars",
-  funFact:
-    "Southern teams are known as the Jaguars and Lady Jaguars.",
-},
-{
-  id: 324,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern competes in which conference?",
-  options: ["Sun Belt", "SWAC", "SEC", "C-USA"],
-  answer: "SWAC",
-  funFact:
-    "Southern is a longtime member of the Southwestern Athletic Conference.",
-},
-{
-  id: 325,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern University is located in which Louisiana city?",
-  options: ["Baton Rouge", "New Orleans", "Lafayette", "Shreveport"],
-  answer: "Baton Rouge",
-  funFact:
-    "Southern’s main campus sits in Baton Rouge, just north of LSU.",
-},
-{
-  id: 326,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What are Southern University’s school colors?",
-  options: ["Blue and Gold", "Purple and Gold", "Red and White", "Black and Gold"],
-  answer: "Blue and Gold",
-  funFact:
-    "Southern’s blue and gold branding is prominent across all athletics.",
-},
-{
-  id: 327,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern’s home baseball stadium is named what?",
-  options: [
-    "Lee-Hines Field",
-    "A.W. Mumford Stadium",
-    "Jaguar Park",
-    "Wilbert Ellis Field"
-  ],
-  answer: "Lee-Hines Field",
-  funFact:
-    "Lee-Hines Field is located on Southern’s Baton Rouge campus.",
-},
-{
-  id: 328,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern’s primary in-state SWAC baseball rival is which school?",
-  options: ["Grambling State", "Louisiana Tech", "LSU", "UL Lafayette"],
-  answer: "Grambling State",
-  funFact:
-    "Southern and Grambling have a historic rivalry across multiple sports.",
-},
-{
-  id: 329,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern University is classified as what type of institution?",
-  options: ["HBCU", "Military Academy", "Private Catholic University", "Community College"],
-  answer: "HBCU",
-  funFact:
-    "Southern is one of Louisiana’s most prominent Historically Black Colleges and Universities.",
-},
-{
-  id: 330,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "Southern competes in Division I as part of the SWAC.",
-},
-{
-  id: 331,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern University is located in which part of Louisiana?",
-  options: ["North Louisiana", "Central Louisiana", "South Louisiana", "West Louisiana"],
-  answer: "South Louisiana",
-  funFact:
-    "Baton Rouge is in south Louisiana along the Mississippi River.",
-},
-{
-  id: 332,
-  teams: ["Southern"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southern’s athletics are governed by which conference tournament for automatic NCAA bids?",
-  options: ["SWAC Tournament", "SEC Tournament", "Sun Belt Tournament", "C-USA Tournament"],
-  answer: "SWAC Tournament",
-  funFact:
-    "Winning the SWAC Tournament earns the conference’s automatic NCAA bid.",
-},{
-  id: 333,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is the University of Tennessee’s athletic nickname?",
-  options: ["Volunteers", "Commodores", "Wildcats", "Rebels"],
-  answer: "Volunteers",
-  funFact:
-    "Tennessee’s 'Volunteers' nickname comes from the state’s military history.",
-},
-{
-  id: 334,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tennessee baseball competes in which conference?",
-  options: ["ACC", "SEC", "Big 12", "Big Ten"],
-  answer: "SEC",
-  funFact:
-    "Tennessee is a member of the Southeastern Conference.",
-},
-{
-  id: 335,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tennessee’s baseball team plays home games at which stadium?",
-  options: [
-    "Lindsey Nelson Stadium",
-    "Volunteer Field",
-    "Rocky Top Park",
-    "Neyland Diamond"
-  ],
-  answer: "Lindsey Nelson Stadium",
-  funFact:
-    "Lindsey Nelson Stadium has undergone major renovations in recent seasons.",
-},
-{
-  id: 336,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tennessee is located in which city?",
-  options: ["Knoxville", "Nashville", "Memphis", "Chattanooga"],
-  answer: "Knoxville",
-  funFact:
-    "The University of Tennessee’s main campus is in Knoxville.",
-},
-{
-  id: 337,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tennessee’s primary school colors are which combination?",
-  options: ["Orange and White", "Black and Gold", "Blue and White", "Red and White"],
-  answer: "Orange and White",
-  funFact:
-    "Tennessee’s shade of orange is officially called 'UT Orange.'",
-},
-{
-  id: 338,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tennessee won the NCAA baseball national championship in which year?",
-  options: ["2019", "2021", "2024", "2022"],
-  answer: "2024",
-  funFact:
-    "Tennessee captured its first NCAA baseball national title in 2024.",
-},
-{
-  id: 339,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which Tennessee head coach helped elevate the program to national prominence in the 2020s?",
-  options: ["Tony Vitello", "Tim Corbin", "Skip Johnson", "Lane Burroughs"],
-  answer: "Tony Vitello",
-  funFact:
-    "Tony Vitello has led Tennessee to multiple College World Series appearances.",
-},
-{
-  id: 340,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tennessee’s in-state SEC baseball rival is which school?",
-  options: ["Vanderbilt", "Kentucky", "Georgia", "Florida"],
-  answer: "Vanderbilt",
-  funFact:
-    "The Tennessee–Vanderbilt rivalry is intense across multiple sports.",
-},
-{
-  id: 341,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tennessee baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "Tennessee competes at the highest NCAA level in baseball.",
-},
-{
-  id: 342,
-  teams: ["Tennessee"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "The nickname 'Volunteers' is often shortened to what by fans?",
-  options: ["Vols", "Vandy", "Tenners", "Rockies"],
-  answer: "Vols",
-  funFact:
-    "Tennessee teams are commonly referred to as the 'Vols.'",
-},{
-  id: 343,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman’s athletic nickname is what?",
-  options: ["Wildcats", "Panthers", "Rattlers", "Bears"],
-  answer: "Wildcats",
-  funFact:
-    "Bethune-Cookman teams are known as the Wildcats.",
-},
-{
-  id: 344,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman competes in which conference?",
-  options: ["SWAC", "MEAC", "Sun Belt", "ACC"],
-  answer: "SWAC",
-  funFact:
-    "Bethune-Cookman joined the SWAC after previously competing in the MEAC.",
-},
-{
-  id: 345,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman University is located in which Florida city?",
-  options: ["Daytona Beach", "Orlando", "Jacksonville", "Tallahassee"],
-  answer: "Daytona Beach",
-  funFact:
-    "Bethune-Cookman’s campus is in Daytona Beach, Florida.",
-},
-{
-  id: 346,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman is classified as what type of institution?",
-  options: ["HBCU", "Private Catholic University", "Military Academy", "State College"],
-  answer: "HBCU",
-  funFact:
-    "Bethune-Cookman is a Historically Black College and University.",
-},
-{
-  id: 347,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What are Bethune-Cookman’s primary school colors?",
-  options: ["Maroon and Gold", "Blue and Orange", "Black and Gold", "Green and White"],
-  answer: "Maroon and Gold",
-  funFact:
-    "Bethune-Cookman’s maroon and gold are central to its branding.",
-},
-{
-  id: 348,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "Bethune-Cookman competes at the Division I level.",
-},
-{
-  id: 349,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman’s primary conference baseball rival in Florida has historically been which school?",
-  options: ["Florida A&M", "Florida State", "Miami", "UCF"],
-  answer: "Florida A&M",
-  funFact:
-    "Bethune-Cookman and Florida A&M have a longstanding rivalry across sports.",
-},
-{
-  id: 350,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman previously competed in which conference before joining the SWAC?",
-  options: ["MEAC", "Sun Belt", "Big South", "C-USA"],
-  answer: "MEAC",
-  funFact:
-    "The Wildcats were longtime members of the Mid-Eastern Athletic Conference.",
-},
-{
-  id: 351,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman is located in which U.S. region?",
-  options: ["Southeast", "Midwest", "Northeast", "West Coast"],
-  answer: "Southeast",
-  funFact:
-    "Florida is part of the Southeastern United States.",
-},
-{
-  id: 352,
-  teams: ["Bethune-Cookman"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Bethune-Cookman’s conference championship pathway to the NCAA Tournament comes through which event?",
-  options: ["SWAC Tournament", "MEAC Challenge", "SEC Tournament", "Sun Belt Championship"],
-  answer: "SWAC Tournament",
-  funFact:
-    "Winning the SWAC Tournament grants the conference’s automatic NCAA bid.",
-},
-{
-  id: 353,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is the University of Mississippi’s athletic nickname?",
-  options: ["Rebels", "Bulldogs", "Tigers", "Aggies"],
-  answer: "Rebels",
-  funFact:
-    "Ole Miss teams are known as the Rebels, a nickname dating back to the early 1900s.",
-},
-{
-  id: 354,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Ole Miss baseball competes in which conference?",
-  options: ["ACC", "SEC", "Big 12", "Sun Belt"],
-  answer: "SEC",
-  funFact:
-    "Ole Miss is a long-standing member of the Southeastern Conference.",
-},
-{
-  id: 355,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Ole Miss plays its home baseball games at which stadium?",
-  options: [
-    "Swayze Field",
-    "Vaught-Hemingway Park",
-    "Rebel Diamond",
-    "Magnolia Field"
-  ],
-  answer: "Swayze Field",
-  funFact:
-    "Swayze Field is officially named Oxford-University Stadium.",
-},
-{
-  id: 356,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "In which Mississippi city is Ole Miss located?",
-  options: ["Oxford", "Jackson", "Biloxi", "Hattiesburg"],
-  answer: "Oxford",
-  funFact:
-    "Oxford, Mississippi is home to the university and one of the SEC’s iconic college towns.",
-},
-{
-  id: 357,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Ole Miss won its first NCAA baseball national championship in which year?",
-  options: ["2018", "2021", "2022", "2023"],
-  answer: "2022",
-  funFact:
-    "The Rebels captured their first College World Series title in 2022.",
-},
-{
-  id: 358,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Ole Miss’s primary school colors are which combination?",
-  options: ["Red and Navy", "Maroon and White", "Black and Gold", "Blue and Orange"],
-  answer: "Red and Navy",
-  funFact:
-    "Ole Miss branding prominently features red and navy blue.",
-},
-{
-  id: 359,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which in-state SEC rival is located in Starkville?",
-  options: ["Mississippi State", "LSU", "Alabama", "Arkansas"],
-  answer: "Mississippi State",
-  funFact:
-    "Ole Miss vs Mississippi State is known as the Egg Bowl rivalry in football and extends to baseball.",
-},
-{
-  id: 360,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which longtime head coach led Ole Miss baseball for over two decades before 2022?",
-  options: ["Mike Bianco", "Tony Vitello", "Tim Corbin", "Dave Van Horn"],
-  answer: "Mike Bianco",
-  funFact:
-    "Mike Bianco led Ole Miss to its 2022 national championship.",
-},
-{
-  id: 361,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Ole Miss baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "Ole Miss competes at the highest NCAA level in baseball.",
-},
-{
-  id: 362,
-  teams: ["Ole Miss"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Swayze Field is often regarded as one of the top environments in which conference?",
-  options: ["SEC", "ACC", "Big Ten", "Sun Belt"],
-  answer: "SEC",
-  funFact:
-    "Ole Miss consistently ranks near the top nationally in baseball attendance.",
-},{
-  id: 363,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is Northwestern State’s athletic nickname?",
-  options: ["Demons", "Bulldogs", "Warhawks", "Cowboys"],
-  answer: "Demons",
-  funFact:
-    "Northwestern State teams are known as the Demons and Lady Demons.",
-},
-{
-  id: 364,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State competes in which conference?",
-  options: ["Southland", "Sun Belt", "SWAC", "C-USA"],
-  answer: "Southland",
-  funFact:
-    "Northwestern State is a member of the Southland Conference.",
-},
-{
-  id: 365,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State is located in which Louisiana city?",
-  options: ["Natchitoches", "Monroe", "Ruston", "Lake Charles"],
-  answer: "Natchitoches",
-  funFact:
-    "Natchitoches is the oldest permanent settlement in the Louisiana Purchase territory.",
-},
-{
-  id: 366,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State’s baseball stadium is named what?",
-  options: [
-    "Brown-Stroud Field",
-    "Demon Diamond",
-    "Love Field",
-    "Cane River Park"
-  ],
-  answer: "Brown-Stroud Field",
-  funFact:
-    "Brown-Stroud Field serves as the Demons’ home baseball venue.",
-},
-{
-  id: 367,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State’s primary school colors are which combination?",
-  options: ["Purple and White", "Purple and Gold", "Blue and Gold", "Red and White"],
-  answer: "Purple and White",
-  funFact:
-    "Northwestern State’s official colors are purple and white.",
-},
-{
-  id: 368,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which Louisiana in-state rival frequently faces Northwestern State in conference play?",
-  options: ["McNeese", "LSU", "Tulane", "Grambling"],
-  answer: "McNeese",
-  funFact:
-    "Both Northwestern State and McNeese compete in the Southland Conference.",
-},
-{
-  id: 369,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "The Demons compete at the Division I level.",
-},
-{
-  id: 370,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State is located near which Louisiana river?",
-  options: ["Mississippi River", "Red River", "Cane River", "Atchafalaya River"],
-  answer: "Cane River",
-  funFact:
-    "The campus sits near the scenic Cane River in Natchitoches.",
-},
-{
-  id: 371,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State’s athletics are governed by which conference tournament for NCAA automatic bids?",
-  options: ["Southland Tournament", "SEC Tournament", "SWAC Tournament", "Sun Belt Tournament"],
-  answer: "Southland Tournament",
-  funFact:
-    "Winning the Southland Tournament grants an automatic NCAA berth.",
-},
-{
-  id: 372,
-  teams: ["Northwestern State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Northwestern State’s nickname ‘Demons’ is unique among Division I programs because it is what?",
-  options: [
-    "One of the only 'Demons' mascots in Division I",
-    "Named after a river",
-    "Based on a mythological creature",
-    "A former coach’s nickname"
-  ],
-  answer: "One of the only 'Demons' mascots in Division I",
-  funFact:
-    "The Demons nickname is one of the more unique mascots in college athletics.",
-},
-{
-  id: 373,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M’s athletic nickname is what?",
-  options: ["Aggies", "Longhorns", "Cowboys", "Raiders"],
-  answer: "Aggies",
-  funFact:
-    "The Aggie nickname reflects the university’s agricultural roots.",
-},
-{
-  id: 374,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M competes in which conference?",
-  options: ["Big 12", "SEC", "ACC", "Sun Belt"],
-  answer: "SEC",
-  funFact:
-    "Texas A&M joined the SEC in 2012.",
-},
-{
-  id: 375,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M plays its home baseball games at which stadium?",
-  options: [
-    "Blue Bell Park",
-    "Aggie Diamond",
-    "College Station Field",
-    "Kyle Field Park"
-  ],
-  answer: "Blue Bell Park",
-  funFact:
-    "Blue Bell Park is one of the premier college baseball facilities in the country.",
-},
-{
-  id: 376,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M is located in which Texas city?",
-  options: ["College Station", "Austin", "Houston", "Dallas"],
-  answer: "College Station",
-  funFact:
-    "College Station is home to Texas A&M University.",
-},
-{
-  id: 377,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M’s primary school colors are which combination?",
-  options: ["Maroon and White", "Burnt Orange and White", "Red and Black", "Blue and Silver"],
-  answer: "Maroon and White",
-  funFact:
-    "Aggie maroon is one of the most recognizable colors in college sports.",
-},
-{
-  id: 378,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M’s biggest in-state baseball rival is which school?",
-  options: ["Texas", "Baylor", "Houston", "TCU"],
-  answer: "Texas",
-  funFact:
-    "The Texas A&M vs Texas rivalry spans multiple sports.",
-},
-{
-  id: 379,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M made a College World Series appearance in which recent year?",
-  options: ["2020", "2022", "2023", "2024"],
-  answer: "2024",
-  funFact:
-    "The Aggies advanced to Omaha in the 2024 College World Series.",
-},
-{
-  id: 380,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "Texas A&M competes at the highest NCAA level.",
-},
-{
-  id: 381,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M was previously a member of which conference before joining the SEC?",
-  options: ["Big 12", "Pac-12", "ACC", "Big Ten"],
-  answer: "Big 12",
-  funFact:
-    "Texas A&M was a founding member of the Big 12 before moving to the SEC.",
-},
-{
-  id: 382,
-  teams: ["Texas A&M"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Texas A&M’s stadium name includes which brand known for ice cream?",
-  options: ["Blue Bell", "Breyers", "Haagen-Dazs", "Tillamook"],
-  answer: "Blue Bell",
-  funFact:
-    "Blue Bell Creameries sponsors the Aggies’ baseball stadium.",
-},
-{
-  id: 383,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is the University of New Orleans’ athletic nickname?",
-  options: ["Privateers", "Pelicans", "Pirates", "Buccaneers"],
-  answer: "Privateers",
-  funFact:
-    "UNO teams are known as the Privateers, reflecting New Orleans’ maritime history.",
-},
-{
-  id: 384,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "UNO baseball competes in which conference?",
-  options: ["Southland", "Sun Belt", "SWAC", "C-USA"],
-  answer: "Southland",
-  funFact:
-    "UNO competes in the Southland Conference.",
-},
-{
-  id: 385,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "UNO’s baseball team plays home games at which stadium?",
-  options: [
-    "Maestri Field at First NBC Ballpark",
-    "Privateer Park",
-    "Lakefront Field",
-    "Pontchartrain Diamond"
-  ],
-  answer: "Maestri Field at First NBC Ballpark",
-  funFact:
-    "The stadium is located near Lake Pontchartrain on the UNO campus.",
-},
-{
-  id: 386,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "UNO is located in which Louisiana city?",
-  options: ["New Orleans", "Metairie", "Kenner", "Gretna"],
-  answer: "New Orleans",
-  funFact:
-    "The campus sits in the Lakefront area of New Orleans.",
-},
-{
-  id: 387,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "UNO’s primary school colors are which combination?",
-  options: ["Blue and Silver", "Purple and Gold", "Green and White", "Red and Black"],
-  answer: "Blue and Silver",
-  funFact:
-    "UNO’s branding prominently features blue and silver.",
-},
-{
-  id: 388,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "UNO baseball reached the College World Series in which decade?",
-  options: ["1980s", "1990s", "2000s", "2010s"],
-  answer: "1980s",
-  funFact:
-    "UNO reached the College World Series in 1984.",
-},
-{
-  id: 389,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "UNO baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "UNO returned to Division I competition in the 2010s.",
-},
-{
-  id: 390,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "UNO’s baseball stadium is located near which large body of water?",
-  options: ["Lake Pontchartrain", "Mississippi River", "Lake Maurepas", "Gulf of Mexico"],
-  answer: "Lake Pontchartrain",
-  funFact:
-    "The stadium sits near the south shore of Lake Pontchartrain.",
-},
-{
-  id: 391,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which Louisiana in-state rival frequently faces UNO in Southland play?",
-  options: ["Nicholls", "LSU", "Tulane", "Southern"],
-  answer: "Nicholls",
-  funFact:
-    "UNO and Nicholls regularly compete in Southland Conference matchups.",
-},
-{
-  id: 392,
-  teams: ["New Orleans"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "The Privateers nickname reflects which aspect of New Orleans history?",
-  options: ["Maritime privateering", "Jazz music", "Mardi Gras", "Riverboats"],
-  answer: "Maritime privateering",
-  funFact:
-    "The nickname honors New Orleans’ historic connection to privateers like Jean Lafitte.",
-},
-{
-  id: 393,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is Mississippi State’s athletic nickname?",
-  options: ["Bulldogs", "Rebels", "Golden Eagles", "Tigers"],
-  answer: "Bulldogs",
-  funFact:
-    "Mississippi State teams are known as the Bulldogs, often called the 'Diamond Dawgs' in baseball.",
-},
-{
-  id: 394,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Mississippi State baseball plays its home games at which stadium?",
-  options: [
-    "Dudy Noble Field",
-    "Starkville Stadium",
-    "Bulldog Park",
-    "Polk-DeMent Field"
-  ],
-  answer: "Dudy Noble Field",
-  funFact:
-    "Dudy Noble Field is one of the largest and most iconic stadiums in college baseball.",
-},
-{
-  id: 395,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Mississippi State won its first NCAA baseball national championship in which year?",
-  options: ["2013", "2016", "2019", "2021"],
-  answer: "2021",
-  funFact:
-    "The Bulldogs captured their first national title in 2021.",
-},
-{
-  id: 396,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Mississippi State is located in which city?",
-  options: ["Oxford", "Starkville", "Jackson", "Hattiesburg"],
-  answer: "Starkville",
-  funFact:
-    "Starkville is home to Mississippi State University.",
-},
-{
-  id: 397,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Mississippi State competes in which conference?",
-  options: ["SEC", "ACC", "Big 12", "Sun Belt"],
-  answer: "SEC",
-  funFact:
-    "Mississippi State is a founding member of the SEC.",
-},
-{
-  id: 398,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Dudy Noble Field is often referred to by fans as what?",
-  options: ["The Dude", "The Kennel", "The Dawg House", "The Junction"],
-  answer: "The Dude",
-  funFact:
-    "Fans commonly call Dudy Noble Field 'The Dude.'",
-},
-{
-  id: 399,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Mississippi State’s primary school colors are which combination?",
-  options: ["Maroon and White", "Red and Navy", "Black and Gold", "Blue and Silver"],
-  answer: "Maroon and White",
-  funFact:
-    "Mississippi State’s maroon is one of the SEC’s most recognizable colors.",
-},
-{
-  id: 400,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which in-state SEC rival plays in Oxford?",
-  options: ["Ole Miss", "LSU", "Alabama", "Arkansas"],
-  answer: "Ole Miss",
-  funFact:
-    "The Mississippi State vs Ole Miss rivalry is intense in all sports.",
-},
-{
-  id: 401,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Mississippi State baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "The Bulldogs compete at the highest NCAA level.",
-},
-{
-  id: 402,
-  teams: ["Mississippi State"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Mississippi State consistently ranks among national leaders in what category?",
-  options: ["Attendance", "Home runs", "Strikeouts", "MLB draft picks"],
-  answer: "Attendance",
-  funFact:
-    "The Bulldogs frequently lead the nation in baseball attendance.",
-},
-{
-  id: 403,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is Southeastern Louisiana’s athletic nickname?",
-  options: ["Lions", "Tigers", "Warhawks", "Demons"],
-  answer: "Lions",
-  funFact:
-    "Southeastern teams are known as the Lions and Lady Lions.",
-},
-{
-  id: 404,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southeastern Louisiana competes in which conference?",
-  options: ["Southland", "Sun Belt", "SWAC", "C-USA"],
-  answer: "Southland",
-  funFact:
-    "Southeastern is a member of the Southland Conference.",
-},
-{
-  id: 405,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southeastern Louisiana is located in which city?",
-  options: ["Hammond", "Lafayette", "Monroe", "Thibodaux"],
-  answer: "Hammond",
-  funFact:
-    "The university is located in Hammond, Louisiana.",
-},
-{
-  id: 406,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southeastern’s baseball team plays at which stadium?",
-  options: [
-    "Pat Kenelly Diamond at Alumni Field",
-    "Lion Park",
-    "Cane River Field",
-    "Southland Stadium"
-  ],
-  answer: "Pat Kenelly Diamond at Alumni Field",
-  funFact:
-    "The stadium honors former coach Pat Kenelly.",
-},
-{
-  id: 407,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southeastern Louisiana’s school colors are which combination?",
-  options: ["Green and Gold", "Purple and Gold", "Red and White", "Blue and Silver"],
-  answer: "Green and Gold",
-  funFact:
-    "Green and gold are central to Southeastern’s branding.",
-},
-{
-  id: 408,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southeastern Louisiana baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "The Lions compete at the Division I level.",
-},
-{
-  id: 409,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which Louisiana in-state rival frequently faces Southeastern in conference play?",
-  options: ["Nicholls", "LSU", "Tulane", "Grambling"],
-  answer: "Nicholls",
-  funFact:
-    "Southeastern and Nicholls often battle in Southland Conference matchups.",
-},
-{
-  id: 410,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southeastern Louisiana is located in which part of Louisiana?",
-  options: ["Southeast", "North", "West", "Central"],
-  answer: "Southeast",
-  funFact:
-    "Hammond is in southeast Louisiana between Baton Rouge and New Orleans.",
-},
-{
-  id: 411,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Winning which tournament grants Southeastern an automatic NCAA bid?",
-  options: ["Southland Tournament", "SEC Tournament", "SWAC Tournament", "Sun Belt Championship"],
-  answer: "Southland Tournament",
-  funFact:
-    "The Southland Tournament champion receives the conference’s automatic NCAA berth.",
-},
-{
-  id: 412,
-  teams: ["Southeastern Louisiana"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Southeastern’s mascot represents which animal?",
-  options: ["Lion", "Tiger", "Bear", "Eagle"],
-  answer: "Lion",
-  funFact:
-    "The Lions mascot is a central part of campus culture.",
-},
-{
-  id: 413,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina’s athletic nickname is what?",
-  options: ["Gamecocks", "Bulldogs", "Tigers", "Rebels"],
-  answer: "Gamecocks",
-  funFact:
-    "The Gamecock mascot references the fighting rooster symbol.",
-},
-{
-  id: 414,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina baseball plays home games at which stadium?",
-  options: [
-    "Founders Park",
-    "Gamecock Field",
-    "Columbia Diamond",
-    "Carolina Park"
-  ],
-  answer: "Founders Park",
-  funFact:
-    "Founders Park opened in 2009 in Columbia, South Carolina.",
-},
-{
-  id: 415,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina won back-to-back national championships in which years?",
-  options: ["2009 and 2010", "2010 and 2011", "2011 and 2012", "2012 and 2013"],
-  answer: "2010 and 2011",
-  funFact:
-    "The Gamecocks won consecutive College World Series titles in 2010 and 2011.",
-},
-{
-  id: 416,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina competes in which conference?",
-  options: ["SEC", "ACC", "Sun Belt", "Big 12"],
-  answer: "SEC",
-  funFact:
-    "South Carolina joined the SEC in 1991.",
-},
-{
-  id: 417,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina is located in which city?",
-  options: ["Columbia", "Charleston", "Greenville", "Spartanburg"],
-  answer: "Columbia",
-  funFact:
-    "The University of South Carolina’s main campus is in Columbia.",
-},
-{
-  id: 418,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which longtime head coach led South Carolina to its national championships?",
-  options: ["Ray Tanner", "Tony Vitello", "Tim Corbin", "Dave Van Horn"],
-  answer: "Ray Tanner",
-  funFact:
-    "Ray Tanner led South Carolina to its 2010 and 2011 titles.",
-},
-{
-  id: 419,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina’s primary school colors are which combination?",
-  options: ["Garnet and Black", "Red and Navy", "Maroon and White", "Orange and Black"],
-  answer: "Garnet and Black",
-  funFact:
-    "South Carolina’s official colors are garnet and black.",
-},
-{
-  id: 420,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "The Gamecocks compete at the highest NCAA level.",
-},
-{
-  id: 421,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina’s in-state baseball rival is which school?",
-  options: ["Clemson", "Georgia", "Florida", "Alabama"],
-  answer: "Clemson",
-  funFact:
-    "The South Carolina–Clemson rivalry is one of the best in college baseball.",
-},
-{
-  id: 422,
-  teams: ["South Carolina"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "South Carolina made three straight College World Series finals appearances beginning in which year?",
-  options: ["2008", "2009", "2010", "2011"],
-  answer: "2010",
-  funFact:
-    "South Carolina reached the CWS finals in 2010, 2011, and 2012.",
-},
-{
-  id: 423,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is Tulane University’s athletic nickname?",
-  options: ["Green Wave", "Privateers", "Pelicans", "Tigers"],
-  answer: "Green Wave",
-  funFact:
-    "Tulane adopted the Green Wave nickname in the early 1900s.",
-},
-{
-  id: 424,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane baseball competes in which conference?",
-  options: ["American Athletic Conference", "SEC", "Sun Belt", "C-USA"],
-  answer: "American Athletic Conference",
-  funFact:
-    "Tulane is currently a member of the American Athletic Conference.",
-},
-{
-  id: 425,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane plays its home baseball games at which stadium?",
-  options: [
-    "Greer Field at Turchin Stadium",
-    "Green Wave Park",
-    "Uptown Diamond",
-    "Maestri Field"
-  ],
-  answer: "Greer Field at Turchin Stadium",
-  funFact:
-    "Turchin Stadium reopened in 2008 after Hurricane Katrina.",
-},
-{
-  id: 426,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane won its NCAA baseball national championship in which year?",
-  options: ["1999", "2001", "2005", "2008"],
-  answer: "2001",
-  funFact:
-    "Tulane captured the 2001 College World Series title.",
-},
-{
-  id: 427,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane is located in which part of New Orleans?",
-  options: ["Uptown", "French Quarter", "Lakeview", "Mid-City"],
-  answer: "Uptown",
-  funFact:
-    "Tulane’s campus sits in Uptown New Orleans along St. Charles Avenue.",
-},
-{
-  id: 428,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane’s primary school colors are which combination?",
-  options: ["Green and Blue", "Purple and Gold", "Blue and Silver", "Red and Black"],
-  answer: "Green and Blue",
-  funFact:
-    "Tulane’s green and blue branding matches the Green Wave nickname.",
-},
-{
-  id: 429,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which Louisiana school is a frequent in-state baseball rival for Tulane?",
-  options: ["LSU", "Grambling", "Northwestern State", "Southern"],
-  answer: "LSU",
-  funFact:
-    "Tulane and LSU often meet in high-profile in-state matchups.",
-},
-{
-  id: 430,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "Tulane competes at the Division I level.",
-},
-{
-  id: 431,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane’s 2001 national championship run concluded in which city?",
-  options: ["Omaha", "Atlanta", "Dallas", "Nashville"],
-  answer: "Omaha",
-  funFact:
-    "The College World Series is held annually in Omaha, Nebraska.",
-},
-{
-  id: 432,
-  teams: ["Tulane"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Tulane was previously a member of which major conference before joining the AAC?",
-  options: ["SEC", "Big East", "ACC", "Pac-12"],
-  answer: "SEC",
-  funFact:
-    "Tulane was a founding member of the SEC before leaving in the 1960s.",
-},
-{
-  id: 433,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is the University of Georgia’s athletic nickname?",
-  options: ["Bulldogs", "Tigers", "Rebels", "Gators"],
-  answer: "Bulldogs",
-  funFact:
-    "Georgia teams are commonly referred to as the 'Dawgs.'",
-},
-{
-  id: 434,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia competes in which conference?",
-  options: ["SEC", "ACC", "Sun Belt", "Big 12"],
-  answer: "SEC",
-  funFact:
-    "Georgia is a founding member of the Southeastern Conference.",
-},
-{
-  id: 435,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia plays its home baseball games at which stadium?",
-  options: [
-    "Foley Field",
-    "Bulldog Diamond",
-    "Athens Field",
-    "Red and Black Park"
-  ],
-  answer: "Foley Field",
-  funFact:
-    "Foley Field is located on Georgia’s campus in Athens.",
-},
-{
-  id: 436,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia is located in which city?",
-  options: ["Athens", "Atlanta", "Savannah", "Augusta"],
-  answer: "Athens",
-  funFact:
-    "The University of Georgia’s main campus is in Athens.",
-},
-{
-  id: 437,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia’s primary school colors are which combination?",
-  options: ["Red and Black", "Garnet and Black", "Red and White", "Orange and Black"],
-  answer: "Red and Black",
-  funFact:
-    "Georgia’s official colors are red and black.",
-},
-{
-  id: 438,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia won its NCAA baseball national championship in which year?",
-  options: ["1987", "1990", "1993", "1996"],
-  answer: "1990",
-  funFact:
-    "Georgia captured the 1990 College World Series title.",
-},
-{
-  id: 439,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC rival located in Gainesville frequently faces Georgia in baseball?",
-  options: ["Florida", "Auburn", "Alabama", "Ole Miss"],
-  answer: "Florida",
-  funFact:
-    "Georgia and Florida have a heated rivalry across many sports.",
-},
-{
-  id: 440,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "The Bulldogs compete at the highest NCAA level.",
-},
-{
-  id: 441,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia reached the College World Series finals in which recent year?",
-  options: ["2006", "2008", "2012", "2016"],
-  answer: "2008",
-  funFact:
-    "Georgia finished as national runner-up in 2008.",
-},
-{
-  id: 442,
-  teams: ["Georgia"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Georgia’s baseball team represents which U.S. state?",
-  options: ["Georgia", "South Carolina", "Alabama", "Florida"],
-  answer: "Georgia",
-  funFact:
-    "The University of Georgia is the state’s flagship public university.",
-},
-{
-  id: 443,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "What is the University of Florida’s athletic nickname?",
-  options: ["Gators", "Bulldogs", "Seminoles", "Tigers"],
-  answer: "Gators",
-  funFact:
-    "The Gators nickname reflects Florida’s alligator-rich environment.",
-},
-{
-  id: 444,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida baseball competes in which conference?",
-  options: ["SEC", "ACC", "Sun Belt", "Big 12"],
-  answer: "SEC",
-  funFact:
-    "Florida is a member of the Southeastern Conference.",
-},
-{
-  id: 445,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida plays its home baseball games at which stadium?",
-  options: [
-    "Condron Family Ballpark",
-    "Gator Diamond",
-    "McKethan Stadium",
-    "Swamp Field"
-  ],
-  answer: "Condron Family Ballpark",
-  funFact:
-    "Condron Family Ballpark opened in 2021 as Florida’s new home stadium.",
-},
-{
-  id: 446,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida won its NCAA baseball national championship in which year?",
-  options: ["2015", "2016", "2017", "2018"],
-  answer: "2017",
-  funFact:
-    "Florida captured its first College World Series title in 2017.",
-},
-{
-  id: 447,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida is located in which city?",
-  options: ["Gainesville", "Tallahassee", "Orlando", "Tampa"],
-  answer: "Gainesville",
-  funFact:
-    "The University of Florida’s main campus is in Gainesville.",
-},
-{
-  id: 448,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida’s primary school colors are which combination?",
-  options: ["Orange and Blue", "Blue and Gold", "Green and White", "Red and Black"],
-  answer: "Orange and Blue",
-  funFact:
-    "Florida’s orange and blue branding is iconic in the SEC.",
-},
-{
-  id: 449,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which in-state rival frequently faces Florida in baseball?",
-  options: ["Florida State", "Miami (FL)", "UCF", "USF"],
-  answer: "Florida State",
-  funFact:
-    "Florida and Florida State regularly meet in high-profile nonconference games.",
-},
-{
-  id: 450,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida baseball competes at which NCAA level?",
-  options: ["Division I", "Division II", "Division III", "NAIA"],
-  answer: "Division I",
-  funFact:
-    "The Gators compete at the highest NCAA level.",
-},
-{
-  id: 451,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida made a College World Series finals appearance in which recent year?",
-  options: ["2019", "2021", "2023", "2024"],
-  answer: "2023",
-  funFact:
-    "Florida reached the 2023 CWS finals before falling to LSU.",
-},
-{
-  id: 452,
-  teams: ["Florida"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Florida’s previous longtime baseball stadium before Condron Family Ballpark was called what?",
-  options: [
-    "McKethan Stadium",
-    "The Swamp",
-    "Gator Field",
-    "Ben Hill Griffin Park"
-  ],
-  answer: "McKethan Stadium",
-  funFact:
-    "McKethan Stadium served as Florida’s baseball home from 1988 to 2020.",
-},
-{
-  id: 453,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "What does SEC stand for?",
-  options: [
-    "Southeastern Conference",
-    "Southern Elite Conference",
-    "States Eastern Coalition",
-    "Southern Expansion Conference"
-  ],
-  answer: "Southeastern Conference",
-  funFact:
-    "The SEC was founded in 1932 and is one of the most powerful conferences in college athletics.",
-},
-{
-  id: 454,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "In what year was the SEC founded?",
-  options: ["1922", "1932", "1942", "1952"],
-  answer: "1932",
-  funFact:
-    "The SEC split from the Southern Conference in 1932.",
-},
-{
-  id: 455,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "How many full member schools are in the SEC as of the mid-2020s?",
-  options: ["14", "15", "16", "18"],
-  answer: "16",
-  funFact:
-    "Texas and Oklahoma joined the SEC, bringing total membership to 16.",
-},
-{
-  id: 456,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "Which two schools most recently joined the SEC?",
-  options: [
-    "Texas and Oklahoma",
-    "Tulane and Memphis",
-    "Florida State and Miami",
-    "Clemson and Georgia Tech"
-  ],
-  answer: "Texas and Oklahoma",
-  funFact:
-    "The SEC expanded westward by adding Texas and Oklahoma.",
-},
-{
-  id: 457,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "SEC headquarters are located in which city?",
-  options: ["Atlanta", "Birmingham", "Nashville", "Jackson"],
-  answer: "Birmingham",
-  funFact:
-    "The SEC headquarters are based in Birmingham, Alabama.",
-},
-{
-  id: 458,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "The SEC is primarily located in which region of the United States?",
-  options: ["Midwest", "Northeast", "Southeast", "Southwest"],
-  answer: "Southeast",
-  funFact:
-    "The SEC’s footprint covers much of the Southeastern United States.",
-},
-{
-  id: 459,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "Which state has the most SEC member schools?",
-  options: ["Florida", "Alabama", "Texas", "Tennessee"],
-  answer: "Texas",
-  funFact:
-    "Texas has multiple SEC schools including Texas and Texas A&M.",
-},
-{
-  id: 460,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "The SEC is widely considered the most dominant conference in which sport?",
-  options: ["Baseball", "Football", "Soccer", "Swimming"],
-  answer: "Football",
-  funFact:
-    "SEC football programs have won numerous national championships in the BCS and CFP eras.",
-},
-{
-  id: 461,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "The SEC championship events are often hosted in which city?",
-  options: ["Atlanta", "New Orleans", "Houston", "Charlotte"],
-  answer: "Atlanta",
-  funFact:
-    "The SEC Football Championship Game is traditionally held in Atlanta.",
-},
-{
-  id: 462,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "general",
-  question:
-    "The SEC Network launched in partnership with which major sports broadcaster?",
-  options: ["ESPN", "Fox Sports", "CBS Sports", "NBC"],
-  answer: "ESPN",
-  funFact:
-    "The SEC Network launched in 2014 as part of ESPN’s conference network expansion.",
-},
-{
-  id: 463,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "The SEC is widely considered the strongest conference in which NCAA sport?",
-  options: ["Baseball", "Hockey", "Lacrosse", "Volleyball"],
-  answer: "Baseball",
-  funFact:
-    "SEC baseball routinely dominates NCAA Tournament bids and College World Series appearances.",
-},
-{
-  id: 464,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "The SEC Baseball Tournament is traditionally held in which Mississippi city?",
-  options: ["Oxford", "Jackson", "Biloxi", "Starkville"],
-  answer: "Hoover",
-  funFact:
-    "The SEC Baseball Tournament is held at Hoover Metropolitan Stadium in Alabama.",
-},
-{
-  id: 465,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC school won the 2023 College World Series?",
-  options: ["LSU", "Florida", "Arkansas", "Tennessee"],
-  answer: "LSU",
-  funFact:
-    "LSU captured the 2023 national championship in Omaha.",
-},
-{
-  id: 466,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC school won the 2022 College World Series?",
-  options: ["Ole Miss", "Mississippi State", "Vanderbilt", "Georgia"],
-  answer: "Ole Miss",
-  funFact:
-    "Ole Miss won its first national championship in 2022.",
-},
-{
-  id: 467,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC school won the 2021 College World Series?",
-  options: ["Mississippi State", "Vanderbilt", "Arkansas", "Florida"],
-  answer: "Mississippi State",
-  funFact:
-    "Mississippi State won its first national title in 2021.",
-},
-{
-  id: 468,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "The SEC Baseball Tournament champion receives what?",
-  options: ["Automatic NCAA bid", "College World Series berth", "MLB Draft bonus", "At-large guarantee"],
-  answer: "Automatic NCAA bid",
-  funFact:
-    "The tournament champion earns the conference’s automatic NCAA Tournament berth.",
-},
-{
-  id: 469,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "How many SEC teams commonly receive NCAA Tournament bids in strong seasons?",
-  options: ["3–4", "5–6", "7–10", "1–2"],
-  answer: "7–10",
-  funFact:
-    "The SEC often sends a large percentage of the NCAA Tournament field.",
-},
-{
-  id: 470,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC stadium is nicknamed 'The Dude'?",
-  options: ["Dudy Noble Field", "Swayze Field", "Alex Box Stadium", "Blue Bell Park"],
-  answer: "Dudy Noble Field",
-  funFact:
-    "'The Dude' is the nickname for Mississippi State’s Dudy Noble Field.",
-},
-{
-  id: 471,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC city hosts the annual baseball tournament?",
-  options: ["Hoover", "Nashville", "Atlanta", "Columbia"],
-  answer: "Hoover",
-  funFact:
-    "Hoover, Alabama has long hosted the SEC Baseball Tournament.",
-},
-{
-  id: 472,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "baseball",
-  question:
-    "Which SEC school is known for playing at Lindsey Nelson Stadium?",
-  options: ["Tennessee", "Georgia", "Florida", "Auburn"],
-  answer: "Tennessee",
-  funFact:
-    "Lindsey Nelson Stadium is home to Tennessee baseball.",
-},
-{
-  id: 473,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC school has won the most NCAA men’s basketball national championships?",
-  options: ["Kentucky", "Florida", "Arkansas", "Tennessee"],
-  answer: "Kentucky",
-  funFact:
-    "Kentucky men’s basketball has won multiple NCAA national championships.",
-},
-{
-  id: 474,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC school won back-to-back men’s basketball national championships in 2006 and 2007?",
-  options: ["Florida", "Kentucky", "Arkansas", "Alabama"],
-  answer: "Florida",
-  funFact:
-    "Florida won consecutive NCAA titles under coach Billy Donovan.",
-},
-{
-  id: 475,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "The SEC Men’s Basketball Tournament is frequently held in which city?",
-  options: ["Nashville", "Atlanta", "Birmingham", "New Orleans"],
-  answer: "Nashville",
-  funFact:
-    "Bridgestone Arena in Nashville regularly hosts the SEC Tournament.",
-},
-{
-  id: 476,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC school plays home basketball games at Rupp Arena?",
-  options: ["Kentucky", "Tennessee", "Alabama", "Auburn"],
-  answer: "Kentucky",
-  funFact:
-    "Rupp Arena in Lexington is one of college basketball’s most famous venues.",
-},
-{
-  id: 477,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC school won the 1994 NCAA men’s basketball national championship?",
-  options: ["Arkansas", "Florida", "Kentucky", "LSU"],
-  answer: "Arkansas",
-  funFact:
-    "Arkansas won the 1994 national championship under coach Nolan Richardson.",
-},
-{
-  id: 478,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC school won the 2012 NCAA men’s basketball championship?",
-  options: ["Kentucky", "Florida", "Alabama", "Auburn"],
-  answer: "Kentucky",
-  funFact:
-    "Kentucky’s 2012 team featured future NBA stars like Anthony Davis.",
-},
-{
-  id: 479,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC basketball program plays at Thompson-Boling Arena?",
-  options: ["Tennessee", "Georgia", "Mississippi State", "Ole Miss"],
-  answer: "Tennessee",
-  funFact:
-    "Thompson-Boling Arena is located in Knoxville.",
-},
-{
-  id: 480,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC school has won two NCAA men’s basketball national championships in the 2000s?",
-  options: ["Florida", "Kentucky", "Arkansas", "Alabama"],
-  answer: "Florida",
-  funFact:
-    "Florida won titles in 2006 and 2007.",
-},
-{
-  id: 481,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "Which SEC school plays at Neville Arena?",
-  options: ["Auburn", "Alabama", "Georgia", "Ole Miss"],
-  answer: "Auburn",
-  funFact:
-    "Neville Arena is Auburn’s home basketball venue.",
-},
-{
-  id: 482,
-  teams: ["SEC"],
-  league: "NCAA",
-  sport: "basketball",
-  question:
-    "The SEC is traditionally strongest nationally in which two sports?",
-  options: [
-    "Football and Baseball",
-    "Basketball and Soccer",
-    "Hockey and Lacrosse",
-    "Tennis and Golf"
-  ],
-  answer: "Football and Baseball",
-  funFact:
-    "While competitive in many sports, the SEC is especially dominant in football and baseball.",
-}
+    id: 313,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is the University of Kentucky’s athletic nickname?",
+    options: ["Wildcats", "Blue Devils", "Commodores", "Cardinals"],
+    answer: "Wildcats",
+    funFact:
+      "Kentucky teams are known as the Wildcats, with the wildcat mascot named Scratch.",
+  },
+  {
+    id: 314,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Kentucky baseball competes in which conference?",
+    options: ["ACC", "SEC", "Big Ten", "Sun Belt"],
+    answer: "SEC",
+    funFact:
+      "Kentucky competes in the Southeastern Conference, one of the strongest baseball leagues in the country.",
+  },
+  {
+    id: 315,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Kentucky’s baseball team plays its home games at which stadium?",
+    options: [
+      "Kentucky Proud Park",
+      "Cliff Hagan Stadium",
+      "Wildcat Field",
+      "Bluegrass Diamond",
+    ],
+    answer: "Kentucky Proud Park",
+    funFact:
+      "Kentucky Proud Park opened in 2019 as the Wildcats’ new home stadium.",
+  },
+  {
+    id: 316,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Before Kentucky Proud Park, the Wildcats played at which longtime stadium?",
+    options: [
+      "Cliff Hagan Stadium",
+      "Commonwealth Field",
+      "Rupp Park",
+      "Hagan Memorial Diamond",
+    ],
+    answer: "Cliff Hagan Stadium",
+    funFact:
+      "Cliff Hagan Stadium served as Kentucky’s baseball home from 1969 to 2018.",
+  },
+  {
+    id: 317,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Kentucky is located in which city?",
+    options: ["Lexington", "Louisville", "Frankfort", "Bowling Green"],
+    answer: "Lexington",
+    funFact: "The University of Kentucky’s main campus is in Lexington.",
+  },
+  {
+    id: 318,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Kentucky’s official school colors are which combination?",
+    options: [
+      "Blue and White",
+      "Blue and Gold",
+      "Navy and Silver",
+      "Royal and Black",
+    ],
+    answer: "Blue and White",
+    funFact:
+      "Kentucky’s iconic blue and white branding is consistent across all sports.",
+  },
+  {
+    id: 319,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which SEC rival is located in the same state as Kentucky?",
+    options: ["Tennessee", "Louisville", "Vanderbilt", "Missouri"],
+    answer: "Tennessee",
+    funFact: "Kentucky and Tennessee regularly face off in SEC competition.",
+  },
+  {
+    id: 320,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Kentucky advanced to the College World Series for the first time in which decade?",
+    options: ["1980s", "1990s", "2000s", "2020s"],
+    answer: "2020s",
+    funFact: "Kentucky made its first College World Series appearance in 2024.",
+  },
+  {
+    id: 321,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Kentucky baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "Kentucky competes at the highest NCAA level.",
+  },
+  {
+    id: 322,
+    teams: ["Kentucky"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Kentucky’s baseball program is part of which U.S. region?",
+    options: ["Midwest", "Southeast", "Northeast", "Southwest"],
+    answer: "Southeast",
+    funFact: "Kentucky is considered part of the Southeastern United States.",
+  },
+  {
+    id: 323,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southern University’s athletic nickname is what?",
+    options: ["Jaguars", "Tigers", "Panthers", "Bulldogs"],
+    answer: "Jaguars",
+    funFact: "Southern teams are known as the Jaguars and Lady Jaguars.",
+  },
+  {
+    id: 324,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southern competes in which conference?",
+    options: ["Sun Belt", "SWAC", "SEC", "C-USA"],
+    answer: "SWAC",
+    funFact:
+      "Southern is a longtime member of the Southwestern Athletic Conference.",
+  },
+  {
+    id: 325,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southern University is located in which Louisiana city?",
+    options: ["Baton Rouge", "New Orleans", "Lafayette", "Shreveport"],
+    answer: "Baton Rouge",
+    funFact: "Southern’s main campus sits in Baton Rouge, just north of LSU.",
+  },
+  {
+    id: 326,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What are Southern University’s school colors?",
+    options: [
+      "Blue and Gold",
+      "Purple and Gold",
+      "Red and White",
+      "Black and Gold",
+    ],
+    answer: "Blue and Gold",
+    funFact:
+      "Southern’s blue and gold branding is prominent across all athletics.",
+  },
+  {
+    id: 327,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southern’s home baseball stadium is named what?",
+    options: [
+      "Lee-Hines Field",
+      "A.W. Mumford Stadium",
+      "Jaguar Park",
+      "Wilbert Ellis Field",
+    ],
+    answer: "Lee-Hines Field",
+    funFact: "Lee-Hines Field is located on Southern’s Baton Rouge campus.",
+  },
+  {
+    id: 328,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Southern’s primary in-state SWAC baseball rival is which school?",
+    options: ["Grambling State", "Louisiana Tech", "LSU", "UL Lafayette"],
+    answer: "Grambling State",
+    funFact:
+      "Southern and Grambling have a historic rivalry across multiple sports.",
+  },
+  {
+    id: 329,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southern University is classified as what type of institution?",
+    options: [
+      "HBCU",
+      "Military Academy",
+      "Private Catholic University",
+      "Community College",
+    ],
+    answer: "HBCU",
+    funFact:
+      "Southern is one of Louisiana’s most prominent Historically Black Colleges and Universities.",
+  },
+  {
+    id: 330,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southern baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "Southern competes in Division I as part of the SWAC.",
+  },
+  {
+    id: 331,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southern University is located in which part of Louisiana?",
+    options: [
+      "North Louisiana",
+      "Central Louisiana",
+      "South Louisiana",
+      "West Louisiana",
+    ],
+    answer: "South Louisiana",
+    funFact: "Baton Rouge is in south Louisiana along the Mississippi River.",
+  },
+  {
+    id: 332,
+    teams: ["Southern"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Southern’s athletics are governed by which conference tournament for automatic NCAA bids?",
+    options: [
+      "SWAC Tournament",
+      "SEC Tournament",
+      "Sun Belt Tournament",
+      "C-USA Tournament",
+    ],
+    answer: "SWAC Tournament",
+    funFact:
+      "Winning the SWAC Tournament earns the conference’s automatic NCAA bid.",
+  },
+  {
+    id: 333,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is the University of Tennessee’s athletic nickname?",
+    options: ["Volunteers", "Commodores", "Wildcats", "Rebels"],
+    answer: "Volunteers",
+    funFact:
+      "Tennessee’s 'Volunteers' nickname comes from the state’s military history.",
+  },
+  {
+    id: 334,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tennessee baseball competes in which conference?",
+    options: ["ACC", "SEC", "Big 12", "Big Ten"],
+    answer: "SEC",
+    funFact: "Tennessee is a member of the Southeastern Conference.",
+  },
+  {
+    id: 335,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tennessee’s baseball team plays home games at which stadium?",
+    options: [
+      "Lindsey Nelson Stadium",
+      "Volunteer Field",
+      "Rocky Top Park",
+      "Neyland Diamond",
+    ],
+    answer: "Lindsey Nelson Stadium",
+    funFact:
+      "Lindsey Nelson Stadium has undergone major renovations in recent seasons.",
+  },
+  {
+    id: 336,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tennessee is located in which city?",
+    options: ["Knoxville", "Nashville", "Memphis", "Chattanooga"],
+    answer: "Knoxville",
+    funFact: "The University of Tennessee’s main campus is in Knoxville.",
+  },
+  {
+    id: 337,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tennessee’s primary school colors are which combination?",
+    options: [
+      "Orange and White",
+      "Black and Gold",
+      "Blue and White",
+      "Red and White",
+    ],
+    answer: "Orange and White",
+    funFact: "Tennessee’s shade of orange is officially called 'UT Orange.'",
+  },
+  {
+    id: 338,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Tennessee won the NCAA baseball national championship in which year?",
+    options: ["2019", "2021", "2024", "2022"],
+    answer: "2024",
+    funFact:
+      "Tennessee captured its first NCAA baseball national title in 2024.",
+  },
+  {
+    id: 339,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Tennessee head coach helped elevate the program to national prominence in the 2020s?",
+    options: ["Tony Vitello", "Tim Corbin", "Skip Johnson", "Lane Burroughs"],
+    answer: "Tony Vitello",
+    funFact:
+      "Tony Vitello has led Tennessee to multiple College World Series appearances.",
+  },
+  {
+    id: 340,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tennessee’s in-state SEC baseball rival is which school?",
+    options: ["Vanderbilt", "Kentucky", "Georgia", "Florida"],
+    answer: "Vanderbilt",
+    funFact:
+      "The Tennessee–Vanderbilt rivalry is intense across multiple sports.",
+  },
+  {
+    id: 341,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tennessee baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "Tennessee competes at the highest NCAA level in baseball.",
+  },
+  {
+    id: 342,
+    teams: ["Tennessee"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "The nickname 'Volunteers' is often shortened to what by fans?",
+    options: ["Vols", "Vandy", "Tenners", "Rockies"],
+    answer: "Vols",
+    funFact: "Tennessee teams are commonly referred to as the 'Vols.'",
+  },
+  {
+    id: 343,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Bethune-Cookman’s athletic nickname is what?",
+    options: ["Wildcats", "Panthers", "Rattlers", "Bears"],
+    answer: "Wildcats",
+    funFact: "Bethune-Cookman teams are known as the Wildcats.",
+  },
+  {
+    id: 344,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Bethune-Cookman competes in which conference?",
+    options: ["SWAC", "MEAC", "Sun Belt", "ACC"],
+    answer: "SWAC",
+    funFact:
+      "Bethune-Cookman joined the SWAC after previously competing in the MEAC.",
+  },
+  {
+    id: 345,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Bethune-Cookman University is located in which Florida city?",
+    options: ["Daytona Beach", "Orlando", "Jacksonville", "Tallahassee"],
+    answer: "Daytona Beach",
+    funFact: "Bethune-Cookman’s campus is in Daytona Beach, Florida.",
+  },
+  {
+    id: 346,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Bethune-Cookman is classified as what type of institution?",
+    options: [
+      "HBCU",
+      "Private Catholic University",
+      "Military Academy",
+      "State College",
+    ],
+    answer: "HBCU",
+    funFact: "Bethune-Cookman is a Historically Black College and University.",
+  },
+  {
+    id: 347,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What are Bethune-Cookman’s primary school colors?",
+    options: [
+      "Maroon and Gold",
+      "Blue and Orange",
+      "Black and Gold",
+      "Green and White",
+    ],
+    answer: "Maroon and Gold",
+    funFact: "Bethune-Cookman’s maroon and gold are central to its branding.",
+  },
+  {
+    id: 348,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Bethune-Cookman baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "Bethune-Cookman competes at the Division I level.",
+  },
+  {
+    id: 349,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Bethune-Cookman’s primary conference baseball rival in Florida has historically been which school?",
+    options: ["Florida A&M", "Florida State", "Miami", "UCF"],
+    answer: "Florida A&M",
+    funFact:
+      "Bethune-Cookman and Florida A&M have a longstanding rivalry across sports.",
+  },
+  {
+    id: 350,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Bethune-Cookman previously competed in which conference before joining the SWAC?",
+    options: ["MEAC", "Sun Belt", "Big South", "C-USA"],
+    answer: "MEAC",
+    funFact:
+      "The Wildcats were longtime members of the Mid-Eastern Athletic Conference.",
+  },
+  {
+    id: 351,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Bethune-Cookman is located in which U.S. region?",
+    options: ["Southeast", "Midwest", "Northeast", "West Coast"],
+    answer: "Southeast",
+    funFact: "Florida is part of the Southeastern United States.",
+  },
+  {
+    id: 352,
+    teams: ["Bethune-Cookman"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Bethune-Cookman’s conference championship pathway to the NCAA Tournament comes through which event?",
+    options: [
+      "SWAC Tournament",
+      "MEAC Challenge",
+      "SEC Tournament",
+      "Sun Belt Championship",
+    ],
+    answer: "SWAC Tournament",
+    funFact:
+      "Winning the SWAC Tournament grants the conference’s automatic NCAA bid.",
+  },
+  {
+    id: 353,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is the University of Mississippi’s athletic nickname?",
+    options: ["Rebels", "Bulldogs", "Tigers", "Aggies"],
+    answer: "Rebels",
+    funFact:
+      "Ole Miss teams are known as the Rebels, a nickname dating back to the early 1900s.",
+  },
+  {
+    id: 354,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Ole Miss baseball competes in which conference?",
+    options: ["ACC", "SEC", "Big 12", "Sun Belt"],
+    answer: "SEC",
+    funFact:
+      "Ole Miss is a long-standing member of the Southeastern Conference.",
+  },
+  {
+    id: 355,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Ole Miss plays its home baseball games at which stadium?",
+    options: [
+      "Swayze Field",
+      "Vaught-Hemingway Park",
+      "Rebel Diamond",
+      "Magnolia Field",
+    ],
+    answer: "Swayze Field",
+    funFact: "Swayze Field is officially named Oxford-University Stadium.",
+  },
+  {
+    id: 356,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "In which Mississippi city is Ole Miss located?",
+    options: ["Oxford", "Jackson", "Biloxi", "Hattiesburg"],
+    answer: "Oxford",
+    funFact:
+      "Oxford, Mississippi is home to the university and one of the SEC’s iconic college towns.",
+  },
+  {
+    id: 357,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Ole Miss won its first NCAA baseball national championship in which year?",
+    options: ["2018", "2021", "2022", "2023"],
+    answer: "2022",
+    funFact:
+      "The Rebels captured their first College World Series title in 2022.",
+  },
+  {
+    id: 358,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Ole Miss’s primary school colors are which combination?",
+    options: [
+      "Red and Navy",
+      "Maroon and White",
+      "Black and Gold",
+      "Blue and Orange",
+    ],
+    answer: "Red and Navy",
+    funFact: "Ole Miss branding prominently features red and navy blue.",
+  },
+  {
+    id: 359,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which in-state SEC rival is located in Starkville?",
+    options: ["Mississippi State", "LSU", "Alabama", "Arkansas"],
+    answer: "Mississippi State",
+    funFact:
+      "Ole Miss vs Mississippi State is known as the Egg Bowl rivalry in football and extends to baseball.",
+  },
+  {
+    id: 360,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which longtime head coach led Ole Miss baseball for over two decades before 2022?",
+    options: ["Mike Bianco", "Tony Vitello", "Tim Corbin", "Dave Van Horn"],
+    answer: "Mike Bianco",
+    funFact: "Mike Bianco led Ole Miss to its 2022 national championship.",
+  },
+  {
+    id: 361,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Ole Miss baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "Ole Miss competes at the highest NCAA level in baseball.",
+  },
+  {
+    id: 362,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Swayze Field is often regarded as one of the top environments in which conference?",
+    options: ["SEC", "ACC", "Big Ten", "Sun Belt"],
+    answer: "SEC",
+    funFact:
+      "Ole Miss consistently ranks near the top nationally in baseball attendance.",
+  },
+  {
+    id: 363,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is Northwestern State’s athletic nickname?",
+    options: ["Demons", "Bulldogs", "Warhawks", "Cowboys"],
+    answer: "Demons",
+    funFact:
+      "Northwestern State teams are known as the Demons and Lady Demons.",
+  },
+  {
+    id: 364,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Northwestern State competes in which conference?",
+    options: ["Southland", "Sun Belt", "SWAC", "C-USA"],
+    answer: "Southland",
+    funFact: "Northwestern State is a member of the Southland Conference.",
+  },
+  {
+    id: 365,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Northwestern State is located in which Louisiana city?",
+    options: ["Natchitoches", "Monroe", "Ruston", "Lake Charles"],
+    answer: "Natchitoches",
+    funFact:
+      "Natchitoches is the oldest permanent settlement in the Louisiana Purchase territory.",
+  },
+  {
+    id: 366,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Northwestern State’s baseball stadium is named what?",
+    options: [
+      "Brown-Stroud Field",
+      "Demon Diamond",
+      "Love Field",
+      "Cane River Park",
+    ],
+    answer: "Brown-Stroud Field",
+    funFact: "Brown-Stroud Field serves as the Demons’ home baseball venue.",
+  },
+  {
+    id: 367,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Northwestern State’s primary school colors are which combination?",
+    options: [
+      "Purple and White",
+      "Purple and Gold",
+      "Blue and Gold",
+      "Red and White",
+    ],
+    answer: "Purple and White",
+    funFact: "Northwestern State’s official colors are purple and white.",
+  },
+  {
+    id: 368,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Louisiana in-state rival frequently faces Northwestern State in conference play?",
+    options: ["McNeese", "LSU", "Tulane", "Grambling"],
+    answer: "McNeese",
+    funFact:
+      "Both Northwestern State and McNeese compete in the Southland Conference.",
+  },
+  {
+    id: 369,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Northwestern State baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "The Demons compete at the Division I level.",
+  },
+  {
+    id: 370,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Northwestern State is located near which Louisiana river?",
+    options: [
+      "Mississippi River",
+      "Red River",
+      "Cane River",
+      "Atchafalaya River",
+    ],
+    answer: "Cane River",
+    funFact: "The campus sits near the scenic Cane River in Natchitoches.",
+  },
+  {
+    id: 371,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Northwestern State’s athletics are governed by which conference tournament for NCAA automatic bids?",
+    options: [
+      "Southland Tournament",
+      "SEC Tournament",
+      "SWAC Tournament",
+      "Sun Belt Tournament",
+    ],
+    answer: "Southland Tournament",
+    funFact: "Winning the Southland Tournament grants an automatic NCAA berth.",
+  },
+  {
+    id: 372,
+    teams: ["Northwestern State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Northwestern State’s nickname ‘Demons’ is unique among Division I programs because it is what?",
+    options: [
+      "One of the only 'Demons' mascots in Division I",
+      "Named after a river",
+      "Based on a mythological creature",
+      "A former coach’s nickname",
+    ],
+    answer: "One of the only 'Demons' mascots in Division I",
+    funFact:
+      "The Demons nickname is one of the more unique mascots in college athletics.",
+  },
+  {
+    id: 373,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Texas A&M’s athletic nickname is what?",
+    options: ["Aggies", "Longhorns", "Cowboys", "Raiders"],
+    answer: "Aggies",
+    funFact: "The Aggie nickname reflects the university’s agricultural roots.",
+  },
+  {
+    id: 374,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Texas A&M competes in which conference?",
+    options: ["Big 12", "SEC", "ACC", "Sun Belt"],
+    answer: "SEC",
+    funFact: "Texas A&M joined the SEC in 2012.",
+  },
+  {
+    id: 375,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Texas A&M plays its home baseball games at which stadium?",
+    options: [
+      "Blue Bell Park",
+      "Aggie Diamond",
+      "College Station Field",
+      "Kyle Field Park",
+    ],
+    answer: "Blue Bell Park",
+    funFact:
+      "Blue Bell Park is one of the premier college baseball facilities in the country.",
+  },
+  {
+    id: 376,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Texas A&M is located in which Texas city?",
+    options: ["College Station", "Austin", "Houston", "Dallas"],
+    answer: "College Station",
+    funFact: "College Station is home to Texas A&M University.",
+  },
+  {
+    id: 377,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Texas A&M’s primary school colors are which combination?",
+    options: [
+      "Maroon and White",
+      "Burnt Orange and White",
+      "Red and Black",
+      "Blue and Silver",
+    ],
+    answer: "Maroon and White",
+    funFact:
+      "Aggie maroon is one of the most recognizable colors in college sports.",
+  },
+  {
+    id: 378,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Texas A&M’s biggest in-state baseball rival is which school?",
+    options: ["Texas", "Baylor", "Houston", "TCU"],
+    answer: "Texas",
+    funFact: "The Texas A&M vs Texas rivalry spans multiple sports.",
+  },
+  {
+    id: 379,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Texas A&M made a College World Series appearance in which recent year?",
+    options: ["2020", "2022", "2023", "2024"],
+    answer: "2024",
+    funFact: "The Aggies advanced to Omaha in the 2024 College World Series.",
+  },
+  {
+    id: 380,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Texas A&M baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "Texas A&M competes at the highest NCAA level.",
+  },
+  {
+    id: 381,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Texas A&M was previously a member of which conference before joining the SEC?",
+    options: ["Big 12", "Pac-12", "ACC", "Big Ten"],
+    answer: "Big 12",
+    funFact:
+      "Texas A&M was a founding member of the Big 12 before moving to the SEC.",
+  },
+  {
+    id: 382,
+    teams: ["Texas A&M"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Texas A&M’s stadium name includes which brand known for ice cream?",
+    options: ["Blue Bell", "Breyers", "Haagen-Dazs", "Tillamook"],
+    answer: "Blue Bell",
+    funFact: "Blue Bell Creameries sponsors the Aggies’ baseball stadium.",
+  },
+  {
+    id: 383,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is the University of New Orleans’ athletic nickname?",
+    options: ["Privateers", "Pelicans", "Pirates", "Buccaneers"],
+    answer: "Privateers",
+    funFact:
+      "UNO teams are known as the Privateers, reflecting New Orleans’ maritime history.",
+  },
+  {
+    id: 384,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "UNO baseball competes in which conference?",
+    options: ["Southland", "Sun Belt", "SWAC", "C-USA"],
+    answer: "Southland",
+    funFact: "UNO competes in the Southland Conference.",
+  },
+  {
+    id: 385,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "UNO’s baseball team plays home games at which stadium?",
+    options: [
+      "Maestri Field at First NBC Ballpark",
+      "Privateer Park",
+      "Lakefront Field",
+      "Pontchartrain Diamond",
+    ],
+    answer: "Maestri Field at First NBC Ballpark",
+    funFact:
+      "The stadium is located near Lake Pontchartrain on the UNO campus.",
+  },
+  {
+    id: 386,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "UNO is located in which Louisiana city?",
+    options: ["New Orleans", "Metairie", "Kenner", "Gretna"],
+    answer: "New Orleans",
+    funFact: "The campus sits in the Lakefront area of New Orleans.",
+  },
+  {
+    id: 387,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "UNO’s primary school colors are which combination?",
+    options: [
+      "Blue and Silver",
+      "Purple and Gold",
+      "Green and White",
+      "Red and Black",
+    ],
+    answer: "Blue and Silver",
+    funFact: "UNO’s branding prominently features blue and silver.",
+  },
+  {
+    id: 388,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "UNO baseball reached the College World Series in which decade?",
+    options: ["1980s", "1990s", "2000s", "2010s"],
+    answer: "1980s",
+    funFact: "UNO reached the College World Series in 1984.",
+  },
+  {
+    id: 389,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "UNO baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "UNO returned to Division I competition in the 2010s.",
+  },
+  {
+    id: 390,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "UNO’s baseball stadium is located near which large body of water?",
+    options: [
+      "Lake Pontchartrain",
+      "Mississippi River",
+      "Lake Maurepas",
+      "Gulf of Mexico",
+    ],
+    answer: "Lake Pontchartrain",
+    funFact: "The stadium sits near the south shore of Lake Pontchartrain.",
+  },
+  {
+    id: 391,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Louisiana in-state rival frequently faces UNO in Southland play?",
+    options: ["Nicholls", "LSU", "Tulane", "Southern"],
+    answer: "Nicholls",
+    funFact:
+      "UNO and Nicholls regularly compete in Southland Conference matchups.",
+  },
+  {
+    id: 392,
+    teams: ["New Orleans"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "The Privateers nickname reflects which aspect of New Orleans history?",
+    options: [
+      "Maritime privateering",
+      "Jazz music",
+      "Mardi Gras",
+      "Riverboats",
+    ],
+    answer: "Maritime privateering",
+    funFact:
+      "The nickname honors New Orleans’ historic connection to privateers like Jean Lafitte.",
+  },
+  {
+    id: 393,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is Mississippi State’s athletic nickname?",
+    options: ["Bulldogs", "Rebels", "Golden Eagles", "Tigers"],
+    answer: "Bulldogs",
+    funFact:
+      "Mississippi State teams are known as the Bulldogs, often called the 'Diamond Dawgs' in baseball.",
+  },
+  {
+    id: 394,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Mississippi State baseball plays its home games at which stadium?",
+    options: [
+      "Dudy Noble Field",
+      "Starkville Stadium",
+      "Bulldog Park",
+      "Polk-DeMent Field",
+    ],
+    answer: "Dudy Noble Field",
+    funFact:
+      "Dudy Noble Field is one of the largest and most iconic stadiums in college baseball.",
+  },
+  {
+    id: 395,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Mississippi State won its first NCAA baseball national championship in which year?",
+    options: ["2013", "2016", "2019", "2021"],
+    answer: "2021",
+    funFact: "The Bulldogs captured their first national title in 2021.",
+  },
+  {
+    id: 396,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Mississippi State is located in which city?",
+    options: ["Oxford", "Starkville", "Jackson", "Hattiesburg"],
+    answer: "Starkville",
+    funFact: "Starkville is home to Mississippi State University.",
+  },
+  {
+    id: 397,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Mississippi State competes in which conference?",
+    options: ["SEC", "ACC", "Big 12", "Sun Belt"],
+    answer: "SEC",
+    funFact: "Mississippi State is a founding member of the SEC.",
+  },
+  {
+    id: 398,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Dudy Noble Field is often referred to by fans as what?",
+    options: ["The Dude", "The Kennel", "The Dawg House", "The Junction"],
+    answer: "The Dude",
+    funFact: "Fans commonly call Dudy Noble Field 'The Dude.'",
+  },
+  {
+    id: 399,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Mississippi State’s primary school colors are which combination?",
+    options: [
+      "Maroon and White",
+      "Red and Navy",
+      "Black and Gold",
+      "Blue and Silver",
+    ],
+    answer: "Maroon and White",
+    funFact:
+      "Mississippi State’s maroon is one of the SEC’s most recognizable colors.",
+  },
+  {
+    id: 400,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which in-state SEC rival plays in Oxford?",
+    options: ["Ole Miss", "LSU", "Alabama", "Arkansas"],
+    answer: "Ole Miss",
+    funFact:
+      "The Mississippi State vs Ole Miss rivalry is intense in all sports.",
+  },
+  {
+    id: 401,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Mississippi State baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "The Bulldogs compete at the highest NCAA level.",
+  },
+  {
+    id: 402,
+    teams: ["Mississippi State"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Mississippi State consistently ranks among national leaders in what category?",
+    options: ["Attendance", "Home runs", "Strikeouts", "MLB draft picks"],
+    answer: "Attendance",
+    funFact: "The Bulldogs frequently lead the nation in baseball attendance.",
+  },
+  {
+    id: 403,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is Southeastern Louisiana’s athletic nickname?",
+    options: ["Lions", "Tigers", "Warhawks", "Demons"],
+    answer: "Lions",
+    funFact: "Southeastern teams are known as the Lions and Lady Lions.",
+  },
+  {
+    id: 404,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southeastern Louisiana competes in which conference?",
+    options: ["Southland", "Sun Belt", "SWAC", "C-USA"],
+    answer: "Southland",
+    funFact: "Southeastern is a member of the Southland Conference.",
+  },
+  {
+    id: 405,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southeastern Louisiana is located in which city?",
+    options: ["Hammond", "Lafayette", "Monroe", "Thibodaux"],
+    answer: "Hammond",
+    funFact: "The university is located in Hammond, Louisiana.",
+  },
+  {
+    id: 406,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southeastern’s baseball team plays at which stadium?",
+    options: [
+      "Pat Kenelly Diamond at Alumni Field",
+      "Lion Park",
+      "Cane River Field",
+      "Southland Stadium",
+    ],
+    answer: "Pat Kenelly Diamond at Alumni Field",
+    funFact: "The stadium honors former coach Pat Kenelly.",
+  },
+  {
+    id: 407,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southeastern Louisiana’s school colors are which combination?",
+    options: [
+      "Green and Gold",
+      "Purple and Gold",
+      "Red and White",
+      "Blue and Silver",
+    ],
+    answer: "Green and Gold",
+    funFact: "Green and gold are central to Southeastern’s branding.",
+  },
+  {
+    id: 408,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southeastern Louisiana baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "The Lions compete at the Division I level.",
+  },
+  {
+    id: 409,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Louisiana in-state rival frequently faces Southeastern in conference play?",
+    options: ["Nicholls", "LSU", "Tulane", "Grambling"],
+    answer: "Nicholls",
+    funFact:
+      "Southeastern and Nicholls often battle in Southland Conference matchups.",
+  },
+  {
+    id: 410,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southeastern Louisiana is located in which part of Louisiana?",
+    options: ["Southeast", "North", "West", "Central"],
+    answer: "Southeast",
+    funFact:
+      "Hammond is in southeast Louisiana between Baton Rouge and New Orleans.",
+  },
+  {
+    id: 411,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Winning which tournament grants Southeastern an automatic NCAA bid?",
+    options: [
+      "Southland Tournament",
+      "SEC Tournament",
+      "SWAC Tournament",
+      "Sun Belt Championship",
+    ],
+    answer: "Southland Tournament",
+    funFact:
+      "The Southland Tournament champion receives the conference’s automatic NCAA berth.",
+  },
+  {
+    id: 412,
+    teams: ["Southeastern Louisiana"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Southeastern’s mascot represents which animal?",
+    options: ["Lion", "Tiger", "Bear", "Eagle"],
+    answer: "Lion",
+    funFact: "The Lions mascot is a central part of campus culture.",
+  },
+  {
+    id: 413,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "South Carolina’s athletic nickname is what?",
+    options: ["Gamecocks", "Bulldogs", "Tigers", "Rebels"],
+    answer: "Gamecocks",
+    funFact: "The Gamecock mascot references the fighting rooster symbol.",
+  },
+  {
+    id: 414,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "South Carolina baseball plays home games at which stadium?",
+    options: [
+      "Founders Park",
+      "Gamecock Field",
+      "Columbia Diamond",
+      "Carolina Park",
+    ],
+    answer: "Founders Park",
+    funFact: "Founders Park opened in 2009 in Columbia, South Carolina.",
+  },
+  {
+    id: 415,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "South Carolina won back-to-back national championships in which years?",
+    options: [
+      "2009 and 2010",
+      "2010 and 2011",
+      "2011 and 2012",
+      "2012 and 2013",
+    ],
+    answer: "2010 and 2011",
+    funFact:
+      "The Gamecocks won consecutive College World Series titles in 2010 and 2011.",
+  },
+  {
+    id: 416,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "South Carolina competes in which conference?",
+    options: ["SEC", "ACC", "Sun Belt", "Big 12"],
+    answer: "SEC",
+    funFact: "South Carolina joined the SEC in 1991.",
+  },
+  {
+    id: 417,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "South Carolina is located in which city?",
+    options: ["Columbia", "Charleston", "Greenville", "Spartanburg"],
+    answer: "Columbia",
+    funFact: "The University of South Carolina’s main campus is in Columbia.",
+  },
+  {
+    id: 418,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which longtime head coach led South Carolina to its national championships?",
+    options: ["Ray Tanner", "Tony Vitello", "Tim Corbin", "Dave Van Horn"],
+    answer: "Ray Tanner",
+    funFact: "Ray Tanner led South Carolina to its 2010 and 2011 titles.",
+  },
+  {
+    id: 419,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "South Carolina’s primary school colors are which combination?",
+    options: [
+      "Garnet and Black",
+      "Red and Navy",
+      "Maroon and White",
+      "Orange and Black",
+    ],
+    answer: "Garnet and Black",
+    funFact: "South Carolina’s official colors are garnet and black.",
+  },
+  {
+    id: 420,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "South Carolina baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "The Gamecocks compete at the highest NCAA level.",
+  },
+  {
+    id: 421,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "South Carolina’s in-state baseball rival is which school?",
+    options: ["Clemson", "Georgia", "Florida", "Alabama"],
+    answer: "Clemson",
+    funFact:
+      "The South Carolina–Clemson rivalry is one of the best in college baseball.",
+  },
+  {
+    id: 422,
+    teams: ["South Carolina"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "South Carolina made three straight College World Series finals appearances beginning in which year?",
+    options: ["2008", "2009", "2010", "2011"],
+    answer: "2010",
+    funFact: "South Carolina reached the CWS finals in 2010, 2011, and 2012.",
+  },
+  {
+    id: 423,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is Tulane University’s athletic nickname?",
+    options: ["Green Wave", "Privateers", "Pelicans", "Tigers"],
+    answer: "Green Wave",
+    funFact: "Tulane adopted the Green Wave nickname in the early 1900s.",
+  },
+  {
+    id: 424,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tulane baseball competes in which conference?",
+    options: ["American Athletic Conference", "SEC", "Sun Belt", "C-USA"],
+    answer: "American Athletic Conference",
+    funFact:
+      "Tulane is currently a member of the American Athletic Conference.",
+  },
+  {
+    id: 425,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tulane plays its home baseball games at which stadium?",
+    options: [
+      "Greer Field at Turchin Stadium",
+      "Green Wave Park",
+      "Uptown Diamond",
+      "Maestri Field",
+    ],
+    answer: "Greer Field at Turchin Stadium",
+    funFact: "Turchin Stadium reopened in 2008 after Hurricane Katrina.",
+  },
+  {
+    id: 426,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Tulane won its NCAA baseball national championship in which year?",
+    options: ["1999", "2001", "2005", "2008"],
+    answer: "2001",
+    funFact: "Tulane captured the 2001 College World Series title.",
+  },
+  {
+    id: 427,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tulane is located in which part of New Orleans?",
+    options: ["Uptown", "French Quarter", "Lakeview", "Mid-City"],
+    answer: "Uptown",
+    funFact:
+      "Tulane’s campus sits in Uptown New Orleans along St. Charles Avenue.",
+  },
+  {
+    id: 428,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tulane’s primary school colors are which combination?",
+    options: [
+      "Green and Blue",
+      "Purple and Gold",
+      "Blue and Silver",
+      "Red and Black",
+    ],
+    answer: "Green and Blue",
+    funFact:
+      "Tulane’s green and blue branding matches the Green Wave nickname.",
+  },
+  {
+    id: 429,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Louisiana school is a frequent in-state baseball rival for Tulane?",
+    options: ["LSU", "Grambling", "Northwestern State", "Southern"],
+    answer: "LSU",
+    funFact: "Tulane and LSU often meet in high-profile in-state matchups.",
+  },
+  {
+    id: 430,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Tulane baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "Tulane competes at the Division I level.",
+  },
+  {
+    id: 431,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Tulane’s 2001 national championship run concluded in which city?",
+    options: ["Omaha", "Atlanta", "Dallas", "Nashville"],
+    answer: "Omaha",
+    funFact: "The College World Series is held annually in Omaha, Nebraska.",
+  },
+  {
+    id: 432,
+    teams: ["Tulane"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Tulane was previously a member of which major conference before joining the AAC?",
+    options: ["SEC", "Big East", "ACC", "Pac-12"],
+    answer: "SEC",
+    funFact:
+      "Tulane was a founding member of the SEC before leaving in the 1960s.",
+  },
+  {
+    id: 433,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is the University of Georgia’s athletic nickname?",
+    options: ["Bulldogs", "Tigers", "Rebels", "Gators"],
+    answer: "Bulldogs",
+    funFact: "Georgia teams are commonly referred to as the 'Dawgs.'",
+  },
+  {
+    id: 434,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Georgia competes in which conference?",
+    options: ["SEC", "ACC", "Sun Belt", "Big 12"],
+    answer: "SEC",
+    funFact: "Georgia is a founding member of the Southeastern Conference.",
+  },
+  {
+    id: 435,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Georgia plays its home baseball games at which stadium?",
+    options: [
+      "Foley Field",
+      "Bulldog Diamond",
+      "Athens Field",
+      "Red and Black Park",
+    ],
+    answer: "Foley Field",
+    funFact: "Foley Field is located on Georgia’s campus in Athens.",
+  },
+  {
+    id: 436,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Georgia is located in which city?",
+    options: ["Athens", "Atlanta", "Savannah", "Augusta"],
+    answer: "Athens",
+    funFact: "The University of Georgia’s main campus is in Athens.",
+  },
+  {
+    id: 437,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Georgia’s primary school colors are which combination?",
+    options: [
+      "Red and Black",
+      "Garnet and Black",
+      "Red and White",
+      "Orange and Black",
+    ],
+    answer: "Red and Black",
+    funFact: "Georgia’s official colors are red and black.",
+  },
+  {
+    id: 438,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Georgia won its NCAA baseball national championship in which year?",
+    options: ["1987", "1990", "1993", "1996"],
+    answer: "1990",
+    funFact: "Georgia captured the 1990 College World Series title.",
+  },
+  {
+    id: 439,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which SEC rival located in Gainesville frequently faces Georgia in baseball?",
+    options: ["Florida", "Auburn", "Alabama", "Ole Miss"],
+    answer: "Florida",
+    funFact: "Georgia and Florida have a heated rivalry across many sports.",
+  },
+  {
+    id: 440,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Georgia baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "The Bulldogs compete at the highest NCAA level.",
+  },
+  {
+    id: 441,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Georgia reached the College World Series finals in which recent year?",
+    options: ["2006", "2008", "2012", "2016"],
+    answer: "2008",
+    funFact: "Georgia finished as national runner-up in 2008.",
+  },
+  {
+    id: 442,
+    teams: ["Georgia"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Georgia’s baseball team represents which U.S. state?",
+    options: ["Georgia", "South Carolina", "Alabama", "Florida"],
+    answer: "Georgia",
+    funFact:
+      "The University of Georgia is the state’s flagship public university.",
+  },
+  {
+    id: 443,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is the University of Florida’s athletic nickname?",
+    options: ["Gators", "Bulldogs", "Seminoles", "Tigers"],
+    answer: "Gators",
+    funFact:
+      "The Gators nickname reflects Florida’s alligator-rich environment.",
+  },
+  {
+    id: 444,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Florida baseball competes in which conference?",
+    options: ["SEC", "ACC", "Sun Belt", "Big 12"],
+    answer: "SEC",
+    funFact: "Florida is a member of the Southeastern Conference.",
+  },
+  {
+    id: 445,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Florida plays its home baseball games at which stadium?",
+    options: [
+      "Condron Family Ballpark",
+      "Gator Diamond",
+      "McKethan Stadium",
+      "Swamp Field",
+    ],
+    answer: "Condron Family Ballpark",
+    funFact:
+      "Condron Family Ballpark opened in 2021 as Florida’s new home stadium.",
+  },
+  {
+    id: 446,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Florida won its NCAA baseball national championship in which year?",
+    options: ["2015", "2016", "2017", "2018"],
+    answer: "2017",
+    funFact: "Florida captured its first College World Series title in 2017.",
+  },
+  {
+    id: 447,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Florida is located in which city?",
+    options: ["Gainesville", "Tallahassee", "Orlando", "Tampa"],
+    answer: "Gainesville",
+    funFact: "The University of Florida’s main campus is in Gainesville.",
+  },
+  {
+    id: 448,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Florida’s primary school colors are which combination?",
+    options: [
+      "Orange and Blue",
+      "Blue and Gold",
+      "Green and White",
+      "Red and Black",
+    ],
+    answer: "Orange and Blue",
+    funFact: "Florida’s orange and blue branding is iconic in the SEC.",
+  },
+  {
+    id: 449,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which in-state rival frequently faces Florida in baseball?",
+    options: ["Florida State", "Miami (FL)", "UCF", "USF"],
+    answer: "Florida State",
+    funFact:
+      "Florida and Florida State regularly meet in high-profile nonconference games.",
+  },
+  {
+    id: 450,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Florida baseball competes at which NCAA level?",
+    options: ["Division I", "Division II", "Division III", "NAIA"],
+    answer: "Division I",
+    funFact: "The Gators compete at the highest NCAA level.",
+  },
+  {
+    id: 451,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Florida made a College World Series finals appearance in which recent year?",
+    options: ["2019", "2021", "2023", "2024"],
+    answer: "2023",
+    funFact: "Florida reached the 2023 CWS finals before falling to LSU.",
+  },
+  {
+    id: 452,
+    teams: ["Florida"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Florida’s previous longtime baseball stadium before Condron Family Ballpark was called what?",
+    options: [
+      "McKethan Stadium",
+      "The Swamp",
+      "Gator Field",
+      "Ben Hill Griffin Park",
+    ],
+    answer: "McKethan Stadium",
+    funFact:
+      "McKethan Stadium served as Florida’s baseball home from 1988 to 2020.",
+  },
+  {
+    id: 453,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question: "What does SEC stand for?",
+    options: [
+      "Southeastern Conference",
+      "Southern Elite Conference",
+      "States Eastern Coalition",
+      "Southern Expansion Conference",
+    ],
+    answer: "Southeastern Conference",
+    funFact:
+      "The SEC was founded in 1932 and is one of the most powerful conferences in college athletics.",
+  },
+  {
+    id: 454,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question: "In what year was the SEC founded?",
+    options: ["1922", "1932", "1942", "1952"],
+    answer: "1932",
+    funFact: "The SEC split from the Southern Conference in 1932.",
+  },
+  {
+    id: 455,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question:
+      "How many full member schools are in the SEC as of the mid-2020s?",
+    options: ["14", "15", "16", "18"],
+    answer: "16",
+    funFact:
+      "Texas and Oklahoma joined the SEC, bringing total membership to 16.",
+  },
+  {
+    id: 456,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question: "Which two schools most recently joined the SEC?",
+    options: [
+      "Texas and Oklahoma",
+      "Tulane and Memphis",
+      "Florida State and Miami",
+      "Clemson and Georgia Tech",
+    ],
+    answer: "Texas and Oklahoma",
+    funFact: "The SEC expanded westward by adding Texas and Oklahoma.",
+  },
+  {
+    id: 457,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question: "SEC headquarters are located in which city?",
+    options: ["Atlanta", "Birmingham", "Nashville", "Jackson"],
+    answer: "Birmingham",
+    funFact: "The SEC headquarters are based in Birmingham, Alabama.",
+  },
+  {
+    id: 458,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question:
+      "The SEC is primarily located in which region of the United States?",
+    options: ["Midwest", "Northeast", "Southeast", "Southwest"],
+    answer: "Southeast",
+    funFact:
+      "The SEC’s footprint covers much of the Southeastern United States.",
+  },
+  {
+    id: 459,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question: "Which state has the most SEC member schools?",
+    options: ["Florida", "Alabama", "Texas", "Tennessee"],
+    answer: "Texas",
+    funFact: "Texas has multiple SEC schools including Texas and Texas A&M.",
+  },
+  {
+    id: 460,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question:
+      "The SEC is widely considered the most dominant conference in which sport?",
+    options: ["Baseball", "Football", "Soccer", "Swimming"],
+    answer: "Football",
+    funFact:
+      "SEC football programs have won numerous national championships in the BCS and CFP eras.",
+  },
+  {
+    id: 461,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question: "The SEC championship events are often hosted in which city?",
+    options: ["Atlanta", "New Orleans", "Houston", "Charlotte"],
+    answer: "Atlanta",
+    funFact:
+      "The SEC Football Championship Game is traditionally held in Atlanta.",
+  },
+  {
+    id: 462,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "general",
+    question:
+      "The SEC Network launched in partnership with which major sports broadcaster?",
+    options: ["ESPN", "Fox Sports", "CBS Sports", "NBC"],
+    answer: "ESPN",
+    funFact:
+      "The SEC Network launched in 2014 as part of ESPN’s conference network expansion.",
+  },
+  {
+    id: 463,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "The SEC is widely considered the strongest conference in which NCAA sport?",
+    options: ["Baseball", "Hockey", "Lacrosse", "Volleyball"],
+    answer: "Baseball",
+    funFact:
+      "SEC baseball routinely dominates NCAA Tournament bids and College World Series appearances.",
+  },
+  {
+    id: 464,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "The SEC Baseball Tournament is traditionally held in which Mississippi city?",
+    options: ["Oxford", "Jackson", "Biloxi", "Starkville"],
+    answer: "Hoover",
+    funFact:
+      "The SEC Baseball Tournament is held at Hoover Metropolitan Stadium in Alabama.",
+  },
+  {
+    id: 465,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which SEC school won the 2023 College World Series?",
+    options: ["LSU", "Florida", "Arkansas", "Tennessee"],
+    answer: "LSU",
+    funFact: "LSU captured the 2023 national championship in Omaha.",
+  },
+  {
+    id: 466,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which SEC school won the 2022 College World Series?",
+    options: ["Ole Miss", "Mississippi State", "Vanderbilt", "Georgia"],
+    answer: "Ole Miss",
+    funFact: "Ole Miss won its first national championship in 2022.",
+  },
+  {
+    id: 467,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which SEC school won the 2021 College World Series?",
+    options: ["Mississippi State", "Vanderbilt", "Arkansas", "Florida"],
+    answer: "Mississippi State",
+    funFact: "Mississippi State won its first national title in 2021.",
+  },
+  {
+    id: 468,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "The SEC Baseball Tournament champion receives what?",
+    options: [
+      "Automatic NCAA bid",
+      "College World Series berth",
+      "MLB Draft bonus",
+      "At-large guarantee",
+    ],
+    answer: "Automatic NCAA bid",
+    funFact:
+      "The tournament champion earns the conference’s automatic NCAA Tournament berth.",
+  },
+  {
+    id: 469,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "How many SEC teams commonly receive NCAA Tournament bids in strong seasons?",
+    options: ["3–4", "5–6", "7–10", "1–2"],
+    answer: "7–10",
+    funFact:
+      "The SEC often sends a large percentage of the NCAA Tournament field.",
+  },
+  {
+    id: 470,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which SEC stadium is nicknamed 'The Dude'?",
+    options: [
+      "Dudy Noble Field",
+      "Swayze Field",
+      "Alex Box Stadium",
+      "Blue Bell Park",
+    ],
+    answer: "Dudy Noble Field",
+    funFact:
+      "'The Dude' is the nickname for Mississippi State’s Dudy Noble Field.",
+  },
+  {
+    id: 471,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which SEC city hosts the annual baseball tournament?",
+    options: ["Hoover", "Nashville", "Atlanta", "Columbia"],
+    answer: "Hoover",
+    funFact: "Hoover, Alabama has long hosted the SEC Baseball Tournament.",
+  },
+  {
+    id: 472,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which SEC school is known for playing at Lindsey Nelson Stadium?",
+    options: ["Tennessee", "Georgia", "Florida", "Auburn"],
+    answer: "Tennessee",
+    funFact: "Lindsey Nelson Stadium is home to Tennessee baseball.",
+  },
+  {
+    id: 473,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question:
+      "Which SEC school has won the most NCAA men’s basketball national championships?",
+    options: ["Kentucky", "Florida", "Arkansas", "Tennessee"],
+    answer: "Kentucky",
+    funFact:
+      "Kentucky men’s basketball has won multiple NCAA national championships.",
+  },
+  {
+    id: 474,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question:
+      "Which SEC school won back-to-back men’s basketball national championships in 2006 and 2007?",
+    options: ["Florida", "Kentucky", "Arkansas", "Alabama"],
+    answer: "Florida",
+    funFact: "Florida won consecutive NCAA titles under coach Billy Donovan.",
+  },
+  {
+    id: 475,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question:
+      "The SEC Men’s Basketball Tournament is frequently held in which city?",
+    options: ["Nashville", "Atlanta", "Birmingham", "New Orleans"],
+    answer: "Nashville",
+    funFact:
+      "Bridgestone Arena in Nashville regularly hosts the SEC Tournament.",
+  },
+  {
+    id: 476,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question: "Which SEC school plays home basketball games at Rupp Arena?",
+    options: ["Kentucky", "Tennessee", "Alabama", "Auburn"],
+    answer: "Kentucky",
+    funFact:
+      "Rupp Arena in Lexington is one of college basketball’s most famous venues.",
+  },
+  {
+    id: 477,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question:
+      "Which SEC school won the 1994 NCAA men’s basketball national championship?",
+    options: ["Arkansas", "Florida", "Kentucky", "LSU"],
+    answer: "Arkansas",
+    funFact:
+      "Arkansas won the 1994 national championship under coach Nolan Richardson.",
+  },
+  {
+    id: 478,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question:
+      "Which SEC school won the 2012 NCAA men’s basketball championship?",
+    options: ["Kentucky", "Florida", "Alabama", "Auburn"],
+    answer: "Kentucky",
+    funFact:
+      "Kentucky’s 2012 team featured future NBA stars like Anthony Davis.",
+  },
+  {
+    id: 479,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question: "Which SEC basketball program plays at Thompson-Boling Arena?",
+    options: ["Tennessee", "Georgia", "Mississippi State", "Ole Miss"],
+    answer: "Tennessee",
+    funFact: "Thompson-Boling Arena is located in Knoxville.",
+  },
+  {
+    id: 480,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question:
+      "Which SEC school has won two NCAA men’s basketball national championships in the 2000s?",
+    options: ["Florida", "Kentucky", "Arkansas", "Alabama"],
+    answer: "Florida",
+    funFact: "Florida won titles in 2006 and 2007.",
+  },
+  {
+    id: 481,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question: "Which SEC school plays at Neville Arena?",
+    options: ["Auburn", "Alabama", "Georgia", "Ole Miss"],
+    answer: "Auburn",
+    funFact: "Neville Arena is Auburn’s home basketball venue.",
+  },
+  {
+    id: 482,
+    teams: ["SEC"],
+    league: "NCAA",
+    sport: "basketball",
+    question:
+      "The SEC is traditionally strongest nationally in which two sports?",
+    options: [
+      "Football and Baseball",
+      "Basketball and Soccer",
+      "Hockey and Lacrosse",
+      "Tennis and Golf",
+    ],
+    answer: "Football and Baseball",
+    funFact:
+      "While competitive in many sports, the SEC is especially dominant in football and baseball.",
+  },
+  {
+    id: 483,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is the official name of Swayze Field?",
+    options: [
+      "Oxford-University Stadium",
+      "Rebel Park",
+      "Magnolia Diamond",
+      "Mississippi Baseball Complex",
+    ],
+    answer: "Oxford-University Stadium",
+    funFact:
+      "Swayze Field is the common name, but the official name is Oxford-University Stadium.",
+  },
+  {
+    id: 484,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "What nickname is given to the outfield student section at Swayze Field?",
+    options: [
+      "The Grove",
+      "The Left Field Lounge",
+      "Rebel Row",
+      "Hotty Toddy Hill",
+    ],
+    answer: "The Left Field Lounge",
+    funFact:
+      "The Left Field Lounge is famous for its tailgating atmosphere during games.",
+  },
+  {
+    id: 485,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Who was Ole Miss’s head coach during their 2022 national championship season?",
+    options: ["Mike Bianco", "Skip Bertman", "Tony Vitello", "Paul Mainieri"],
+    answer: "Mike Bianco",
+    funFact:
+      "Mike Bianco had been with Ole Miss since 2001 before winning the title in 2022.",
+  },
+  {
+    id: 486,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which MLB team drafted many Ole Miss players due to their strong program reputation?",
+    options: [
+      "Various MLB teams",
+      "New York Yankees",
+      "Los Angeles Dodgers",
+      "Chicago Cubs",
+    ],
+    answer: "Various MLB teams",
+    funFact:
+      "Ole Miss consistently produces MLB draft picks across many different organizations.",
+  },
+  {
+    id: 487,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is a common chant heard at Ole Miss baseball games?",
+    options: ["Hotty Toddy", "Roll Tide", "Geaux Tigers", "Woo Pig Sooie"],
+    answer: "Hotty Toddy",
+    funFact:
+      '"Hotty Toddy" is a signature Ole Miss chant used across all sports.',
+  },
+  {
+    id: 488,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Ole Miss pitcher was a key contributor during the 2022 College World Series run?",
+    options: ["Dylan DeLucia", "Gerrit Cole", "Max Scherzer", "Chris Sale"],
+    answer: "Dylan DeLucia",
+    funFact:
+      "Dylan DeLucia was named the Most Outstanding Player of the 2022 College World Series.",
+  },
+  {
+    id: 489,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which SEC division does Ole Miss baseball compete in?",
+    options: [
+      "Western Division",
+      "Eastern Division",
+      "Northern Division",
+      "Southern Division",
+    ],
+    answer: "Western Division",
+    funFact:
+      "Ole Miss competes in the SEC West alongside rivals like LSU and Arkansas.",
+  },
+  {
+    id: 490,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Ole Miss player was known for his clutch hitting in the 2022 postseason?",
+    options: ["Tim Elko", "Bryce Harper", "Aaron Judge", "Mike Trout"],
+    answer: "Tim Elko",
+    funFact:
+      "Tim Elko played through injury and delivered key hits during Ole Miss’s title run.",
+  },
+  {
+    id: 491,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "What is Ole Miss’s mascot name?",
+    options: [
+      "Rebel the Black Bear",
+      "Colonel Reb",
+      "Landshark Tony",
+      "Rebel Shark",
+    ],
+    answer: "Rebel the Black Bear",
+    funFact:
+      "Ole Miss transitioned to Rebel the Black Bear as an official mascot in recent years.",
+  },
+  {
+    id: 492,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question: "Which postseason tournament leads to the College World Series?",
+    options: [
+      "NCAA Baseball Tournament",
+      "SEC Tournament",
+      "Regional League Finals",
+      "College Baseball Classic",
+    ],
+    answer: "NCAA Baseball Tournament",
+    funFact:
+      "Teams must advance through regionals and super regionals to reach the College World Series.",
+  },
+  {
+    id: 493,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which ballpark feature at Swayze Field is known for its tailgating and social scene?",
+    options: [
+      "Left Field Lounge",
+      "Rebel Deck",
+      "Diamond Club",
+      "Home Run Terrace",
+    ],
+    answer: "Left Field Lounge",
+    funFact:
+      "Fans bring grills, TVs, and couches to create a unique baseball atmosphere.",
+  },
+  {
+    id: 494,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which city hosts the College World Series where Ole Miss won in 2022?",
+    options: ["Omaha", "Atlanta", "Dallas", "Nashville"],
+    answer: "Omaha",
+    funFact:
+      "The College World Series has been held in Omaha, Nebraska since 1950.",
+  },
+  {
+    id: 495,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "What is the name of the annual rivalry baseball series between Ole Miss and Mississippi State?",
+    options: [
+      "Governor’s Cup",
+      "Egg Bowl Series",
+      "Magnolia Classic",
+      "Mississippi Showdown",
+    ],
+    answer: "Governor’s Cup",
+    funFact:
+      "While the Egg Bowl is football, the Governor’s Cup is awarded in baseball.",
+  },
+  {
+    id: 496,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Ole Miss baseball tradition involves fans dressing up and decorating their spots?",
+    options: [
+      "Left Field Lounge Tailgating",
+      "Rebel Rally",
+      "Hotty Parade",
+      "Diamond Fest",
+    ],
+    answer: "Left Field Lounge Tailgating",
+    funFact:
+      "Fans often personalize their seating areas with elaborate setups.",
+  },
+  {
+    id: 497,
+    teams: ["Ole Miss"],
+    league: "NCAA",
+    sport: "baseball",
+    question:
+      "Which Ole Miss baseball player hit a crucial home run in the 2022 College World Series Finals?",
+    options: ["Tim Elko", "Babe Ruth", "Albert Pujols", "David Ortiz"],
+    answer: "Tim Elko",
+    funFact:
+      "Elko’s leadership and clutch performances were key to the Rebels’ championship.",
+  },
 ];
