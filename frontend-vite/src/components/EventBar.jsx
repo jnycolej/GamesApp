@@ -120,7 +120,7 @@ const EventBar = ({
   cooldownSeconds = 0,
   confirmWindowMs = 1500,
 }) => {
-  const [pendingTitle, setPendingTitle] = useState(null);
+  const [pendingEventKey, setPendingEventKey] = useState(null);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -133,10 +133,10 @@ const EventBar = ({
     switch (gameType) {
       case "football":
         return [
-          { title: "Touchdown", points: 6 },
-          { title: "Interception", points: 10 },
-          { title: "Fumble", points: 5 },
-          { title: "Big Play (20+ Yards)", points: 10 },
+          { key: "touchdown", title: "Touchdown", points: 6 },
+          { key: "interception", title: "Interception", points: 10 },
+          { key:"fumble", title: "Fumble", points: 5 },
+          { key:"big_play", title: "Big Play (20+ Yards)", points: 10 },
         ];
       case "baseball":
         return [
@@ -150,23 +150,23 @@ const EventBar = ({
           //   ),
           //   points: 3,
           // },
-          { title: "Home Run", points: 5 },
-          { title: "2x Score", points: 10 },
-          { title: "Grand Slam", points: 15 },
+          { key:"home_run", title: "Home Run", points: 5 },
+          { key:"double_score", title: "2x Score", points: 10 },
+          { key: "grand_slam", title: "Grand Slam", points: 15 },
         ];
       case "basketball":
         return [
-          { title: "Dunk", points: 10 },
-          { title: "3 Pointer", points: 3 },
-          { title: "Steal", points: 4 },
+          { key: "dunk", title: "Dunk", points: 10 },
+          { key: "three_pointer", title: "3 Pointer", points: 3 },
+          { key: "steal", title: "Steal", points: 4 },
         ];
       default:
-        return [{ title: "Default", points: 2 }];
+        return [];
     }
   }, [gameType]);
 
   const clearPending = () => {
-    setPendingTitle(null);
+    setPendingEventKey(null);
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
@@ -183,12 +183,12 @@ const EventBar = ({
     if (disabled || cooldownSeconds > 0) return;
 
     // first tap = arm confirmation
-    if (pendingTitle !== eventObj.title) {
-      setPendingTitle(eventObj.title);
+    if (pendingEventKey !== eventObj.key) {
+      setPendingEventKey(eventObj.key);
 
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {
-        setPendingTitle(null);
+        setPendingEventKey(null);
         timerRef.current = null;
       }, confirmWindowMs);
 
@@ -263,12 +263,12 @@ const EventBar = ({
         <p className="text-4xl text-center text-stone-50">Quick Points</p>
         <div className="flex flex-wrap justify-center gap-2">
           {eventButtons.map((eventObj) => {
-            const isPending = pendingTitle === eventObj.title;
+            const isPending = pendingEventKey === eventObj.key;
             const isLocked = disabled || cooldownSeconds > 0;
 
             return (
               <motion.div
-                key={eventObj.title}
+                key={eventObj.key}
                 whileTap={{ scale: isLocked ? 1 : 0.97 }}
               >
                 <Button

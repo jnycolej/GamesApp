@@ -31,6 +31,26 @@ const ACTION_LOCK_MS = 300;
 const reactionCooldownByPlayer = new Map();
 const REACTION_COOLDOWN_MS = 1200;
 
+// ------------------------------------
+// Room / player lifecycle
+// ------------------------------------
+
+const HOST_LOBBY_GRACE_MS = 3 * 60 * 1000;
+const HOST_GAME_GRACE_MS = 10 * 60 * 1000;
+
+const PLAYER_RECONNECT_GRACE_MS = 30 * 60 * 1000;
+
+const EMPTY_LOBBY_TTL_MS = 5 * 60 * 1000;
+const EMPTY_GAME_TTL_MS = 15 * 60 * 1000;
+
+const MAX_LOBBY_LIFETIME_MS = 60 * 60 * 1000;
+const MAX_GAME_LIFETIME_MS = 4 * 60 * 60 * 1000;
+
+const ROOM_SWEEP_INTERVAL_MS = 60 * 1000;
+
+const playerEvictionTimers = new Map();
+const hostGraceTimers = new Map();
+const emptyRoomTimers = new Map();
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigins = isProd
   ? true
@@ -66,6 +86,172 @@ const io = new Server(server, {
 
 const updatesByCode = new Map();
 const MAX_UPDATES = 100;
+
+//Game log
+function logGameTransition(event, data = {}) {
+  console.log(
+    JSON.stringify({
+      timestamp: new Date().toISOString(),
+      event,
+      ...data,
+    }),
+  );
+}
+
+//Quick point rules map
+const QUICK_POINT_EVENTS = Object.freeze({
+  football: Object.freeze({
+    touchdown: Object.freeze({
+      title: "Touchdown",
+      points: 6,
+    }),
+    interception: Object.freeze({
+      title: "Interception",
+      points: 10,
+    }),
+    fumble: Object.freeze({
+      title: "Fumble",
+      points: 5,
+    }),
+    big_play: Object.freeze({
+      title: "Big Play (20+ Yards)",
+      points: 10,
+    }),
+  }),
+
+  baseball: Object.freeze({
+    home_run: Object.freeze({
+      title: "Home Run",
+      points: 5,
+    }),
+    double_score: Object.freeze({
+      title: "2x Score",
+      points: 10,
+    }),
+    grand_slam: Object.freeze({
+      title: "Grand Slam",
+      points: 15,
+    }),
+  }),
+
+  basketball: Object.freeze({
+    dunk: Object.freeze({
+      title: "Dunk",
+      points: 10,
+    }),
+    three_pointer: Object.freeze({
+      title: "3 Pointer",
+      points: 3,
+    }),
+    steal: Object.freeze({
+      title: "Steal",
+      points: 4,
+    }),
+  }),
+});
+
+function normalizeEventKey(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_]/g, "");
+}
+
+function getQuickPointEvent(gameType, eventKey) {
+  const normalizedGameType = String(gameType || "")
+    .trim()
+    .toLowerCase();
+
+  const normalizedEventKey = normalizeEventKey(eventKey);
+
+  return QUICK_POINT_EVENTS[normalizedGameType]?.[normalizedEventKey] ?? null;
+}
+
+function resolveEventVoteAtTimeout(code) {
+  const pending = pendingEventByCode.get(code);
+  if (!pending) return;
+
+  const state = getEnrichedState(code);
+
+  if (!state) {
+    clearPending(code);
+    return;
+  }
+
+  const totalPlayers = Array.isArray(state.players) ? state.players.length : 0;
+
+  const totalEligibleVoters = Math.max(0, totalPlayers - 1);
+  const neededYes = majorityNeeded(totalEligibleVoters);
+  const approved = pending.yes.size >= neededYes;
+
+  if (approved) {
+    const awardRes = rooms.adjustScore(
+      code,
+      pending.byPlayerId,
+      pending.points,
+    );
+
+    const newScore =
+      awardRes?.score ?? rooms.getScore(code, pending.byPlayerId) ?? 0;
+
+    io.to(pending.byPlayerId).emit("score:update", newScore);
+
+    io.to(code).emit("player:updated", {
+      playerId: pending.byPlayerId,
+      score: newScore,
+    });
+
+    emitRoomState(code);
+
+    const update = pushUpdate(code, {
+      type: "EVENT_CONFIRMED",
+      player: {
+        id: pending.byPlayerId,
+        name: pending.byName,
+      },
+      card: {
+        description: pending.title,
+        points: pending.points,
+      },
+      deltaPoints: pending.points,
+      meta: {
+        source: "eventBar",
+        eventKey: pending.eventKey,
+        resolvedBy: "timeout",
+      },
+    });
+
+    io.to(code).emit("game:update", update);
+
+    setCooldown(code);
+  }
+
+  logGameTransition("EVENT_RESOLVED", {
+    roomCode: code,
+    eventId: pending.id,
+    proposedBy: pending.byPlayerId,
+    outcome: approved ? "approved" : "rejected",
+    reason: "vote_timeout",
+    yesCount: pending.yes.size,
+    noCount: pending.no.size,
+    neededYes,
+    pointsAwarded: approved ? pending.points : 0,
+  });
+
+  io.to(code).emit("event:resolved", {
+    ok: true,
+    id: pending.id,
+    approved,
+    resolvedBy: "timeout",
+    eventKey: pending.eventKey,
+    title: pending.title,
+    points: pending.points,
+    byPlayerId: pending.byPlayerId,
+    byName: pending.byName,
+  });
+
+  clearPending(code);
+}
 
 //Pending vote-to-award events per room
 const pendingEventByCode = new Map();
@@ -115,6 +301,7 @@ function updateIdleStatesForCode(code) {
 function summarizePending(p, totalEligibleVoters) {
   return {
     id: p.id,
+    eventKey: p.eventKey,
     title: p.title,
     points: p.points,
     byPlayerId: p.byPlayerId,
@@ -221,6 +408,215 @@ function emitRoomState(code) {
   return state;
 }
 
+function playerLifecycleKey(code, playerOrKey) {
+  const identity =
+    typeof playerOrKey === "string"
+      ? playerOrKey
+      : playerOrKey?.key || playerOrKey?.id;
+
+  return `${code}:${identity}`;
+}
+
+function clearTimerFromMap(map, key) {
+  const timer = map.get(key);
+
+  if (timer) {
+    clearTimeout(timer);
+  }
+
+  map.delete(key);
+}
+
+function cancelPlayerLifecycleTimers(code, key) {
+  if (!key) return;
+
+  const timerKey = playerLifecycleKey(code, key);
+
+  clearTimerFromMap(playerEvictionTimers, timerKey);
+  clearTimerFromMap(hostGraceTimers, timerKey);
+}
+
+function cancelEmptyRoomTimer(code) {
+  clearTimerFromMap(emptyRoomTimers, code);
+}
+
+function clearRoomAuxiliaryState(code) {
+  clearPending(code);
+
+  eventCooldownByCode.delete(code);
+  updatesByCode.delete(code);
+
+  clearTimerFromMap(emptyRoomTimers, code);
+
+  for (const [key, timer] of playerEvictionTimers) {
+    if (key.startsWith(`${code}:`)) {
+      clearTimeout(timer);
+      playerEvictionTimers.delete(key);
+    }
+  }
+
+  for (const [key, timer] of hostGraceTimers) {
+    if (key.startsWith(`${code}:`)) {
+      clearTimeout(timer);
+      hostGraceTimers.delete(key);
+    }
+  }
+}
+
+function destroyRoom(code, reason = "expired") {
+  const room = rooms.getRoom(code);
+  if (!room) return false;
+
+  io.to(code).emit("room:expired", {
+    code,
+    reason,
+  });
+
+  clearRoomAuxiliaryState(code);
+  rooms.destroyRoom(code);
+
+  io.in(code).socketsLeave(code);
+  logGameTransition("ROOM_EXPIRED", {
+    roomCode: code,
+    reason,
+    phase: room.phase,
+    gameType: room.gameType,
+    playerCount: room.players?.size ?? 0,
+    createdAt: room.createdAt,
+    startedAt: room.startedAt,
+  });
+
+  console.log(`[room] destroyed ${code}: ${reason}`);
+
+  return true;
+}
+
+function scheduleEmptyRoomExpiration(code) {
+  const room = rooms.getRoom(code);
+  if (!room) return;
+
+  const connectedPlayers = [...room.players.values()].filter(
+    (player) => player.connected,
+  );
+
+  if (connectedPlayers.length > 0) {
+    cancelEmptyRoomTimer(code);
+    return;
+  }
+
+  if (emptyRoomTimers.has(code)) return;
+
+  const ttl = room.phase === "playing" ? EMPTY_GAME_TTL_MS : EMPTY_LOBBY_TTL_MS;
+
+  const timer = setTimeout(() => {
+    emptyRoomTimers.delete(code);
+
+    const latestRoom = rooms.getRoom(code);
+    if (!latestRoom) return;
+
+    const anyoneConnected = [...latestRoom.players.values()].some(
+      (player) => player.connected,
+    );
+
+    if (anyoneConnected) return;
+
+    destroyRoom(code, "empty_room_timeout");
+  }, ttl);
+
+  emptyRoomTimers.set(code, timer);
+}
+
+function schedulePlayerEviction(code, player) {
+  const identity = player?.key || player?.id;
+  if (!identity) return;
+
+  const timerKey = playerLifecycleKey(code, identity);
+
+  clearTimerFromMap(playerEvictionTimers, timerKey);
+
+  const timer = setTimeout(() => {
+    playerEvictionTimers.delete(timerKey);
+
+    const room = rooms.getRoom(code);
+    if (!room) return;
+
+    const currentPlayer = player.key
+      ? [...room.players.values()].find((p) => p.key === player.key)
+      : room.players.get(player.id);
+
+    // They reconnected.
+    if (!currentPlayer || currentPlayer.connected) {
+      return;
+    }
+
+    const result = player.key
+      ? rooms.removePlayerByKey(code, player.key)
+      : rooms.removePlayer(code, player.id);
+
+    if (!result?.ok) return;
+    logGameTransition("PLAYER_EVICTED", {
+      roomCode: code,
+      playerId: player.id,
+      reason: "reconnect_grace_expired",
+      roomEmpty: result.roomEmpty,
+    });
+    if (result.roomEmpty) {
+      destroyRoom(code, "all_players_evicted");
+      return;
+    }
+
+    emitRoomState(code);
+  }, PLAYER_RECONNECT_GRACE_MS);
+
+  playerEvictionTimers.set(timerKey, timer);
+}
+
+function scheduleHostReassignment(code, player) {
+  const identity = player?.key || player?.id;
+  if (!identity) return;
+
+  const room = rooms.getRoom(code);
+  if (!room) return;
+
+  const timerKey = playerLifecycleKey(code, identity);
+
+  clearTimerFromMap(hostGraceTimers, timerKey);
+
+  const graceMs =
+    room.phase === "playing" ? HOST_GAME_GRACE_MS : HOST_LOBBY_GRACE_MS;
+
+  const timer = setTimeout(() => {
+    hostGraceTimers.delete(timerKey);
+
+    const latestRoom = rooms.getRoom(code);
+    if (!latestRoom) return;
+
+    // Find the original host by persistent identity.
+    const disconnectedHost = player.key
+      ? [...latestRoom.players.values()].find((p) => p.key === player.key)
+      : latestRoom.players.get(player.id);
+
+    // Host came back before grace expired.
+    if (disconnectedHost?.connected) {
+      return;
+    }
+
+    const result = rooms.reassignHost(code);
+
+    if (!result?.ok) return;
+
+    emitRoomState(code);
+
+    if (result.hostAssigned) {
+      io.to(code).emit("host:changed", {
+        hostId: result.hostId,
+      });
+    }
+  }, graceMs);
+
+  hostGraceTimers.set(timerKey, timer);
+}
+
 io.on("connection", (socket) => {
   console.log("[socket] connected", socket.id);
   //Connects the to the socket
@@ -257,6 +653,13 @@ io.on("connection", (socket) => {
       }
 
       const state = emitRoomState(code);
+      logGameTransition("ROOM_CREATED", {
+        roomCode: code,
+        gameType,
+        hostId: socket.id,
+        phase: "lobby",
+        matchup: matchup ?? null,
+      });
 
       return cb?.({ ok: true, roomCode: code, token, state });
     } catch (err) {
@@ -298,8 +701,23 @@ io.on("connection", (socket) => {
         displayName: safeName,
         key,
       });
-      if (!res.ok) return cb?.(res);
 
+      logGameTransition("PLAYER_JOINED", {
+        roomCode: CODE,
+        playerId: socket.id,
+        playerName: safeName,
+        playerCount: state?.players?.length ?? null,
+      });
+
+      if (!res.ok) return cb?.(res);
+      cancelPlayerLifecycleTimers(CODE, key);
+      cancelEmptyRoomTimer(CODE);
+
+      const joinedRoom = rooms.getRoom(CODE);
+
+      if (joinedRoom && !joinedRoom.hostId && !joinedRoom.hostKey) {
+        rooms.reassignHost(CODE);
+      }
       socket.data.roomCode = CODE;
       socket.join(CODE);
 
@@ -329,7 +747,28 @@ io.on("connection", (socket) => {
       displayName: safeName,
       key,
     });
+
+    logGameTransition("PLAYER_RESUMED", {
+      roomCode: CODE,
+      playerId: socket.id,
+      playerName: safeName,
+      phase: roomAfterResume?.phase,
+      wasHost: roomAfterResume?.hostId === socket.id,
+    });
+
     if (!res.ok) return cb?.(res);
+    cancelPlayerLifecycleTimers(CODE, key);
+    cancelEmptyRoomTimer(CODE);
+
+    const roomAfterResume = rooms.getRoom(CODE);
+
+    if (
+      roomAfterResume &&
+      !roomAfterResume.hostId &&
+      !roomAfterResume.hostKey
+    ) {
+      rooms.reassignHost(CODE);
+    }
 
     socket.data.roomCode = CODE;
     socket.join(CODE);
@@ -359,6 +798,17 @@ io.on("connection", (socket) => {
 
     const res = rooms.startAndDeal(code, socket.id, requesterKey);
     if (!res.ok) return cb?.(res);
+
+    const room = rooms.getRoom(code);
+
+    logGameTransition("GAME_STARTED", {
+      roomCode: code,
+      triggeredBy: socket.id,
+      gameType: room?.gameType,
+      playerCount: room?.players?.size ?? 0,
+      phase: room?.phase,
+      version: res.version,
+    });
 
     cb?.({ ok: true });
     emitRoomState(code);
@@ -419,8 +869,19 @@ io.on("connection", (socket) => {
         meta: { index: typeof index === "number" ? index : undefined, cardId },
       });
       io.to(code).emit("game:update", ev);
+
       return { ok: true };
     });
+
+    logGameTransition("CARD_PLAYED", {
+      roomCode: code,
+      playerId: socket.id,
+      cardId: res.card?.id ?? cardId ?? null,
+      points: delta,
+      scoreBefore: prevScore,
+      scoreAfter: nextScore,
+    });
+
     return cb?.(result);
   });
 
@@ -450,48 +911,96 @@ io.on("connection", (socket) => {
   socket.on("event:propose", async (payload = {}, ack) => {
     try {
       const code = socket.data.roomCode;
-      if (!code) return ack?.({ ok: false, error: "not_in_room" });
-      console.log("[server] event:propose", { code, from: socket.id, payload });
-      const cooldownUntil = eventCooldownByCode.get(code) || 0;
-      if (Date.now() < cooldownUntil) {
-        return ack?.({ ok: false, error: "cooldown", until: cooldownUntil });
-      }
 
-      const title = String(payload?.title || "").trim();
-      const pointsRaw = Number(payload?.points);
-      const points = Number.isFinite(pointsRaw) ? Math.trunc(pointsRaw) : 0;
-
-      if (!title || points <= 0) {
-        return ack?.({ ok: false, error: "invalid_event" });
-      }
-
-      //Only allow one pending event per room (simple stop-gap)
-      if (pendingEventByCode.has(code)) {
-        return ack?.({ ok: false, error: "event_already_pending" });
+      if (!code) {
+        return ack?.({
+          ok: false,
+          error: "not_in_room",
+        });
       }
 
       const state = getEnrichedState(code);
-      if (!state) return ack?.({ ok: false, error: "room_not_found" });
+
+      if (!state) {
+        return ack?.({
+          ok: false,
+          error: "room_not_found",
+        });
+      }
+
+      if (state.phase !== "playing") {
+        return ack?.({
+          ok: false,
+          error: "game_not_playing",
+        });
+      }
+
+      const proposer = (state.players || []).find(
+        (player) => player.id === socket.id,
+      );
+
+      if (!proposer) {
+        return ack?.({
+          ok: false,
+          error: "player_not_found",
+        });
+      }
+
+      const cooldownUntil = eventCooldownByCode.get(code) || 0;
+
+      if (Date.now() < cooldownUntil) {
+        return ack?.({
+          ok: false,
+          error: "cooldown",
+          until: cooldownUntil,
+        });
+      }
+
+      if (pendingEventByCode.has(code)) {
+        return ack?.({
+          ok: false,
+          error: "event_already_pending",
+        });
+      }
+
+      const eventKey = normalizeEventKey(payload?.eventKey);
+      const eventDefinition = getQuickPointEvent(state.gameType, eventKey);
+
+      if (!eventDefinition) {
+        return ack?.({
+          ok: false,
+          error: "invalid_event",
+        });
+      }
+
+      const { title, points } = eventDefinition;
 
       const byPlayerId = socket.id;
       const byName = getPlayerDisplayName(state, byPlayerId);
 
-      //Eligible voters = everyone except the proposer
       const totalPlayers = (state.players || []).length;
       const totalEligibleVoters = Math.max(0, totalPlayers - 1);
 
-      // If no one else is in the room, do NOT allow vote-award flow
       if (totalEligibleVoters === 0) {
-        return ack?.({ ok: false, error: "no_voters" });
+        return ack?.({
+          ok: false,
+          error: "no_voters",
+        });
       }
+      const neededYes = majorityNeeded(totalEligibleVoters);
 
       const createdAt = Date.now();
-      const expiresAt = createdAt + 15000;
+      const expiresAt = createdAt + 15_000;
 
       const pending = {
         id: `${code}-${createdAt}-${Math.random().toString(16).slice(2)}`,
+
+        eventKey,
+
+        // These now came from the server rule table.
         title,
         points,
+
         byPlayerId,
         byName,
         createdAt,
@@ -501,88 +1010,38 @@ io.on("connection", (socket) => {
         timer: null,
       };
 
-      //Start the 15s timer
       pending.timer = setTimeout(() => {
-        //Option B: Timeout does NOT auto-award unless someone voted
-        //Approve at timeout only if yes ? no AND at least 1 vote occurred
-        const p = pendingEventByCode.get(code);
-        if (!p) return;
-
-        const yesCount = p.yes.size;
-        const noCount = p.no.size;
-        const totalVotes = yesCount + noCount;
-
-        if (totalVotes === 0) {
-          //nobody voted -> reject
-          io.to(code).emit("event:resolved", {
-            ok: false,
-            id: p.id,
-            reason: "no_votes",
-          });
-          clearPending(code);
-          return;
-        }
-
-        const approved = yesCount > noCount;
-        if (!approved) {
-          io.to(code).emit("event:resolved", {
-            ok: false,
-            id: p.id,
-            reason: "vote_failed",
-          });
-          clearPending(code);
-          return;
-        }
-
-        //Approved at timeout -> award
-        const awardRes = rooms.adjustScore(code, p.byPlayerId, p.points);
-        const newScore =
-          awardRes?.score ?? rooms.getScore(code, p.byPlayerId) ?? 0;
-
-        //update client score immediately
-        io.to(p.byPlayerId).emit("score:update", newScore);
-        io.to(code).emit("player:updated", {
-          playerId: p.byPlayerId,
-          score: newScore,
-        });
-        emitRoomState(code);
-
-        //push update feed
-        const ev = pushUpdate(code, {
-          type: "EVENT_CONFIRMED",
-          player: { id: p.byPlayerId, name: p.byName },
-          card: { description: p.title, points: p.points },
-          deltaPoints: p.points,
-          meta: { source: "eventBar", resolvedBy: "timeout" },
-        });
-        io.to(code).emit("game:update", ev);
-
-        io.to(code).emit("event:resolved", {
-          ok: true,
-          id: p.id,
-          approved: true,
-          resolvedBy: "timeout",
-          title: p.title,
-          points: p.points,
-          byPlayerId: p.byPlayerId,
-          byName: p.byName,
-        });
-        // setCooldown(code);
-        clearPending(code);
-      }, 15000);
+        resolveEventVoteAtTimeout(code);
+      }, 15_000);
 
       pendingEventByCode.set(code, pending);
 
-      //Broadcast proposal to everyone (so all clients open the modal)
       io.to(code).emit(
         "event:proposed",
         summarizePending(pending, totalEligibleVoters),
       );
+      logGameTransition("EVENT_PROPOSED", {
+        roomCode: code,
+        playerId: socket.id,
+        eventId: pending.id,
+        eventKey,
+        title: pending.title,
+        points: pending.points,
+        neededYes,
+        expiresAt: pending.expiresAt,
+      });
 
-      return ack?.({ ok: true, id: pending.id });
+      return ack?.({
+        ok: true,
+        id: pending.id,
+      });
     } catch (err) {
       console.error("[event:propose] error", err);
-      return ack?.({ ok: false, error: "server_error" });
+
+      return ack?.({
+        ok: false,
+        error: "server_error",
+      });
     }
   });
 
@@ -598,6 +1057,13 @@ io.on("connection", (socket) => {
         return ack?.({ ok: false, error: "event_id_mismatch" });
       }
 
+      if (Date.now() >= pending.expiresAt) {
+        return ack?.({
+          ok: false,
+          error: "vote_expired",
+        });
+      }
+
       const vote =
         payload?.vote === "yes" ? "yes" : payload?.vote === "no" ? "no" : null;
       if (!vote) return ack?.({ ok: false, error: "invalid_vote" });
@@ -610,6 +1076,17 @@ io.on("connection", (socket) => {
       const state = getEnrichedState(code);
       if (!state) return ack?.({ ok: false, error: "room_not_found" });
 
+      const voter = (state.players || []).find(
+        (player) => player.id === socket.id,
+      );
+
+      if (!voter) {
+        return ack?.({
+          ok: false,
+          error: "player_not_found",
+        });
+      }
+
       const totalPlayers = (state.players || []).length;
       const totalEligibleVoters = Math.max(0, totalPlayers - 1);
       if (totalEligibleVoters === 0)
@@ -618,8 +1095,23 @@ io.on("connection", (socket) => {
       //on vote per player: remove from both, the add
       pending.yes.delete(socket.id);
       pending.no.delete(socket.id);
+
       if (vote === "yes") pending.yes.add(socket.id);
       else pending.no.add(socket.id);
+
+      const neededYes = majorityNeeded(totalEligibleVoters);
+      const yesCount = pending.yes.size;
+      const noCount = pending.no.size;
+
+      logGameTransition("EVENT_VOTED", {
+        roomCode: code,
+        playerId: socket.id,
+        eventId: pending.id,
+        vote,
+        yesCount,
+        noCount,
+        neededYes,
+      });
 
       //broadcast updated counts so clients update UI
       io.to(code).emit(
@@ -628,8 +1120,6 @@ io.on("connection", (socket) => {
       );
 
       //majority-yes early approval
-      const neededYes = majorityNeeded(totalEligibleVoters);
-      const yesCount = pending.yes.size;
 
       if (yesCount >= neededYes) {
         //award points
@@ -640,6 +1130,17 @@ io.on("connection", (socket) => {
         );
         const newScore =
           awardRes?.score ?? rooms.getScore(code, pending.byPlayerId) ?? 0;
+        logGameTransition("EVENT_RESOLVED", {
+          roomCode: code,
+          eventId: pending.id,
+          proposedBy: pending.byPlayerId,
+          outcome: "approved",
+          reason: "majority_reached",
+          yesCount,
+          noCount,
+          neededYes,
+          pointsAwarded: pending.points,
+        });
 
         io.to(pending.byPlayerId).emit("score:update", newScore);
         io.to(code).emit("player:updated", {
@@ -653,7 +1154,11 @@ io.on("connection", (socket) => {
           player: { id: pending.byPlayerId, name: pending.byName },
           card: { description: pending.title, points: pending.points },
           deltaPoints: pending.points,
-          meta: { source: "eventBar", resolvedBy: "votes" },
+          meta: {
+            source: "eventBar",
+            eventKey: pending.eventKey,
+            resolvedBy: "votes",
+          },
         });
         io.to(code).emit("game:update", ev);
 
@@ -662,12 +1167,14 @@ io.on("connection", (socket) => {
           id: pending.id,
           approved: true,
           resolvedBy: "votes",
+          eventKey: pending.eventKey,
           title: pending.title,
           points: pending.points,
           byPlayerId: pending.byPlayerId,
           byName: pending.byName,
         });
-        // setCooldown(code);
+
+        setCooldown(code);
         clearPending(code);
       }
 
@@ -763,6 +1270,15 @@ io.on("connection", (socket) => {
       const newScore = res.score;
 
       ack?.({ ok: true, newScore, version: res.version ?? Date.now() });
+      logGameTransition("SCORE_ADJUSTED", {
+        roomCode: code,
+        playerId: socket.id,
+        delta,
+        scoreBefore: oldScore,
+        scoreAfter: newScore,
+        source: meta?.source ?? "unknown",
+      });
+
       io.to(socket.id).emit("score:update", newScore);
       io.to(code).emit("player:updated", {
         playerId: socket.id,
@@ -836,6 +1352,14 @@ io.on("connection", (socket) => {
         actionLockUntil.delete(playerId);
         return ack?.(res);
       }
+      logGameTransition("CARD_SACRIFICED", {
+        roomCode: code,
+        playerId: socket.id,
+        cardId: res.card?.id ?? cardIs ?? null,
+        points: delta,
+        scoreBefore: prevScore,
+        scoreAfter: nextScore,
+      });
 
       return ack?.({ ok: true });
     } catch (err) {
@@ -875,43 +1399,180 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const code = socket.data.roomCode;
     if (!code) return;
+
+    const room = rooms.getRoom(code);
+    if (!room) return;
+
+    const player = room.players.get(socket.id);
+    if (!player) return;
+
+    const playerSnapshot = {
+      id: player.id,
+      key: player.key,
+      joinedAt: player.joinedAt,
+    };
+
+    const wasHost =
+      room.hostId === socket.id ||
+      (!!room.hostKey && !!player.key && room.hostKey === player.key);
+
     rooms.handleDisconnect(code, socket.id);
+    logGameTransition("PLAYER_DISCONNECTED", {
+      roomCode: code,
+      playerId: socket.id,
+      wasHost,
+      phase: room.phase,
+      reconnectGraceMs: PLAYER_RECONNECT_GRACE_MS,
+    });
+    // Every disconnected player eventually expires.
+    schedulePlayerEviction(code, playerSnapshot);
+
+    // Host gets a shorter host-specific grace period.
+    if (wasHost) {
+      scheduleHostReassignment(code, playerSnapshot);
+    }
+
+    // If nobody remains connected, start room expiration.
+    scheduleEmptyRoomExpiration(code);
+
     emitRoomState(code);
   });
 
   socket.on("leaveRoom", (cb) => {
     try {
       const code = socket.data.roomCode;
-      if (!code) return cb?.({ ok: false, error: "not_in_room" });
 
-      //Update room state
-      if (typeof rooms.removePlayer === "function") {
-        rooms.removePlayer(code, socket.id);
-      } else if (typeof rooms.handleDisconnect === "function") {
-        rooms.handleDisconnect(code, socket.id);
+      if (!code) {
+        return cb?.({
+          ok: false,
+          error: "not_in_room",
+        });
+      }
+
+      const room = rooms.getRoom(code);
+
+      if (!room) {
+        socket.data.roomCode = undefined;
+        socket.leave(code);
+
+        return cb?.({
+          ok: false,
+          error: "room_not_found",
+        });
+      }
+
+      const player = room.players.get(socket.id);
+
+      if (!player) {
+        return cb?.({
+          ok: false,
+          error: "player_not_found",
+        });
+      }
+
+      const playerKey = player.key;
+
+      // Intentional leave means all reconnect reservations disappear.
+      cancelPlayerLifecycleTimers(code, playerKey || socket.id);
+
+      const result = rooms.removePlayer(code, socket.id, {
+        reassignHostIfNeeded: true,
+      });
+
+      if (!result.ok) {
+        return cb?.(result);
       }
 
       socket.leave(code);
       socket.data.roomCode = undefined;
+      logGameTransition("PLAYER_LEFT", {
+        roomCode: code,
+        playerId: socket.id,
+        wasHost: result.wasHost,
+        remainingPlayers: room.players.size,
+      });
 
-      emitRoomState(code);
+      socket.to(code).emit("player:left", {
+        playerId: socket.id,
+      });
 
-      //Let clients know explicitly who left
-      socket.to(code).emit("player:left", { playerId: socket.id });
+      // Last player intentionally left -> delete immediately.
+      if (result.roomEmpty) {
+        destroyRoom(code, "last_player_left");
 
-      //Clear up empty rooms if your manager supports it
-      if (typeof rooms.destroyIfEmpty === "function") {
-        rooms.destroyIfEmpty(code);
+        return cb?.({
+          ok: true,
+          roomClosed: true,
+        });
       }
 
-      cb?.({ ok: true });
+      // New host is already assigned by roomManager.
+      emitRoomState(code);
+
+      if (result.wasHost && result.hostResult?.hostAssigned) {
+        io.to(code).emit("host:changed", {
+          hostId: result.hostResult.hostId,
+        });
+      }
+
+      cb?.({
+        ok: true,
+        roomClosed: false,
+      });
     } catch (err) {
       console.error("[leaveRoom] error", err);
-      cb?.({ ok: false, error: "leave_failed" });
+
+      cb?.({
+        ok: false,
+        error: "leave_failed",
+      });
     }
   });
 });
 
+const roomLifetimeSweep = setInterval(() => {
+  const now = Date.now();
+
+  for (const code of rooms.listCodes()) {
+    const room = rooms.getRoom(code);
+
+    if (!room) continue;
+
+    //const age = now - Number(room.createdAt || now);
+
+    let age;
+    let maxLifetime;
+
+    if (room.phase === "playing") {
+      age = now - Number(room.startedAt || now);
+      maxLifetime = MAX_GAME_LIFETIME_MS;
+    } else {
+      age = now - Number(room.createdAt || now);
+      maxLifetime = MAX_LOBBY_LIFETIME_MS;
+    }
+
+    if (age >= maxLifetime) {
+      destroyRoom(
+        code,
+        room.phase === "playing" ? "max_game_lifetime" : "max_lobby_lifetime",
+      );
+
+      maxLifetime = MAX_GAME_LIFETIME_MS;
+    } else {
+      age = now - Number(room.createdAt || now);
+      maxLifetime = MAX_LOBBY_LIFETIME_MS;
+    }
+
+    if (age >= maxLifetime) {
+      destroyRoom(
+        code,
+        room.phase === "playing" ? "max_game_lifetime" : "max_lobby_lifetime",
+      );
+    }
+  }
+}, ROOM_SWEEP_INTERVAL_MS);
+
+roomLifetimeSweep.unref?.();
 //In production serve the frontend from the same app
 if (isProd) {
   const distDir = path.join(__dirname, "../frontend-vite/dist");

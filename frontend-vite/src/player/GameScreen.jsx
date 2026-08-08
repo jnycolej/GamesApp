@@ -299,6 +299,24 @@ export default function GameScreen() {
     }
   }
 
+  useEffect(() => {
+  if (actualMode === "single") return;
+
+  const onRoomExpired = ({ reason } = {}) => {
+    console.log("Room expired:", reason);
+
+    setRoom(null);
+    setMyHand([]);
+    navigate("/");
+  };
+
+  socket.on("room:expired", onRoomExpired);
+
+  return () => {
+    socket.off("room:expired", onRoomExpired);
+  };
+}, [actualMode, socket, navigate, setRoom, setMyHand]);
+
   //Tracks the current time
   const [nowTick, setNowTick] = useState(Date.now());
   useEffect(() => {
@@ -951,10 +969,15 @@ export default function GameScreen() {
     };
   }, []);
 
-  function handleLeaveGame() {
-    socket.emit("leaveRoom");
-    navigate(`/`);
-  }
+function handleLeaveGame() {
+  socket.emit("leaveRoom", (res) => {
+    if (!res?.ok) {
+      console.warn("Leave room failed:", res?.error);
+    }
+
+    navigate("/");
+  });
+}
 
   //Ouiz unlock sound
   const prevUnlockedRef = useRef(false);
@@ -1130,16 +1153,16 @@ export default function GameScreen() {
             });
             return;
           }
-          console.log("[UI] proposing event", ev, {
-            socketId: socket.id,
-            connected: socket.connected,
-            roomCode: room?.code,
-            phase: room?.phase,
-            players: room?.players?.length,
-          });
+          // console.log("[UI] proposing event", ev, {
+          //   socketId: socket.id,
+          //   connected: socket.connected,
+          //   roomCode: room?.code,
+          //   phase: room?.phase,
+          //   players: room?.players?.length,
+          // });
           socket.emit(
             "event:propose",
-            { title: ev.title, points: ev.points },
+            { eventKey: ev.key },
             (ack) => {
               console.log("[UI] event:propose ACK:", ack);
 
