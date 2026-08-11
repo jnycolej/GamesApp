@@ -721,12 +721,7 @@ io.on("connection", (socket) => {
         key,
       });
 
-      logGameTransition("PLAYER_JOINED", {
-        roomCode: CODE,
-        playerId: socket.id,
-        playerName: safeName,
-        playerCount: state?.players?.length ?? null,
-      });
+
 
       if (!res.ok) return cb?.(res);
       cancelPlayerLifecycleTimers(CODE, key);
@@ -741,6 +736,13 @@ io.on("connection", (socket) => {
       socket.join(CODE);
 
       const state = emitRoomState(CODE);
+
+      logGameTransition("PLAYER_JOINED", {
+        roomCode: CODE,
+        playerId: socket.id,
+        playerName: safeName,
+        playerCount: state?.players?.length ?? null,
+      });      
       console.log("[join] players now=%d", state?.players?.length || 0);
       cb?.({ ok: true, state });
     } catch (err) {
