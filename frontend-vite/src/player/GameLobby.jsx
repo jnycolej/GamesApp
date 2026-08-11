@@ -100,23 +100,26 @@ export default function GameLobby() {
   }, [roomCode, room?.code, socket, setRoom]);
   const myKey = getPlayerKey();
 
+  // const isHost = useMemo(() => {
+
+  //   if (!room) return false;
+
+  //   if (room.hostKey && room.hostKey === myKey) return true;
+
+  //   const me = room.players?.find(
+  //     (p) => p.key === myKey || p.playerKey === myKey,
+  //   );
+  //   if (!me) return false;
+
+  //   return me.id === room.hostId || me.isHost === true;
+  // }, [room, myKey]);
+
   const isHost = useMemo(() => {
-    // console.log("room.hostKey:", room?.hostKey);
-    // console.log("myKey:", myKey);
-    // console.log("equal?", room?.hostKey === myKey);
-    // console.log("players:", room?.players);
+  if (!room) return false;
+  if (!socket?.id) return false;
 
-    if (!room) return false;
-
-    if (room.hostKey && room.hostKey === myKey) return true;
-
-    const me = room.players?.find(
-      (p) => p.key === myKey || p.playerKey === myKey,
-    );
-    if (!me) return false;
-
-    return me.id === room.hostId || me.isHost === true;
-  }, [room, myKey]);
+  return room.hostId === socket.id;
+}, [room, socket.id]);
 
   // Your note says allow start even if alone — keep >= 1
   const canStart = useMemo(

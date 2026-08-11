@@ -670,7 +670,7 @@ io.on("connection", (socket) => {
         console.warn("[create] addPlayer failed:", add);
         return cb?.(add || { ok: false, error: "add_player_failed" });
       }
-
+      
       const state = emitRoomState(code);
       logGameTransition("ROOM_CREATED", {
         roomCode: code,
