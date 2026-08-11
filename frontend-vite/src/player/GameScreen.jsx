@@ -237,7 +237,7 @@ export default function GameScreen() {
   }
 
   //Game updates window
-  const [updates, sets] = useState([]);
+  const [updates, setUpdates] = useState([]);
   const MAX_UPDATES = 100;
   const scrollerRef = useRef(null);
 
@@ -644,60 +644,81 @@ export default function GameScreen() {
   };
 
   //Tracks when the update was pushed
-  useEffect(() => {
-    if (actualMode === "single") return;
+useEffect(() => {
+  if (actualMode === "single") return;
 
-    const onUpdate = (ev) => {
-      const id =
-        ev?.id ||
-        `${ev?.roomCode ?? "room"}-${ev?.ot ?? Date.now()}-${
-          ev?.type ?? "SYS"
-        }-${ev?.player?.id ?? ""}`;
-      const withId = { id, ...ev };
-      setUpdates((prev) => {
-        const next = [...prev, withId].slice(-MAX_UPDATES);
-        return next;
-      });
-      requestAnimationFrame(scrollIfNearBottom);
+  const onUpdate = (ev) => {
+    const id =
+      ev?.id ||
+      `${ev?.roomCode ?? "room"}-${
+        ev?.at ?? Date.now()
+      }-${ev?.type ?? "SYS"}-${
+        ev?.player?.id ?? ""
+      }`;
+
+    const withId = {
+      id,
+      ...ev,
     };
 
-    const onHistory = (arr) => {
-      const trimmed = Array.isArray(arr) ? arr.slice(-MAX_UPDATES) : [];
-      setUpdates(trimmed);
-      requestAnimationFrame(scrollIfNearBottom);
-    };
+    setUpdates((prev) => {
+      // Do not duplicate an event after reconnect/history recovery
+      if (prev.some((item) => item.id === id)) {
+        return prev;
+      }
 
-    const onConnect = () => {
-      socket.emit("game:history:request");
-    };
+      return [...prev, withId].slice(
+        -MAX_UPDATES,
+      );
+    });
 
-    socket.on("game:update", onUpdate);
-    socket.on("game:history", onHistory);
-    socket.on("connect", onConnect);
+    requestAnimationFrame(
+      scrollIfNearBottom,
+    );
+  };
 
-    //Refresh history whenever the room state swaps
-    const onRoomUpdated = () => socket.emit("game:history:request");
-    socket.on("room:updated", onRoomUpdated);
+  const onHistory = (arr) => {
+    const trimmed = Array.isArray(arr)
+      ? arr.slice(-MAX_UPDATES)
+      : [];
 
-    return () => {
-      socket.off("room:updated", onRoomUpdated);
-      socket.off("game:update", onUpdate);
-      socket.off("game:history", onHistory);
-      socket.off("connect", onConnect);
-    };
-  }, [actualMode, socket]);
+    setUpdates(trimmed);
+
+    requestAnimationFrame(
+      scrollIfNearBottom,
+    );
+  };
+
+  const requestHistory = () => {
+    socket.emit("game:history:request");
+  };
+
+  socket.on("game:update", onUpdate);
+  socket.on("game:history", onHistory);
+  socket.on("connect", requestHistory);
+
+  // Socket will normally already be connected
+  // when GameScreen mounts.
+  requestHistory();
+
+  return () => {
+    socket.off("game:update", onUpdate);
+    socket.off("game:history", onHistory);
+    socket.off("connect", requestHistory);
+  };
+}, [actualMode, socket]);
 
   // clear when a fresh state arrives
-  useEffect(() => {
-    if (actualMode === "single") return;
+  // useEffect(() => {
+  //   if (actualMode === "single") return;
 
-    const onState = (next) => {
-      // whenever server pushes a new state, ensure nothing is stuck
-      if (pendingSacrificeId) setPendingSacrificeId(null);
-    };
-    socket.on("room:state", onState);
-    return () => socket.off("room:state", onState);
-  }, [actualMode, socket, pendingSacrificeId]);
+  //   const onState = (next) => {
+  //     // whenever server pushes a new state, ensure nothing is stuck
+  //     if (pendingSacrificeId) setPendingSacrificeId(null);
+  //   };
+  //   socket.on("room:state", onState);
+  //   return () => socket.off("room:state", onState);
+  // }, [actualMode, socket, pendingSacrificeId]);
 
   //Styles the background image
   const backgroundStyle = {
@@ -831,10 +852,19 @@ export default function GameScreen() {
       return;
     }
 
-    socket.emit("game:playCard", { index }, (res) => {
-      if (!res?.ok) alert(res?.error ?? "Could not play card");
+    socket.emit(
+      "game:playCard",
+       { index }, 
+       (res) => {
+          if (!res?.ok) {
+            return alert(
+              res?.error ?? 
+              "Could not play card",
+          );
+        }
+
       sounds.playCard();
-    });
+    },);
 
     sounds.playCard();
   };
@@ -1100,7 +1130,7 @@ function handleLeaveGame() {
       {/* Card Game Play-By-Play */}
       <div className="">
         <p className="text-light text-5xl text-center">Play-by-Play</p>
-        <div className="h-40 bg-zinc-900/30 rounded-lg overflow-scroll">
+        <div ref={scrollerRef} className="h-40 bg-zinc-900/30 rounded-lg overflow-scroll">
           <AnimatedList>
             {updates.map((ev) => {
               const cls =
@@ -1382,7 +1412,8 @@ function handleLeaveGame() {
 
         {/* My points */}
         <h3 className="!text-4xl tracking-wide !text-stone-50 text-center">
-          Points: {me?.points}
+          {/* Points: {me?.points} */}
+          Points: {getPlayerScore(me)}
         </h3>
 
         {/* My hand */}
@@ -1507,8 +1538,10 @@ function handleLeaveGame() {
       <div className="container" style={{ marginTop: 16 }}>
         {opponents.map((p) => {
           const isScoringOpponent = activeOpponentReaction?.playerId === p.id;
-          const displayedScore =
-            opponentDisplayScores[p.id] ?? getPlayerScore(p);
+          // const displayedScore =
+          //   opponentDisplayScores[p.id] ?? getPlayerScore(p);
+
+          const displayedScore = getPlayerScore(p);
 
           return (
             <motion.div

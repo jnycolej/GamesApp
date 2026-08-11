@@ -98,7 +98,7 @@ export default function GameLobby() {
       });
     });
   }, [roomCode, room?.code, socket, setRoom]);
-  const myKey = getPlayerKey();
+  //const myKey = getPlayerKey();
 
   // const isHost = useMemo(() => {
 

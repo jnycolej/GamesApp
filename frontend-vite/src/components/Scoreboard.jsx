@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCircle, FaRegCircle } from "react-icons/fa";
 
-const getPlayerScore = (p) => Number(p?.points ?? p?.score ?? 0) || 0;
+const getPlayerScore = (p) => Number(p?.score ?? p?.points ?? 0) || 0;
 
 const Scoreboard = ({
   players = [],
@@ -89,8 +89,11 @@ const Scoreboard = ({
     <div className="container my-3">
       <div className="row gy-2">
         {sorted.map((p) => {
+          //const realScore = getPlayerScore(p);
+          //const displayScore = displayScores[p.id] ?? realScore;
           const realScore = getPlayerScore(p);
-          const displayScore = displayScores[p.id] ?? realScore;
+          const displayScore = realScore;
+          
           const isLeader = Array.isArray(leaderIds) && leaderIds.includes(p.id);
           const isMe = p.id === currentUserId;
           const isReacting = activeReaction?.playerId === p.id;

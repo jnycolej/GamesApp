@@ -372,14 +372,21 @@ function getEnrichedState(code) {
         .map((p) => {
           // tolerate both 'points' (preferred) and legacy 'score'
           const direct =
-            typeof p.points === "number" && Number.isFinite(p.points)
-              ? p.points
-              : typeof p.score === "number" && Number.isFinite(p.score)
-                ? p.score
+            typeof p.score === "number" && Number.isFinite(p.score)
+              ? p.score
+              : typeof p.points === "number" && Number.isFinite(p.points)
+                ? p.points
                 : undefined;
 
           const score = direct ?? Number(rooms.getScore(code, p.id) ?? 0);
-          return { ...p, points: score };
+
+          // Keep points temporarily for existing UI compatibility,
+          // but guarantee that it always matches score.
+          return {
+            ...p,
+            score,
+            points: score,
+          };
         })
     : [];
 
@@ -387,9 +394,10 @@ function getEnrichedState(code) {
   let leaderIds = [];
   if (players.length > 0) {
     const max = Math.max(
-      ...players.map((p) => (Number.isFinite(p.points) ? p.points : 0)),
+      ...players.map((p) => (Number.isFinite(p.score) ? p.score : 0)),
     );
-    leaderIds = players.filter((p) => (p.points ?? 0) === max).map((p) => p.id);
+
+    leaderIds = players.filter((p) => (p.score ?? 0) === max).map((p) => p.id);
   }
 
   // 4) stamp updatedAt
@@ -670,7 +678,7 @@ io.on("connection", (socket) => {
         console.warn("[create] addPlayer failed:", add);
         return cb?.(add || { ok: false, error: "add_player_failed" });
       }
-      
+
       const state = emitRoomState(code);
       logGameTransition("ROOM_CREATED", {
         roomCode: code,
@@ -721,8 +729,6 @@ io.on("connection", (socket) => {
         key,
       });
 
-
-
       if (!res.ok) return cb?.(res);
       cancelPlayerLifecycleTimers(CODE, key);
       cancelEmptyRoomTimer(CODE);
@@ -742,7 +748,7 @@ io.on("connection", (socket) => {
         playerId: socket.id,
         playerName: safeName,
         playerCount: state?.players?.length ?? null,
-      });      
+      });
       console.log("[join] players now=%d", state?.players?.length || 0);
       cb?.({ ok: true, state });
     } catch (err) {
@@ -853,28 +859,43 @@ io.on("connection", (socket) => {
 
     const result = withPlayerLock(code, socket.id, () => {
       const prevScore = rooms.getScore(code, socket.id) ?? 0;
+
       const res = cardId
         ? rooms.playCardById(code, socket.id, cardId)
         : rooms.playCard(code, socket.id, index);
+
       if (!res.ok) return res;
+
       const nextScore = res.score ?? rooms.getScore(code, socket.id) ?? 0;
+
       const delta = nextScore - prevScore;
       const playedCard = res.playedCard;
+
+      // Private updates for the player who played
       io.to(socket.id).emit("hand:update", res.hand || []);
       io.to(socket.id).emit("score:update", nextScore);
+
+      // Lightweight update to the other clients
       socket.to(code).emit("player:updated", {
         playerId: socket.id,
         handCount: res.hand?.length ?? 0,
         score: nextScore,
       });
+
+      // Authoritative public room state
       const state = emitRoomState(code);
 
       const actor =
         (state?.players || []).find((p) => p.id === socket.id) || {};
+
       const actorName = actor.displayName || actor.name || "Player";
+
       const ev = pushUpdate(code, {
         type: "CARD_PLAYED",
-        player: { id: socket.id, name: actorName },
+        player: {
+          id: socket.id,
+          name: actorName,
+        },
         card: playedCard
           ? {
               id: playedCard.id,
@@ -888,20 +909,30 @@ io.on("connection", (socket) => {
             }
           : undefined,
         deltaPoints: Number(delta) || 0,
-        meta: { index: typeof index === "number" ? index : undefined, cardId },
+        meta: {
+          index: typeof index === "number" ? index : undefined,
+          cardId,
+        },
       });
+
       io.to(code).emit("game:update", ev);
 
-      return { ok: true };
-    });
+      // Log while the variables still exist in this scope
+      logGameTransition("CARD_PLAYED", {
+        roomCode: code,
+        playerId: socket.id,
+        cardId: playedCard?.id ?? cardId ?? null,
+        points: delta,
+        scoreBefore: prevScore,
+        scoreAfter: nextScore,
+        version: res.version ?? null,
+      });
 
-    logGameTransition("CARD_PLAYED", {
-      roomCode: code,
-      playerId: socket.id,
-      cardId: res.card?.id ?? cardId ?? null,
-      points: delta,
-      scoreBefore: prevScore,
-      scoreAfter: nextScore,
+      return {
+        ok: true,
+        newScore: nextScore,
+        version: res.version,
+      };
     });
 
     return cb?.(result);
@@ -1272,43 +1303,92 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("score:adjust", ({ delta }, ack) => {
+  socket.on("score:adjust", ({ delta, meta } = {}, ack) => {
     try {
       const code = socket.data.roomCode;
-      if (!code) return ack?.({ ok: false, error: "not_in_room" });
 
-      // validate delta
+      if (!code) {
+        return ack?.({
+          ok: false,
+          error: "not_in_room",
+        });
+      }
+
       const n = Number(delta);
       const safeDelta = Number.isFinite(n) ? Math.trunc(n) : 0;
-      if (safeDelta === 0) return ack?.({ ok: false, error: "invalid_delta" });
+
+      if (safeDelta === 0) {
+        return ack?.({
+          ok: false,
+          error: "invalid_delta",
+        });
+      }
+
+      const oldScore = rooms.getScore(code, socket.id) ?? 0;
 
       const res = rooms.adjustScore(code, socket.id, safeDelta);
-      if (!res || res.ok === false)
+
+      if (!res || res.ok === false) {
         return ack?.({
           ok: false,
           error: res?.error || "player_not_found",
         });
+      }
 
       const newScore = res.score;
 
-      ack?.({ ok: true, newScore, version: res.version ?? Date.now() });
+      // Private immediate update for the player
+      io.to(socket.id).emit("score:update", newScore);
+
+      // Existing lightweight compatibility update
+      io.to(code).emit("player:updated", {
+        playerId: socket.id,
+        score: newScore,
+        points: newScore,
+      });
+
+      // Authoritative public snapshot
+      const state = emitRoomState(code);
+
+      const actor = state?.players?.find((p) => p.id === socket.id) || {};
+
+      const actorName = actor.displayName || actor.name || "Player";
+
+      // Play-by-play
+      const ev = pushUpdate(code, {
+        type: "SCORE_ADJUSTED",
+        player: {
+          id: socket.id,
+          name: actorName,
+        },
+        deltaPoints: safeDelta,
+        meta: meta ?? {},
+      });
+
+      io.to(code).emit("game:update", ev);
+
+      // Structured log only after everything above succeeded
       logGameTransition("SCORE_ADJUSTED", {
         roomCode: code,
         playerId: socket.id,
-        delta,
+        delta: safeDelta,
         scoreBefore: oldScore,
         scoreAfter: newScore,
         source: meta?.source ?? "unknown",
       });
 
-      io.to(socket.id).emit("score:update", newScore);
-      io.to(code).emit("player:updated", {
-        playerId: socket.id,
-        score: newScore,
+      return ack?.({
+        ok: true,
+        newScore,
+        version: res.version ?? null,
       });
     } catch (err) {
       console.error("[score:adjust] error", err);
-      ack?.({ ok: false, error: "server_error" });
+
+      return ack?.({
+        ok: false,
+        error: "server_error",
+      });
     }
   });
 
@@ -1318,37 +1398,81 @@ io.on("connection", (socket) => {
       const playerId = socket.id;
       const cardId = payload?.cardId;
 
-      if (!code) throw new Error("not_in_room");
-      if (!cardId) throw new Error("missing_card");
+      if (!code) {
+        return ack?.({
+          ok: false,
+          error: "not_in_room",
+        });
+      }
 
-      //Sets a short-time lock to block any follow-up 'play'
+      if (!cardId) {
+        return ack?.({
+          ok: false,
+          error: "missing_card",
+        });
+      }
+
+      // Short shield against an accidental play immediately after sacrifice
       actionLockUntil.set(playerId, Date.now() + ACTION_LOCK_MS);
 
-      const res = withPlayerLock(code, playerId, () => {
+      const result = withPlayerLock(code, playerId, () => {
         const prevScore = rooms.getScore(code, playerId) ?? 0;
+
         const roomHand = rooms.getHand(code, playerId) || [];
+
         const sacrificedFromPrev =
           roomHand.find((c) => c?.id === cardId) || null;
-        const r = rooms.sacrificeCard(code, playerId, cardId);
-        if (r && r.ok === false) return r;
-        const hand = rooms.getHand(code, playerId) || [];
-        const score = rooms.getScore(code, playerId) ?? 0;
-        const delta = score - prevScore; // negative
-        io.to(playerId).emit("hand:update", hand);
-        io.to(playerId).emit("score:update", score);
-        socket
-          .to(code)
-          .emit("player:updated", { playerId, handCount: hand.length, score });
 
+        const res = rooms.sacrificeCard(code, playerId, cardId);
+
+        if (!res || res.ok === false) {
+          return (
+            res || {
+              ok: false,
+              error: "sacrifice_failed",
+            }
+          );
+        }
+
+        const hand = Array.isArray(res.hand)
+          ? res.hand
+          : rooms.getHand(code, playerId) || [];
+
+        const nextScore =
+          typeof res.score === "number"
+            ? res.score
+            : (rooms.getScore(code, playerId) ?? 0);
+
+        const delta = nextScore - prevScore;
+
+        // Private state
+        io.to(playerId).emit("hand:update", hand);
+
+        io.to(playerId).emit("score:update", nextScore);
+
+        // Lightweight compatibility update
+        socket.to(code).emit("player:updated", {
+          playerId,
+          handCount: hand.length,
+          score: nextScore,
+          points: nextScore,
+        });
+
+        // Authoritative snapshot for everybody
         const state = emitRoomState(code);
 
-        const actor =
-          (state?.players || []).find((p) => p.id === playerId) || {};
+        const actor = state?.players?.find((p) => p.id === playerId) || {};
+
         const actorName = actor.displayName || actor.name || "Player";
-        const sacrificedCard = r.sacrificedCard || sacrificedFromPrev;
+
+        const sacrificedCard = res.sacrificedCard || sacrificedFromPrev;
+
         const ev = pushUpdate(code, {
           type: "CARD_SACRIFICED",
-          player: { id: playerId, name: actorName },
+          player: {
+            id: playerId,
+            name: actorName,
+          },
           card: sacrificedCard
             ? {
                 id: sacrificedCard.id,
@@ -1363,34 +1487,46 @@ io.on("connection", (socket) => {
                     : undefined,
               }
             : undefined,
-          deltaPoints: Number(delta) || -1,
-          meta: { cardId },
+          deltaPoints: delta,
+          meta: {
+            cardId,
+          },
         });
+
         io.to(code).emit("game:update", ev);
-        return { ok: true };
+
+        // Keep log inside this scope
+        logGameTransition("CARD_SACRIFICED", {
+          roomCode: code,
+          playerId,
+          cardId: sacrificedCard?.id ?? cardId ?? null,
+          points: delta,
+          scoreBefore: prevScore,
+          scoreAfter: nextScore,
+          version: res.version ?? null,
+        });
+
+        return {
+          ok: true,
+          newScore: nextScore,
+          version: res.version ?? null,
+        };
       });
 
-      if (!res.ok) {
+      if (!result?.ok) {
         actionLockUntil.delete(playerId);
-        return ack?.(res);
+        return ack?.(result);
       }
-      logGameTransition("CARD_SACRIFICED", {
-        roomCode: code,
-        playerId: socket.id,
-        cardId: res.card?.id ?? cardIs ?? null,
-        points: delta,
-        scoreBefore: prevScore,
-        scoreAfter: nextScore,
-      });
 
-      return ack?.({ ok: true });
+      return ack?.(result);
     } catch (err) {
       actionLockUntil.delete(socket.id);
+
       console.error("[player:sacrifice] error:", err);
-      ack?.({ error: err?.message || "Could not sacrifice" });
-      socket.emit("error:action", {
-        action: "sacrifice",
-        message: err?.message || "Could not sacrifice",
+
+      return ack?.({
+        ok: false,
+        error: err?.message || "Could not sacrifice",
       });
     }
   });
