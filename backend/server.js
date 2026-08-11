@@ -60,7 +60,6 @@ const allowedOrigins = isProd
       "http://192.168.1.103:5173",
     ];
 
-
 const PROTOCOL_VERSION = 1;
 
 // This handles the case where Origin might be undefined in some environments
@@ -620,8 +619,7 @@ function scheduleHostReassignment(code, player) {
   hostGraceTimers.set(timerKey, timer);
 }
 io.use((socket, next) => {
-  const clientProtocolVersion =
-    socket.handshake.auth?.protocolVersion;
+  const clientProtocolVersion = socket.handshake.auth?.protocolVersion;
 
   if (clientProtocolVersion !== PROTOCOL_VERSION) {
     const err = new Error("Incompatible protocol version");
@@ -637,7 +635,6 @@ io.use((socket, next) => {
 
   next();
 });
-
 
 io.on("connection", (socket) => {
   console.log("[socket] connected", socket.id);
@@ -770,6 +767,13 @@ io.on("connection", (socket) => {
       key,
     });
 
+    if (!res.ok) return cb?.(res);
+
+    cancelPlayerLifecycleTimers(CODE, key);
+    cancelEmptyRoomTimer(CODE);
+
+    const roomAfterResume = rooms.getRoom(CODE);
+
     logGameTransition("PLAYER_RESUMED", {
       roomCode: CODE,
       playerId: socket.id,
@@ -777,12 +781,6 @@ io.on("connection", (socket) => {
       phase: roomAfterResume?.phase,
       wasHost: roomAfterResume?.hostId === socket.id,
     });
-
-    if (!res.ok) return cb?.(res);
-    cancelPlayerLifecycleTimers(CODE, key);
-    cancelEmptyRoomTimer(CODE);
-
-    const roomAfterResume = rooms.getRoom(CODE);
 
     if (
       roomAfterResume &&
@@ -799,7 +797,7 @@ io.on("connection", (socket) => {
     io.to(socket.id).emit("hand:update", res.hand || []);
     io.to(socket.id).emit("score:update", res.score ?? 0);
 
-    // refresh public state (shows them as connected)
+    // refresh public state
     const state = emitRoomState(CODE);
 
     cb?.({ ok: true, state });
