@@ -4,6 +4,7 @@ import { getPlayerKey } from "@/shared/playerIdentity";
 
 const isBrowser = typeof window !== "undefined";
 const isProd = isBrowser && window.location.protocol === "https:";
+const PROTOCOL_VERSION = 1;
 
 const API_URL = isProd
   ? window.location.origin
@@ -77,6 +78,10 @@ export function getSocket() {
   socket = io(API_URL, {
     path: "/socket.io",
     autoConnect: true,
+
+    auth: {
+      protocolVersion: PROTOCOL_VERSION,
+    }
     // withCredentials: true,
   });
 
@@ -86,10 +91,6 @@ export function getSocket() {
     maybeResume();
   });
 
-  // socket.on("reconnect", () => {
-  //   resumeInFlight = false;
-  //   maybeResume();
-  // });
 // reconnect event is on the manager in v4
 socket.io.on("reconnect", () => {
   resumeInFlight = false;

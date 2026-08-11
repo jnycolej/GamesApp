@@ -60,6 +60,9 @@ const allowedOrigins = isProd
       "http://192.168.1.103:5173",
     ];
 
+
+const PROTOCOL_VERSION = 1;
+
 // This handles the case where Origin might be undefined in some environments
 const corsOptions = {
   origin: (origin, cb) => {
@@ -616,6 +619,25 @@ function scheduleHostReassignment(code, player) {
 
   hostGraceTimers.set(timerKey, timer);
 }
+io.use((socket, next) => {
+  const clientProtocolVersion =
+    socket.handshake.auth?.protocolVersion;
+
+  if (clientProtocolVersion !== PROTOCOL_VERSION) {
+    const err = new Error("Incompatible protocol version");
+
+    err.data = {
+      code: "INCOMPATIBLE_PROTOCOL_VERSION",
+      clientProtocolVersion,
+      serverProtocolVersion: PROTOCOL_VERSION,
+    };
+
+    return next(err);
+  }
+
+  next();
+});
+
 
 io.on("connection", (socket) => {
   console.log("[socket] connected", socket.id);
@@ -1253,18 +1275,18 @@ io.on("connection", (socket) => {
   socket.on("score:adjust", ({ delta }, ack) => {
     try {
       const code = socket.data.roomCode;
-      if (!code) return ack?.({ ok: false, error: "not in a room" });
+      if (!code) return ack?.({ ok: false, error: "not_in_room" });
 
       // validate delta
       const n = Number(delta);
       const safeDelta = Number.isFinite(n) ? Math.trunc(n) : 0;
-      if (safeDelta === 0) return ack?.({ ok: false, error: "invalid delta" });
+      if (safeDelta === 0) return ack?.({ ok: false, error: "invalid_delta" });
 
       const res = rooms.adjustScore(code, socket.id, safeDelta);
       if (!res || res.ok === false)
         return ack?.({
           ok: false,
-          error: res?.error || "room/player not found",
+          error: res?.error || "player_not_found",
         });
 
       const newScore = res.score;
@@ -1286,7 +1308,7 @@ io.on("connection", (socket) => {
       });
     } catch (err) {
       console.error("[score:adjust] error", err);
-      ack?.({ ok: false, error: "server error" });
+      ack?.({ ok: false, error: "server_error" });
     }
   });
 
