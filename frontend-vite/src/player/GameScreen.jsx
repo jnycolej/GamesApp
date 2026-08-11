@@ -237,7 +237,7 @@ export default function GameScreen() {
   }
 
   //Game updates window
-  const [updates, setUpdates] = useState([]);
+  const [updates, sets] = useState([]);
   const MAX_UPDATES = 100;
   const scrollerRef = useRef(null);
 
