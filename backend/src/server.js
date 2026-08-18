@@ -1712,35 +1712,24 @@ const roomLifetimeSweep = setInterval(() => {
 
     if (!room) continue;
 
-    //const age = now - Number(room.createdAt || now);
+    const isPlaying = room.phase === "playing";
 
-    let age;
-    let maxLifetime;
+    const referenceTime = isPlaying
+      ? Number(room.startedAt || room.createdAt || now)
+      : Number(room.createdAt || now);
 
-    if (room.phase === "playing") {
-      age = now - Number(room.startedAt || now);
-      maxLifetime = MAX_GAME_LIFETIME_MS;
-    } else {
-      age = now - Number(room.createdAt || now);
-      maxLifetime = MAX_LOBBY_LIFETIME_MS;
-    }
+    const maxLifetime = isPlaying
+      ? MAX_GAME_LIFETIME_MS
+      : MAX_LOBBY_LIFETIME_MS;
 
-    if (age >= maxLifetime) {
-      destroyRoom(
-        code,
-        room.phase === "playing" ? "max_game_lifetime" : "max_lobby_lifetime",
-      );
-
-      maxLifetime = MAX_GAME_LIFETIME_MS;
-    } else {
-      age = now - Number(room.createdAt || now);
-      maxLifetime = MAX_LOBBY_LIFETIME_MS;
-    }
+    const age = now - referenceTime;
 
     if (age >= maxLifetime) {
       destroyRoom(
         code,
-        room.phase === "playing" ? "max_game_lifetime" : "max_lobby_lifetime",
+        isPlaying
+          ? "max_game_lifetime"
+          : "max_lobby_lifetime",
       );
     }
   }
