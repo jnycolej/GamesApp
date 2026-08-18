@@ -2,9 +2,14 @@ import http from "http";
 import express from "express";
 import cors from "cors";
 import path from "path";
+import crypto from "crypto";
 import { fileURLToPath } from "url";
 import { Server } from "socket.io";
 import { createRoomManager } from "./roomManager.js";
+import { gameSchedules } from "./data/gameSchedules.js";
+import { createGameUpdates} from "./game/gameUpdates.js";
+
+//console.log("SERVER INDEX 33:", gameSchedules[33]);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,6 +29,11 @@ app.get("/debug/rooms", (_req, res) => {
   }
 });
 
+app.get("/api/schedules", (req, res) => {
+  console.log("SCHEDULE REQUEST RECEIVED");
+  console.log("INDEX 33 SENT:", gameSchedules[33]);
+  res.json(gameSchedules);
+});
 // Short grace period to ignore 'play' after a 'sacrifice'
 const actionLockUntil = new Map();
 const ACTION_LOCK_MS = 300;
@@ -86,8 +96,8 @@ const io = new Server(server, {
   },
 });
 
-const updatesByCode = new Map();
-const MAX_UPDATES = 100;
+const gameUpdates = createGameUpdates();
+
 
 //Game log
 function logGameTransition(event, data = {}) {
@@ -205,7 +215,7 @@ function resolveEventVoteAtTimeout(code) {
 
     emitRoomState(code);
 
-    const update = pushUpdate(code, {
+    const update = gameUpdates.pushUpdate(code, {
       type: "EVENT_CONFIRMED",
       player: {
         id: pending.byPlayerId,
@@ -337,22 +347,22 @@ function withPlayerLock(code, playerId, fn) {
   }
 }
 
-function pushUpdate(code, ev) {
-  const at = Date.now();
-  const id =
-    ev.id ||
-    `${code}-${at}-${ev.type}-${ev?.player?.id ?? ""}-${ev?.card?.id ?? ""}`;
-  const full = { id, at, roomCode: code, ...ev };
-  const arr = updatesByCode.get(code) || [];
-  arr.push(full);
-  if (arr.length > MAX_UPDATES) arr.shift();
-  updatesByCode.set(code, arr);
-  return full;
-}
+// function pushUpdate(code, ev) {
+//   const at = Date.now();
+//   const id =
+//     ev.id ||
+//     `${code}-${at}-${ev.type}-${ev?.player?.id ?? ""}-${ev?.card?.id ?? ""}`;
+//   const full = { id, at, roomCode: code, ...ev };
+//   const arr = updatesByCode.get(code) || [];
+//   arr.push(full);
+//   if (arr.length > MAX_UPDATES) arr.shift();
+//   updatesByCode.set(code, arr);
+//   return full;
+// }
 
-function getUpdates(code) {
-  return (updatesByCode.get(code) || []).slice(-MAX_UPDATES);
-}
+// function getUpdates(code) {
+//   return (updatesByCode.get(code) || []).slice(-MAX_UPDATES);
+// }
 
 function getEnrichedState(code) {
   updateIdleStatesForCode(code);
@@ -454,7 +464,7 @@ function clearRoomAuxiliaryState(code) {
   clearPending(code);
 
   eventCooldownByCode.delete(code);
-  updatesByCode.delete(code);
+  gameUpdates.delete(code);
 
   clearTimerFromMap(emptyRoomTimers, code);
 
@@ -647,17 +657,15 @@ io.use((socket, next) => {
 io.on("connection", (socket) => {
   console.log("[socket] connected", socket.id);
   //Connects the to the socket
-  socket.on("room:create", ({ gameType, displayName, key, matchup }, cb) => {
+  socket.on("room:create", ({ gameType, displayName, matchup }, cb) => {
     try {
-      if (!key) {
-        return cb?.({ ok: false, error: "missing_player_key" });
-      }
+      const reconnectToken = crypto.randomUUID();
 
       const { code, token } = rooms.createRoom({
         creatorSocketId: socket.id,
         gameType,
         matchup: matchup ?? null,
-        hostKey: key,
+        hostKey: reconnectToken,
       });
 
       if (!code) throw new Error("createRoom_no_code");
@@ -672,7 +680,7 @@ io.on("connection", (socket) => {
       const add = rooms.addPlayer(code, {
         id: socket.id,
         displayName: safeName,
-        key,
+        key: reconnectToken,
       }); // pass key
       if (!add.ok) {
         console.warn("[create] addPlayer failed:", add);
@@ -688,96 +696,118 @@ io.on("connection", (socket) => {
         matchup: matchup ?? null,
       });
 
-      return cb?.({ ok: true, roomCode: code, token, state });
+      return cb?.({ ok: true, roomCode: code, token, reconnectToken, state });
     } catch (err) {
       console.error("[create] error:", err);
       return cb?.({ ok: false, error: "create_failed" });
     }
   });
   //Allows player to join room based on room code
-  // Allows player to join room based on room code
-  socket.on("player:join", ({ roomCode, displayName, key, token }, cb) => {
-    try {
-      const CODE = String(roomCode || "")
-        .toUpperCase()
-        .replace(/[^A-Z0-9]/g, "")
-        .slice(0, 6);
+  socket.on(
+    "player:join",
+    ({ roomCode, displayName, reconnectToken, token }, cb) => {
+      try {
+        const CODE = String(roomCode || "")
+          .toUpperCase()
+          .replace(/[^A-Z0-9]/g, "")
+          .slice(0, 6);
 
-      console.log("[join] incoming", {
-        code: CODE,
-        name: (displayName || "").trim(),
-        key: (key || "").slice(0, 6) + "...",
-        socket: socket.id,
-      });
+        // Reject if room doesn't exist
+        const exists = rooms.getPublicState(CODE);
 
-      // Optional: reject if room doesn't exist
-      const exists = rooms.getPublicState(CODE);
-      if (!exists) {
-        console.warn("[join] room_not_found", CODE);
-        return cb?.({ ok: false, error: "room_not_found" });
+        if (!exists) {
+          return cb?.({ 
+            ok: false, 
+            error: "room_not_found",
+           });
+        }
+
+        const safeName =
+          String(displayName || "")
+            .trim()
+            .slice(0, 24) || "Player";
+
+        const playerKey = reconnectToken || crypto.randomUUID();
+
+        socket.data.displayName = safeName;
+
+        const res = rooms.addPlayer(CODE, {
+          id: socket.id,
+          displayName: safeName,
+          key: playerKey,
+        });
+
+        if (!res.ok) return cb?.(res);
+        
+        cancelPlayerLifecycleTimers(CODE, playerKey);
+        cancelEmptyRoomTimer(CODE);
+
+        socket.data.roomCode = CODE;
+        socket.join(CODE);
+
+        const state = emitRoomState(CODE);
+
+        
+        const joinedRoom = rooms.getRoom(CODE);
+
+
+        if (joinedRoom && !joinedRoom.hostId && !joinedRoom.hostKey) {
+          rooms.reassignHost(CODE);
+        }
+
+        logGameTransition("PLAYER_JOINED", {
+          roomCode: CODE,
+          playerId: socket.id,
+          playerName: safeName,
+          playerCount: state?.players?.length ?? null,
+        });
+
+        cb?.({ 
+          ok: true, 
+          state, 
+          reconnectToken: playerKey, 
+        });
+      } catch (err) {
+        console.error("[join] error:", err);
+        
+        cb?.({ 
+          ok: false, 
+          error: "join_failed"
+        });
       }
-      const safeName =
-        String(displayName || "")
-          .trim()
-          .slice(0, 24) || "Player";
-
-      socket.data.displayName = safeName;
-
-      const res = rooms.addPlayer(CODE, {
-        id: socket.id,
-        displayName: safeName,
-        key,
-      });
-
-      if (!res.ok) return cb?.(res);
-      cancelPlayerLifecycleTimers(CODE, key);
-      cancelEmptyRoomTimer(CODE);
-
-      const joinedRoom = rooms.getRoom(CODE);
-
-      if (joinedRoom && !joinedRoom.hostId && !joinedRoom.hostKey) {
-        rooms.reassignHost(CODE);
-      }
-      socket.data.roomCode = CODE;
-      socket.join(CODE);
-
-      const state = emitRoomState(CODE);
-
-      logGameTransition("PLAYER_JOINED", {
-        roomCode: CODE,
-        playerId: socket.id,
-        playerName: safeName,
-        playerCount: state?.players?.length ?? null,
-      });
-      console.log("[join] players now=%d", state?.players?.length || 0);
-      cb?.({ ok: true, state });
-    } catch (err) {
-      console.error("[join] error:", err);
-      cb?.({ ok: false, error: "join_failed" });
-    }
-  });
+    },
+  );
 
   // resumes if player disconnects
-  socket.on("player:resume", ({ roomCode, displayName, key }, cb) => {
+  socket.on("player:resume", ({ roomCode, displayName, reconnectToken }, cb) => {
+    if (!reconnectToken) {
+      return cb?.({
+        ok: false,
+        error: "missing_reconnect_token"
+      });
+    }
+
     const CODE = String(roomCode || "")
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "")
       .slice(0, 6);
-    const safeName =
+    
+      const safeName =
       String(displayName || "")
         .trim()
         .slice(0, 24) || "Player";
-    socket.data.displayName = safeName;
+    
+        socket.data.displayName = safeName;
 
     const res = rooms.resumePlayer(CODE, {
       newSocketId: socket.id,
       displayName: safeName,
-      key,
+      key: reconnectToken,
     });
 
     if (!res.ok) return cb?.(res);
 
-    cancelPlayerLifecycleTimers(CODE, key);
+    cancelPlayerLifecycleTimers(CODE, reconnectToken);
     cancelEmptyRoomTimer(CODE);
 
     const roomAfterResume = rooms.getRoom(CODE);
@@ -890,7 +920,7 @@ io.on("connection", (socket) => {
 
       const actorName = actor.displayName || actor.name || "Player";
 
-      const ev = pushUpdate(code, {
+      const ev = gameUpdates.pushUpdate(code, {
         type: "CARD_PLAYED",
         player: {
           id: socket.id,
@@ -1202,7 +1232,7 @@ io.on("connection", (socket) => {
         });
         emitRoomState(code);
 
-        const ev = pushUpdate(code, {
+        const ev = gameUpdates.pushUpdate(code, {
           type: "EVENT_CONFIRMED",
           player: { id: pending.byPlayerId, name: pending.byName },
           card: { description: pending.title, points: pending.points },
@@ -1355,7 +1385,7 @@ io.on("connection", (socket) => {
       const actorName = actor.displayName || actor.name || "Player";
 
       // Play-by-play
-      const ev = pushUpdate(code, {
+      const ev = gameUpdates.pushUpdate(code, {
         type: "SCORE_ADJUSTED",
         player: {
           id: socket.id,
@@ -1467,7 +1497,7 @@ io.on("connection", (socket) => {
 
         const sacrificedCard = res.sacrificedCard || sacrificedFromPrev;
 
-        const ev = pushUpdate(code, {
+        const ev = gameUpdates.pushUpdate(code, {
           type: "CARD_SACRIFICED",
           player: {
             id: playerId,
@@ -1534,7 +1564,7 @@ io.on("connection", (socket) => {
   socket.on("game:history:request", () => {
     const code = socket.data.roomCode;
     if (!code) return;
-    io.to(socket.id).emit("game:history", getUpdates(code));
+    io.to(socket.id).emit("game:history", gameUpdates.getUpdates(code));
   });
 
   socket.on("player:activity", () => {
@@ -1628,7 +1658,7 @@ io.on("connection", (socket) => {
         });
       }
 
-      const playerKey = player.key;
+      const playerKey = reconnectToken || crypto.randomUUID();
 
       // Intentional leave means all reconnect reservations disappear.
       cancelPlayerLifecycleTimers(code, playerKey || socket.id);
