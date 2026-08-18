@@ -7,7 +7,10 @@ import { fileURLToPath } from "url";
 import { Server } from "socket.io";
 import { createRoomManager } from "./roomManager.js";
 import { gameSchedules } from "./data/gameSchedules.js";
-import { createGameUpdates} from "./game/gameUpdates.js";
+import { createGameUpdates } from "./game/gameUpdates.js";
+import { isProd, PORT } from "./config/env.js";
+import {corsOptions} from "./config/cors.js";
+import { PROTOCOL_VERSION } from "./protocol/version.js";
 
 //console.log("SERVER INDEX 33:", gameSchedules[33]);
 
@@ -61,26 +64,9 @@ const ROOM_SWEEP_INTERVAL_MS = 60 * 1000;
 const playerEvictionTimers = new Map();
 const hostGraceTimers = new Map();
 const emptyRoomTimers = new Map();
-const isProd = process.env.NODE_ENV === "production";
-const allowedOrigins = isProd
-  ? true
-  : [
-      "http://localhost:5173",
-      "http://127.0.0.1:5173",
-      "http://192.168.1.103:5173",
-    ];
 
-const PROTOCOL_VERSION = 1;
 
 // This handles the case where Origin might be undefined in some environments
-const corsOptions = {
-  origin: (origin, cb) => {
-    if (allowedOrigins === true) return cb(null, true);
-    if (!origin) return cb(null, true); // allow same-origin / non-browser clients
-    return cb(null, allowedOrigins.includes(origin));
-  },
-  credentials: false,
-};
 app.use(cors(corsOptions));
 
 //initiates the server
@@ -97,7 +83,6 @@ const io = new Server(server, {
 });
 
 const gameUpdates = createGameUpdates();
-
 
 //Game log
 function logGameTransition(event, data = {}) {
@@ -716,10 +701,10 @@ io.on("connection", (socket) => {
         const exists = rooms.getPublicState(CODE);
 
         if (!exists) {
-          return cb?.({ 
-            ok: false, 
+          return cb?.({
+            ok: false,
             error: "room_not_found",
-           });
+          });
         }
 
         const safeName =
@@ -738,7 +723,7 @@ io.on("connection", (socket) => {
         });
 
         if (!res.ok) return cb?.(res);
-        
+
         cancelPlayerLifecycleTimers(CODE, playerKey);
         cancelEmptyRoomTimer(CODE);
 
@@ -747,9 +732,7 @@ io.on("connection", (socket) => {
 
         const state = emitRoomState(CODE);
 
-        
         const joinedRoom = rooms.getRoom(CODE);
-
 
         if (joinedRoom && !joinedRoom.hostId && !joinedRoom.hostKey) {
           rooms.reassignHost(CODE);
@@ -762,84 +745,87 @@ io.on("connection", (socket) => {
           playerCount: state?.players?.length ?? null,
         });
 
-        cb?.({ 
-          ok: true, 
-          state, 
-          reconnectToken: playerKey, 
+        cb?.({
+          ok: true,
+          state,
+          reconnectToken: playerKey,
         });
       } catch (err) {
         console.error("[join] error:", err);
-        
-        cb?.({ 
-          ok: false, 
-          error: "join_failed"
+
+        cb?.({
+          ok: false,
+          error: "join_failed",
         });
       }
     },
   );
 
   // resumes if player disconnects
-  socket.on("player:resume", ({ roomCode, displayName, reconnectToken }, cb) => {
-    if (!reconnectToken) {
-      return cb?.({
-        ok: false,
-        error: "missing_reconnect_token"
-      });
-    }
+  socket.on(
+    "player:resume",
+    ({ roomCode, displayName, reconnectToken }, cb) => {
+      if (!reconnectToken) {
+        return cb?.({
+          ok: false,
+          error: "missing_reconnect_token",
+        });
+      }
 
-    const CODE = String(roomCode || "")
-      .toUpperCase()
-      .replace(/[^A-Z0-9]/g, "")
-      .slice(0, 6);
-    
+      const CODE = String(roomCode || "")
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g, "")
+        .slice(0, 6);
+
       const safeName =
-      String(displayName || "")
-        .trim()
-        .slice(0, 24) || "Player";
-    
-        socket.data.displayName = safeName;
+        String(displayName || "")
+          .trim()
+          .slice(0, 24) || "Player";
 
-    const res = rooms.resumePlayer(CODE, {
-      newSocketId: socket.id,
-      displayName: safeName,
-      key: reconnectToken,
-    });
+      socket.data.displayName = safeName;
 
-    if (!res.ok) return cb?.(res);
+      const res = rooms.resumePlayer(CODE, {
+        newSocketId: socket.id,
+        displayName: safeName,
+        key: reconnectToken,
+      });
 
-    cancelPlayerLifecycleTimers(CODE, reconnectToken);
-    cancelEmptyRoomTimer(CODE);
+      if (!res.ok) return cb?.(res);
 
-    const roomAfterResume = rooms.getRoom(CODE);
+      cancelPlayerLifecycleTimers(CODE, reconnectToken);
+      cancelEmptyRoomTimer(CODE);
 
-    logGameTransition("PLAYER_RESUMED", {
-      roomCode: CODE,
-      playerId: socket.id,
-      playerName: safeName,
-      phase: roomAfterResume?.phase,
-      wasHost: roomAfterResume?.hostId === socket.id,
-    });
+      const roomAfterResume = rooms.getRoom(CODE);
 
-    if (
-      roomAfterResume &&
-      !roomAfterResume.hostId &&
-      !roomAfterResume.hostKey
-    ) {
-      rooms.reassignHost(CODE);
-    }
+      logGameTransition("PLAYER_RESUMED", {
+        roomCode: CODE,
+        playerId: socket.id,
+        playerName: safeName,
+        phase: roomAfterResume?.phase,
+        wasHost: roomAfterResume?.hostId === socket.id,
+      });
 
-    socket.data.roomCode = CODE;
-    socket.join(CODE);
+      if (
+        roomAfterResume &&
+        !roomAfterResume.hostId &&
+        !roomAfterResume.hostKey
+      ) {
+        rooms.reassignHost(CODE);
+      }
 
-    // send private state back to this socket
-    io.to(socket.id).emit("hand:update", res.hand || []);
-    io.to(socket.id).emit("score:update", res.score ?? 0);
+      socket.data.roomCode = CODE;
+      socket.join(CODE);
 
-    // refresh public state
-    const state = emitRoomState(CODE);
+      // send private state back to this socket
+      io.to(socket.id).emit("hand:update", res.hand || []);
+      io.to(socket.id).emit("score:update", res.score ?? 0);
 
-    cb?.({ ok: true, state });
-  });
+      // refresh public state
+      const state = emitRoomState(CODE);
+
+      cb?.({ ok: true, state });
+    },
+  );
 
   //Get the room code to display the room code
   socket.on("room:get", (_, cb) => {
@@ -1658,7 +1644,7 @@ io.on("connection", (socket) => {
         });
       }
 
-      const playerKey = reconnectToken || crypto.randomUUID();
+      const playerKey = player.key;
 
       // Intentional leave means all reconnect reservations disappear.
       cancelPlayerLifecycleTimers(code, playerKey || socket.id);
@@ -1763,7 +1749,7 @@ const roomLifetimeSweep = setInterval(() => {
 roomLifetimeSweep.unref?.();
 //In production serve the frontend from the same app
 if (isProd) {
-  const distDir = path.join(__dirname, "../frontend-vite/dist");
+  const distDir = path.join(__dirname, "../../frontend-vite/dist");
   app.use(express.static(distDir));
 
   // SPA fallback (avoid socket.io route)
@@ -1772,6 +1758,5 @@ if (isProd) {
   });
 }
 
-const PORT = process.env.PORT || 8080;
 console.log("[boot] starting HTTP server on", PORT);
 server.listen(PORT, () => console.log("[boot] listening on :" + PORT));
