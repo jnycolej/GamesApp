@@ -18,7 +18,7 @@ export const corsOptions = {
         return cb(null, true);
     }
 
-    if (allowedOrigins === true) return cb(null, true);
+    if (developmentOrigins === true) return cb(null, true);
     if (!origin) return cb(null, true); // allow same-origin / non-browser clients
     return cb(null, developmentOrigins.includes(origin));
   },
