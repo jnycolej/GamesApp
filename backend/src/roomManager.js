@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
+import { ErrorCodes } from "./protocol/errors.js";
 
 const listeners = process.rawListeners("warning");
 const __filename = fileURLToPath(import.meta.url);
@@ -193,7 +194,7 @@ export function createRoomManager() {
 
   function addPlayer(code, { id, displayName, key }) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
     //If the joining player has a key that already exists, treat as resume
     if (key) {
@@ -236,7 +237,7 @@ export function createRoomManager() {
   // Rebind an old player entry (found by key) to the new socket id
   function resumePlayer(code, { newSocketId, key, displayName }) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
     if (!key) return { ok: false, error: "missing_key" };
 
     const old = [...r.players.values()].find((p) => p.key === key);
@@ -262,7 +263,7 @@ export function createRoomManager() {
 
   function startAndDeal(code, requesterId, requesterKey = null) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" }; // IMPORTANT
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND }; // IMPORTANT
 
     //Host gate
     const isHost =
@@ -314,10 +315,10 @@ export function createRoomManager() {
 
   function playCard(code, socketId, index) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
     const player = r.players.get(socketId); // <- use `player`
-    if (!player) return { ok: false, error: "not_in_room" };
+    if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
     if (r.phase !== "playing") return { ok: false, error: "not_playing" };
     if (index == null || index < 0 || index >= player.hand.length) {
       return { ok: false, error: "bad_index" };
@@ -390,10 +391,10 @@ export function createRoomManager() {
   }
   function adjustScore(code, socketId, delta) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
     const p = r.players.get(socketId);
-    if (!p) return { ok: false, error: "not_in_room" };
+    if (!p) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
 
     const d = Number(delta);
     if (!Number.isFinite(d)) return { ok: false, error: "bad_delta" };
@@ -453,7 +454,7 @@ export function createRoomManager() {
 
   function validateInvite(code, token) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
     const inv = r.invite;
     if (!inv) return { ok: false, error: "no_invite" };
     if (inv.token !== token) return { ok: false, error: "bad_token" };
@@ -489,11 +490,11 @@ export function createRoomManager() {
 
   function sacrificeCard(code, playerId, cardId) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
     if (r.phase !== "playing") return { ok: false, error: "not_playing" };
 
     const player = r.players.get(playerId);
-    if (!player) return { ok: false, error: "not_in_room" };
+    if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
     if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand" };
 
     // find the card by its instance id
@@ -552,9 +553,9 @@ export function createRoomManager() {
 
   function playCardById(code, socketId, cardId) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
     const player = r.players.get(socketId);
-    if (!player) return { ok: false, error: "not_in_room" };
+    if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
     if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand" };
     const idx = player.hand.findIndex((c) => c && c.id === cardId);
     if (idx === -1) return { ok: false, error: "card_not_in_hand" };
@@ -563,10 +564,10 @@ export function createRoomManager() {
 
   function handleDisconnect(code, socketId) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
     const p = r.players.get(socketId);
-    if (!p) return { ok: false, error: "player_not_found" };
+    if (!p) return { ok: false, error: ErrorCodes.PLAYER_NOT_FOUND };
 
     // keep player reserved for 60 minutes after disconnect
     //const EVICT_MS = 60 * 60 * 1000;
@@ -594,7 +595,7 @@ export function createRoomManager() {
   }
   function reassignHost(code) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
     const candidates = [...r.players.values()]
       .filter((p) => p.connected)
@@ -634,10 +635,10 @@ export function createRoomManager() {
 
   function removePlayer(code, socketId, { reassignHostIfNeeded = true } = {}) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
     const player = r.players.get(socketId);
-    if (!player) return { ok: false, error: "player_not_found" };
+    if (!player) return { ok: false, error: ErrorCodes.PLAYER_NOT_FOUND };
 
     const wasHost =
       r.hostId === socketId ||
@@ -668,13 +669,13 @@ export function createRoomManager() {
   }
   function removePlayerByKey(code, key, { reassignHostIfNeeded = true } = {}) {
     const r = roomMap.get(code);
-    if (!r) return { ok: false, error: "room_not_found" };
+    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
     if (!key) return { ok: false, error: "missing_key" };
 
     const player = [...r.players.values()].find((p) => p.key === key);
 
     if (!player) {
-      return { ok: false, error: "player_not_found" };
+      return { ok: false, error: ErrorCodes.PLAYER_NOT_FOUND };
     }
 
     return removePlayer(code, player.id, {
@@ -699,7 +700,7 @@ export function createRoomManager() {
     const r = roomMap.get(code);
 
     if (!r) {
-      return { destroyed: false, reason: "room_not_found" };
+      return { destroyed: false, reason: ErrorCodes.ROOM_NOT_FOUND };
     }
 
     if (r.players.size > 0) {
