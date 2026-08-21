@@ -1,12 +1,8 @@
-import fs from "fs";
-import path from "path";
 import crypto from "crypto";
-import { fileURLToPath } from "url";
 import { ErrorCodes } from "./protocol/errors.js";
 
-const listeners = process.rawListeners("warning");
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { loadDeck } from "./domain/deckService.js";
+
 const ROOM_CODE_LEN = 6;
 const CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
@@ -22,129 +18,7 @@ function genCode(len = ROOM_CODE_LEN) {
   }
   return out;
 }
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-// add this helper near the top
-function ensureDeckBase(r) {
-  if (!r.deckBase) r.deckBase = loadDeck(r.gameType || "football");
-}
 
-const RARITY_TO_WEIGHT = {
-  common: 5,
-  semicommon: 4,
-  uncommon: 3,
-  unusual: 2,
-  rare: 1,
-};
-
-function loadDeck(gameType) {
-  let file;
-  // const file =
-  //   gameType === "baseball"
-  //     ? path.join(__dirname, "data", "baseballDeck.json")
-  //     : path.join(__dirname, "data", "footballDeck.json");
-  switch (gameType) {
-    case "baseball":
-      file = path.join(__dirname, "data", "baseballDeck.json");
-      break;
-    case "football":
-      file = path.join(__dirname, "data", "footballDeck.json");
-      break;
-    case "basketball":
-      file = path.join(__dirname, "data", "basketballDeck.json");
-      break;
-    default:
-      file = path.join(__dirname, "data", "footballDeck.json");
-      break;
-  }
-
-  if (!fs.existsSync(file)) {
-    throw new Error(`Deck file not found: ${file}`);
-  }
-
-  const raw = JSON.parse(fs.readFileSync(file, "utf8"));
-
-  //normalize cards and ensure each has an id
-  return raw.map((c) => {
-    const pts = Number.isFinite(c.points)
-      ? c.points
-      : c.points != null
-        ? Number(c.points)
-        : 0;
-
-    const desc = c.description ?? c.title ?? c.name ?? "";
-    const pen = c.penalty ?? "";
-
-    let w;
-    if (c.weight != null) {
-      const parsed = Number(c.weight);
-      w = Number.isFinite(parsed) ? parsed : 1;
-    } else if (c.rarity) {
-      const key = String(c.rarity).toLowerCase();
-      w = RARITY_TO_WEIGHT[key] ?? 1;
-    } else {
-      w = 1;
-    }
-    const weight = Math.max(1, Math.floor(w));
-
-    return {
-      id: c.id ?? crypto.randomUUID(),
-      description: desc,
-      penalty: pen,
-      points: pts,
-
-      // keep a couple convenience fields if you want
-      title: c.title ?? desc ?? "Card",
-      text: c.text ?? desc ?? "",
-      meta: { ...(c.meta || {}), penalty: pen, points: pts },
-
-      rarity: c.rarity ?? null,
-      weight,
-    };
-  });
-}
-
-function buildWeightedDeck(baseDeck) {
-  const expanded = [];
-  for (const card of baseDeck) {
-    const copies = card.weight || 1;
-    for (let i = 0; i < copies; i++) {
-      expanded.push({ ...card });
-    }
-  }
-  return shuffle(expanded);
-}
-
-function drawCardFromBase(r) {
-  if (!r) throw new Error("drawCardFromBase called with no room");
-  if (!r.deckBase) r.deckBase = loadDeck(r.gameType || "football");
-  const base = r.deckBase;
-  if (!base?.length) throw new Error("No base deck loaded");
-
-  const total = base.reduce((s, c) => s + (c.weight || 1), 0);
-  let rnum = Math.random() * total;
-  let tpl = base[0];
-  for (const c of base) {
-    rnum -= c.weight || 1;
-    if (rnum <= 0) {
-      tpl = c;
-      break;
-    }
-  }
-
-  const instanceId = crypto.randomUUID();
-  return {
-    ...tpl,
-    id: instanceId, // IMPORTANT: keep property name `id` for React keys & your UI
-    instanceId,
-    templateId: tpl.id, // which template it came from
-  };
-}
 
 const buildInviteUrl = ({ origin, gameType, code, token }) =>
   `${origin}/${gameType}/join?room=${encodeURIComponent(
@@ -261,150 +135,6 @@ export function createRoomManager() {
     return { ok: true, hand: old.hand, score: old.score };
   }
 
-  function startAndDeal(code, requesterId, requesterKey = null) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND }; // IMPORTANT
-
-    //Host gate
-    const isHost =
-      (r.hostKey && requesterKey && r.hostKey === requesterKey) ||
-      r.hostId === requesterId;
-
-    if (!isHost) {
-      return { ok: false, error: "not_host" };
-    }
-    const minPlayers = r.settings?.minPlayers ?? 1;
-    if (r.players.size < minPlayers) {
-      return { ok: false, error: "not_enough_players", need: minPlayers };
-    }
-
-    r.phase = "playing";
-    r.status = "active";
-    if (!r.startedAt) {
-      r.startedAt = Date.now();
-    }
-    r.discardPile = [];
-    r.drawCount = 0;
-
-    const H = r.settings?.handSize ?? 5;
-    for (const player of r.players.values()) {
-      player.hand = [];
-      player.score = 0;
-      for (let i = 0; i < H; i++) {
-        player.hand.push(drawCardFromBase(r));
-        r.drawCount++;
-      }
-    }
-
-    r.version += 1;
-    return { ok: true, version: r.version };
-  }
-
-  function getOpponentsHands(code, requesterId) {
-    const r = roomMap.get(code);
-    if (!r) return null;
-    if (!r.settings?.openHandsAllowed) return [];
-    return [...r.players.values()]
-      .filter((p) => p.id !== requesterId)
-      .map((p) => ({
-        id: p.id,
-        name: p.name,
-        hand: p.hand,
-      }));
-  }
-
-  function playCard(code, socketId, index) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-
-    const player = r.players.get(socketId); // <- use `player`
-    if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
-    if (r.phase !== "playing") return { ok: false, error: "not_playing" };
-    if (index == null || index < 0 || index >= player.hand.length) {
-      return { ok: false, error: "bad_index" };
-    }
-
-    const picked = player.hand[index];
-    const playedSnap = picked
-      ? {
-          id: picked.id,
-          name: picked.title ?? picked.name ?? picked.description ?? "Card",
-          description:
-            picked.description ?? picked.text ?? picked.penalty ?? "",
-          points: Number.isFinite(picked.points) ? picked.points : 0,
-        }
-      : null;
-
-    const pts = Number.isFinite(picked.points) ? picked.points : 0;
-    player.score += pts;
-
-    // keep history
-    r.discardPile.push(picked);
-
-    // semi-infinite replacement
-    const replacement = drawCardFromBase(r);
-    player.hand[index] = replacement; // <- write to `player`, not `p`
-    r.drawCount = (r.drawCount || 0) + 1;
-
-    r.version = (r.version || 0) + 1;
-
-    return {
-      ok: true,
-      hand: player.hand,
-      score: player.score,
-      version: r.version,
-      playedCard: playedSnap,
-      replacementCard: {
-        id: replacement.id,
-        name:
-          replacement.title ??
-          replacement.name ??
-          replacement.description ??
-          "Card",
-        description:
-          replacement.description ??
-          replacement.text ??
-          replacement.penalty ??
-          "",
-        points: Number.isFinite(replacement.points) ? replacement.points : 0,
-      },
-    };
-  }
-
-  function getVersion(code) {
-    const r = roomMap.get(code);
-    return r ? r.version : 0;
-  }
-
-  function getHand(code, socketId) {
-    const r = roomMap.get(code);
-    if (!r) return null;
-    const p = r.players.get(socketId);
-    return p ? p.hand : null;
-  }
-
-  function getScore(code, socketId) {
-    const r = roomMap.get(code);
-    if (!r) return 0;
-    const p = r.players.get(socketId);
-    return p ? p.score : 0;
-  }
-  function adjustScore(code, socketId, delta) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-
-    const p = r.players.get(socketId);
-    if (!p) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
-
-    const d = Number(delta);
-    if (!Number.isFinite(d)) return { ok: false, error: "bad_delta" };
-
-    p.score += d;
-    r.version = (r.version || 0) + 1;
-
-    return { ok: true, score: p.score, version: r.version };
-  }
-
   function getPublicState(code) {
     const r = roomMap.get(code);
     if (!r) return null;
@@ -486,80 +216,6 @@ export function createRoomManager() {
       : [];
 
     return s;
-  }
-
-  function sacrificeCard(code, playerId, cardId) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-    if (r.phase !== "playing") return { ok: false, error: "not_playing" };
-
-    const player = r.players.get(playerId);
-    if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
-    if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand" };
-
-    // find the card by its instance id
-    const idx = player.hand.findIndex((c) => c && c.id === cardId);
-    if (idx === -1) return { ok: false, error: "card_not_in_hand" };
-
-    //score changed on sacrifice
-    const picked = player.hand[idx];
-    const sacrificedSnap = picked
-      ? {
-          id: picked.id,
-          name: picked.title ?? picked.name ?? picked.description ?? "Card",
-          description:
-            picked.description ?? picked.text ?? picked.penalty ?? "",
-          points: Number.isFinite(picked.points) ? picked.points : 0,
-        }
-      : null;
-
-    //scoring change
-    const pts = Number.isFinite(picked.points) ? picked.points : 0;
-    player.score -= pts;
-
-    // discard the chosen card
-    const [burned] = player.hand.splice(idx, 1);
-    r.discardPile.push(burned);
-
-    // draw a replacement into the same slot
-    const replacement = drawCardFromBase(r);
-    player.hand.splice(idx, 0, replacement);
-
-    r.drawCount = (r.drawCount || 0) + 1;
-    r.version = (r.version || 0) + 1;
-
-    return {
-      ok: true,
-      hand: player.hand,
-      score: player.score,
-      version: r.version,
-      sacrificedCard: sacrificedSnap,
-      replacementCard: {
-        id: replacement.id,
-        name:
-          replacement.title ??
-          replacement.name ??
-          replacement.description ??
-          "Card",
-        description:
-          replacement.description ??
-          replacement.text ??
-          replacement.penalty ??
-          "",
-        points: Number.isFinite(replacement.points) ? replacement.points : 0,
-      },
-    };
-  }
-
-  function playCardById(code, socketId, cardId) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-    const player = r.players.get(socketId);
-    if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
-    if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand" };
-    const idx = player.hand.findIndex((c) => c && c.id === cardId);
-    if (idx === -1) return { ok: false, error: "card_not_in_hand" };
-    return playCard(code, socketId, idx);
   }
 
   function handleDisconnect(code, socketId) {
@@ -720,47 +376,25 @@ export function createRoomManager() {
     return Array.from(roomMap.keys());
   }
 
-  function setScore(code, socketId, score) {
-    const r = roomMap.get(code);
-    if (!r) return false;
-
-    const p = r.players.get(socketId);
-    if (!p) return false;
-
-    const n = Number(score);
-    if (!Number.isFinite(n)) return false;
-
-    p.score = Math.trunc(n);
-    r.version = (r.version || 0) + 1;
-    return true;
-  }
-
   return {
     createRoom,
     addPlayer,
     resumePlayer,
-    startAndDeal,
-    playCard,
-    playCardById,
-    getHand,
-    getScore,
-    setScore,
-    adjustScore,
-    getOpponentsHands,
+
     getPublicState,
     getClientLobbyState,
     validateInvite,
-    handleDisconnect,
-    listCodes,
-    getVersion,
-    sacrificeCard,
     safePublicState,
 
-    //lifecycle
+    handleDisconnect,
+
+    listCodes,
     getRoom,
+
     removePlayer,
     removePlayerByKey,
     reassignHost,
+    
     destroyRoom,
     destroyIfEmpty,
   };

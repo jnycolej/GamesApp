@@ -1,14 +1,36 @@
 export const collegeTeams = [
+    {
+    id: "aforce",
+    schoolName: "air force",
+    shortName: "Air Force",
+    aliases: [
+      "Air Force Falcons",
+      "air force",
+      "air force falcons",
+      "Air Force Falcons"
+    ],
+    mascot: "falcons",
+    colors: {
+      primary1: "#003594",
+      primary2: "#ffffff",
+    },
+    league: "NCAA",
+    conference: "Mountain West",
+    sports: ["football"],
+    location: { city: "Air Force Academy", state: "Colorado" },
+    rivalries: ["army", "navy"],
+  },
   {
     id: "lsu",
     schoolName: "lousiana state university",
-    shortName: "LSU",
+    shortName: "lsu",
     aliases: [
       "LSU",
       "LSU Tigers",
       "Louisiana State University Tigers",
       "Fighting Tigers",
       "Bayou Bengals",
+      "lsu",
     ],
     mascot: "tigers",
     colors: {
@@ -18,14 +40,15 @@ export const collegeTeams = [
     league: "NCAA",
     conference: "SEC",
     sports: ["football", "baseball", "basketball"],
-    location: { city: "New Orleans", state: "Louisiana" },
+    location: { city: "Baton Rouge", state: "Louisiana" },
     rivalries: ["alabama", "florida", "ole-miss"],
   },
+  
   {
     id: "clemson",
     schoolName: "clemson university",
     shortName: "clem",
-    aliases: ["Clemson", "Clemson Tigers", "Clemson University Tigers"],
+    aliases: ["Clemson", "Clemson Tigers", "Clemson University Tigers", "Clemson University"],
     mascot: "tigers",
     colors: {
       primary1: "#F56600",
@@ -33,12 +56,12 @@ export const collegeTeams = [
     },
     league: "NCAA",
     conference: "ACC",
-    sports: ["football", "baseball"],
+    sports: ["football", "baseball", "basketball"],
     location: {
       city: "Clemson",
       state: "South Carolina",
     },
-    rivalries: [],
+    rivalries: ["south-carolina", "georgia-tech", "nc-state", "florida-state", "alabama"],
   },
   {
     id: "uark",
@@ -49,6 +72,7 @@ export const collegeTeams = [
       "Arkansas Razorbacks",
       "University of Arkansas Razorbacks",
       "Razorbacks",
+      "University of Arkansas"
     ],
     mascot: "razorbacks",
     colors: {
@@ -59,15 +83,15 @@ export const collegeTeams = [
     conference: "SEC",
     sports: ["football", "baseball"],
     location: {
-      city: "fayetteville",
-      state: "arkansas",
+      city: "Fayetteville",
+      state: "Arkansas",
     },
-    rivalries: [],
+    rivalries: ["lsu", "missouri", "texas", "texas-am","ole-miss"],
   },
   {
     id: "uncbears",
     schoolName: "university of northern colorado",
-    shortName: "clem",
+    shortName: "UNCOL",
     aliases: ["Bears", "university of colorado bears", "colorado bears", "north colorado"],
     mascot: "bears",
     colors: {

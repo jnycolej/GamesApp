@@ -11,7 +11,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "11:00am CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -21,7 +21,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "2:00pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -31,7 +31,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "2:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -41,7 +41,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "4:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -51,7 +51,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "5:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -61,7 +61,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "6:00pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -71,7 +71,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -81,7 +81,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "9:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   //Sep-03-2026
@@ -92,7 +92,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "5:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -102,7 +102,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -112,7 +112,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "6:00pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -122,7 +122,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -132,7 +132,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -142,7 +142,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -152,7 +152,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "7:00pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -162,7 +162,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "7:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -172,7 +172,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "7:00pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -182,7 +182,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "8:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -192,7 +192,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-03",
     time: "8:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   //Sep-04-2026
@@ -203,7 +203,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "5:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -213,7 +213,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "6:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -223,7 +223,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -233,7 +233,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "7:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -243,7 +243,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "7:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -253,7 +253,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "7:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -263,7 +263,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "8:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -273,7 +273,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-04",
     time: "8:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   //Sep-05-2026
@@ -284,7 +284,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -294,7 +294,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -304,7 +304,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["TNT", "HBO Max"],
+    networks: ["TNT", "HBO Max"],
     tag: ["regular"],
   },
   {
@@ -314,7 +314,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -324,7 +324,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -334,7 +334,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -344,7 +344,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -354,7 +354,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -364,7 +364,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -374,7 +374,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -384,7 +384,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:00am CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -394,7 +394,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "11:30am CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -404,7 +404,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "12:45pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -414,17 +414,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "1:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
     teams: ["Southeast Missouri State", "Iowa State"],
     league: "NCAA",
-    conferences: ["Big12", "Big South-OVC"],
+    conferences: ["Big12", "OVC-Big South"],
     sport: "football",
     date: "2026-09-05",
     time: "12:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -434,7 +434,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "12:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -444,7 +444,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "1:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -454,7 +454,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "3:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -464,7 +464,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -474,7 +474,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "3:30pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -484,7 +484,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -494,7 +494,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -504,7 +504,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -514,7 +514,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -524,7 +524,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -534,7 +534,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -544,7 +544,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -554,7 +554,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -564,7 +564,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -574,7 +574,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -584,7 +584,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "2:45pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -594,7 +594,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "3:15pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -604,7 +604,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "3:15pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -614,7 +614,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "4:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -624,17 +624,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
     teams: ["Norfolk State", "Old Dominion"],
     league: "NCAA",
-    conferences: ["Mid Eastern Athletic"],
+    conferences: ["MEAC"],
     sport: "football",
     date: "2026-09-05",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -644,7 +644,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -654,7 +654,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -664,7 +664,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -674,7 +674,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -684,7 +684,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:0pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -694,7 +694,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -704,7 +704,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -714,7 +714,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -724,17 +724,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
     teams: ["Murray State", "Middle Tennessee"],
     league: "NCAA",
-    conferences: ["Mission Valley", "CUSA"],
+    conferences: ["Missouri Valley", "CUSA"],
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -744,7 +744,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -754,7 +754,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -764,7 +764,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -774,7 +774,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -784,7 +784,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -794,7 +794,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:30pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -804,7 +804,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:30pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -814,7 +814,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -824,7 +824,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -834,7 +834,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "6:45pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -844,7 +844,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "7:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -854,17 +854,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "7:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
     teams: ["Northwestern", "South Dakota State"],
     league: "NCAA",
-    conferences: ["Big10", "Missouri State Valley"],
+    conferences: ["Big10", "Missouri Valley"],
     sport: "football",
     date: "2026-09-05",
     time: "7:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -874,17 +874,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "7:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
     teams: ["Arizona State", "Morgan State"],
     league: "NCAA",
-    conferences: ["Big12", "Mid Eastern Athletic"],
+    conferences: ["Big12", "MEAC"],
     sport: "football",
     date: "2026-09-05",
     time: "8:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -894,7 +894,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "8:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -904,7 +904,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "8:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -914,7 +914,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "8:30pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -924,7 +924,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "9:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -934,7 +934,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "9:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -944,7 +944,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "9:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -954,7 +954,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "9:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -964,7 +964,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-05",
     time: "9:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   //Sep-06-2026
@@ -975,7 +975,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-06",
     time: "3:00pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -985,7 +985,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-06",
     time: "6:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -995,7 +995,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-06",
     time: "6:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -1007,7 +1007,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-07",
     time: "6:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -1021,7 +1021,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-10",
     time: "7:00pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   //Sep-11-2026
@@ -1032,27 +1032,27 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-11",
     time: "6:00pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
     teams: ["Virginia", "Norfolk State"],
     league: "NCAA",
-    conferences: ["ACC", "Mid Eastern Athletic"],
+    conferences: ["ACC", "MEAC"],
     sport: "football",
     date: "2026-09-11",
     time: "6:00pm CT",
-    network: ["ACC Extra"],
+    networks: ["ACC Extra"],
     tag: ["regular"],
   },
   {
     teams: ["NC State", "Richmond"],
     league: "NCAA",
-    conferences: ["Mid Eastern Athletic", "Patriot"],
+    conferences: ["MEAC", "Patriot"],
     sport: "football",
     date: "2026-09-11",
     time: "6:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -1062,7 +1062,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-11",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -1072,7 +1072,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-11",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   //Sep-12-2026
@@ -1083,7 +1083,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "TBD",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -1093,7 +1093,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "TBD",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -1103,7 +1103,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -1113,7 +1113,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -1123,7 +1123,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["TNT", "HBO Max"],
+    networks: ["TNT", "HBO Max"],
     tag: ["regular"],
   },
   {
@@ -1133,7 +1133,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -1143,7 +1143,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -1153,7 +1153,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -1163,17 +1163,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
     teams: ["Indiana", "Howard"],
     league: "NCAA",
-    conferences: ["Big10", "MidEastern Atlantic"],
+    conferences: ["Big10", "MEAC"],
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -1183,7 +1183,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -1193,7 +1193,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -1203,7 +1203,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -1213,7 +1213,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:00am CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1223,7 +1223,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "11:45am CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -1233,7 +1233,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "12:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1243,7 +1243,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "12:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1253,7 +1253,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "12:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1263,7 +1263,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "1:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1273,7 +1273,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -1283,7 +1283,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -1293,7 +1293,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1303,7 +1303,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -1313,7 +1313,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -1323,7 +1323,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -1333,7 +1333,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -1343,7 +1343,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -1353,7 +1353,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -1363,7 +1363,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -1373,7 +1373,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -1383,7 +1383,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -1393,7 +1393,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1403,7 +1403,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1413,7 +1413,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1423,7 +1423,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1433,7 +1433,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1443,7 +1443,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "2:45pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -1453,7 +1453,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "3:00pm CT",
-    network: ["ACC Extra"],
+    networks: ["ACC Extra"],
     tag: ["regular"],
   },
   {
@@ -1463,7 +1463,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "3:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -1473,7 +1473,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "3:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1483,17 +1483,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "3:15pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
     teams: ["Florida", "Campbell"],
     league: "NCAA",
-    conferences: ["SEC", "Coastal Athletic"],
+    conferences: ["SEC", "CAA"],
     sport: "football",
     date: "2026-09-12",
     time: "4:30pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -1503,7 +1503,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -1513,7 +1513,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1523,7 +1523,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1533,7 +1533,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1543,7 +1543,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "5:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1553,7 +1553,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -1563,7 +1563,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -1573,7 +1573,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1583,7 +1583,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1593,7 +1593,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -1603,7 +1603,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -1613,7 +1613,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1623,7 +1623,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -1633,7 +1633,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1643,7 +1643,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1653,7 +1653,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1663,7 +1663,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1673,7 +1673,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1683,7 +1683,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:15pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -1693,7 +1693,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:15pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -1703,7 +1703,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -1713,7 +1713,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:00pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -1723,7 +1723,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:30pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -1733,7 +1733,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -1743,7 +1743,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:30pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -1753,7 +1753,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -1763,7 +1763,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:30pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -1773,7 +1773,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1783,7 +1783,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "6:45pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -1793,7 +1793,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "7:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1803,7 +1803,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "7:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -1813,17 +1813,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "8:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
     teams: ["North Dakota State", "Air Force"],
     league: "NCAA",
-    conferences: ["Mountain State", "Mountain West"],
+    conferences: ["Mountain West", "Mountain West"],
     sport: "football",
     date: "2026-09-12",
     time: "9:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -1833,7 +1833,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "9:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -1843,7 +1843,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "9:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -1853,7 +1853,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "9:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -1863,7 +1863,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "10:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -1873,7 +1873,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-12",
     time: "10:59pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
 
@@ -1885,7 +1885,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-17",
     time: "6:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -1896,7 +1896,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-18",
     time: "6:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -1906,7 +1906,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-18",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -1916,7 +1916,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-18",
     time: "9:30pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
 
@@ -1927,7 +1927,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "10:30am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -1937,7 +1937,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -1947,7 +1947,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -1957,7 +1957,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -1967,7 +1967,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -1977,7 +1977,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -1987,7 +1987,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -1997,7 +1997,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -2007,7 +2007,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -2017,7 +2017,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -2027,7 +2027,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:00am CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -2037,7 +2037,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:30am CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -2047,7 +2047,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:45am CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -2057,7 +2057,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "11:45am CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -2067,7 +2067,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "12:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2077,7 +2077,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "1:00pm CT",
-    network: ["ACC Extra"],
+    networks: ["ACC Extra"],
     tag: ["regular"],
   },
   {
@@ -2087,7 +2087,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "1:00pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -2097,7 +2097,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -2107,7 +2107,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -2117,7 +2117,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -2127,7 +2127,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2137,7 +2137,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -2147,7 +2147,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -2157,7 +2157,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -2167,7 +2167,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -2177,7 +2177,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -2187,7 +2187,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -2197,7 +2197,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2207,7 +2207,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "3:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -2217,7 +2217,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "3:00pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -2227,7 +2227,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "3:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -2237,7 +2237,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "3:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2247,7 +2247,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "3:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -2257,7 +2257,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "3:15pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -2267,7 +2267,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "3:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2277,17 +2277,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
     teams: ["FIU", "FAU"],
     league: "NCAA",
-    conferences: ["CSU", "American"],
+    conferences: ["CUSA", "American"],
     sport: "football",
     date: "2026-09-19",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2297,7 +2297,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2307,7 +2307,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "5:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -2317,7 +2317,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -2327,7 +2327,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2337,7 +2337,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2347,7 +2347,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2357,7 +2357,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2367,17 +2367,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
     teams: ["Delaware State", "South Florida"],
     league: "NCAA",
-    conferences: ["American", "Mid Eastern Athletic"],
+    conferences: ["American", "MEAC"],
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2387,7 +2387,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2397,7 +2397,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2407,7 +2407,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2417,7 +2417,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2427,7 +2427,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:15pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -2437,7 +2437,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:15pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -2447,7 +2447,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -2457,7 +2457,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -2467,7 +2467,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -2477,17 +2477,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
     teams: ["West Virginia", "Virginia"],
     league: "NCAA",
-    conferences: ["Big 12", "ACC"],
+    conferences: ["Big12", "ACC"],
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: ["ACCN"],
+    networks: ["ACCN"],
     tag: ["regular"],
   },
   {
@@ -2497,7 +2497,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -2507,7 +2507,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -2517,7 +2517,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "6:30pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -2527,7 +2527,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "7:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -2537,7 +2537,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "7:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -2547,7 +2547,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "7:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2557,7 +2557,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "7:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -2567,7 +2567,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "9:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -2577,7 +2577,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "9:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -2587,7 +2587,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "9:30pm CT",
-    network: ["TNT", "HBO Max"],
+    networks: ["TNT", "HBO Max"],
     tag: ["regular"],
   },
   {
@@ -2597,7 +2597,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "9:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -2607,7 +2607,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "10:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -2617,7 +2617,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "10:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -2627,7 +2627,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-19",
     time: "10:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
 
@@ -2641,7 +2641,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-24",
     time: "6:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -2653,17 +2653,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-25",
     time: "3:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
     teams: ["Howard", "Rutgers"],
     league: "NCAA",
-    conferences: ["Mid Eastern Athletic", "Big10"],
+    conferences: ["MEAC", "Big10"],
     sport: "football",
     date: "2026-09-25",
     time: "6:00pm CT",
-    network: ["BTN"],
+    networks: ["BTN"],
     tag: ["regular"],
   },
   {
@@ -2673,7 +2673,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-25",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -2683,7 +2683,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-25",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -2693,7 +2693,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-25",
     time: "9:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -2705,7 +2705,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -2715,7 +2715,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -2725,7 +2725,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2735,7 +2735,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2745,7 +2745,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2755,7 +2755,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2765,7 +2765,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2775,7 +2775,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2785,7 +2785,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2795,7 +2795,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2805,7 +2805,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2815,7 +2815,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2825,7 +2825,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2835,7 +2835,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2845,7 +2845,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2855,7 +2855,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2865,7 +2865,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2875,7 +2875,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2885,7 +2885,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2895,7 +2895,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2905,7 +2905,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2915,7 +2915,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2925,7 +2925,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2935,7 +2935,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2945,7 +2945,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2955,7 +2955,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2965,7 +2965,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2975,7 +2975,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2985,7 +2985,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -2995,7 +2995,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3005,7 +3005,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3015,7 +3015,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3025,7 +3025,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3035,7 +3035,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3045,7 +3045,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3055,7 +3055,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3065,7 +3065,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3075,7 +3075,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3085,7 +3085,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3095,7 +3095,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3105,7 +3105,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3115,7 +3115,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "11:00am CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3125,7 +3125,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "11:00am CT",
-    network: ["ACC Extra"],
+    networks: ["ACC Extra"],
     tag: ["regular"],
   },
   {
@@ -3135,7 +3135,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "11:45am CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -3145,7 +3145,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "12:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3155,7 +3155,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "2:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -3165,7 +3165,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "2:30pm CT",
-    network: ["ACC Extra"],
+    networks: ["ACC Extra"],
     tag: ["regular"],
   },
   {
@@ -3175,7 +3175,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3185,7 +3185,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3195,7 +3195,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3205,17 +3205,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
     teams: ["North Carolina Central", "East Carolina"],
     league: "NCAA",
-    conferences: ["American", "Mid Eastern Athletic"],
+    conferences: ["American", "MEAC"],
     sport: "football",
     date: "2026-09-26",
     time: "3:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3225,7 +3225,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -3235,7 +3235,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3245,7 +3245,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "5:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -3255,7 +3255,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "6:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3265,7 +3265,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3275,7 +3275,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "6:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3285,7 +3285,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "6:30pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -3295,7 +3295,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "6:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3305,7 +3305,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "6:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3315,7 +3315,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "7:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -3325,7 +3325,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "8:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -3335,7 +3335,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "9:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -3345,7 +3345,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-26",
     time: "9:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -3359,7 +3359,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-01",
     time: "7:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3369,7 +3369,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-01",
     time: "8:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -3381,7 +3381,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-02",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -3391,7 +3391,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-02",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3401,7 +3401,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-02",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
 
@@ -3413,7 +3413,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3423,7 +3423,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3433,7 +3433,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3443,7 +3443,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3453,7 +3453,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3463,7 +3463,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3473,7 +3473,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3483,7 +3483,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3493,7 +3493,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3503,7 +3503,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3513,7 +3513,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3523,7 +3523,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3533,7 +3533,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3543,7 +3543,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3553,7 +3553,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3563,7 +3563,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3573,7 +3573,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3583,7 +3583,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3593,7 +3593,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3603,7 +3603,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3613,7 +3613,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3623,7 +3623,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3633,7 +3633,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3643,7 +3643,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3653,7 +3653,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3663,7 +3663,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3673,7 +3673,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3683,7 +3683,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3693,7 +3693,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -3703,7 +3703,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3713,7 +3713,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3723,7 +3723,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3733,7 +3733,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3743,7 +3743,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3753,7 +3753,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3763,7 +3763,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3773,7 +3773,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3783,7 +3783,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3793,7 +3793,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3803,7 +3803,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3813,7 +3813,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3823,7 +3823,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3833,7 +3833,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "11:00am CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -3843,7 +3843,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3853,7 +3853,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "2:30pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3863,7 +3863,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "2:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -3873,7 +3873,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -3883,7 +3883,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "5:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -3893,7 +3893,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "6:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3903,7 +3903,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "6:45pm CT",
-    network: ["SEC Network"],
+    networks: ["SEC Network"],
     tag: ["regular"],
   },
   {
@@ -3913,7 +3913,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "7:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -3923,7 +3923,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "8:30pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -3933,7 +3933,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "9:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -3943,7 +3943,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-03",
     time: "10:59pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
 
@@ -3957,7 +3957,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-06",
     time: "7:00pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -3969,7 +3969,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-07",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -3979,7 +3979,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-07",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -3991,7 +3991,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-08",
     time: "6:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -4001,7 +4001,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-08",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -4011,7 +4011,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-08",
     time: "6:30pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4021,7 +4021,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-08",
     time: "6:30pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -4033,7 +4033,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-09",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -4043,7 +4043,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-09",
     time: "8:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4053,7 +4053,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-09",
     time: "8:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -4063,7 +4063,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-09",
     time: "8:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -4073,7 +4073,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-09",
     time: "9:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -4085,7 +4085,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4095,7 +4095,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4105,7 +4105,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4115,7 +4115,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4125,7 +4125,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4135,7 +4135,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4145,7 +4145,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4155,7 +4155,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4165,7 +4165,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4175,7 +4175,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4185,7 +4185,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4195,7 +4195,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4205,7 +4205,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4215,7 +4215,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4225,7 +4225,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4235,7 +4235,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4245,7 +4245,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4255,7 +4255,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4265,7 +4265,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4275,7 +4275,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4285,7 +4285,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4295,7 +4295,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4305,7 +4305,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4315,7 +4315,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4325,7 +4325,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4335,7 +4335,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4345,7 +4345,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4355,7 +4355,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4365,7 +4365,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4375,7 +4375,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4385,7 +4385,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4395,7 +4395,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4405,7 +4405,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4415,7 +4415,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4425,7 +4425,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4435,7 +4435,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4445,7 +4445,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4455,7 +4455,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4465,7 +4465,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -4475,7 +4475,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4485,7 +4485,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "2:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -4495,7 +4495,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -4505,7 +4505,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -4515,7 +4515,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "6:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -4525,7 +4525,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "6:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -4535,7 +4535,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "9:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
 
@@ -4549,7 +4549,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-13",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -4559,7 +4559,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-13",
     time: "7:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -4569,7 +4569,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-14",
     time: "6:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -4579,7 +4579,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-10",
     time: "7:00pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -4591,7 +4591,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-15",
     time: "6:30pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4601,7 +4601,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-15",
     time: "6:30pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4611,7 +4611,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-15",
     time: "7:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
 
@@ -4623,7 +4623,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-16",
     time: "6:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -4633,7 +4633,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-16",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -4643,7 +4643,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-16",
     time: "7:00pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -4655,7 +4655,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4665,7 +4665,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4675,7 +4675,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4685,7 +4685,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4695,7 +4695,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4705,7 +4705,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4715,7 +4715,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4725,7 +4725,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4735,7 +4735,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4745,7 +4745,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4755,7 +4755,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4765,7 +4765,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4775,7 +4775,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4785,7 +4785,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4795,7 +4795,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4805,7 +4805,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4815,7 +4815,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4825,7 +4825,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4835,7 +4835,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4845,7 +4845,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4855,7 +4855,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4865,7 +4865,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4875,7 +4875,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4885,7 +4885,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4895,7 +4895,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4905,7 +4905,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4915,7 +4915,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4925,7 +4925,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4935,7 +4935,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4945,7 +4945,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4955,7 +4955,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4965,7 +4965,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4975,7 +4975,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4985,7 +4985,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -4995,7 +4995,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5005,7 +5005,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5015,7 +5015,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5025,7 +5025,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5035,7 +5035,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5045,7 +5045,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5055,7 +5055,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5065,7 +5065,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5075,7 +5075,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5085,7 +5085,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5095,7 +5095,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "12:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -5105,7 +5105,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "2:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -5115,7 +5115,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5125,7 +5125,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -5135,7 +5135,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5145,7 +5145,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "6:30pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5155,7 +5155,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "8:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -5165,7 +5165,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-17",
     time: "9:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
 
@@ -5179,7 +5179,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-20",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5189,7 +5189,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-20",
     time: "6:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -5199,7 +5199,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-20",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -5211,7 +5211,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-21",
     time: "7:00pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -5223,7 +5223,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "6:00pm CT",
-    network: ["ESPNU"],
+    networks: ["ESPNU"],
     tag: ["regular"],
   },
   {
@@ -5233,7 +5233,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5243,7 +5243,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -5255,7 +5255,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-23",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -5265,7 +5265,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-23",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5275,7 +5275,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-23",
     time: "7:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -5285,7 +5285,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-23",
     time: "8:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -5295,7 +5295,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-23",
     time: "9:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -5307,7 +5307,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5317,7 +5317,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5327,7 +5327,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5337,7 +5337,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5347,7 +5347,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5357,7 +5357,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5367,7 +5367,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5377,7 +5377,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5387,7 +5387,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5397,7 +5397,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5407,7 +5407,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5417,7 +5417,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5427,7 +5427,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5437,7 +5437,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5447,7 +5447,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5457,7 +5457,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5467,7 +5467,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5477,7 +5477,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5487,7 +5487,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5497,7 +5497,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5507,7 +5507,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5517,7 +5517,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5527,7 +5527,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5537,7 +5537,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5547,7 +5547,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5557,7 +5557,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5567,7 +5567,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -5577,7 +5577,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5587,7 +5587,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5597,7 +5597,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5607,7 +5607,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5617,7 +5617,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5627,7 +5627,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5637,7 +5637,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5647,7 +5647,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5657,7 +5657,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5667,7 +5667,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "11:00am CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5677,7 +5677,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5687,7 +5687,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "4:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -5697,7 +5697,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -5707,7 +5707,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "5:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -5717,7 +5717,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "6:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5727,7 +5727,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "6:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5737,7 +5737,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-24",
     time: "9:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -5751,7 +5751,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-27",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5761,7 +5761,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-27",
     time: "7:00pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -5773,7 +5773,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-28",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -5783,7 +5783,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-28",
     time: "7:00pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -5795,7 +5795,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-29",
     time: "6:30pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5805,7 +5805,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-29",
     time: "7:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -5817,7 +5817,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-30",
     time: "6:00pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -5827,7 +5827,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-30",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -5837,7 +5837,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-30",
     time: "9:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
 
@@ -5849,7 +5849,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5859,7 +5859,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5869,7 +5869,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5879,7 +5879,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5889,7 +5889,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5899,7 +5899,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5909,7 +5909,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5919,7 +5919,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5929,7 +5929,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5939,7 +5939,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5949,7 +5949,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5959,7 +5959,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5969,7 +5969,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5979,7 +5979,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5989,7 +5989,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -5999,7 +5999,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6009,7 +6009,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6019,7 +6019,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6029,7 +6029,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6039,7 +6039,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6049,7 +6049,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6059,7 +6059,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6069,7 +6069,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6079,7 +6079,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6089,7 +6089,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6099,7 +6099,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6109,7 +6109,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6119,7 +6119,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6129,7 +6129,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6139,7 +6139,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6149,7 +6149,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6159,7 +6159,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6169,7 +6169,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6179,7 +6179,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6189,7 +6189,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6199,7 +6199,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6209,7 +6209,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6219,7 +6219,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6229,7 +6229,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -6239,7 +6239,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "2:00pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -6249,7 +6249,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "2:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -6259,7 +6259,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "2:30pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -6269,7 +6269,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "2:30pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -6279,7 +6279,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -6289,7 +6289,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -6299,7 +6299,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "9:00pm CT",
-    network: ["ESPN Unlimited", "The CW Network"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -6309,7 +6309,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-31",
     time: "9:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
 
@@ -6323,7 +6323,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-03",
     time: "6:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6333,7 +6333,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-03",
     time: "6:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -6345,7 +6345,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-04",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6355,7 +6355,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-04",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6365,7 +6365,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-04",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -6377,7 +6377,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-05",
     time: "7:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6387,7 +6387,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-05",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -6399,7 +6399,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-06",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -6409,7 +6409,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-06",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -6419,7 +6419,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-06",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -6429,7 +6429,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-06",
     time: "8:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -6439,7 +6439,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-06",
     time: "9:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -6451,7 +6451,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6461,7 +6461,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6471,7 +6471,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6481,7 +6481,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6491,7 +6491,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6501,7 +6501,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6511,7 +6511,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6521,7 +6521,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6531,7 +6531,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6541,7 +6541,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6551,7 +6551,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6561,7 +6561,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6571,7 +6571,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6581,7 +6581,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6591,7 +6591,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6601,7 +6601,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6611,7 +6611,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6621,7 +6621,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6631,7 +6631,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6641,7 +6641,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "11:00am CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6651,17 +6651,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
-    tag: ["regular"],
-  },
-  {
-    teams: ["UCLA", "Minnesota"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-11-07",
-    time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6671,7 +6661,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6681,7 +6671,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6691,7 +6681,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6701,7 +6691,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6711,7 +6701,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6721,7 +6711,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6731,7 +6721,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6741,7 +6731,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6751,7 +6741,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6761,7 +6751,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6771,7 +6761,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -6781,7 +6771,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6791,7 +6781,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6801,7 +6791,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6811,7 +6801,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6821,7 +6811,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6831,7 +6821,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -6841,7 +6831,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "2:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6851,7 +6841,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "2:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6861,7 +6851,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -6871,7 +6861,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "2:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6881,7 +6871,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "3:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6891,7 +6881,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "4:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6901,7 +6891,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -6911,7 +6901,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -6921,7 +6911,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "6:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -6931,7 +6921,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "6:30pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -6941,7 +6931,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "8:30pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -6951,7 +6941,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "9:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -6961,7 +6951,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-07",
     time: "9:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
 
@@ -6975,7 +6965,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6985,7 +6975,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -6995,7 +6985,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-10",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -7007,7 +6997,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-11",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7017,7 +7007,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-11",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7027,7 +7017,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-11",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -7039,7 +7029,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-12",
     time: "7:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7049,7 +7039,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-12",
     time: "8:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -7061,7 +7051,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-13",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -7071,7 +7061,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-13",
     time: "8:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -7081,7 +7071,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-13",
     time: "9:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -7093,7 +7083,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7103,7 +7093,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7113,7 +7103,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7123,7 +7113,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7133,7 +7123,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7143,7 +7133,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7153,7 +7143,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7163,7 +7153,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7173,7 +7163,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7183,7 +7173,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7193,7 +7183,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7203,7 +7193,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7213,7 +7203,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7223,7 +7213,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7233,7 +7223,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7243,7 +7233,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7253,7 +7243,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7263,7 +7253,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7273,7 +7263,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7283,7 +7273,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7293,7 +7283,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7303,7 +7293,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7313,7 +7303,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7323,7 +7313,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7333,7 +7323,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7343,7 +7333,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7353,7 +7343,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7363,7 +7353,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7373,7 +7363,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7383,7 +7373,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7393,7 +7383,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7403,7 +7393,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7413,7 +7403,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7423,7 +7413,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7433,7 +7423,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7443,7 +7433,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -7453,7 +7443,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7463,7 +7453,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7473,7 +7463,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7483,7 +7473,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7493,7 +7483,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7503,7 +7493,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7513,7 +7503,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -7523,7 +7513,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "1:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7533,7 +7523,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "2:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7543,7 +7533,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "2:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7553,7 +7543,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "2:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -7563,7 +7553,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "2:30pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7573,7 +7563,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -7583,7 +7573,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "3:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -7593,7 +7583,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -7603,7 +7593,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -7613,7 +7603,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "6:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -7623,7 +7613,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "8:30pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -7633,7 +7623,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "9:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -7643,7 +7633,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-14",
     time: "10:59pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
 
@@ -7657,7 +7647,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7667,7 +7657,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7677,7 +7667,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-17",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -7689,7 +7679,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-18",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7699,7 +7689,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-18",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -7711,7 +7701,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-19",
     time: "6:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -7723,7 +7713,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-20",
     time: "5:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -7733,7 +7723,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-20",
     time: "6:30pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
   {
@@ -7743,7 +7733,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-20",
     time: "6:30pm CT",
-    network: ["ESPN2"],
+    networks: ["ESPN2"],
     tag: ["regular"],
   },
   {
@@ -7753,7 +7743,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-20",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -7763,7 +7753,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-20",
     time: "7:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
 
@@ -7775,7 +7765,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7785,7 +7775,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7795,7 +7785,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7805,7 +7795,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7815,7 +7805,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7825,7 +7815,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7835,7 +7825,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7845,7 +7835,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7855,7 +7845,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7865,7 +7855,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7875,7 +7865,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7885,7 +7875,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7895,7 +7885,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7905,7 +7895,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7915,7 +7905,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7925,7 +7915,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7935,7 +7925,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7945,7 +7935,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7955,7 +7945,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7965,7 +7955,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7975,7 +7965,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7985,7 +7975,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -7995,7 +7985,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8005,7 +7995,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8015,7 +8005,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8025,7 +8015,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8035,7 +8025,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8045,7 +8035,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8055,7 +8045,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8065,7 +8055,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8075,7 +8065,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8085,7 +8075,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8095,7 +8085,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8105,7 +8095,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8115,7 +8105,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8125,7 +8115,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8135,7 +8125,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8145,7 +8135,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8155,7 +8145,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8165,7 +8155,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "11:00am CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -8175,7 +8165,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "11:00am CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -8185,7 +8175,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "11:00am CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8195,7 +8185,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "12:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -8205,7 +8195,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "12:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8215,7 +8205,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "1:00pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -8225,7 +8215,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "1:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8235,7 +8225,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "1:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8245,7 +8235,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "2:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8255,7 +8245,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "2:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8265,7 +8255,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "2:30pm CT",
-    network: ["SEC Network+"],
+    networks: ["SEC Network+"],
     tag: ["regular"],
   },
   {
@@ -8275,7 +8265,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -8285,7 +8275,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "3:00pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -8295,7 +8285,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "5:00pm CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
@@ -8305,7 +8295,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "6:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -8315,7 +8305,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "6:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -8325,7 +8315,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "6:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -8335,7 +8325,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "8:00pm CT",
-    network: ["FS1"],
+    networks: ["FS1"],
     tag: ["regular"],
   },
   {
@@ -8345,17 +8335,17 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-21",
     time: "TBD CT",
-    network: ["USA Net"],
+    networks: ["USA Network"],
     tag: ["regular"],
   },
   {
     teams: ["Utah State", "Oregon State"],
     league: "NCAA",
-    conferences: ["Pac 12"],
+    conferences: ["Pac12"],
     sport: "football",
     date: "2026-11-21",
     time: "9:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
 
@@ -8369,7 +8359,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-24",
     time: "6:00pm CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8379,7 +8369,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-24",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
 
@@ -8391,7 +8381,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-26",
     time: "7:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -8403,7 +8393,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8413,7 +8403,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8423,7 +8413,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8433,7 +8423,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "11:00am CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -8443,7 +8433,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "11:00am CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8453,7 +8443,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "11:00am CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -8463,7 +8453,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "11:00am CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -8473,7 +8463,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "2:00pm CT",
-    network: ["ESPN+"],
+    networks: ["ESPN+"],
     tag: ["regular"],
   },
   {
@@ -8483,7 +8473,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "2:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -8493,7 +8483,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -8503,7 +8493,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "6:30pm CT",
-    network: ["ABC"],
+    networks: ["ABC"],
     tag: ["regular"],
   },
   {
@@ -8513,7 +8503,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "6:30pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
   {
@@ -8523,7 +8513,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "8:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
 
@@ -8535,7 +8525,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8545,7 +8535,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8555,7 +8545,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8565,7 +8555,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8575,7 +8565,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8585,7 +8575,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8595,7 +8585,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8605,7 +8595,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8615,7 +8605,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8625,7 +8615,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8635,7 +8625,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8645,7 +8635,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8655,7 +8645,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8665,7 +8655,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8675,7 +8665,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8685,7 +8675,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8695,7 +8685,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8705,7 +8695,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8715,7 +8705,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8725,7 +8715,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8735,7 +8725,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8745,7 +8735,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8755,7 +8745,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8765,7 +8755,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8775,7 +8765,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8785,7 +8775,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8795,7 +8785,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8805,7 +8795,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8815,7 +8805,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: [""],
     tag: ["regular"],
   },
   {
@@ -8825,7 +8815,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8835,7 +8825,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8845,7 +8835,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8855,7 +8845,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8865,7 +8855,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8875,7 +8865,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8885,7 +8875,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
   {
@@ -8895,7 +8885,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "11:00am CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8905,7 +8895,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "11:00am CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8915,7 +8905,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8925,7 +8915,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8935,7 +8925,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8945,7 +8935,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8955,7 +8945,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "TBD CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8965,7 +8955,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "11:00am CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -8975,7 +8965,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "12:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8985,7 +8975,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "1:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -8995,7 +8985,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "1:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -9005,7 +8995,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "1:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -9015,7 +9005,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "2:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["regular"],
   },
   {
@@ -9025,7 +9015,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "2:30pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -9035,7 +9025,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "3:30pm CT",
-    network: ["ESPN Unlimited", "The CW"],
+    networks: ["ESPN Unlimited", "The CW"],
     tag: ["regular"],
   },
   {
@@ -9045,7 +9035,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "8:00pm CT",
-    network: ["CBSSN"],
+    networks: ["CBSSN"],
     tag: ["regular"],
   },
   {
@@ -9055,115 +9045,115 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-28",
     time: "10:59pm CT",
-    network: ["MW+"],
+    networks: ["MW+"],
     tag: ["regular"],
   },
 
   //NCAA Football - Week 14
 
   //Dec-04-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "TBD CT",
-    network: [""],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "6:00pm CT",
-    network: ["ESPN"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "7:00pm CT",
-    network: ["ABC"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "7:00pm CT",
-    network: ["CBS", "Paramount+"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "8:00pm CT",
-    network: ["FOX"],
-    tag: ["regular"],
-  },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "TBD CT",
+  //   networks: [""],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "6:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "7:00pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "7:00pm CT",
+  //   networks: ["CBS", "Paramount+"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "8:00pm CT",
+  //   networks: ["FOX"],
+  //   tag: ["regular"],
+  // },
 
   //Dec-05-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "11:00am CT",
-    network: ["ABC"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "11:00am CT",
-    network: ["ESPN"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "3:00pm CT",
-    network: ["ABC"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "7:00pm CT",
-    network: ["ABC"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-04",
-    time: "7:00pm CT",
-    network: ["FOX"],
-    tag: ["regular"],
-  },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "11:00am CT",
+  //   networks: ["ABC"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "11:00am CT",
+  //   networks: ["ESPN"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "3:00pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "7:00pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-04",
+  //   time: "7:00pm CT",
+  //   networks: ["FOX"],
+  //   tag: ["regular"],
+  // },
 
   //NCAA Football - Week 15
   {
@@ -9173,487 +9163,487 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-07",
     time: "2:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
 
-  //NCAA Football Bowls
+  // //NCAA Football Bowls
 
-  //Dec-12-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-12",
-    time: "11:00am CT",
-    network: ["ABC"],
-    tag: ["bowl"],
-  },
+  // //Dec-12-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-12",
+  //   time: "11:00am CT",
+  //   networks: ["ABC"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-15-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-15",
-    time: "4:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-15",
-    time: "8:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // //Dec-15-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-15",
+  //   time: "4:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-15",
+  //   time: "8:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-18-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-18",
-    time: "10:00am CT",
-    network: ["ESPN"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-18",
-    time: "1:30pm CT",
-    network: ["ESPN"],
-    tag: ["regular"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-18",
-    time: "7:00pm CT",
-    network: ["ESPN"],
-    tag: ["regular"],
-  },
+  // //Dec-18-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-18",
+  //   time: "10:00am CT",
+  //   networks: ["ESPN"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-18",
+  //   time: "1:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["regular"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-18",
+  //   time: "7:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["regular"],
+  // },
 
-  //Dec-19-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-19",
-    time: "11:00am CT",
-    network: ["ABC", "ESPN"],
-    tag: ["bowl", "playoff"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-19",
-    time: "2:30pm CT",
-    network: ["TNT", "truTV", "HBO Max"],
-    tag: ["bowl", "playoff"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-19",
-    time: "6:30pm CT",
-    network: ["TNT", "truTV", "HBO Max"],
-    tag: ["bowl", "playoff"],
-  },
+  // //Dec-19-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-19",
+  //   time: "11:00am CT",
+  //   networks: ["ABC", "ESPN"],
+  //   tag: ["bowl", "playoff"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-19",
+  //   time: "2:30pm CT",
+  //   networks: ["TNT", "truTV", "HBO Max"],
+  //   tag: ["bowl", "playoff"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-19",
+  //   time: "6:30pm CT",
+  //   networks: ["TNT", "truTV", "HBO Max"],
+  //   tag: ["bowl", "playoff"],
+  // },
 
-  //Dec-21-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-21",
-    time: "10:00am CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-21",
-    time: "1:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // //Dec-21-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-21",
+  //   time: "10:00am CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-21",
+  //   time: "1:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-22-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-22",
-    time: "12:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-22",
-    time: "4:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-22",
-    time: "7:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // //Dec-22-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-22",
+  //   time: "12:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-22",
+  //   time: "4:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-22",
+  //   time: "7:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-23-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-23",
-    time: "1:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-23",
-    time: "4:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-23",
-    time: "8:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // //Dec-23-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-23",
+  //   time: "1:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-23",
+  //   time: "4:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-23",
+  //   time: "8:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-24-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-24",
-    time: "1:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-24",
-    time: "6:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // //Dec-24-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-24",
+  //   time: "1:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-24",
+  //   time: "6:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-26-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-26",
-    time: "11:00am CT",
-    network: ["ABC"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-26",
-    time: "1:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-26",
-    time: "2:30pm CT",
-    network: ["ABC"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-26",
-    time: "4:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-26",
-    time: "6:30pm CT",
-    network: ["ABC"],
-    tag: ["bowl"],
-  },
+  // //Dec-26-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-26",
+  //   time: "11:00am CT",
+  //   networks: ["ABC"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-26",
+  //   time: "1:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-26",
+  //   time: "2:30pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-26",
+  //   time: "4:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-26",
+  //   time: "6:30pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-28-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-28",
-    time: "1:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // //Dec-28-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-28",
+  //   time: "1:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-29-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-29",
-    time: "1:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-29",
-    time: "4:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-29",
-    time: "8:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // //Dec-29-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-29",
+  //   time: "1:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-29",
+  //   time: "4:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-29",
+  //   time: "8:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
 
-  //Dec-30-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-30",
-    time: "10:30am CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-30",
-    time: "2:00pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-30",
-    time: "6:30pm CT",
-    network: ["TNT", "truTV", "HBO Max"],
-    tag: ["bowl", "playoff"],
-  },
+  // //Dec-30-2026
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-30",
+  //   time: "10:30am CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-30",
+  //   time: "2:00pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-30",
+  //   time: "6:30pm CT",
+  //   networks: ["TNT", "truTV", "HBO Max"],
+  //   tag: ["bowl", "playoff"],
+  // },
 
   //Dec-31-2026
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-31",
-    time: "11:00am CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-31",
-    time: "1:00pm CT",
-    network: ["CBS"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-31",
-    time: "2:45pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2026-12-31",
-    time: "6:30pm CT",
-    network: ["ESPN"],
-    tag: ["bowl"],
-  },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-31",
+  //   time: "11:00am CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-31",
+  //   time: "1:00pm CT",
+  //   networks: ["CBS"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-31",
+  //   time: "2:45pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2026-12-31",
+  //   time: "6:30pm CT",
+  //   networks: ["ESPN"],
+  //   tag: ["bowl"],
+  //},
 
   //Jan-1-2027
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-01",
-    time: "TBD CT",
-    network: [""],
-    tag: ["bowl", "playoff"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-01",
-    time: "TBD CT",
-    network: [""],
-    tag: ["bowl", "playoff"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-01",
-    time: "TBD CT",
-    network: [""],
-    tag: ["bowl", "playoff"],
-  },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-01",
+  //   time: "TBD CT",
+  //   networks: [""],
+  //   tag: ["bowl", "playoff"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-01",
+  //   time: "TBD CT",
+  //   networks: [""],
+  //   tag: ["bowl", "playoff"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-01",
+  //   time: "TBD CT",
+  //   networks: [""],
+  //   tag: ["bowl", "playoff"],
+  // },
 
   //Jan-02-2027
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-02",
-    time: "11:00am CT",
-    network: ["ABC"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-02",
-    time: "2:30pm CT",
-    network: ["ABC"],
-    tag: ["bowl"],
-  },
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-02",
-    time: "6:30pm CT",
-    network: ["ABC"],
-    tag: ["bowl"],
-  },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-02",
+  //   time: "11:00am CT",
+  //   networks: ["ABC"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-02",
+  //   time: "2:30pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["bowl"],
+  // },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-02",
+  //   time: "6:30pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["bowl"],
+  // },
 
   //Jan-14-2027
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-14",
-    time: "6:30pm CT",
-    network: ["TNT", "truTV", "HBO Max"],
-    tag: ["bowl", "playoff"],
-  },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-14",
+  //   time: "6:30pm CT",
+  //   networks: ["TNT", "truTV", "HBO Max"],
+  //   tag: ["bowl", "playoff"],
+  // },
 
-  //Jan-15-2027
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-15",
-    time: "6:30pm CT",
-    network: ["ABC", "ESPN"],
-    tag: ["bowl", "playoff"],
-  },
+  // //Jan-15-2027
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-15",
+  //   time: "6:30pm CT",
+  //   networks: ["ABC", "ESPN"],
+  //   tag: ["bowl", "playoff"],
+  // },
 
   //Jan-25-2027
-  {
-    teams: ["TBD", "TBD"],
-    league: "NCAA",
-    conferences: [""],
-    sport: "football",
-    date: "2027-01-25",
-    time: "6:30pm CT",
-    network: ["ABC"],
-    tag: ["championship"],
-  },
+  // {
+  //   teams: ["TBD", "TBD"],
+  //   league: "NCAA",
+  //   conferences: [""],
+  //   sport: "football",
+  //   date: "2027-01-25",
+  //   time: "6:30pm CT",
+  //   networks: ["ABC"],
+  //   tag: ["championship"],
+  // },
 
   //NFL SCHEDULE
 
@@ -9665,7 +9655,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-06",
     time: "7:00pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["hallOfFame"],
   },
 
@@ -9679,7 +9669,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-13",
     time: "6:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -9689,7 +9679,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-13",
     time: "6:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9699,7 +9689,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-06",
     time: "6:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -9709,7 +9699,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-13",
     time: "7:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9719,7 +9709,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-13",
     time: "7:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -9729,7 +9719,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-13",
     time: "8:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -9741,7 +9731,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-14",
     time: "6:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9751,7 +9741,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-14",
     time: "6:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9761,7 +9751,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-14",
     time: "6:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
 
@@ -9773,7 +9763,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-15",
     time: "12:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -9783,7 +9773,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-15",
     time: "12:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9793,7 +9783,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-15",
     time: "12:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9803,7 +9793,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-15",
     time: "3:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9813,7 +9803,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-15",
     time: "3:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9823,7 +9813,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-15",
     time: "6:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9833,7 +9823,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-15",
     time: "7:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -9847,7 +9837,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-20",
     time: "7:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["preseason"],
   },
   {
@@ -9857,7 +9847,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-20",
     time: "9:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -9869,7 +9859,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-21",
     time: "6:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9879,7 +9869,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-21",
     time: "6:30pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9889,7 +9879,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-21",
     time: "8:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -9901,7 +9891,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "11:00am CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -9911,7 +9901,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "12:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9921,7 +9911,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "12:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -9931,7 +9921,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "12:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9941,7 +9931,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "3:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9951,7 +9941,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "3:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9961,7 +9951,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "6:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -9971,7 +9961,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "6:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -9981,7 +9971,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "6:30pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -9991,7 +9981,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "9:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -10003,7 +9993,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-22",
     time: "7:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["preseason"],
   },
 
@@ -10017,7 +10007,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-27",
     time: "6:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -10027,7 +10017,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-27",
     time: "7:00pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["preseason"],
   },
   {
@@ -10037,7 +10027,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-27",
     time: "7:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -10047,7 +10037,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-27",
     time: "9:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -10059,7 +10049,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "5:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -10069,7 +10059,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-27",
     time: "6:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -10079,7 +10069,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "6:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -10089,7 +10079,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "6:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -10099,7 +10089,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "6:30pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -10109,7 +10099,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "7:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -10119,7 +10109,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "7:00pm CT",
-    network: [""],
+    networks: ["N/A"],
     tag: ["preseason"],
   },
   {
@@ -10129,7 +10119,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "7:00pm CT",
-    network: ["ESPN Unlimited"],
+    networks: ["ESPN Unlimited"],
     tag: ["preseason"],
   },
   {
@@ -10139,7 +10129,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "7:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["preseason"],
   },
   {
@@ -10149,7 +10139,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-28",
     time: "8:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -10161,7 +10151,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "12:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
   {
@@ -10171,7 +10161,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-08-29",
     time: "5:00pm CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["preseason"],
   },
 
@@ -10185,7 +10175,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-01",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -10197,7 +10187,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-10",
     time: "7:35pm CT",
-    network: ["Netflix"],
+    networks: ["Netflix"],
     tag: ["regular"],
   },
 
@@ -10209,7 +10199,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10219,7 +10209,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10229,7 +10219,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10239,7 +10229,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10249,7 +10239,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10259,7 +10249,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10269,7 +10259,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10279,7 +10269,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10289,7 +10279,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10299,7 +10289,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10309,7 +10299,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10319,7 +10309,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10329,7 +10319,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-13",
     time: "7:00pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -10341,7 +10331,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-14",
     time: "7:20pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -10355,7 +10345,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-17",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -10367,7 +10357,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10377,7 +10367,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10387,7 +10377,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10397,7 +10387,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10407,7 +10397,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10417,7 +10407,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10427,7 +10417,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10437,7 +10427,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10447,7 +10437,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10457,7 +10447,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10467,7 +10457,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10477,7 +10467,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10487,7 +10477,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10497,7 +10487,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-20",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -10509,7 +10499,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-21",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -10523,7 +10513,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-24",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -10535,7 +10525,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10545,7 +10535,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10555,7 +10545,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10565,7 +10555,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10575,7 +10565,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10585,7 +10575,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10595,7 +10585,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10605,7 +10595,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10615,7 +10605,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10625,7 +10615,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10635,7 +10625,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10645,7 +10635,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10655,7 +10645,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10665,7 +10655,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-27",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -10677,7 +10667,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-09-28",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -10691,7 +10681,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-01",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -10703,7 +10693,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "8:30am CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["regular"],
   },
   {
@@ -10713,7 +10703,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10723,7 +10713,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10733,7 +10723,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10743,7 +10733,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10753,7 +10743,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10763,7 +10753,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10773,7 +10763,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10783,7 +10773,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10793,7 +10783,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "3:05pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10803,7 +10793,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10813,7 +10803,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10823,7 +10813,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10833,7 +10823,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-04",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -10845,7 +10835,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-05",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -10859,7 +10849,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-08",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -10871,7 +10861,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "8:30am CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["regular"],
   },
   {
@@ -10881,7 +10871,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10891,7 +10881,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10901,7 +10891,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10911,7 +10901,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10921,7 +10911,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10931,7 +10921,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10941,7 +10931,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10951,7 +10941,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -10961,7 +10951,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10971,7 +10961,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10981,7 +10971,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -10991,7 +10981,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-11",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11003,7 +10993,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-12",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -11017,7 +11007,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-15",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -11029,7 +11019,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "8:30am CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["regular"],
   },
   {
@@ -11039,7 +11029,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11049,7 +11039,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11059,7 +11049,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11069,7 +11059,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11079,7 +11069,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11089,7 +11079,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11099,7 +11089,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11109,7 +11099,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "3:05pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11119,7 +11109,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11129,7 +11119,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11139,7 +11129,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-18",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11151,7 +11141,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-19",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -11165,7 +11155,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "7:15am CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
   {
@@ -11175,7 +11165,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11185,7 +11175,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11195,7 +11185,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11205,7 +11195,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11215,7 +11205,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11225,7 +11215,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11235,7 +11225,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11245,7 +11235,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11255,7 +11245,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11265,7 +11255,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11275,7 +11265,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-22",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11287,7 +11277,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-26",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -11301,7 +11291,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-10-29",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -11313,7 +11303,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11323,7 +11313,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11333,7 +11323,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11343,7 +11333,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11353,7 +11343,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11363,7 +11353,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11373,7 +11363,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11383,7 +11373,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11393,7 +11383,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "3:05pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11403,7 +11393,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11413,7 +11403,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11423,7 +11413,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-01",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11435,7 +11425,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-02",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -11449,7 +11439,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-05",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -11461,7 +11451,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "8:30am CT",
-    network: ["NFL Network"],
+    networks: ["NFL Network"],
     tag: ["regular"],
   },
   {
@@ -11471,7 +11461,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11481,7 +11471,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11491,7 +11481,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11501,7 +11491,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11511,7 +11501,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11521,7 +11511,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11531,7 +11521,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11541,7 +11531,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11551,7 +11541,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11561,7 +11551,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11571,7 +11561,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11581,7 +11571,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-08",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11593,7 +11583,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-09",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -11607,7 +11597,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-12",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -11619,7 +11609,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "8:30am CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11629,7 +11619,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11639,7 +11629,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11649,7 +11639,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11659,7 +11649,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11669,7 +11659,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11679,7 +11669,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11689,7 +11679,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11699,7 +11689,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11709,7 +11699,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11719,7 +11709,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11729,7 +11719,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-15",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11741,7 +11731,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-16",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -11755,7 +11745,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-19",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -11767,7 +11757,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11777,7 +11767,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11787,7 +11777,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11797,7 +11787,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11807,7 +11797,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11817,7 +11807,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11827,7 +11817,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11837,7 +11827,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "3:05pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11847,7 +11837,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11857,7 +11847,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11867,7 +11857,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-22",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11879,7 +11869,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-23",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -11893,7 +11883,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-23",
     time: "7:00pm CT",
-    network: ["Netflix"],
+    networks: ["Netflix"],
     tag: ["regular"],
   },
 
@@ -11905,7 +11895,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-26",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11915,7 +11905,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-26",
     time: "3:30pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11925,7 +11915,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-26",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -11937,7 +11927,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-27",
     time: "2:00pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -11949,7 +11939,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11959,7 +11949,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11969,7 +11959,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11979,7 +11969,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -11989,7 +11979,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -11999,7 +11989,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12009,7 +11999,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12019,7 +12009,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12029,7 +12019,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12039,7 +12029,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -12051,7 +12041,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-11-29",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -12065,7 +12055,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-03",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -12077,7 +12067,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12087,7 +12077,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12097,7 +12087,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12107,7 +12097,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12117,7 +12107,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12127,7 +12117,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12137,7 +12127,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12147,7 +12137,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "3:05pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12157,7 +12147,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "3:05pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12167,7 +12157,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12177,7 +12167,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12187,7 +12177,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -12199,7 +12189,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-06",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -12213,7 +12203,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -12225,7 +12215,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-13",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12235,7 +12225,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12245,7 +12235,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12255,7 +12245,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12265,7 +12255,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12275,7 +12265,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12285,7 +12275,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12295,7 +12285,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12305,7 +12295,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12315,7 +12305,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12325,7 +12315,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12335,7 +12325,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12345,7 +12335,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-10",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -12357,7 +12347,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-14",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -12371,7 +12361,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-17",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -12383,7 +12373,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-19",
     time: "4:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12393,7 +12383,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-19",
     time: "7:20pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
 
@@ -12405,7 +12395,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12415,7 +12405,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12425,7 +12415,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12435,7 +12425,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12445,7 +12435,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12455,7 +12445,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12465,7 +12455,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12475,7 +12465,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12485,7 +12475,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "3:05pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12495,7 +12485,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12505,7 +12495,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12515,7 +12505,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-20",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -12527,7 +12517,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-21",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -12541,7 +12531,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-24",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -12553,7 +12543,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-25",
     time: "12:00pm CT",
-    network: ["Netflix"],
+    networks: ["Netflix"],
     tag: ["regular"],
   },
   {
@@ -12563,7 +12553,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-25",
     time: "3:30pm CT",
-    network: ["Netflix"],
+    networks: ["Netflix"],
     tag: ["regular"],
   },
   {
@@ -12573,7 +12563,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-25",
     time: "7:15pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
 
@@ -12585,7 +12575,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12595,7 +12585,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12605,7 +12595,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-27",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12615,7 +12605,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-27",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12625,7 +12615,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-27",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12635,7 +12625,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-25",
     time: "3:25pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12645,7 +12635,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-25",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -12657,7 +12647,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-28",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -12671,7 +12661,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2026-12-31",
     time: "7:15pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
 
@@ -12683,7 +12673,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12693,7 +12683,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12703,7 +12693,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12713,7 +12703,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12723,7 +12713,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12733,7 +12723,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "12:00pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12743,7 +12733,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "12:00pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12753,7 +12743,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "3:05pm CT",
-    network: ["CBS"],
+    networks: ["CBS"],
     tag: ["regular"],
   },
   {
@@ -12763,7 +12753,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "3:25pm CT",
-    network: ["FOX"],
+    networks: ["FOX"],
     tag: ["regular"],
   },
   {
@@ -12773,7 +12763,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-03",
     time: "7:20pm CT",
-    network: ["NBC"],
+    networks: ["NBC"],
     tag: ["regular"],
   },
 
@@ -12785,7 +12775,7 @@ export const gameSchedule = [
     sport: "football",
     date: "2027-01-04",
     time: "7:15pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -12799,7 +12789,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "12:10pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -12809,7 +12799,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12819,7 +12809,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12829,7 +12819,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "3:10pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -12839,7 +12829,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12849,7 +12839,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12859,7 +12849,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "5:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12869,7 +12859,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12879,7 +12869,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12889,7 +12879,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12899,7 +12889,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12909,7 +12899,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12919,7 +12909,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -12929,7 +12919,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12939,7 +12929,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-25",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
 
@@ -12951,7 +12941,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "11:15am CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -12961,7 +12951,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12971,7 +12961,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12981,7 +12971,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -12991,7 +12981,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13001,7 +12991,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13011,7 +13001,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13021,7 +13011,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13031,7 +13021,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13041,7 +13031,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13051,7 +13041,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "1:10pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -13061,7 +13051,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "1:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13071,7 +13061,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13081,7 +13071,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13091,7 +13081,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-26",
     time: "6:20pm CT",
-    network: ["Peacock", "NBC"],
+    networks: ["Peacock", "NBC"],
     tag: ["regular"],
   },
   //Jul-27-2026
@@ -13102,7 +13092,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "1:35pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13112,7 +13102,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13122,7 +13112,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13132,7 +13122,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13142,7 +13132,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13152,7 +13142,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13162,7 +13152,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "6:10pm CT",
-    network: ["ESPN", "MLBtv"],
+    networks: ["ESPN", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13172,7 +13162,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13182,7 +13172,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13192,7 +13182,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13202,7 +13192,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13212,7 +13202,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-27",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -13224,7 +13214,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13234,7 +13224,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13244,7 +13234,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13254,7 +13244,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13264,7 +13254,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13274,7 +13264,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13284,7 +13274,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13294,7 +13284,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13304,7 +13294,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13314,7 +13304,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "6;45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13324,7 +13314,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13334,7 +13324,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13344,7 +13334,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13354,17 +13344,17 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-28",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
     teams: ["Seattle Mariners", "Los Angeles Dodgers"],
     league: "MLB",
-    conferences: ["", ""],
+    conferences: ["American-West", "National-West"],
     sport: "baseball",
     date: "2026-07-28",
     time: "9:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -13376,7 +13366,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "11:10am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13386,7 +13376,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "11:35am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13396,7 +13386,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "12:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13406,7 +13396,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13416,7 +13406,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13426,7 +13416,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "2:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13436,7 +13426,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13446,7 +13436,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13456,7 +13446,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "6:10pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13466,7 +13456,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13476,7 +13466,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "6:40pm CT",
-    network: ["MLBtv", "Prime Video", "MLB Net"],
+    networks: ["MLBtv", "Prime Video", "MLB Net"],
     tag: ["regular"],
   },
   {
@@ -13486,7 +13476,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13496,7 +13486,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13506,7 +13496,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13516,7 +13506,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-29",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -13528,7 +13518,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "11:10am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13538,7 +13528,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13548,7 +13538,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13558,7 +13548,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "1:15pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13568,7 +13558,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13578,7 +13568,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13588,7 +13578,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "6:15pm CT",
-    network: ["ESPN", "MLBtv"],
+    networks: ["ESPN", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13598,7 +13588,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13608,7 +13598,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13618,7 +13608,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-30",
     time: "9:10pm CT",
-    network: ["MLBtv", "MLB Net"],
+    networks: ["MLBtv", "MLB Net"],
     tag: ["regular"],
   },
 
@@ -13630,7 +13620,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13640,7 +13630,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "5:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13650,7 +13640,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13660,7 +13650,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13670,7 +13660,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13680,7 +13670,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13690,7 +13680,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13700,7 +13690,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13710,7 +13700,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "7:10pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -13720,7 +13710,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13730,7 +13720,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13740,7 +13730,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13750,7 +13740,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "8:40pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -13760,7 +13750,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "9:10pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13770,7 +13760,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-07-31",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -13782,7 +13772,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13792,7 +13782,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13802,7 +13792,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13812,7 +13802,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "3:10pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -13822,7 +13812,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13832,7 +13822,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13842,7 +13832,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13852,7 +13842,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -13862,7 +13852,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13872,7 +13862,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -13882,7 +13872,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13892,7 +13882,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13902,7 +13892,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "8:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13912,7 +13902,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13922,7 +13912,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-01",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -13934,7 +13924,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13944,7 +13934,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13954,7 +13944,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "12:37pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13964,7 +13954,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13974,7 +13964,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13984,7 +13974,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -13994,7 +13984,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14004,7 +13994,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14014,7 +14004,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14024,7 +14014,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14034,7 +14024,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "3:05pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -14044,7 +14034,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14054,7 +14044,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14064,7 +14054,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14074,7 +14064,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-02",
     time: "6:20pm CT",
-    network: ["NBC", "Peacock"],
+    networks: ["NBC", "Peacock"],
     tag: ["regular"],
   },
 
@@ -14086,7 +14076,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14096,7 +14086,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14106,7 +14096,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14116,7 +14106,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14126,7 +14116,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14136,7 +14126,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14146,7 +14136,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14156,7 +14146,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-03",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -14168,7 +14158,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14178,7 +14168,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14188,7 +14178,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14198,7 +14188,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14208,7 +14198,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14218,7 +14208,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14228,7 +14218,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14238,7 +14228,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14248,7 +14238,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14258,7 +14248,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "7:05pm CT",
-    network: ["MLBtv", "TBS"],
+    networks: ["MLBtv", "TBS"],
     tag: ["regular"],
   },
   {
@@ -14268,7 +14258,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14278,7 +14268,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14288,7 +14278,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14298,7 +14288,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14308,7 +14298,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-04",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -14320,7 +14310,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14330,7 +14320,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "1:20pm CT",
-    network: ["MLBtv", "MLB Net"],
+    networks: ["MLBtv", "MLB Net"],
     tag: ["regular"],
   },
   {
@@ -14340,7 +14330,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14350,7 +14340,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14360,7 +14350,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14370,7 +14360,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14380,7 +14370,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14390,7 +14380,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14400,7 +14390,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "6:05pm CT",
-    network: ["MLBtv", "Prime Video"],
+    networks: ["MLBtv", "Prime Video"],
     tag: ["regular"],
   },
   {
@@ -14410,7 +14400,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14420,7 +14410,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14430,7 +14420,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14440,7 +14430,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14450,7 +14440,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14460,7 +14450,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-05",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -14472,7 +14462,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "11:35am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14482,7 +14472,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "11:40am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14492,7 +14482,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14502,7 +14492,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14512,7 +14502,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14522,7 +14512,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14532,7 +14522,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14542,7 +14532,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14552,7 +14542,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14562,7 +14552,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14572,7 +14562,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-06",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -14584,7 +14574,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14594,7 +14584,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14604,7 +14594,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14614,7 +14604,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14624,7 +14614,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14634,7 +14624,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14644,7 +14634,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14654,7 +14644,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14664,7 +14654,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "7:05pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -14674,7 +14664,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14684,7 +14674,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "7:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14694,7 +14684,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14704,7 +14694,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14714,7 +14704,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14724,7 +14714,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-07",
     time: "9:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -14736,7 +14726,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14746,7 +14736,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14756,7 +14746,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "3:10pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -14766,7 +14756,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14776,7 +14766,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14786,7 +14776,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14796,7 +14786,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14806,7 +14796,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14816,7 +14806,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -14826,7 +14816,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -14836,7 +14826,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14846,7 +14836,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -14856,7 +14846,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14866,7 +14856,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14876,7 +14866,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-08",
     time: "8:50pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -14888,7 +14878,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "11:15am CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -14898,7 +14888,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14908,7 +14898,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "13:25pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14918,7 +14908,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14928,7 +14918,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14938,7 +14928,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14948,7 +14938,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14958,7 +14948,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14968,7 +14958,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14978,7 +14968,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "1:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14988,7 +14978,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -14998,7 +14988,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15008,7 +14998,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15018,7 +15008,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15028,7 +15018,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-09",
     time: "7:20pm CT",
-    network: ["Peacock", "NBC"],
+    networks: ["Peacock", "NBC"],
     tag: ["regular"],
   },
 
@@ -15040,7 +15030,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15050,7 +15040,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15060,7 +15050,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15070,7 +15060,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "6:45pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -15080,7 +15070,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15090,7 +15080,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15100,7 +15090,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15110,7 +15100,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15120,7 +15110,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15130,7 +15120,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-10",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -15142,7 +15132,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15152,7 +15142,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15162,7 +15152,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15172,7 +15162,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "6:05pm CT",
-    network: ["MLBtv", "TBS"],
+    networks: ["MLBtv", "TBS"],
     tag: ["regular"],
   },
   {
@@ -15182,7 +15172,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15192,7 +15182,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15202,7 +15192,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15212,7 +15202,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15222,7 +15212,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15232,7 +15222,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "8:38pm CT",
-    network: ["MLBtv", ""],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15242,7 +15232,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15252,7 +15242,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15262,7 +15252,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15272,7 +15262,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15282,7 +15272,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-11",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -15294,7 +15284,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15304,7 +15294,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "1:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15314,7 +15304,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15324,7 +15314,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "2:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15334,7 +15324,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "2:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15344,7 +15334,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15354,7 +15344,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15364,7 +15354,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15374,7 +15364,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15384,7 +15374,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15394,7 +15384,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15404,7 +15394,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15414,7 +15404,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15424,7 +15414,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15434,7 +15424,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-12",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -15446,7 +15436,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15456,7 +15446,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15466,7 +15456,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15476,7 +15466,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15486,7 +15476,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15496,7 +15486,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15506,7 +15496,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "6:30pm CT",
-    network: ["Netflix"],
+    networks: ["Netflix"],
     tag: ["regular"],
   },
   {
@@ -15516,7 +15506,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "9:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15526,7 +15516,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-13",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -15538,7 +15528,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "1:20pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -15548,7 +15538,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "5:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15558,7 +15548,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15568,7 +15558,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15578,7 +15568,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "6:07pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -15588,7 +15578,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15598,7 +15588,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15608,7 +15598,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15618,7 +15608,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15628,7 +15618,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15638,7 +15628,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15648,7 +15638,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15658,7 +15648,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15668,7 +15658,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-14",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -15680,7 +15670,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15690,7 +15680,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15700,7 +15690,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15710,7 +15700,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15720,7 +15710,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "3:10pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -15730,7 +15720,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "5:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15740,7 +15730,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15750,7 +15740,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15760,7 +15750,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15770,7 +15760,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15780,7 +15770,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -15790,7 +15780,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -15800,7 +15790,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -15810,7 +15800,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15820,7 +15810,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-15",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -15832,7 +15822,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "11:15am CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -15842,7 +15832,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15852,7 +15842,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15862,7 +15852,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "12:37pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15872,7 +15862,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15882,7 +15872,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15892,7 +15882,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15902,7 +15892,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15912,7 +15902,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15922,7 +15912,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "2:00pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15932,7 +15922,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15942,7 +15932,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15952,7 +15942,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "3:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15962,7 +15952,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15972,7 +15962,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-16",
     time: "6:20pm CT",
-    network: ["NBC", "Peacock"],
+    networks: ["NBC", "Peacock"],
     tag: ["regular"],
   },
 
@@ -15984,7 +15974,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "12:40pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -15994,7 +15984,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16004,7 +15994,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16014,7 +16004,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16024,7 +16014,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16034,7 +16024,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16044,7 +16034,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16054,7 +16044,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16064,7 +16054,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16074,7 +16064,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16084,7 +16074,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-17",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -16096,7 +16086,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16106,7 +16096,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16116,7 +16106,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "5:40pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16126,7 +16116,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16136,7 +16126,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16146,7 +16136,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16156,7 +16146,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16166,7 +16156,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16176,7 +16166,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16186,7 +16176,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16196,7 +16186,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16206,7 +16196,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "7:05pm CT",
-    network: ["MLBtv", "TBS"],
+    networks: ["MLBtv", "TBS"],
     tag: ["regular"],
   },
   {
@@ -16216,7 +16206,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16226,7 +16216,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16236,7 +16226,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-18",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -16248,7 +16238,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "11:35am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16258,7 +16248,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16268,7 +16258,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "12:40pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16278,7 +16268,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16288,7 +16278,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16298,7 +16288,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16308,7 +16298,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "5:35pm CT",
-    network: ["Prime Video", "MLB Net", "MLBtv"],
+    networks: ["Prime Video", "MLB Net", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16318,7 +16308,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16328,7 +16318,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16338,7 +16328,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16348,7 +16338,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16358,7 +16348,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16368,7 +16358,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16378,7 +16368,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16388,7 +16378,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-19",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -16400,7 +16390,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "11:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16410,7 +16400,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16420,7 +16410,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16430,7 +16420,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16440,7 +16430,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16450,7 +16440,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "1:10pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16460,7 +16450,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "5:35pm CT",
-    network: ["MLBtv", "Prime Video"],
+    networks: ["MLBtv", "Prime Video"],
     tag: ["regular"],
   },
   {
@@ -16470,7 +16460,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "7:05pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -16480,7 +16470,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-20",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -16492,7 +16482,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "3:10pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16502,7 +16492,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16512,7 +16502,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "6:05pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -16522,7 +16512,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16532,7 +16522,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16542,7 +16532,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16552,7 +16542,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16562,7 +16552,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "7:05pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -16572,7 +16562,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16582,7 +16572,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16592,7 +16582,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16602,7 +16592,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16612,7 +16602,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16622,7 +16612,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16632,7 +16622,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-21",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -16644,7 +16634,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "12:35pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16654,7 +16644,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16664,7 +16654,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "3:10pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -16674,7 +16664,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16684,7 +16674,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16694,7 +16684,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16704,7 +16694,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16714,7 +16704,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16724,7 +16714,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -16734,7 +16724,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16744,7 +16734,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -16754,7 +16744,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16764,7 +16754,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16774,7 +16764,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16784,7 +16774,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "8:40pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
 
@@ -16796,7 +16786,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16806,7 +16796,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "12:35pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16816,7 +16806,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16826,7 +16816,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16836,7 +16826,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16846,7 +16836,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16856,7 +16846,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16866,7 +16856,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16876,7 +16866,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "2:10pm CT",
-    network: ["NBC", "Peacock"],
+    networks: ["NBC", "Peacock"],
     tag: ["regular"],
   },
   {
@@ -16886,7 +16876,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16896,7 +16886,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16906,7 +16896,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16916,7 +16906,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16926,7 +16916,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "3:15pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -16936,7 +16926,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-22",
     time: "6:00pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -16948,7 +16938,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16958,7 +16948,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "12:35pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16968,7 +16958,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16978,7 +16968,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16988,7 +16978,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -16998,7 +16988,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17008,7 +16998,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17018,7 +17008,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17028,7 +17018,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17038,7 +17028,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17048,7 +17038,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17058,7 +17048,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17068,7 +17058,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17078,7 +17068,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "3:15pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -17088,7 +17078,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-23",
     time: "pm CT",
-    network: ["ESPN"],
+    networks: ["ESPN"],
     tag: ["regular"],
   },
 
@@ -17100,7 +17090,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17110,7 +17100,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17120,7 +17110,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17130,7 +17120,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17140,7 +17130,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17150,7 +17140,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17160,7 +17150,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17170,7 +17160,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17180,7 +17170,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17190,7 +17180,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-24",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -17202,7 +17192,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "5:40pm CT",
-    network: ["MLBtv", "MLB Net"],
+    networks: ["MLBtv", "MLB Net"],
     tag: ["regular"],
   },
   {
@@ -17212,7 +17202,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17222,7 +17212,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17232,7 +17222,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17242,7 +17232,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17252,7 +17242,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17262,7 +17252,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "6:15pm CT",
-    network: ["MLBtv", "TBS"],
+    networks: ["MLBtv", "TBS"],
     tag: ["regular"],
   },
   {
@@ -17272,7 +17262,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17282,7 +17272,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17292,7 +17282,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17302,7 +17292,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17312,7 +17302,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17322,7 +17312,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "8:40pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -17332,7 +17322,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-25",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -17344,7 +17334,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17354,7 +17344,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "2:40pm CT",
-    network: ["ESPN Unlimited", "MLBtv"],
+    networks: ["ESPN Unlimited", "MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17364,7 +17354,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "2:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17374,7 +17364,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "3:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17384,7 +17374,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17394,7 +17384,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17404,7 +17394,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17414,7 +17404,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17424,7 +17414,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "6:05pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -17434,7 +17424,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17444,7 +17434,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17454,7 +17444,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17464,7 +17454,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17474,7 +17464,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17484,7 +17474,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-26",
     time: "8:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -17496,7 +17486,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-27",
     time: "12:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17506,7 +17496,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-27",
     time: "1:15pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -17516,7 +17506,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-27",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17526,7 +17516,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-27",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17536,7 +17526,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-27",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17546,7 +17536,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-27",
     time: "6:15pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -17556,7 +17546,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-27",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -17568,7 +17558,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "1:20pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -17578,7 +17568,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17588,7 +17578,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17598,7 +17588,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "6:05pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -17608,7 +17598,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "6:07pm CT",
-    network: ["Apple TV"],
+    networks: ["Apple TV"],
     tag: ["regular"],
   },
   {
@@ -17618,7 +17608,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17628,7 +17618,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17638,7 +17628,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17648,7 +17638,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17658,7 +17648,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17668,7 +17658,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17678,7 +17668,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "7:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17688,7 +17678,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17698,7 +17688,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17708,7 +17698,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-28",
     time: "9:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -17720,7 +17710,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "12:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17730,7 +17720,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17740,7 +17730,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17750,7 +17740,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "1:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17760,7 +17750,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17770,7 +17760,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17780,7 +17770,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17790,7 +17780,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17800,7 +17790,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17810,7 +17800,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "3:10pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -17820,7 +17810,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17830,7 +17820,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17840,7 +17830,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -17850,7 +17840,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -17860,7 +17850,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "9:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17870,7 +17860,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "9:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17880,7 +17870,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-29",
     time: "9:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -17892,7 +17882,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "11:15am CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -17902,7 +17892,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "12:35pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
   {
@@ -17912,7 +17902,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17922,7 +17912,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "12:37pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17932,7 +17922,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17942,7 +17932,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17952,7 +17942,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17962,7 +17952,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17972,7 +17962,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17982,7 +17972,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "1:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -17992,7 +17982,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "2:10pm CT",
-    network: ["NBC", "Peacock"],
+    networks: ["NBC", "Peacock"],
     tag: ["regular"],
   },
   {
@@ -18002,7 +17992,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18012,7 +18002,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "3:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18022,7 +18012,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-30",
     time: "6:20pm CT",
-    network: ["NBC", "Peacock"],
+    networks: ["NBC", "Peacock"],
     tag: ["regular"],
   },
 
@@ -18034,7 +18024,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18044,7 +18034,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18054,7 +18044,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18064,7 +18054,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18074,7 +18064,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18084,7 +18074,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18094,7 +18084,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18104,7 +18094,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18114,7 +18104,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18124,7 +18114,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18134,7 +18124,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18144,7 +18134,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-08-31",
     time: "8:40pm CT",
-    network: ["MLBtv", "ESPN Unlimited"],
+    networks: ["MLBtv", "ESPN Unlimited"],
     tag: ["regular"],
   },
 
@@ -18156,7 +18146,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18166,7 +18156,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18176,7 +18166,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18186,7 +18176,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18196,7 +18186,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18206,7 +18196,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18216,7 +18206,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18226,7 +18216,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18236,7 +18226,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18246,7 +18236,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18256,7 +18246,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18266,7 +18256,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18276,7 +18266,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18286,7 +18276,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18296,7 +18286,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-01",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -18308,7 +18298,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "11:40am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18318,7 +18308,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "12:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18328,7 +18318,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18338,7 +18328,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18348,7 +18338,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "2:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18358,7 +18348,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18368,7 +18358,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18378,7 +18368,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18388,7 +18378,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18398,7 +18388,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18408,7 +18398,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18418,7 +18408,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "6:40pm CT",
-    network: ["MLBtv", "MLB Net"],
+    networks: ["MLBtv", "MLB Net"],
     tag: ["regular"],
   },
   {
@@ -18428,7 +18418,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18438,7 +18428,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18448,7 +18438,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-02",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -18460,7 +18450,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "11:35am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18470,7 +18460,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18480,7 +18470,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18490,7 +18480,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18500,7 +18490,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -18510,7 +18500,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "6:40pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -18520,7 +18510,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18530,7 +18520,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18540,7 +18530,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-03",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -18552,7 +18542,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18562,7 +18552,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "5:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18572,7 +18562,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18582,7 +18572,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18592,7 +18582,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18602,7 +18592,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18612,7 +18602,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18622,7 +18612,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18632,7 +18622,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18642,7 +18632,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18652,7 +18642,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18662,7 +18652,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18672,7 +18662,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "7:$0pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18682,7 +18672,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18692,7 +18682,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18702,7 +18692,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-04",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -18714,7 +18704,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18724,7 +18714,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18734,7 +18724,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18744,7 +18734,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "5:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18754,7 +18744,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18764,7 +18754,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18774,7 +18764,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18784,7 +18774,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18794,7 +18784,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18804,7 +18794,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18814,7 +18804,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -18824,7 +18814,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -18834,7 +18824,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18844,7 +18834,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "8:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18854,7 +18844,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-05",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -18866,7 +18856,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "11:10am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18876,7 +18866,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18886,7 +18876,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18896,7 +18886,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18906,7 +18896,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18916,7 +18906,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18926,7 +18916,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18936,7 +18926,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18946,7 +18936,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18956,7 +18946,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18966,7 +18956,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18976,7 +18966,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18986,7 +18976,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -18996,7 +18986,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "6:20pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
   {
@@ -19006,7 +18996,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-06",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -19018,7 +19008,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "12:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19028,7 +19018,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19038,7 +19028,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19048,7 +19038,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19058,7 +19048,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19068,7 +19058,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19078,7 +19068,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19088,7 +19078,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "4:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19098,7 +19088,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "7:10pm CT",
-    network: ["NBC", "Peacock"],
+    networks: ["NBC", "Peacock"],
     tag: ["regular"],
   },
   {
@@ -19108,7 +19098,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "8:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19118,7 +19108,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-07",
     time: "9:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -19130,7 +19120,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19140,7 +19130,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19150,7 +19140,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19160,7 +19150,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19170,7 +19160,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19180,7 +19170,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19190,7 +19180,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19200,7 +19190,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19210,7 +19200,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19220,7 +19210,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19230,7 +19220,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19240,7 +19230,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19250,7 +19240,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19260,7 +19250,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19270,7 +19260,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-08",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -19282,7 +19272,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19292,7 +19282,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19302,7 +19292,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "2:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19312,7 +19302,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19322,7 +19312,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19332,7 +19322,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19342,7 +19332,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19352,7 +19342,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19362,7 +19352,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19372,7 +19362,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "6:05pm CT",
-    network: ["MLBtv", "Prime Video"],
+    networks: ["MLBtv", "Prime Video"],
     tag: ["regular"],
   },
   {
@@ -19382,7 +19372,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19392,7 +19382,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19402,7 +19392,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19412,7 +19402,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19422,7 +19412,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-09",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -19434,7 +19424,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-10",
     time: "11:15am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19444,7 +19434,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-10",
     time: "12:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19454,7 +19444,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-10",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19464,7 +19454,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-10",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19474,7 +19464,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-10",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -19486,7 +19476,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19496,7 +19486,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19506,7 +19496,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19516,7 +19506,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19526,7 +19516,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19536,7 +19526,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19546,7 +19536,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19556,7 +19546,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19566,7 +19556,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19576,7 +19566,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19586,7 +19576,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19596,7 +19586,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "7:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19606,7 +19596,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19616,7 +19606,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19626,7 +19616,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-11",
     time: "9:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -19638,7 +19628,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19648,7 +19638,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "12:35pm CT",
-    network: ["MLBtv", "MLB Net"],
+    networks: ["MLBtv", "MLB Net"],
     tag: ["regular"],
   },
   {
@@ -19658,7 +19648,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19668,7 +19658,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19678,7 +19668,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19688,7 +19678,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19698,7 +19688,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19708,7 +19698,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19718,7 +19708,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19728,7 +19718,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "5:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19738,7 +19728,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19748,7 +19738,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19758,7 +19748,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19768,7 +19758,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19778,7 +19768,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-12",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -19790,7 +19780,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "11:10am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19800,7 +19790,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19810,7 +19800,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19820,7 +19810,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19830,7 +19820,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19840,7 +19830,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "12:37pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19850,7 +19840,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19860,7 +19850,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19870,7 +19860,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19880,7 +19870,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19890,7 +19880,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "1:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19900,7 +19890,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19910,7 +19900,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19920,7 +19910,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19930,7 +19920,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-13",
     time: "6:20pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
 
@@ -19942,7 +19932,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19952,7 +19942,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19962,7 +19952,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19972,7 +19962,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -19982,7 +19972,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "6:40pm CT",
-    network: ["MLBtv", "MLB Net"],
+    networks: ["MLBtv", "MLB Net"],
     tag: ["regular"],
   },
   {
@@ -19992,7 +19982,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20002,7 +19992,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20012,7 +20002,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20022,7 +20012,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20032,7 +20022,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-14",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -20044,7 +20034,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20054,7 +20044,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20064,7 +20054,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20074,7 +20064,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20084,7 +20074,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20094,7 +20084,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20104,7 +20094,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20114,7 +20104,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20124,7 +20114,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20134,7 +20124,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "6:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20144,7 +20134,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20154,7 +20144,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20164,7 +20154,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20174,7 +20164,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20184,7 +20174,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-15",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -20196,7 +20186,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20206,7 +20196,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "12:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20216,7 +20206,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20226,7 +20216,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20236,7 +20226,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20246,7 +20236,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20256,7 +20246,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20266,7 +20256,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20276,7 +20266,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20286,7 +20276,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20296,7 +20286,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20306,7 +20296,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20316,7 +20306,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20326,7 +20316,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20336,7 +20326,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-16",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -20348,7 +20338,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "11:35am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20358,7 +20348,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "11:40am CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20368,7 +20358,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20378,7 +20368,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20388,7 +20378,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -20398,7 +20388,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -20408,7 +20398,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20418,7 +20408,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20428,7 +20418,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-17",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -20440,7 +20430,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20450,7 +20440,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20460,7 +20450,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20470,7 +20460,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20480,7 +20470,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20490,7 +20480,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20500,7 +20490,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20510,7 +20500,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20520,7 +20510,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20530,7 +20520,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20540,7 +20530,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "7:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20550,7 +20540,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20560,7 +20550,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20570,7 +20560,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20580,7 +20570,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-18",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -20592,7 +20582,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20602,7 +20592,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20612,7 +20602,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20622,7 +20612,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "5:!0pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20632,7 +20622,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20642,7 +20632,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20652,7 +20642,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20662,7 +20652,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20672,7 +20662,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20682,7 +20672,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20692,7 +20682,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20702,7 +20692,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20712,7 +20702,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20722,7 +20712,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "8:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20732,7 +20722,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-19",
     time: "8:38pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -20744,7 +20734,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "12:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20754,7 +20744,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20764,7 +20754,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20774,7 +20764,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20784,7 +20774,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "12:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20794,7 +20784,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20804,7 +20794,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20814,7 +20804,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "1:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20824,7 +20814,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20834,7 +20824,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20844,7 +20834,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "3:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20854,7 +20844,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20864,7 +20854,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20874,7 +20864,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20884,7 +20874,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-20",
     time: "6:20pm CT",
-    network: ["Peacock"],
+    networks: ["Peacock"],
     tag: ["regular"],
   },
 
@@ -20896,7 +20886,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-21",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20906,7 +20896,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-21",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20916,7 +20906,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-21",
     time: "8:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -20928,7 +20918,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "12:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20938,7 +20928,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20948,7 +20938,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20958,7 +20948,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20968,7 +20958,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20978,7 +20968,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20988,7 +20978,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -20998,7 +20988,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21008,7 +20998,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21018,7 +21008,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21028,7 +21018,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21038,7 +21028,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21048,7 +21038,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21058,7 +21048,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21068,7 +21058,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "8:48pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21078,7 +21068,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-22",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -21090,7 +21080,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21100,7 +21090,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "2:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21110,7 +21100,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "5:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21120,7 +21110,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21130,7 +21120,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21140,7 +21130,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "6:05pm CT",
-    network: ["Prime Video"],
+    networks: ["Prime Video"],
     tag: ["regular"],
   },
   {
@@ -21150,7 +21140,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21160,7 +21150,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21170,7 +21160,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21180,7 +21170,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21190,7 +21180,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "7:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21200,7 +21190,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21210,7 +21200,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21220,7 +21210,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21230,7 +21220,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-23",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -21242,7 +21232,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "11:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21252,7 +21242,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "1:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21262,7 +21252,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "1:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21272,7 +21262,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "1:35pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21282,7 +21272,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21292,7 +21282,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "5:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21302,7 +21292,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21312,7 +21302,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21322,7 +21312,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "6:15pm CT",
-    network: ["MLBtv", "FS1"],
+    networks: ["MLBtv", "FS1"],
     tag: ["regular"],
   },
   {
@@ -21332,7 +21322,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21342,7 +21332,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21352,7 +21342,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-24",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -21364,7 +21354,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21374,7 +21364,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "5:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21384,7 +21374,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "5:45pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21394,7 +21384,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "6:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21404,7 +21394,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "6:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21414,7 +21404,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21424,7 +21414,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21434,7 +21424,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21444,7 +21434,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21454,7 +21444,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "6:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21464,7 +21454,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "7:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21474,7 +21464,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21484,7 +21474,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21494,7 +21484,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "9:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21504,7 +21494,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-25",
     time: "9:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -21516,7 +21506,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "12:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21526,7 +21516,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21536,7 +21526,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21546,7 +21536,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "3:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21556,7 +21546,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21566,7 +21556,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "3:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21576,7 +21566,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21586,7 +21576,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21596,7 +21586,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "6:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21606,7 +21596,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -21616,7 +21606,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "6:15pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21626,7 +21616,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "6:15pm CT",
-    network: ["MLBtv", "FOX"],
+    networks: ["MLBtv", "FOX"],
     tag: ["regular"],
   },
   {
@@ -21636,7 +21626,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "7:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21646,7 +21636,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21656,7 +21646,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-26",
     time: "8:40pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 
@@ -21668,7 +21658,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21678,7 +21668,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21688,7 +21678,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21698,7 +21688,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21708,7 +21698,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:05pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21718,7 +21708,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:07pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21728,7 +21718,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21738,7 +21728,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21748,7 +21738,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21758,7 +21748,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21768,7 +21758,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21778,7 +21768,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21788,7 +21778,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21798,7 +21788,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:10pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
   {
@@ -21808,7 +21798,7 @@ export const gameSchedule = [
     sport: "baseball",
     date: "2026-09-27",
     time: "2:20pm CT",
-    network: ["MLBtv"],
+    networks: ["MLBtv"],
     tag: ["regular"],
   },
 ];

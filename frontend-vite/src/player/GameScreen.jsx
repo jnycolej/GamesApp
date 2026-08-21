@@ -300,22 +300,22 @@ export default function GameScreen() {
   }
 
   useEffect(() => {
-  if (actualMode === "single") return;
+    if (actualMode === "single") return;
 
-  const onRoomExpired = ({ reason } = {}) => {
-    console.log("Room expired:", reason);
+    const onRoomExpired = ({ reason } = {}) => {
+      console.log("Room expired:", reason);
 
-    setRoom(null);
-    setMyHand([]);
-    navigate("/");
-  };
+      setRoom(null);
+      setMyHand([]);
+      navigate("/");
+    };
 
-  socket.on("room:expired", onRoomExpired);
+    socket.on("room:expired", onRoomExpired);
 
-  return () => {
-    socket.off("room:expired", onRoomExpired);
-  };
-}, [actualMode, socket, navigate, setRoom, setMyHand]);
+    return () => {
+      socket.off("room:expired", onRoomExpired);
+    };
+  }, [actualMode, socket, navigate, setRoom, setMyHand]);
 
   //Tracks the current time
   const [nowTick, setNowTick] = useState(Date.now());
@@ -644,69 +644,59 @@ export default function GameScreen() {
   };
 
   //Tracks when the update was pushed
-useEffect(() => {
-  if (actualMode === "single") return;
+  useEffect(() => {
+    if (actualMode === "single") return;
 
-  const onUpdate = (ev) => {
-    const id =
-      ev?.id ||
-      `${ev?.roomCode ?? "room"}-${
-        ev?.at ?? Date.now()
-      }-${ev?.type ?? "SYS"}-${
-        ev?.player?.id ?? ""
-      }`;
+    const onUpdate = (ev) => {
+      const id =
+        ev?.id ||
+        `${ev?.roomCode ?? "room"}-${
+          ev?.at ?? Date.now()
+        }-${ev?.type ?? "SYS"}-${ev?.player?.id ?? ""}`;
 
-    const withId = {
-      id,
-      ...ev,
+      const withId = {
+        id,
+        ...ev,
+      };
+
+      setUpdates((prev) => {
+        // Do not duplicate an event after reconnect/history recovery
+        if (prev.some((item) => item.id === id)) {
+          return prev;
+        }
+
+        return [...prev, withId].slice(-MAX_UPDATES);
+      });
+
+      requestAnimationFrame(scrollIfNearBottom);
     };
 
-    setUpdates((prev) => {
-      // Do not duplicate an event after reconnect/history recovery
-      if (prev.some((item) => item.id === id)) {
-        return prev;
-      }
+    const onHistory = (arr) => {
+      const trimmed = Array.isArray(arr) ? arr.slice(-MAX_UPDATES) : [];
 
-      return [...prev, withId].slice(
-        -MAX_UPDATES,
-      );
-    });
+      setUpdates(trimmed);
 
-    requestAnimationFrame(
-      scrollIfNearBottom,
-    );
-  };
+      requestAnimationFrame(scrollIfNearBottom);
+    };
 
-  const onHistory = (arr) => {
-    const trimmed = Array.isArray(arr)
-      ? arr.slice(-MAX_UPDATES)
-      : [];
+    const requestHistory = () => {
+      socket.emit("game:history:request");
+    };
 
-    setUpdates(trimmed);
+    socket.on("game:update", onUpdate);
+    socket.on("game:history", onHistory);
+    socket.on("connect", requestHistory);
 
-    requestAnimationFrame(
-      scrollIfNearBottom,
-    );
-  };
+    // Socket will normally already be connected
+    // when GameScreen mounts.
+    requestHistory();
 
-  const requestHistory = () => {
-    socket.emit("game:history:request");
-  };
-
-  socket.on("game:update", onUpdate);
-  socket.on("game:history", onHistory);
-  socket.on("connect", requestHistory);
-
-  // Socket will normally already be connected
-  // when GameScreen mounts.
-  requestHistory();
-
-  return () => {
-    socket.off("game:update", onUpdate);
-    socket.off("game:history", onHistory);
-    socket.off("connect", requestHistory);
-  };
-}, [actualMode, socket]);
+    return () => {
+      socket.off("game:update", onUpdate);
+      socket.off("game:history", onHistory);
+      socket.off("connect", requestHistory);
+    };
+  }, [actualMode, socket]);
 
   // clear when a fresh state arrives
   // useEffect(() => {
@@ -852,19 +842,13 @@ useEffect(() => {
       return;
     }
 
-    socket.emit(
-      "game:playCard",
-       { index }, 
-       (res) => {
-          if (!res?.ok) {
-            return alert(
-              res?.error ?? 
-              "Could not play card",
-          );
-        }
+    socket.emit("game:playCard", { index }, (res) => {
+      if (!res?.ok) {
+        return alert(res?.error ?? "Could not play card");
+      }
 
       sounds.playCard();
-    },);
+    });
 
     sounds.playCard();
   };
@@ -999,15 +983,15 @@ useEffect(() => {
     };
   }, []);
 
-function handleLeaveGame() {
-  socket.emit("leaveRoom", (res) => {
-    if (!res?.ok) {
-      console.warn("Leave room failed:", res?.error);
-    }
+  function handleLeaveGame() {
+    socket.emit("leaveRoom", (res) => {
+      if (!res?.ok) {
+        console.warn("Leave room failed:", res?.error);
+      }
 
-    navigate("/");
-  });
-}
+      navigate("/");
+    });
+  }
 
   //Ouiz unlock sound
   const prevUnlockedRef = useRef(false);
@@ -1130,7 +1114,10 @@ function handleLeaveGame() {
       {/* Card Game Play-By-Play */}
       <div className="">
         <p className="text-light text-5xl text-center">Play-by-Play</p>
-        <div ref={scrollerRef} className="h-40 bg-zinc-900/30 rounded-lg overflow-scroll">
+        <div
+          ref={scrollerRef}
+          className="h-40 bg-zinc-900/30 rounded-lg overflow-scroll"
+        >
           <AnimatedList>
             {updates.map((ev) => {
               const cls =
@@ -1190,20 +1177,16 @@ function handleLeaveGame() {
           //   phase: room?.phase,
           //   players: room?.players?.length,
           // });
-          socket.emit(
-            "event:propose",
-            { eventKey: ev.key },
-            (ack) => {
-              console.log("[UI] event:propose ACK:", ack);
+          socket.emit("event:propose", { eventKey: ev.key }, (ack) => {
+            console.log("[UI] event:propose ACK:", ack);
 
-              if (!ack?.ok) {
-                if (ack?.error === "cooldown" && ack?.until) {
-                  setEventCooldownUntil(ack.until);
-                }
-                console.warn("event:propose failed:", ack?.error);
+            if (!ack?.ok) {
+              if (ack?.error === "cooldown" && ack?.until) {
+                setEventCooldownUntil(ack.until);
               }
-            },
-          );
+              console.warn("event:propose failed:", ack?.error);
+            }
+          });
         }}
         onReaction={(reaction) => {
           if (actualMode === "single") {

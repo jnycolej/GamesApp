@@ -67,6 +67,7 @@ const QUICK_POINT_EVENTS = Object.freeze({
 export function createEventVoting({
   io,
   rooms,
+  games,
   gameUpdates,
   getEnrichedState,
   emitRoomState,
@@ -206,7 +207,7 @@ export function createEventVoting({
 
     if (approved) {
       const awardResult =
-        rooms.adjustScore(
+        games.getScore(
           code,
           pending.byPlayerId,
           pending.points,
@@ -672,7 +673,7 @@ export function createEventVoting({
       yesCount >= neededYes
     ) {
       const awardResult =
-        rooms.adjustScore(
+        games.getScore(
           code,
           pending.byPlayerId,
           pending.points,

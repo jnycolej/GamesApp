@@ -2,7 +2,7 @@ import { ServerEvents } from "../protocol/events.js";
 
 const IDLE_TIMEOUT_MS = 20_000;
 
-export function createRoomState({ io, rooms }) {
+export function createRoomState({ io, rooms, games }) {
   function updateIdleStatesForCode(code) {
     const room = rooms.getRoom?.(code);
 
@@ -51,7 +51,7 @@ export function createRoomState({ io, rooms }) {
                   : undefined;
 
             const score =
-              directScore ?? Number(rooms.getScore(code, player.id) ?? 0);
+              directScore ?? Number(games.getScore(code, player.id) ?? 0);
 
             // Keep points temporarily
             // for existing web UI

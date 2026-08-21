@@ -37,6 +37,7 @@ export function registerGameHandlers({
   socket,
   io,
   rooms,
+  games,
   gameUpdates,
   emitRoomState,
   logGameTransition,
@@ -59,7 +60,7 @@ export function registerGameHandlers({
       const requesterKey =
         payload?.key || null;
 
-      const result = rooms.startAndDeal(
+      const result = games.startAndDeal(
         code,
         socket.id,
         requesterKey,
@@ -93,7 +94,7 @@ export function registerGameHandlers({
       for (const playerSocket of socketsInRoom) {
         io.to(playerSocket.id).emit(
           ServerEvents.HAND_UPDATE,
-          rooms.getHand(
+          games.getHand(
             code,
             playerSocket.id,
           ) || [],
@@ -101,7 +102,7 @@ export function registerGameHandlers({
 
         io.to(playerSocket.id).emit(
           ServerEvents.SCORE_UPDATE,
-          rooms.getScore(
+          games.getScore(
             code,
             playerSocket.id,
           ) ?? 0,
@@ -140,18 +141,18 @@ export function registerGameHandlers({
         socket.id,
         () => {
           const previousScore =
-            rooms.getScore(
+            games.getScore(
               code,
               socket.id,
             ) ?? 0;
 
           const playResult = cardId
-            ? rooms.playCardById(
+            ? games.playCardById(
                 code,
                 socket.id,
                 cardId,
               )
-            : rooms.playCard(
+            : games.playCard(
                 code,
                 socket.id,
                 index,
@@ -163,7 +164,7 @@ export function registerGameHandlers({
 
           const nextScore =
             playResult.score ??
-            rooms.getScore(
+            games.getScore(
               code,
               socket.id,
             ) ??
@@ -299,7 +300,7 @@ export function registerGameHandlers({
       return cb?.({
         ok: true,
         hand:
-          rooms.getHand(
+          games.getHand(
             code,
             socket.id,
           ) || [],
@@ -323,7 +324,7 @@ export function registerGameHandlers({
       return cb?.({
         ok: true,
         score:
-          rooms.getScore(
+          games.getScore(
             code,
             socket.id,
           ) ?? 0,
@@ -345,8 +346,8 @@ export function registerGameHandlers({
       }
 
       const opponents =
-        rooms.getOpponentsHands
-          ? rooms.getOpponentsHands(
+        games.getOpponentsHands
+          ? games.getOpponentsHands(
               code,
               socket.id,
             )
@@ -396,13 +397,13 @@ export function registerGameHandlers({
         }
 
         const oldScore =
-          rooms.getScore(
+          games.getScore(
             code,
             socket.id,
           ) ?? 0;
 
         const result =
-          rooms.adjustScore(
+          games.adjustScore(
             code,
             socket.id,
             safeDelta,
@@ -538,13 +539,13 @@ export function registerGameHandlers({
             playerId,
             () => {
               const previousScore =
-                rooms.getScore(
+                games.getScore(
                   code,
                   playerId,
                 ) ?? 0;
 
               const previousHand =
-                rooms.getHand(
+                games.getHand(
                   code,
                   playerId,
                 ) || [];
@@ -556,7 +557,7 @@ export function registerGameHandlers({
                 ) || null;
 
               const sacrificeResult =
-                rooms.sacrificeCard(
+                games.sacrificeCard(
                   code,
                   playerId,
                   cardId,
@@ -580,7 +581,7 @@ export function registerGameHandlers({
                   sacrificeResult.hand,
                 )
                   ? sacrificeResult.hand
-                  : rooms.getHand(
+                  : games.getHand(
                       code,
                       playerId,
                     ) || [];
@@ -589,7 +590,7 @@ export function registerGameHandlers({
                 typeof sacrificeResult.score ===
                 "number"
                   ? sacrificeResult.score
-                  : rooms.getScore(
+                  : games.getScore(
                       code,
                       playerId,
                     ) ?? 0;
