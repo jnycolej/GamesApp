@@ -33,13 +33,16 @@ export function createRoomLifecycle({
 
   let roomLifetimeSweep = null;
 
-  function playerLifecycleKey(code, playerOrKey) {
-    const identity =
-      typeof playerOrKey === "string"
-        ? playerOrKey
-        : playerOrKey?.key || playerOrKey?.id;
+  function playerLifecycleKey(code, playerOrId) {
+    const playerId =
+      typeof playerOrId === "string"
+        ? playerOrId
+        : playerOrId?.id;
 
-    return `${code}:${identity}`;
+    if (!playerId) {
+      return null;
+    }
+    return `${code}:${playerId}`;
   }
 
   function clearTimerFromMap(map, key) {
@@ -52,10 +55,12 @@ export function createRoomLifecycle({
     map.delete(key);
   }
 
-  function cancelPlayerLifecycleTimers(code, key) {
-    if (!key) return;
+  function cancelPlayerLifecycleTimers(code, playerId) {
+    if (!playerId) return;
 
-    const timerKey = playerLifecycleKey(code, key);
+    const timerKey = playerLifecycleKey(code, playerId);
+
+    if (!timerKey) return;
 
     clearTimerFromMap(playerEvictionTimers, timerKey);
 
@@ -173,52 +178,86 @@ export function createRoomLifecycle({
     emptyRoomTimers.set(code, timer);
   }
 
-  function schedulePlayerEviction(code, player) {
-    const identity = player?.key || player?.id;
+function schedulePlayerEviction(
+  code,
+  player,
+) {
+  const playerId = player?.id;
 
-    if (!identity) return;
+  if (!playerId) {
+    return;
+  }
 
-    const timerKey = playerLifecycleKey(code, identity);
+  const timerKey =
+    playerLifecycleKey(
+      code,
+      playerId,
+    );
 
-    // Replace an existing timer if needed.
-    clearTimerFromMap(playerEvictionTimers, timerKey);
+  if (!timerKey) {
+    return;
+  }
 
-    const timer = setTimeout(() => {
-      playerEvictionTimers.delete(timerKey);
+  clearTimerFromMap(
+    playerEvictionTimers,
+    timerKey,
+  );
 
-      const room = rooms.getRoom(code);
+  const timer =
+    setTimeout(() => {
+      playerEvictionTimers.delete(
+        timerKey,
+      );
 
-      if (!room) return;
+      const room =
+        rooms.getRoom(code);
 
-      // Find player using persistent
-      // reconnect identity when available.
-      const currentPlayer = player.key
-        ? [...room.players.values()].find((item) => item.key === player.key)
-        : room.players.get(player.id);
-
-      // Player already returned or
-      // no longer exists.
-      if (!currentPlayer || currentPlayer.connected) {
+      if (!room) {
         return;
       }
 
-      const result = player.key
-        ? rooms.removePlayerByKey(code, player.key)
-        : rooms.removePlayer(code, player.id);
+      const currentPlayer =
+        rooms.getPlayerByPlayerId(
+          code,
+          playerId,
+        );
+
+      // Player was removed already,
+      // or successfully reconnected.
+      if (
+        !currentPlayer ||
+        currentPlayer.connected
+      ) {
+        return;
+      }
+
+      const result =
+        rooms.removePlayer(
+          code,
+          playerId,
+        );
 
       if (!result?.ok) {
         return;
       }
 
-      logGameTransition("PLAYER_EVICTED", {
-        roomCode: code,
-        playerId: player.id,
-        reason: "reconnect_grace_expired",
-        roomEmpty: result.roomEmpty,
-      });
+      logGameTransition(
+        "PLAYER_EVICTED",
+        {
+          roomCode: code,
+          playerId,
+          reason:
+            "reconnect_grace_expired",
+          roomEmpty:
+            result.roomEmpty,
+        },
+      );
 
       if (result.roomEmpty) {
-        destroyRoom(code, "all_players_evicted");
+        destroyRoom(
+          code,
+          "all_players_evicted",
+        );
 
         return;
       }
@@ -226,45 +265,88 @@ export function createRoomLifecycle({
       emitRoomState(code);
     }, PLAYER_RECONNECT_GRACE_MS);
 
-    playerEvictionTimers.set(timerKey, timer);
+  playerEvictionTimers.set(
+    timerKey,
+    timer,
+  );
+}
+function scheduleHostReassignment(
+  code,
+  player,
+) {
+  const playerId = player?.id;
+
+  if (!playerId) {
+    return;
   }
 
-  function scheduleHostReassignment(code, player) {
-    const identity = player?.key || player?.id;
+  const room =
+    rooms.getRoom(code);
 
-    if (!identity) return;
+  if (!room) {
+    return;
+  }
 
-    const room = rooms.getRoom(code);
+  const timerKey =
+    playerLifecycleKey(
+      code,
+      playerId,
+    );
 
-    if (!room) return;
+  if (!timerKey) {
+    return;
+  }
 
-    const timerKey = playerLifecycleKey(code, identity);
+  clearTimerFromMap(
+    hostGraceTimers,
+    timerKey,
+  );
 
-    clearTimerFromMap(hostGraceTimers, timerKey);
+  const graceMs =
+    room.phase === "playing"
+      ? HOST_GAME_GRACE_MS
+      : HOST_LOBBY_GRACE_MS;
 
-    const graceMs =
-      room.phase === "playing" ? HOST_GAME_GRACE_MS : HOST_LOBBY_GRACE_MS;
+  const timer =
+    setTimeout(() => {
+      hostGraceTimers.delete(
+        timerKey,
+      );
 
-    const timer = setTimeout(() => {
-      hostGraceTimers.delete(timerKey);
+      const latestRoom =
+        rooms.getRoom(code);
 
-      const latestRoom = rooms.getRoom(code);
-
-      if (!latestRoom) return;
-
-      const disconnectedHost = player.key
-        ? [...latestRoom.players.values()].find(
-            (item) => item.key === player.key,
-          )
-        : latestRoom.players.get(player.id);
-
-      // Original host returned before
-      // their grace period expired.
-      if (disconnectedHost?.connected) {
+      if (!latestRoom) {
         return;
       }
 
-      const result = rooms.reassignHost(code);
+      /*
+       * Host may already have changed for
+       * some other reason while this timer
+       * was waiting.
+       */
+      if (
+        latestRoom.hostId !==
+        playerId
+      ) {
+        return;
+      }
+
+      const disconnectedHost =
+        rooms.getPlayerByPlayerId(
+          code,
+          playerId,
+        );
+
+      // Original host reconnected.
+      if (
+        disconnectedHost?.connected
+      ) {
+        return;
+      }
+
+      const result =
+        rooms.reassignHost(code);
 
       if (!result?.ok) {
         return;
@@ -273,15 +355,21 @@ export function createRoomLifecycle({
       emitRoomState(code);
 
       if (result.hostAssigned) {
-        io.to(code).emit(ServerEvents.HOST_CHANGED, {
-          hostId: result.hostId,
-        });
+        io.to(code).emit(
+          ServerEvents.HOST_CHANGED,
+          {
+            hostId:
+              result.hostId,
+          },
+        );
       }
     }, graceMs);
 
-    hostGraceTimers.set(timerKey, timer);
-  }
-
+  hostGraceTimers.set(
+    timerKey,
+    timer,
+  );
+}
   function startRoomLifetimeSweep() {
     // Prevent accidentally creating
     // multiple sweep intervals.

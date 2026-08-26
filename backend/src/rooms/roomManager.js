@@ -1,7 +1,7 @@
 import crypto from "crypto";
-import { ErrorCodes } from "./protocol/errors.js";
+import { ErrorCodes } from "../protocol/errors.js";
 
-import { loadDeck } from "./domain/deckService.js";
+import { loadDeck } from "../domain/deckService.js";
 
 const ROOM_CODE_LEN = 6;
 const CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -19,7 +19,6 @@ function genCode(len = ROOM_CODE_LEN) {
   return out;
 }
 
-
 const buildInviteUrl = ({ origin, gameType, code, token }) =>
   `${origin}/${gameType}/join?room=${encodeURIComponent(
     code,
@@ -29,7 +28,7 @@ export function createRoomManager() {
   const roomMap = new Map();
 
   //Creates a room for multiplayer gameplay based on type
-  function createRoom({ creatorSocketId, gameType, matchup = null, hostKey }) {
+  function createRoom({ gameType, matchup = null }) {
     let code;
     for (let attempts = 0; attempts < 5; attempts++) {
       code = genCode();
@@ -50,8 +49,7 @@ export function createRoomManager() {
       startedAt: null,
       status: "waiting",
       phase: "lobby",
-      hostId: creatorSocketId,
-      hostKey: hostKey || null,
+      hostId: null,
       invite: { token, createdAt: Date.now(), ttlMs: 1000 * 60 * 60 },
       players: new Map(),
       deckMode: "infinite",
@@ -66,73 +64,106 @@ export function createRoomManager() {
     return { code, token };
   }
 
-  function addPlayer(code, { id, displayName, key }) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
+  function addPlayer(code, { socketId, displayName, reconnectToken }) {
+    const room = roomMap.get(code);
 
-    //If the joining player has a key that already exists, treat as resume
-    if (key) {
-      const prev = [...r.players.values()].find((p) => p.key === key);
-      if (prev) {
-        r.players.delete(prev.id);
-        prev.id = id;
-        prev.connected = true;
-        prev.isActive = true;
-        prev.lastActiveAt = Date.now();
-        if (displayName) prev.name = displayName;
-        r.players.set(id, prev);
-        //If this key is the host's key, rebind hostId to the new socket id
-        if (r.hostKey && r.hostKey === key) {
-          r.hostId = id;
-        }
-        return { ok: true, resumed: true };
-      }
+    if (!room) {
+      return {
+        ok: false,
+        error: ErrorCodes.ROOM_NOT_FOUND,
+      };
     }
 
-    r.players.set(id, {
-      id,
-      key: key || null,
+    if (!reconnectToken) {
+      return {
+        ok: false,
+        error: ErrorCodes.MISSING_RECONNECT_TOKEN,
+      };
+    }
+
+    const now = Date.now();
+
+    const playerId = crypto.randomUUID();
+
+    const player = {
+      // Permanent public identity.
+      id: playerId,
+
+      // Current Socket.IO connection.
+      socketId,
+
+      // Secret used only to resume.
+      reconnectToken,
+
       name: displayName || "Player",
+
       hand: [],
+
       connected: true,
       isActive: true,
-      lastActiveAt: Date.now(),
-      joinedAt: Date.now(),
+
+      lastActiveAt: now,
+      joinedAt: now,
+
       score: 0,
-    });
+    };
 
-    if (!r.hostKey && key && r.hostId === id) {
-      r.hostKey = key;
-    }
+    room.players.set(playerId, player);
 
-    return { ok: true };
+    return {
+      ok: true,
+      resumed: false,
+      playerId,
+    };
   }
 
-  // Rebind an old player entry (found by key) to the new socket id
-  function resumePlayer(code, { newSocketId, key, displayName }) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-    if (!key) return { ok: false, error: "missing_key" };
+  function resumePlayer(code, { newSocketId, reconnectToken, displayName }) {
+    const room = roomMap.get(code);
 
-    const old = [...r.players.values()].find((p) => p.key === key);
-    if (!old) return { ok: false, error: "no_player_for_key" };
-
-    r.players.delete(old.id); // move entry under new socket id
-    old.id = newSocketId;
-    old.connected = true;
-    if (old._evictTimer) {
-      clearTimeout(old._evictTimer);
-      old._evictTimer = null;
-    }
-    if (displayName) old.name = displayName;
-    r.players.set(newSocketId, old);
-
-    //If this key is the host, update hostId to the new live socket
-    if (r.hostKey && r.hostKey === key) {
-      r.hostId = newSocketId;
+    if (!room) {
+      return {
+        ok: false,
+        error: ErrorCodes.ROOM_NOT_FOUND,
+      };
     }
 
-    return { ok: true, hand: old.hand, score: old.score };
+    if (!reconnectToken) {
+      return {
+        ok: false,
+        error: ErrorCodes.MISSING_RECONNECT_TOKEN,
+      };
+    }
+
+    const player = getPlayerByReconnectToken(code, reconnectToken);
+
+    if (!player) {
+      return {
+        ok: false,
+        error: ErrorCodes.PLAYER_NOT_FOUND,
+      };
+    }
+
+    // The permanent ID never changes.
+    // Only the live connection changes.
+    player.socketId = newSocketId;
+
+    player.connected = true;
+    player.isActive = true;
+
+    player.lastActiveAt = Date.now();
+
+    player.disconnectedAt = null;
+
+    if (displayName) {
+      player.name = displayName;
+    }
+
+    return {
+      ok: true,
+      playerId: player.id,
+      hand: player.hand,
+      score: player.score,
+    };
   }
 
   function getPublicState(code) {
@@ -148,15 +179,15 @@ export function createRoomManager() {
       matchup: r.matchup ?? null,
       team: r.team ?? null,
       phase: r.phase,
-      //hostKey: r.hostKey ?? null,
       hostId: r.hostId ?? null,
+      stateVersion: r.version ?? 0,
       players: [...r.players.values()].map((p) => ({
         id: p.id,
         name: p.name ?? p.displayName,
-        //key: p.key ?? null,
         score: p.score,
         connected: !!p.connected,
         isActive: !!p.isActive,
+        
         // if open hands, send full hand; otherwise just the count
         ...(allowOpenHands ? { hand: p.hand } : { handCount: p.hand.length }),
       })),
@@ -186,10 +217,10 @@ export function createRoomManager() {
     const r = roomMap.get(code);
     if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
     const inv = r.invite;
-    if (!inv) return { ok: false, error: "no_invite" };
-    if (inv.token !== token) return { ok: false, error: "bad_token" };
+    if (!inv) return { ok: false, error: ErrorCodes.NO_INVITE };
+    if (inv.token !== token) return { ok: false, error: ErrorCodes.BAD_INVITE_TOKEN };
     if (inv.ttlMs && Date.now() - inv.createdAt > inv.ttlMs) {
-      return { ok: false, error: "token_expired" };
+      return { ok: false, error: ErrorCodes.INVITE_TOKEN_EXPIRED };
     }
     return { ok: true };
   }
@@ -218,126 +249,129 @@ export function createRoomManager() {
     return s;
   }
 
-  function handleDisconnect(code, socketId) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
+  function handleDisconnect(code, playerId) {
+    const room = roomMap.get(code);
 
-    const p = r.players.get(socketId);
-    if (!p) return { ok: false, error: ErrorCodes.PLAYER_NOT_FOUND };
+    if (!room) {
+      return {
+        ok: false,
+        error: ErrorCodes.ROOM_NOT_FOUND,
+      };
+    }
 
-    // keep player reserved for 60 minutes after disconnect
-    //const EVICT_MS = 60 * 60 * 1000;
+    const player = room.players.get(playerId);
 
-    p.connected = false;
-    p.isActive = false;
-    p.disconnectedAt = Date.now();
+    if (!player) {
+      return {
+        ok: false,
+        error: ErrorCodes.PLAYER_NOT_FOUND,
+      };
+    }
 
-    r.version = (r.version || 0) + 1;
+    player.connected = false;
+    player.isActive = false;
+    player.disconnectedAt = Date.now();
 
-    // clearTimeout(p._evictTimer);
-    // p._evictTimer = setTimeout(() => {
-    //   // only evict if they never reconnected
-    //   if (!p.connected) r.players.delete(socketId);
-    // }, EVICT_MS);
+    room.version = (room.version || 0) + 1;
 
-    //return { roomClosed: false };
     return {
       ok: true,
-      player: p,
-      wasHost:
-        r.hostId === socketId ||
-        (!!r.hostKey && !!p.key && r.hostKey === p.key),
+      player,
+
+      wasHost: room.hostId === playerId,
     };
   }
-  function reassignHost(code) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
-    const candidates = [...r.players.values()]
-      .filter((p) => p.connected)
+  function reassignHost(code) {
+    const room = roomMap.get(code);
+
+    if (!room) {
+      return {
+        ok: false,
+        error: ErrorCodes.ROOM_NOT_FOUND,
+      };
+    }
+
+    const candidates = [...room.players.values()]
+      .filter((player) => player.connected)
       .sort((a, b) => {
         const aJoined = Number(a.joinedAt ?? 0);
+
         const bJoined = Number(b.joinedAt ?? 0);
+
         return aJoined - bJoined;
       });
 
     const nextHost = candidates[0] ?? null;
 
     if (!nextHost) {
-      r.hostId = null;
-      r.hostKey = null;
-      r.version = (r.version || 0) + 1;
+      room.hostId = null;
+
+      room.version = (room.version || 0) + 1;
 
       return {
         ok: true,
         hostAssigned: false,
         hostId: null,
-        hostKey: null,
       };
     }
 
-    r.hostId = nextHost.id;
-    r.hostKey = nextHost.key ?? null;
-    r.version = (r.version || 0) + 1;
+    room.hostId = nextHost.id;
+
+    room.version = (room.version || 0) + 1;
 
     return {
       ok: true,
       hostAssigned: true,
       hostId: nextHost.id,
-      hostKey: nextHost.key ?? null,
       player: nextHost,
     };
   }
 
-  function removePlayer(code, socketId, { reassignHostIfNeeded = true } = {}) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
+  function removePlayer(code, playerId, { reassignHostIfNeeded = true } = {}) {
+    const room = roomMap.get(code);
 
-    const player = r.players.get(socketId);
-    if (!player) return { ok: false, error: ErrorCodes.PLAYER_NOT_FOUND };
+    if (!room) {
+      return {
+        ok: false,
+        error: ErrorCodes.ROOM_NOT_FOUND,
+      };
+    }
 
-    const wasHost =
-      r.hostId === socketId ||
-      (!!r.hostKey && !!player.key && r.hostKey === player.key);
+    const player = room.players.get(playerId);
 
-    r.players.delete(socketId);
+    if (!player) {
+      return {
+        ok: false,
+        error: ErrorCodes.PLAYER_NOT_FOUND,
+      };
+    }
+
+    const wasHost = room.hostId === playerId;
+
+    room.players.delete(playerId);
 
     let hostResult = null;
 
-    if (wasHost && reassignHostIfNeeded && r.players.size > 0) {
+    if (wasHost && reassignHostIfNeeded && room.players.size > 0) {
       hostResult = reassignHost(code);
     }
 
-    if (r.players.size === 0) {
-      r.hostId = null;
-      r.hostKey = null;
+    if (room.players.size === 0) {
+      room.hostId = null;
     }
 
-    r.version = (r.version || 0) + 1;
+    room.version = (room.version || 0) + 1;
 
     return {
       ok: true,
       player,
       wasHost,
-      roomEmpty: r.players.size === 0,
+      roomEmpty: room.players.size === 0,
       hostResult,
     };
   }
-  function removePlayerByKey(code, key, { reassignHostIfNeeded = true } = {}) {
-    const r = roomMap.get(code);
-    if (!r) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-    if (!key) return { ok: false, error: "missing_key" };
 
-    const player = [...r.players.values()].find((p) => p.key === key);
-
-    if (!player) {
-      return { ok: false, error: ErrorCodes.PLAYER_NOT_FOUND };
-    }
-
-    return removePlayer(code, player.id, {
-      reassignHostIfNeeded,
-    });
-  }
   function destroyRoom(code) {
     const r = roomMap.get(code);
     if (!r) return false;
@@ -372,6 +406,55 @@ export function createRoomManager() {
     return roomMap.get(code) ?? null;
   }
 
+  function getPlayerBySocketId(code, socketId) {
+    const room = roomMap.get(code);
+
+    if (!room || !socketId) {
+      return null;
+    }
+
+    return (
+      [...room.players.values()].find(
+        (player) => player.socketId === socketId,
+      ) ?? null
+    );
+  }
+
+  function getPlayerByPlayerId(code, playerId) {
+    const room = roomMap.get(code);
+
+    if (!room || !playerId) {
+      return null;
+    }
+
+    return room.players.get(playerId) ?? null;
+  }
+
+function getPlayerByReconnectToken(
+  code,
+  reconnectToken,
+) {
+  const room =
+    roomMap.get(code);
+
+  if (
+    !room ||
+    !reconnectToken
+  ) {
+    return null;
+  }
+
+  return (
+    [
+      ...room.players.values(),
+    ].find(
+      (player) =>
+        player.reconnectToken ===
+        reconnectToken,
+    ) ?? null
+  );
+}
+
   function listCodes() {
     return Array.from(roomMap.keys());
   }
@@ -386,15 +469,18 @@ export function createRoomManager() {
     validateInvite,
     safePublicState,
 
+    getPlayerBySocketId,
+    getPlayerByPlayerId,
+    getPlayerByReconnectToken,
+
     handleDisconnect,
 
     listCodes,
     getRoom,
 
     removePlayer,
-    removePlayerByKey,
     reassignHost,
-    
+
     destroyRoom,
     destroyIfEmpty,
   };

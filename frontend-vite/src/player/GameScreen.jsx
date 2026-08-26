@@ -2,10 +2,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSocket } from "@/shared/socket";
 import { useRoomChannel } from "../shared/useRoomState";
+import { getPlayerId } from "@/shared/playerIdentity";
+
+import { createRequestId } from "@/shared/requestId";
+
 import { AnimatePresence } from "framer-motion";
 import { AnimatedList } from "@/components/ui/animated-list";
 import { FaCircle, FaRegCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
+
 //component imports
 import NavBar from "../components/NavBar";
 import Scoreboard from "../components/Scoreboard";
@@ -43,7 +48,7 @@ export default function GameScreen() {
   const socket = getSocket();
 
   //State declarations
-  const [socketId, setSocketId] = useState(socket.id || null);
+  const myPlayerId = actualMode === "single" ? "local-player" : getPlayerId();
 
   const [points, setPoints] = useState(0); //Your score
   // const [otherScores, setOtherScores] = useState({}); //Your opponent's scores
@@ -86,7 +91,7 @@ export default function GameScreen() {
   //Add the actual opponent score detection effect
   useEffect(() => {
     if (actualMode === "single") return;
-    if (!Array.isArray(room?.players) || !socketId) return;
+    if (!Array.isArray(room?.players) || !myPlayerId) return;
 
     const currentScores = {};
 
@@ -104,7 +109,9 @@ export default function GameScreen() {
 
     for (const p of room.players) {
       if (!p?.id) continue;
-      if (p.id === socketId) continue; //skip me
+      if (p.id === myPlayerId) {
+        continue;
+      }
 
       const oldScore = Number(prevScoresRef.current[p.id] ?? 0);
       const newScore = Number(currentScores[p.id] ?? 0);
@@ -131,7 +138,7 @@ export default function GameScreen() {
     }
 
     prevScoresRef.current = currentScores;
-  }, [actualMode, room?.players, socketId]);
+  }, [actualMode, room?.players, myPlayerId]);
 
   //Auto-clear the reaction
   useEffect(() => {
@@ -383,29 +390,7 @@ export default function GameScreen() {
       leaderIds: [meId],
       players: [{ id: meId, name: displayName, points: 0, score: 0 }],
     });
-
-    setSocketId(meId);
   }, [actualMode, game, setMyHand, setPoints, setRoom]);
-
-  //updates the game room
-  useEffect(() => {
-    if (actualMode === "single") return;
-
-    const update = () => setSocketId(socket.id || null);
-    const onDisconnect = () => setSocketId(null);
-
-    update();
-
-    socket.on("connect", update);
-    socket.on("reconnect", update);
-    socket.on("disconnect", onDisconnect);
-
-    return () => {
-      socket.off("connect", update);
-      socket.off("reconnect", update);
-      socket.off("disconnect", onDisconnect);
-    };
-  }, [actualMode, socket]);
 
   const voteSecondsLeft = pendingVote
     ? Math.max(0, Math.ceil((pendingVote.expiresAt - voteNow) / 1000))
@@ -496,21 +481,28 @@ export default function GameScreen() {
     }
     //console.log("[UI] sacrifice click", { cardId: card.id });
 
-    socket.emit("player:sacrifice", { cardId: card.id }, (ack) => {
-      if (ack?.error) {
-        console.warn("[sacrifice] error:", ack.error);
+    socket.emit(
+      "player:sacrifice",
+      {
+        requestId: createRequestId(),
+        cardId: card.id,
+      },
+      (ack) => {
+        if (ack?.error) {
+          console.warn("[sacrifice] error:", ack.error);
+          setPendingSacrificeId(null);
+          return;
+        }
         setPendingSacrificeId(null);
-        return;
-      }
-      setPendingSacrificeId(null);
-      sounds.playSacrifice();
+        sounds.playSacrifice();
 
-      //start cooldown for this specific card slot (the replacement has a new id)
-      setSacrificeCooldown((prev) => ({
-        ...prev,
-        [card.id]: Date.now() + SACRFIFICE_COOLDOWN_MS,
-      }));
-    });
+        //start cooldown for this specific card slot (the replacement has a new id)
+        setSacrificeCooldown((prev) => ({
+          ...prev,
+          [card.id]: Date.now() + SACRFIFICE_COOLDOWN_MS,
+        }));
+      },
+    );
 
     const t = setTimeout(() => setPendingSacrificeId(null), 6000);
     setSacrificeTimer(t);
@@ -698,18 +690,6 @@ export default function GameScreen() {
     };
   }, [actualMode, socket]);
 
-  // clear when a fresh state arrives
-  // useEffect(() => {
-  //   if (actualMode === "single") return;
-
-  //   const onState = (next) => {
-  //     // whenever server pushes a new state, ensure nothing is stuck
-  //     if (pendingSacrificeId) setPendingSacrificeId(null);
-  //   };
-  //   socket.on("room:state", onState);
-  //   return () => socket.off("room:state", onState);
-  // }, [actualMode, socket, pendingSacrificeId]);
-
   //Styles the background image
   const backgroundStyle = {
     backgroundImage: `url(${background})`,
@@ -719,9 +699,12 @@ export default function GameScreen() {
   };
 
   const me = useMemo(() => {
-    if (!room?.players || !socketId) return null;
-    return room.players.find((p) => p.id === socketId) || null;
-  }, [room?.players, socketId]);
+    if (!room?.players || !myPlayerId) {
+      return null;
+    }
+
+    return room.players.find((p) => p.id === myPlayerId) || null;
+  }, [room?.players, myPlayerId]);
 
   const localName =
     (typeof window !== "undefined" && localStorage.getItem("displayName")) ||
@@ -842,15 +825,21 @@ export default function GameScreen() {
       return;
     }
 
-    socket.emit("game:playCard", { index }, (res) => {
-      if (!res?.ok) {
-        return alert(res?.error ?? "Could not play card");
-      }
 
-      sounds.playCard();
-    });
+    socket.emit(
+      "game:playCard",
+      { 
+        requestId: createRequestId(), 
+        index 
+      },
+      (res) => {
+        if (!res?.ok) {
+          return alert(res?.error ?? "Could not play card");
+        }
 
-    sounds.playCard();
+        sounds.playCard();
+      },
+    );
   };
 
   //watch hand for changes
@@ -868,10 +857,9 @@ export default function GameScreen() {
     : [];
 
   const opponents = useMemo(
-    () => (socketId ? players.filter((p) => p.id !== socketId) : []),
-    [players, socketId],
+    () => (myPlayerId ? players.filter((p) => p.id !== myPlayerId) : []),
+    [players, myPlayerId],
   );
-
   //adds points based on Event bar buttons
   const handleEventConfirm = (ev) => {
     const delta = Number(ev?.points ?? 0) || 0;
@@ -916,7 +904,11 @@ export default function GameScreen() {
     //Scoring API
     socket.emit(
       "score:adjust",
-      { delta, meta: { source: "eventBar", title } },
+      {
+        requestId: createRequestId(),
+        delta,
+        meta: { source: "eventBar", title },
+      },
       (ack) => {
         if (!ack?.ok) {
           console.warn("Event score adjust failed:", ack?.error);
@@ -984,7 +976,7 @@ export default function GameScreen() {
   }, []);
 
   function handleLeaveGame() {
-    socket.emit("leaveRoom", (res) => {
+    socket.emit("leaveRoom", { requestId: createRequestId() }, (res) => {
       if (!res?.ok) {
         console.warn("Leave room failed:", res?.error);
       }
@@ -1061,7 +1053,7 @@ export default function GameScreen() {
         <Scoreboard
           players={room?.players ?? []}
           leaderIds={room?.leaderIds ?? []}
-          currentUserId={socketId}
+          currentUserId={myPlayerId}
           activeReaction={activeOpponentReaction}
         />
       </div>
@@ -1170,23 +1162,21 @@ export default function GameScreen() {
             });
             return;
           }
-          // console.log("[UI] proposing event", ev, {
-          //   socketId: socket.id,
-          //   connected: socket.connected,
-          //   roomCode: room?.code,
-          //   phase: room?.phase,
-          //   players: room?.players?.length,
-          // });
-          socket.emit("event:propose", { eventKey: ev.key }, (ack) => {
-            console.log("[UI] event:propose ACK:", ack);
 
-            if (!ack?.ok) {
-              if (ack?.error === "cooldown" && ack?.until) {
-                setEventCooldownUntil(ack.until);
+          socket.emit(
+            "event:propose",
+            { requestId: createRequestId(), eventKey: ev.key },
+            (ack) => {
+              console.log("[UI] event:propose ACK:", ack);
+
+              if (!ack?.ok) {
+                if (ack?.error === "cooldown" && ack?.until) {
+                  setEventCooldownUntil(ack.until);
+                }
+                console.warn("event:propose failed:", ack?.error);
               }
-              console.warn("event:propose failed:", ack?.error);
-            }
-          });
+            },
+          );
         }}
         onReaction={(reaction) => {
           if (actualMode === "single") {
@@ -1220,6 +1210,7 @@ export default function GameScreen() {
           socket.emit(
             "reaction:send",
             {
+              requestId: createRequestId(),
               key: reaction.key,
             },
             (ack) => {
@@ -1261,7 +1252,7 @@ export default function GameScreen() {
             </div>
 
             {/* proposer can't vote */}
-            {pendingVote.byPlayerId === socketId ? (
+            {pendingVote.byPlayerId === myPlayerId ? (
               <div className="mt-4 text-sm text-gray-500">
                 Waiting for others to vote...
               </div>
@@ -1272,7 +1263,11 @@ export default function GameScreen() {
                   onClick={() =>
                     socket.emit(
                       "event:vote",
-                      { id: pendingVote.id, vote: "no" },
+                      {
+                        requestId: createRequestId(),
+                        id: pendingVote.id,
+                        vote: "no",
+                      },
                       (ack) => {
                         if (!ack?.ok)
                           console.warn("[UI] event:vote no failed:", ack);
@@ -1287,7 +1282,11 @@ export default function GameScreen() {
                   onClick={() =>
                     socket.emit(
                       "event:vote",
-                      { id: pendingVote.id, vote: "yes" },
+                      {
+                        requestId: createRequestId(),
+                        id: pendingVote.id,
+                        vote: "yes",
+                      },
                       (ack) => {
                         if (!ack?.ok)
                           console.warn("[UI] event:vote yes failed:", ack);
@@ -1364,14 +1363,18 @@ export default function GameScreen() {
                     return;
                   }
 
-                  socket.emit("score:adjust", { delta: d }, (ack) => {
-                    if (!ack?.ok)
-                      return console.warn("Award failed:", ack?.error);
-                    sounds.playQuizAward();
-                    // ✅ your server returns { ok: true, newScore }
-                    const next = Number(ack.newScore);
-                    setPoints(Number.isFinite(next) ? next : 0);
-                  });
+                  socket.emit(
+                    "score:adjust",
+                    { requestId: createRequestId(), delta: d },
+                    (ack) => {
+                      if (!ack?.ok)
+                        return console.warn("Award failed:", ack?.error);
+                      sounds.playQuizAward();
+                      // ✅ your server returns { ok: true, newScore }
+                      const next = Number(ack.newScore);
+                      setPoints(Number.isFinite(next) ? next : 0);
+                    },
+                  );
                 }}
               />
             </div>

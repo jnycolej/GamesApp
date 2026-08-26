@@ -1,12 +1,13 @@
 import crypto from "crypto";
 
-import {
-  ClientEvents,
-  ServerEvents,
-} from "../protocol/events.js";
-
+import { ClientEvents, ServerEvents } from "../protocol/events.js";
+import { getRequestId, withRequestId } from "../protocol/requestId.js";
 import { ErrorCodes } from "../protocol/errors.js";
-
+import {
+  beginRequest,
+  completeRequest,
+  abandonRequest,
+} from "../protocol/idempotency.js";
 import {
   normalizeRoomCode,
   normalizeDisplayName,
@@ -26,143 +27,152 @@ export function registerPlayerHandlers({
   playerReconnectGraceMs,
 }) {
   // Join room
-  socket.on(
-    ClientEvents.PLAYER_JOIN,
-    (
-      {
-        roomCode,
-        displayName,
-        reconnectToken,
-      },
-      cb,
-    ) => {
-      try {
-        const code = normalizeRoomCode(roomCode);
+  socket.on(ClientEvents.PLAYER_JOIN, (payload = {}, cb) => {
+    const requestId = getRequestId(payload);
 
-        const exists = rooms.getPublicState(code);
+    const { roomCode, displayName } = payload;
 
-        if (!exists) {
-          return cb?.({
+    let request = null;
+
+    try {
+      const code = normalizeRoomCode(roomCode);
+
+      const exists = rooms.getPublicState(code);
+
+      if (!exists) {
+        return cb?.(
+          withRequestId(requestId, {
             ok: false,
             error: ErrorCodes.ROOM_NOT_FOUND,
-          });
-        }
-
-        const safeName =
-          normalizeDisplayName(displayName);
-
-        const playerKey =
-          reconnectToken || crypto.randomUUID();
-
-        socket.data.displayName = safeName;
-
-        const result = rooms.addPlayer(code, {
-          id: socket.id,
-          displayName: safeName,
-          key: playerKey,
-        });
-
-        if (!result.ok) {
-          return cb?.(result);
-        }
-
-        cancelPlayerLifecycleTimers(
-          code,
-          playerKey,
+          }),
         );
+      }
 
-        cancelEmptyRoomTimer(code);
+      request = beginRequest({
+        scope: socket.id,
+        eventName: ClientEvents.PLAYER_JOIN,
+        requestId,
+      });
 
-        socket.data.roomCode = code;
-        socket.join(code);
+      if (request.status === "duplicate") {
+        return cb?.(request.response);
+      }
 
-        const joinedRoom = rooms.getRoom(code);
+      if (request.status === "pending") {
+        return cb?.(
+          withRequestId(requestId, {
+            ok: false,
+            error: ErrorCodes.REQUEST_IN_PROGRESS,
+          }),
+        );
+      }
 
-        if (
-          joinedRoom &&
-          !joinedRoom.hostId &&
-          !joinedRoom.hostKey
-        ) {
-          rooms.reassignHost(code);
-        }
+      const finish = (response) => {
+        const finalResponse = withRequestId(requestId, response);
 
-        const state = emitRoomState(code);
+        completeRequest(request.key, finalResponse);
 
-        logGameTransition("PLAYER_JOINED", {
-          roomCode: code,
-          playerId: socket.id,
-          playerName: safeName,
-          playerCount:
-            state?.players?.length ?? null,
-        });
+        return cb?.(finalResponse);
+      };
 
-        return cb?.({
-          ok: true,
-          state,
-          reconnectToken: playerKey,
-        });
-      } catch (err) {
-        console.error("[join] error:", err);
+      const safeName = normalizeDisplayName(displayName);
 
-        return cb?.({
+      const reconnectToken = crypto.randomUUID();
+
+      socket.data.displayName = safeName;
+
+      const result = rooms.addPlayer(code, {
+        socketId: socket.id,
+        displayName: safeName,
+        reconnectToken,
+      });
+
+      if (!result.ok) {
+        return finish(result);
+      }
+
+      socket.data.playerId = result.playerId;
+
+      cancelPlayerLifecycleTimers(code, result.playerId);
+
+      cancelEmptyRoomTimer(code);
+
+      socket.data.roomCode = code;
+
+      socket.join(code);
+
+      const joinedRoom = rooms.getRoom(code);
+
+      if (!joinedRoom.hostId) {
+        rooms.reassignHost(code);
+      }
+
+      const state = emitRoomState(code);
+
+      logGameTransition("PLAYER_JOINED", {
+        roomCode: code,
+        playerId: result.playerId,
+        socketId: socket.id,
+        playerName: safeName,
+        playerCount: state?.players?.length ?? null,
+      });
+
+      return finish({
+        ok: true,
+        state,
+        playerId: result.playerId,
+        reconnectToken,
+      });
+    } catch (err) {
+      abandonRequest(request?.key);
+
+      console.error("[join] error", err);
+
+      return cb?.(
+        withRequestId(requestId, {
           ok: false,
           error: ErrorCodes.JOIN_FAILED,
-        });
-      }
-    },
-  );
+        }),
+      );
+    }
+  });
 
   // Resume previous player
   socket.on(
     ClientEvents.PLAYER_RESUME,
-    (
-      {
-        roomCode,
-        displayName,
-        reconnectToken,
-      },
-      cb,
-    ) => {
+    ({ roomCode, displayName, reconnectToken }, cb) => {
       if (!reconnectToken) {
         return cb?.({
           ok: false,
-          error:
-            ErrorCodes.MISSING_RECONNECT_TOKEN,
+          error: ErrorCodes.MISSING_RECONNECT_TOKEN,
         });
       }
 
       const code = normalizeRoomCode(roomCode);
 
-      const safeName =
-        normalizeDisplayName(displayName);
+      const safeName = normalizeDisplayName(displayName);
 
       socket.data.displayName = safeName;
 
       const result = rooms.resumePlayer(code, {
         newSocketId: socket.id,
         displayName: safeName,
-        key: reconnectToken,
+        reconnectToken,
       });
 
       if (!result.ok) {
         return cb?.(result);
       }
 
-      cancelPlayerLifecycleTimers(
-        code,
-        reconnectToken,
-      );
+      socket.data.playerId = result.playerId;
+
+      cancelPlayerLifecycleTimers(code, result.playerId);
 
       cancelEmptyRoomTimer(code);
 
-      const roomAfterResume =
-        rooms.getRoom(code);
+      const roomAfterResume = rooms.getRoom(code);
 
-      if (
-        roomAfterResume &&
-        !roomAfterResume.hostId &&
-        !roomAfterResume.hostKey
-      ) {
+      if (roomAfterResume && !roomAfterResume.hostId) {
         rooms.reassignHost(code);
       }
 
@@ -171,27 +181,21 @@ export function registerPlayerHandlers({
 
       logGameTransition("PLAYER_RESUMED", {
         roomCode: code,
-        playerId: socket.id,
+        playerId: result.playerId,
         playerName: safeName,
         phase: roomAfterResume?.phase,
-        wasHost:
-          roomAfterResume?.hostId === socket.id,
+        wasHost: roomAfterResume?.hostId === result.playerId,
       });
 
-      io.to(socket.id).emit(
-        ServerEvents.HAND_UPDATE,
-        result.hand || [],
-      );
+      io.to(socket.id).emit(ServerEvents.HAND_UPDATE, result.hand || []);
 
-      io.to(socket.id).emit(
-        ServerEvents.SCORE_UPDATE,
-        result.score ?? 0,
-      );
+      io.to(socket.id).emit(ServerEvents.SCORE_UPDATE, result.score ?? 0);
 
       const state = emitRoomState(code);
 
       return cb?.({
         ok: true,
+        playerId: result.playerId,
         state,
       });
     },
@@ -201,79 +205,76 @@ export function registerPlayerHandlers({
   socket.on(ClientEvents.PLAYER_ACTIVITY, () => {
     const code = socket.data.roomCode;
 
-    if (!code) return;
+    const playerId = socket.data.playerId;
 
-    const room = rooms.getRoom?.(code);
+    if (!code || !playerId) {
+      return;
+    }
 
-    if (!room) return;
+    const player = rooms.getPlayerByPlayerId(code, playerId);
 
-    const player =
-      room.players.get(socket.id);
-
-    if (!player) return;
+    if (!player) {
+      return;
+    }
 
     player.lastActiveAt = Date.now();
+
     player.isActive = true;
 
     emitRoomState(code);
   });
-
   // Temporary disconnect
   socket.on("disconnect", () => {
     const code = socket.data.roomCode;
 
-    if (!code) return;
+    const playerId = socket.data.playerId;
+
+    if (!code || !playerId) {
+      return;
+    }
 
     const room = rooms.getRoom(code);
 
-    if (!room) return;
+    if (!room) {
+      return;
+    }
 
-    const player =
-      room.players.get(socket.id);
+    const player = rooms.getPlayerByPlayerId(code, playerId);
 
-    if (!player) return;
+    if (!player) {
+      return;
+    }
 
     const playerSnapshot = {
       id: player.id,
-      key: player.key,
+
+      socketId: player.socketId ?? socket.id,
+
       joinedAt: player.joinedAt,
     };
 
-    const wasHost =
-      room.hostId === socket.id ||
-      (
-        !!room.hostKey &&
-        !!player.key &&
-        room.hostKey === player.key
-      );
+    const wasHost = room.hostId === playerId;
 
-    rooms.handleDisconnect(
-      code,
-      socket.id,
-    );
+    rooms.handleDisconnect(code, playerId);
 
-    logGameTransition(
-      "PLAYER_DISCONNECTED",
-      {
-        roomCode: code,
-        playerId: socket.id,
-        wasHost,
-        phase: room.phase,
-        reconnectGraceMs:
-          playerReconnectGraceMs,
-      },
-    );
+    logGameTransition("PLAYER_DISCONNECTED", {
+      roomCode: code,
 
-    schedulePlayerEviction(
-      code,
-      playerSnapshot,
-    );
+      playerId,
+
+      socketId: socket.id,
+
+      wasHost,
+
+      phase: room.phase,
+
+      reconnectGraceMs: playerReconnectGraceMs,
+    });
+
+    schedulePlayerEviction(code, playerSnapshot);
 
     if (wasHost) {
-      scheduleHostReassignment(
-        code,
-        playerSnapshot,
-      );
+      scheduleHostReassignment(code, playerSnapshot);
     }
 
     scheduleEmptyRoomExpiration(code);

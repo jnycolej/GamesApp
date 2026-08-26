@@ -1,14 +1,8 @@
-import {
-  ServerEvents,
-} from "../protocol/events.js";
+import { ServerEvents } from "../protocol/events.js";
 
-import {
-  ErrorCodes,
-} from "../protocol/errors.js";
+import { ErrorCodes } from "../protocol/errors.js";
 
-import {
-  normalizeEventKey,
-} from "../protocol/validation.js";
+import { normalizeEventKey } from "../protocol/validation.js";
 
 const EVENT_COOLDOWN_MS = 2 * 60 * 1000;
 const EVENT_VOTE_DURATION_MS = 15_000;
@@ -76,49 +70,39 @@ export function createEventVoting({
   const pendingEventByCode = new Map();
   const eventCooldownByCode = new Map();
 
+  function emitScoreUpdateToPlayer(code, playerId, score) {
+    const player = rooms.getPlayerByPlayerId(code, playerId);
+
+    const socketId = player?.socketId;
+
+    if (!socketId) {
+      return;
+    }
+
+    io.to(socketId).emit(ServerEvents.SCORE_UPDATE, score);
+  }
+
   function majorityNeeded(totalEligibleVoters) {
     return Math.floor(totalEligibleVoters / 2) + 1;
   }
 
-  function getPlayerDisplayName(
-    state,
-    playerId,
-  ) {
-    const player =
-      (state?.players || []).find(
-        (item) => item.id === playerId,
-      );
+  function getPlayerDisplayName(state, playerId) {
+    const player = (state?.players || []).find((item) => item.id === playerId);
 
-    return (
-      player?.displayName ||
-      player?.name ||
-      "Player"
-    );
+    return player?.displayName || player?.name || "Player";
   }
 
-  function getQuickPointEvent(
-    gameType,
-    eventKey,
-  ) {
-    const normalizedGameType =
-      String(gameType || "")
-        .trim()
-        .toLowerCase();
+  function getQuickPointEvent(gameType, eventKey) {
+    const normalizedGameType = String(gameType || "")
+      .trim()
+      .toLowerCase();
 
-    const normalizedEventKey =
-      normalizeEventKey(eventKey);
+    const normalizedEventKey = normalizeEventKey(eventKey);
 
-    return (
-      QUICK_POINT_EVENTS[
-        normalizedGameType
-      ]?.[normalizedEventKey] ?? null
-    );
+    return QUICK_POINT_EVENTS[normalizedGameType]?.[normalizedEventKey] ?? null;
   }
 
-  function summarizePending(
-    pending,
-    totalEligibleVoters,
-  ) {
+  function summarizePending(pending, totalEligibleVoters) {
     return {
       id: pending.id,
       eventKey: pending.eventKey,
@@ -131,15 +115,12 @@ export function createEventVoting({
       yesCount: pending.yes.size,
       noCount: pending.no.size,
       totalEligibleVoters,
-      neededYes: majorityNeeded(
-        totalEligibleVoters,
-      ),
+      neededYes: majorityNeeded(totalEligibleVoters),
     };
   }
 
   function clearPending(code) {
-    const pending =
-      pendingEventByCode.get(code);
+    const pending = pendingEventByCode.get(code);
 
     if (pending?.timer) {
       clearTimeout(pending.timer);
@@ -149,20 +130,13 @@ export function createEventVoting({
   }
 
   function setCooldown(code) {
-    const until =
-      Date.now() + EVENT_COOLDOWN_MS;
+    const until = Date.now() + EVENT_COOLDOWN_MS;
 
-    eventCooldownByCode.set(
-      code,
+    eventCooldownByCode.set(code, until);
+
+    io.to(code).emit(ServerEvents.EVENT_COOLDOWN, {
       until,
-    );
-
-    io.to(code).emit(
-      ServerEvents.EVENT_COOLDOWN,
-      {
-        until,
-      },
-    );
+    });
 
     return until;
   }
@@ -173,293 +147,186 @@ export function createEventVoting({
   }
 
   function resolveAtTimeout(code) {
-    const pending =
-      pendingEventByCode.get(code);
+    const pending = pendingEventByCode.get(code);
 
     if (!pending) return;
 
-    const state =
-      getEnrichedState(code);
+    const state = getEnrichedState(code);
 
     if (!state) {
       clearPending(code);
       return;
     }
 
-    const totalPlayers =
-      Array.isArray(state.players)
-        ? state.players.length
-        : 0;
+    const totalPlayers = Array.isArray(state.players)
+      ? state.players.length
+      : 0;
 
-    const totalEligibleVoters =
-      Math.max(
-        0,
-        totalPlayers - 1,
-      );
+    const totalEligibleVoters = Math.max(0, totalPlayers - 1);
 
-    const neededYes =
-      majorityNeeded(
-        totalEligibleVoters,
-      );
+    const neededYes = majorityNeeded(totalEligibleVoters);
 
-    const approved =
-      pending.yes.size >= neededYes;
+    const approved = pending.yes.size >= neededYes;
 
     if (approved) {
-      const awardResult =
-        games.getScore(
-          code,
-          pending.byPlayerId,
-          pending.points,
-        );
+      const awardResult = games.adjustScore(
+        code,
+        resolvedPending.byPlayerId,
+        resolvedPending.points,
+      );
 
       const newScore =
-        awardResult?.score ??
-        rooms.getScore(
-          code,
-          pending.byPlayerId,
-        ) ??
+        awardResult.score ??
+        games.getScore(code, resolvedPending.byPlayerId) ??
         0;
 
-      io.to(
-        pending.byPlayerId,
-      ).emit(
-        ServerEvents.SCORE_UPDATE,
-        newScore,
-      );
-
-      io.to(code).emit(
-        ServerEvents.PLAYER_UPDATED,
-        {
-          playerId:
-            pending.byPlayerId,
-          score: newScore,
-        },
-      );
+      emitScoreUpdateToPlayer(code, resolvedPending.byPlayerId, newScore);
 
       emitRoomState(code);
 
-      const update =
-        gameUpdates.pushUpdate(
-          code,
-          {
-            type:
-              "EVENT_CONFIRMED",
+      const update = gameUpdates.pushUpdate(code, {
+        type: "EVENT_CONFIRMED",
 
-            player: {
-              id:
-                pending.byPlayerId,
-              name:
-                pending.byName,
-            },
+        player: {
+          id: pending.byPlayerId,
+          name: pending.byName,
+        },
 
-            card: {
-              description:
-                pending.title,
-              points:
-                pending.points,
-            },
+        card: {
+          description: pending.title,
+          points: pending.points,
+        },
 
-            deltaPoints:
-              pending.points,
+        deltaPoints: pending.points,
 
-            meta: {
-              source: "eventBar",
-              eventKey:
-                pending.eventKey,
-              resolvedBy:
-                "timeout",
-            },
-          },
-        );
+        meta: {
+          source: "eventBar",
+          eventKey: pending.eventKey,
+          resolvedBy: "timeout",
+        },
+      });
 
-      io.to(code).emit(
-        ServerEvents.GAME_UPDATE,
-        update,
-      );
+      io.to(code).emit(ServerEvents.GAME_UPDATE, update);
 
       setCooldown(code);
     }
 
-    logGameTransition(
-      "EVENT_RESOLVED",
-      {
-        roomCode: code,
-        eventId: pending.id,
-        proposedBy:
-          pending.byPlayerId,
-        outcome:
-          approved
-            ? "approved"
-            : "rejected",
-        reason: "vote_timeout",
-        yesCount:
-          pending.yes.size,
-        noCount:
-          pending.no.size,
-        neededYes,
-        pointsAwarded:
-          approved
-            ? pending.points
-            : 0,
-      },
-    );
+    logGameTransition("EVENT_RESOLVED", {
+      roomCode: code,
+      eventId: pending.id,
+      proposedBy: pending.byPlayerId,
+      outcome: approved ? "approved" : "rejected",
+      reason: "vote_timeout",
+      yesCount: pending.yes.size,
+      noCount: pending.no.size,
+      neededYes,
+      pointsAwarded: approved ? pending.points : 0,
+    });
 
-    io.to(code).emit(
-      ServerEvents.EVENT_RESOLVED,
-      {
-        ok: true,
-        id: pending.id,
-        approved,
-        resolvedBy: "timeout",
-        eventKey:
-          pending.eventKey,
-        title: pending.title,
-        points: pending.points,
-        byPlayerId:
-          pending.byPlayerId,
-        byName: pending.byName,
-      },
-    );
+    io.to(code).emit(ServerEvents.EVENT_RESOLVED, {
+      ok: true,
+      id: pending.id,
+      approved,
+      resolvedBy: "timeout",
+      eventKey: pending.eventKey,
+      title: pending.title,
+      points: pending.points,
+      byPlayerId: pending.byPlayerId,
+      byName: pending.byName,
+    });
 
     clearPending(code);
   }
 
-  function propose({
-    code,
-    playerId,
-    eventKey,
-  }) {
-    const state =
-      getEnrichedState(code);
+  function propose({ code, playerId, eventKey }) {
+    const state = getEnrichedState(code);
 
     if (!state) {
       return {
         ok: false,
-        error:
-          ErrorCodes.ROOM_NOT_FOUND,
+        error: ErrorCodes.ROOM_NOT_FOUND,
       };
     }
 
     if (state.phase !== "playing") {
       return {
         ok: false,
-        error:
-          ErrorCodes.GAME_NOT_PLAYING,
+        error: ErrorCodes.GAME_NOT_PLAYING,
       };
     }
 
-    const proposer =
-      (state.players || []).find(
-        (player) =>
-          player.id === playerId,
-      );
+    const proposer = (state.players || []).find(
+      (player) => player.id === playerId,
+    );
 
     if (!proposer) {
       return {
         ok: false,
-        error:
-          ErrorCodes.PLAYER_NOT_FOUND,
+        error: ErrorCodes.PLAYER_NOT_FOUND,
       };
     }
 
-    const cooldownUntil =
-      eventCooldownByCode.get(code) || 0;
+    const cooldownUntil = eventCooldownByCode.get(code) || 0;
 
-    if (
-      Date.now() < cooldownUntil
-    ) {
+    if (Date.now() < cooldownUntil) {
       return {
         ok: false,
-        error:
-          ErrorCodes.COOLDOWN,
+        error: ErrorCodes.COOLDOWN,
         until: cooldownUntil,
       };
     }
 
-    if (
-      pendingEventByCode.has(code)
-    ) {
+    if (pendingEventByCode.has(code)) {
       return {
         ok: false,
-        error:
-          ErrorCodes.EVENT_ALREADY_PENDING,
+        error: ErrorCodes.EVENT_ALREADY_PENDING,
       };
     }
 
-    const normalizedEventKey =
-      normalizeEventKey(eventKey);
+    const normalizedEventKey = normalizeEventKey(eventKey);
 
-    const eventDefinition =
-      getQuickPointEvent(
-        state.gameType,
-        normalizedEventKey,
-      );
+    const eventDefinition = getQuickPointEvent(
+      state.gameType,
+      normalizedEventKey,
+    );
 
     if (!eventDefinition) {
       return {
         ok: false,
-        error:
-          ErrorCodes.INVALID_EVENT,
+        error: ErrorCodes.INVALID_EVENT,
       };
     }
 
-    const {
-      title,
-      points,
-    } = eventDefinition;
+    const { title, points } = eventDefinition;
 
-    const byName =
-      getPlayerDisplayName(
-        state,
-        playerId,
-      );
+    const byName = getPlayerDisplayName(state, playerId);
 
-    const totalPlayers =
-      state.players?.length || 0;
+    const totalPlayers = state.players?.length || 0;
 
-    const totalEligibleVoters =
-      Math.max(
-        0,
-        totalPlayers - 1,
-      );
+    const totalEligibleVoters = Math.max(0, totalPlayers - 1);
 
-    if (
-      totalEligibleVoters === 0
-    ) {
+    if (totalEligibleVoters === 0) {
       return {
         ok: false,
-        error:
-          ErrorCodes.NO_VOTERS,
+        error: ErrorCodes.NO_VOTERS,
       };
     }
 
-    const neededYes =
-      majorityNeeded(
-        totalEligibleVoters,
-      );
+    const neededYes = majorityNeeded(totalEligibleVoters);
 
-    const createdAt =
-      Date.now();
+    const createdAt = Date.now();
 
-    const expiresAt =
-      createdAt +
-      EVENT_VOTE_DURATION_MS;
+    const expiresAt = createdAt + EVENT_VOTE_DURATION_MS;
 
     const pending = {
-      id:
-        `${code}-${createdAt}-${Math.random()
-          .toString(16)
-          .slice(2)}`,
+      id: `${code}-${createdAt}-${Math.random().toString(16).slice(2)}`,
 
-      eventKey:
-        normalizedEventKey,
+      eventKey: normalizedEventKey,
 
       title,
       points,
 
-      byPlayerId:
-        playerId,
+      byPlayerId: playerId,
 
       byName,
 
@@ -472,42 +339,33 @@ export function createEventVoting({
       timer: null,
     };
 
-    pending.timer =
-      setTimeout(() => {
+    pending.timer = setTimeout(() => {
+      try {
         resolveAtTimeout(code);
-      }, EVENT_VOTE_DURATION_MS);
+      } catch (err) {
+        console.error("[event:timeout] error", err);
 
-    pendingEventByCode.set(
-      code,
-      pending,
-    );
+        clearPending(code);
+      }
+    }, EVENT_VOTE_DURATION_MS);
+
+    pendingEventByCode.set(code, pending);
 
     io.to(code).emit(
       ServerEvents.EVENT_PROPOSED,
-      summarizePending(
-        pending,
-        totalEligibleVoters,
-      ),
+      summarizePending(pending, totalEligibleVoters),
     );
 
-    logGameTransition(
-      "EVENT_PROPOSED",
-      {
-        roomCode: code,
-        playerId,
-        eventId:
-          pending.id,
-        eventKey:
-          pending.eventKey,
-        title:
-          pending.title,
-        points:
-          pending.points,
-        neededYes,
-        expiresAt:
-          pending.expiresAt,
-      },
-    );
+    logGameTransition("EVENT_PROPOSED", {
+      roomCode: code,
+      playerId,
+      eventId: pending.id,
+      eventKey: pending.eventKey,
+      title: pending.title,
+      points: pending.points,
+      neededYes,
+      expiresAt: pending.expiresAt,
+    });
 
     return {
       ok: true,
@@ -515,276 +373,179 @@ export function createEventVoting({
     };
   }
 
-  function vote({
-    code,
-    playerId,
-    eventId,
-    vote,
-  }) {
-    const pending =
-      pendingEventByCode.get(code);
+  function vote({ code, playerId, eventId, vote }) {
+    const pending = pendingEventByCode.get(code);
 
     if (!pending) {
       return {
         ok: false,
-        error:
-          ErrorCodes.NO_PENDING_EVENT,
+        error: ErrorCodes.NO_PENDING_EVENT,
       };
     }
 
-    if (
-      String(eventId || "") !==
-      pending.id
-    ) {
+    if (String(eventId || "") !== pending.id) {
       return {
         ok: false,
-        error:
-          ErrorCodes.EVENT_ID_MISMATCH,
+        error: ErrorCodes.EVENT_ID_MISMATCH,
       };
     }
 
-    if (
-      Date.now() >=
-      pending.expiresAt
-    ) {
+    if (Date.now() >= pending.expiresAt) {
       return {
         ok: false,
-        error:
-          ErrorCodes.VOTE_EXPIRED,
+        error: ErrorCodes.VOTE_EXPIRED,
       };
     }
 
-    const normalizedVote =
-      vote === "yes"
-        ? "yes"
-        : vote === "no"
-          ? "no"
-          : null;
+    const normalizedVote = vote === "yes" ? "yes" : vote === "no" ? "no" : null;
 
     if (!normalizedVote) {
       return {
         ok: false,
-        error:
-          ErrorCodes.INVALID_VOTE,
+        error: ErrorCodes.INVALID_VOTE,
       };
     }
 
-    if (
-      playerId ===
-      pending.byPlayerId
-    ) {
+    if (playerId === pending.byPlayerId) {
       return {
         ok: false,
-        error:
-          ErrorCodes.PROPOSER_CANNOT_VOTE,
+        error: ErrorCodes.PROPOSER_CANNOT_VOTE,
       };
     }
 
-    const state =
-      getEnrichedState(code);
+    const state = getEnrichedState(code);
 
     if (!state) {
       return {
         ok: false,
-        error:
-          ErrorCodes.ROOM_NOT_FOUND,
+        error: ErrorCodes.ROOM_NOT_FOUND,
       };
     }
 
-    const voter =
-      (state.players || []).find(
-        (player) =>
-          player.id === playerId,
-      );
+    const voter = (state.players || []).find(
+      (player) => player.id === playerId,
+    );
 
     if (!voter) {
       return {
         ok: false,
-        error:
-          ErrorCodes.PLAYER_NOT_FOUND,
+        error: ErrorCodes.PLAYER_NOT_FOUND,
       };
     }
 
-    const totalPlayers =
-      state.players?.length || 0;
+    const totalPlayers = state.players?.length || 0;
 
-    const totalEligibleVoters =
-      Math.max(
-        0,
-        totalPlayers - 1,
-      );
+    const totalEligibleVoters = Math.max(0, totalPlayers - 1);
 
-    if (
-      totalEligibleVoters === 0
-    ) {
+    if (totalEligibleVoters === 0) {
       return {
         ok: false,
-        error:
-          ErrorCodes.NO_VOTERS,
+        error: ErrorCodes.NO_VOTERS,
       };
     }
 
     pending.yes.delete(playerId);
     pending.no.delete(playerId);
 
-    if (
-      normalizedVote === "yes"
-    ) {
+    if (normalizedVote === "yes") {
       pending.yes.add(playerId);
     } else {
       pending.no.add(playerId);
     }
 
-    const neededYes =
-      majorityNeeded(
-        totalEligibleVoters,
-      );
+    const neededYes = majorityNeeded(totalEligibleVoters);
 
-    const yesCount =
-      pending.yes.size;
+    const yesCount = pending.yes.size;
 
-    const noCount =
-      pending.no.size;
+    const noCount = pending.no.size;
 
-    logGameTransition(
-      "EVENT_VOTED",
-      {
-        roomCode: code,
-        playerId,
-        eventId:
-          pending.id,
-        vote:
-          normalizedVote,
-        yesCount,
-        noCount,
-        neededYes,
-      },
-    );
+    logGameTransition("EVENT_VOTED", {
+      roomCode: code,
+      playerId,
+      eventId: pending.id,
+      vote: normalizedVote,
+      yesCount,
+      noCount,
+      neededYes,
+    });
 
     io.to(code).emit(
       ServerEvents.EVENT_UPDATED,
-      summarizePending(
-        pending,
-        totalEligibleVoters,
-      ),
+      summarizePending(pending, totalEligibleVoters),
     );
 
-    if (
-      yesCount >= neededYes
-    ) {
-      const awardResult =
-        games.getScore(
-          code,
-          pending.byPlayerId,
-          pending.points,
-        );
+    if (yesCount >= neededYes) {
+      const awardResult = games.adjustScore(
+        code,
+        pending.byPlayerId,
+        pending.points,
+      );
+
+      if (!awardResult?.ok) {
+        return {
+          ok: false,
+          error: awardResult?.error ?? ErrorCodes.SERVER_ERROR,
+        };
+      }
 
       const newScore =
-        awardResult?.score ??
-        rooms.getScore(
-          code,
-          pending.byPlayerId,
-        ) ??
-        0;
+        awardResult.score ?? games.getScore(code, pending.byPlayerId) ?? 0;
 
-      logGameTransition(
-        "EVENT_RESOLVED",
-        {
-          roomCode: code,
-          eventId:
-            pending.id,
-          proposedBy:
-            pending.byPlayerId,
-          outcome: "approved",
-          reason:
-            "majority_reached",
-          yesCount,
-          noCount,
-          neededYes,
-          pointsAwarded:
-            pending.points,
-        },
-      );
+      logGameTransition("EVENT_RESOLVED", {
+        roomCode: code,
+        eventId: pending.id,
+        proposedBy: pending.byPlayerId,
+        outcome: "approved",
+        reason: "majority_reached",
+        yesCount,
+        noCount,
+        neededYes,
+        pointsAwarded: pending.points,
+      });
 
-      io.to(
-        pending.byPlayerId,
-      ).emit(
-        ServerEvents.SCORE_UPDATE,
-        newScore,
-      );
-
-      io.to(code).emit(
-        ServerEvents.PLAYER_UPDATED,
-        {
-          playerId:
-            pending.byPlayerId,
-          score:
-            newScore,
-        },
-      );
+      emitScoreUpdateToPlayer(code, pending.byPlayerId, newScore);
+      io.to(code).emit(ServerEvents.PLAYER_UPDATED, {
+        playerId: pending.byPlayerId,
+        score: newScore,
+      });
 
       emitRoomState(code);
 
-      const update =
-        gameUpdates.pushUpdate(
-          code,
-          {
-            type:
-              "EVENT_CONFIRMED",
+      const update = gameUpdates.pushUpdate(code, {
+        type: "EVENT_CONFIRMED",
 
-            player: {
-              id:
-                pending.byPlayerId,
-              name:
-                pending.byName,
-            },
-
-            card: {
-              description:
-                pending.title,
-              points:
-                pending.points,
-            },
-
-            deltaPoints:
-              pending.points,
-
-            meta: {
-              source:
-                "eventBar",
-              eventKey:
-                pending.eventKey,
-              resolvedBy:
-                "votes",
-            },
-          },
-        );
-
-      io.to(code).emit(
-        ServerEvents.GAME_UPDATE,
-        update,
-      );
-
-      io.to(code).emit(
-        ServerEvents.EVENT_RESOLVED,
-        {
-          ok: true,
-          id: pending.id,
-          approved: true,
-          resolvedBy:
-            "votes",
-          eventKey:
-            pending.eventKey,
-          title:
-            pending.title,
-          points:
-            pending.points,
-          byPlayerId:
-            pending.byPlayerId,
-          byName:
-            pending.byName,
+        player: {
+          id: pending.byPlayerId,
+          name: pending.byName,
         },
-      );
+
+        card: {
+          description: pending.title,
+          points: pending.points,
+        },
+
+        deltaPoints: pending.points,
+
+        meta: {
+          source: "eventBar",
+          eventKey: pending.eventKey,
+          resolvedBy: "votes",
+        },
+      });
+
+      io.to(code).emit(ServerEvents.GAME_UPDATE, update);
+
+      io.to(code).emit(ServerEvents.EVENT_RESOLVED, {
+        ok: true,
+        id: pending.id,
+        approved: true,
+        resolvedBy: "votes",
+        eventKey: pending.eventKey,
+        title: pending.title,
+        points: pending.points,
+        byPlayerId: pending.byPlayerId,
+        byName: pending.byName,
+      });
 
       setCooldown(code);
       clearPending(code);

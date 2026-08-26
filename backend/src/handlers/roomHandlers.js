@@ -1,10 +1,8 @@
 import crypto from "crypto";
 
-import {
-  ClientEvents,
-  ServerEvents,
-} from "../protocol/events.js";
-
+import { ClientEvents, ServerEvents } from "../protocol/events.js";
+import { getRequestId, withRequestId } from "../protocol/requestId.js";
+import { beginRequest, completeRequest } from "../protocol/idempotency.js";
 import { ErrorCodes } from "../protocol/errors.js";
 import { normalizeDisplayName } from "../protocol/validation.js";
 
@@ -19,87 +17,109 @@ export function registerRoomHandlers({
   destroyRoom,
 }) {
   // Create room
-  socket.on(
-    ClientEvents.ROOM_CREATE,
-    ({ gameType, displayName, matchup }, cb) => {
-      try {
-        const reconnectToken = crypto.randomUUID();
+  socket.on(ClientEvents.ROOM_CREATE, (payload = {}, cb) => {
+    const requestId = getRequestId(payload);
 
-        const { code, token } = rooms.createRoom({
-          creatorSocketId: socket.id,
-          gameType,
-          matchup: matchup ?? null,
-          hostKey: reconnectToken,
-        });
+    const { gameType, displayName, matchup } = payload;
 
-        if (!code) {
-          throw new Error(ErrorCodes.CREATE_FAILED);
-        }
+    const request = beginRequest({
+      scope: socket.id,
+      eventName: ClientEvents.ROOM_CREATE,
+      requestId,
+    });
 
-        console.log(
-          "[create] room code:",
-          code,
-          "gameType:",
-          gameType,
-        );
+    if (request.status === "duplicate") {
+      return cb?.(request.response);
+    }
 
-        socket.data.roomCode = code;
-        socket.join(code);
+    if (request.status === "pending") {
+      return cb?.(
+        withRequestId(requestId, {
+          ok: false,
+          error: ErrorCodes.REQUEST_IN_PROGRESS,
+        }),
+      );
+    }
 
-        const safeName = normalizeDisplayName(
-          displayName,
-          "Host",
-        );
+    const finish = (response) => {
+      const finalResponse = withRequestId(requestId, response);
 
-        socket.data.displayName = safeName;
+      completeRequest(request.key, finalResponse);
 
-        const add = rooms.addPlayer(code, {
-          id: socket.id,
-          displayName: safeName,
-          key: reconnectToken,
-        });
+      return cb?.(finalResponse);
+    };
 
-        if (!add.ok) {
-          console.warn(
-            ErrorCodes.ADD_PLAYER_FAILED,
-            add,
-          );
+    try {
+      const reconnectToken = crypto.randomUUID();
 
-          return cb?.(
-            add || {
-              ok: false,
-              error: ErrorCodes.ADD_PLAYER_FAILED,
-            },
-          );
-        }
+      const { code, token } = rooms.createRoom({
+        gameType,
+        matchup: matchup ?? null,
+      });
 
-        const state = emitRoomState(code);
-
-        logGameTransition("ROOM_CREATED", {
-          roomCode: code,
-          gameType,
-          hostId: socket.id,
-          phase: "lobby",
-          matchup: matchup ?? null,
-        });
-
-        return cb?.({
-          ok: true,
-          roomCode: code,
-          token,
-          reconnectToken,
-          state,
-        });
-      } catch (err) {
-        console.error("[create] error:", err);
-
-        return cb?.({
+      if (!code) {
+        return finish({
           ok: false,
           error: ErrorCodes.CREATE_FAILED,
         });
       }
-    },
-  );
+
+      console.log("[create] room code:", code, "gameType:", gameType);
+
+      socket.data.roomCode = code;
+      socket.join(code);
+
+      const safeName = normalizeDisplayName(displayName, "Host");
+
+      socket.data.displayName = safeName;
+
+      const add = rooms.addPlayer(code, {
+        socketId: socket.id,
+        displayName: safeName,
+        reconnectToken,
+      });
+
+      if (!add.ok) {
+        console.warn(ErrorCodes.ADD_PLAYER_FAILED, add);
+
+        return finish(
+          add || {
+            ok: false,
+            error: ErrorCodes.ADD_PLAYER_FAILED,
+          },
+        );
+      }
+
+      socket.data.playerId = add.playerId;
+
+      const state = emitRoomState(code);
+
+      logGameTransition("ROOM_CREATED", {
+        roomCode: code,
+        gameType,
+        hostId: add.playerId,
+        socketId: socket.id,
+        phase: "lobby",
+        matchup: matchup ?? null,
+      });
+
+      return finish({
+        ok: true,
+        roomCode: code,
+        playerId: add.playerId,
+        token,
+        reconnectToken,
+        state,
+      });
+    } catch (err) {
+      console.error("[create] error:", err);
+
+      return finish({
+        ok: false,
+        error: ErrorCodes.CREATE_FAILED,
+      });
+    }
+  });
 
   // Get current room
   socket.on(ClientEvents.ROOM_GET, (_, cb) => {
@@ -119,14 +139,56 @@ export function registerRoomHandlers({
   });
 
   // Intentionally leave room
-  socket.on(ClientEvents.ROOM_LEAVE, (cb) => {
+  socket.on(ClientEvents.ROOM_LEAVE, (payloadOrCb = {}, maybeCb) => {
+    const payload = typeof payloadOrCb === "function" ? {} : payloadOrCb;
+
+    const cb = typeof payloadOrCb === "function" ? payloadOrCb : maybeCb;
+
+    const requestId = getRequestId(payload);
+
+    const request = beginRequest({
+      scope: socket.id,
+      eventName: ClientEvents.ROOM_LEAVE,
+      requestId,
+    });
+
+    if (request.status === "duplicate") {
+      return cb?.(request.response);
+    }
+
+    if (request.status === "pending") {
+      return cb?.(
+        withRequestId(requestId, {
+          ok: false,
+          error: ErrorCodes.REQUEST_IN_PROGRESS,
+        }),
+      );
+    }
+
+    const finish = (response) => {
+      const finalResponse = withRequestId(requestId, response);
+
+      completeRequest(request.key, finalResponse);
+
+      return cb?.(finalResponse);
+    };
+
     try {
       const code = socket.data.roomCode;
 
+      const playerId = socket.data.playerId;
+
       if (!code) {
-        return cb?.({
+        return finish({
           ok: false,
           error: ErrorCodes.NOT_IN_ROOM,
+        });
+      }
+
+      if (!playerId) {
+        return finish({
+          ok: false,
+          error: ErrorCodes.PLAYER_NOT_FOUND,
         });
       }
 
@@ -134,63 +196,58 @@ export function registerRoomHandlers({
 
       if (!room) {
         socket.data.roomCode = undefined;
+
+        socket.data.playerId = undefined;
+
         socket.leave(code);
 
-        return cb?.({
+        return finish({
           ok: false,
           error: ErrorCodes.ROOM_NOT_FOUND,
         });
       }
 
-      const player = room.players.get(socket.id);
+      const player = rooms.getPlayerByPlayerId(code, playerId);
 
       if (!player) {
-        return cb?.({
+        return finish({
           ok: false,
           error: ErrorCodes.PLAYER_NOT_FOUND,
         });
       }
 
-      const playerKey = player.key;
+      cancelPlayerLifecycleTimers(code, playerId);
 
-      cancelPlayerLifecycleTimers(
-        code,
-        playerKey || socket.id,
-      );
-
-      const result = rooms.removePlayer(
-        code,
-        socket.id,
-        {
-          reassignHostIfNeeded: true,
-        },
-      );
+      const result = rooms.removePlayer(code, playerId, {
+        reassignHostIfNeeded: true,
+      });
 
       if (!result.ok) {
-        return cb?.(result);
+        return finish(result);
       }
 
       socket.leave(code);
+
       socket.data.roomCode = undefined;
+
+      socket.data.playerId = undefined;
 
       logGameTransition("PLAYER_LEFT", {
         roomCode: code,
-        playerId: socket.id,
+        playerId,
+        socketId: socket.id,
         wasHost: result.wasHost,
         remainingPlayers: room.players.size,
       });
 
-      socket.to(code).emit(
-        ServerEvents.PLAYER_LEFT,
-        {
-          playerId: socket.id,
-        },
-      );
+      socket.to(code).emit(ServerEvents.PLAYER_LEFT, {
+        playerId,
+      });
 
       if (result.roomEmpty) {
         destroyRoom(code, "last_player_left");
 
-        return cb?.({
+        return finish({
           ok: true,
           roomClosed: true,
         });
@@ -198,26 +255,20 @@ export function registerRoomHandlers({
 
       emitRoomState(code);
 
-      if (
-        result.wasHost &&
-        result.hostResult?.hostAssigned
-      ) {
-        io.to(code).emit(
-          ServerEvents.HOST_CHANGED,
-          {
-            hostId: result.hostResult.hostId,
-          },
-        );
+      if (result.wasHost && result.hostResult?.hostAssigned) {
+        io.to(code).emit(ServerEvents.HOST_CHANGED, {
+          hostId: result.hostResult.hostId,
+        });
       }
 
-      return cb?.({
+      return finish({
         ok: true,
         roomClosed: false,
       });
     } catch (err) {
       console.error("[leaveRoom] error:", err);
 
-      return cb?.({
+      return finish({
         ok: false,
         error: ErrorCodes.LEAVE_FAILED,
       });

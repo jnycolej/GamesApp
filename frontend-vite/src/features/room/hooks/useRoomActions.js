@@ -1,6 +1,13 @@
 import { useCallback, useState } from "react";
 import { getSocket, rememberRoom } from "@/shared/socket";
-import { getPlayerKey, setDisplayName } from "@/shared/playerIdentity";
+import {
+  getReconnectToken,
+  setReconnectToken,
+  setDisplayName,
+  setPlayerId,
+} from "@/shared/playerIdentity";
+import { createRequestId } from "@/shared/requestId";
+
 import { buildInviteUrl } from "@/features/room/utils/invite";
 
 const normalizeRoomCode = (raw) =>
@@ -21,16 +28,34 @@ export function useRoomActions() {
         const displayName = (name || "Player").trim();
         setDisplayName(displayName);
 
-        const key = getPlayerKey();
-
         getSocket().emit(
           "room:create",
-          { gameType: sportKey, displayName, matchup, key },
+          {
+            gameType: sportKey,
+            requestId: createRequestId(),
+            displayName,
+            matchup,
+          },
           (res) => {
             setBusy(false);
-            if (!res?.ok) return resolve({ ok: false, error: res?.error ?? "Failed to create room" });
+
+            if (!res?.ok) {
+              return resolve({
+                ok: false,
+                error: res?.error ?? "Failed to create room",
+              });
+            }
+
+            if (res?.playerId) {
+              setPlayerId(res.playerId);
+            }
+
+            if (res?.reconnectToken) {
+              setReconnectToken(res.reconnectToken);
+            }
 
             const { roomCode, token } = res;
+
             localStorage.setItem(`inviteToken:${roomCode}`, token);
 
             const inviteUrl = buildInviteUrl({
@@ -42,7 +67,13 @@ export function useRoomActions() {
 
             rememberRoom(roomCode, displayName);
 
-            resolve({ ok: true, roomCode, token, inviteUrl, displayName });
+            resolve({
+              ok: true,
+              roomCode,
+              token,
+              inviteUrl,
+              displayName,
+            });
           },
         );
       }),
@@ -62,17 +93,40 @@ export function useRoomActions() {
         const displayName = (name || "Player").trim();
         setDisplayName(displayName);
 
-        const key = getPlayerKey();
-
         getSocket().emit(
           "player:join",
-          { roomCode: cleaned, displayName, key, token: token ?? null },
+          {
+            roomCode: cleaned,
+            requestId: createRequestId(),
+            displayName,
+            token: token ?? null,
+          },
           (res) => {
             setBusy(false);
-            if (!res?.ok) return resolve({ ok: false, error: res?.error ?? "Join failed" });
+
+            if (!res?.ok) {
+              return resolve({
+                ok: false,
+                error: res?.error ?? "Join failed",
+              });
+            }
+
+            if (res?.playerId) {
+              setPlayerId(res.playerId);
+            }
+
+            if (res?.reconnectToken) {
+              setReconnectToken(res.reconnectToken);
+            }
 
             rememberRoom(cleaned, displayName);
-            resolve({ ok: true, roomCode: cleaned, state: res.state, displayName });
+
+            resolve({
+              ok: true,
+              roomCode: cleaned,
+              state: res.state,
+              displayName,
+            });
           },
         );
       }),

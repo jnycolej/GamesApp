@@ -1,6 +1,10 @@
 // frontend/src/shared/socket.js
 import { io } from "socket.io-client";
-import { getPlayerKey } from "@/shared/playerIdentity";
+import {
+  getReconnectToken,
+  setPlayerId,
+  setReconnectToken,
+} from "@/shared/playerIdentity";
 
 const isBrowser = typeof window !== "undefined";
 const isProd = isBrowser && window.location.protocol === "https:";
@@ -8,8 +12,9 @@ const PROTOCOL_VERSION = 1;
 
 const API_URL = isProd
   ? window.location.origin
-  : ((typeof import.meta !== "undefined" ? import.meta.env?.VITE_API_URL : null) ||
-      "http://localhost:8080");
+  : (typeof import.meta !== "undefined"
+      ? import.meta.env?.VITE_API_URL
+      : null) || "http://localhost:8080";
 
 let socket;
 
@@ -45,31 +50,62 @@ function maybeResume() {
   resumeInFlight = true;
   lastResumeAt = now;
 
-  const key = getPlayerKey();
+  const reconnectToken = getReconnectToken();
 
-  // socket.emit("player:resume", { roomCode, displayName, key }, () => {
-  //   resumeInFlight = false;
-  // });
+  if (!reconnectToken) {
+    return;
+  }
+
   // if server never acks, don't deadlock forever
-let done = false;
-const finish = () => {
-  if (done) return;
-  done = true;
-  resumeInFlight = false;
-};
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    resumeInFlight = false;
+  };
 
-setTimeout(finish, 3000);
+  setTimeout(finish, 3000);
 
-// use socket.io-client timeout wrapper if available
-if (typeof socket.timeout === "function") {
-  socket.timeout(2500).emit("player:resume", { roomCode, displayName, key }, () => {
-    finish();
-  });
-} else {
-  socket.emit("player:resume", { roomCode, displayName, key }, () => {
-    finish();
-  });
-}
+  // use socket.io-client timeout wrapper if available
+  if (typeof socket.timeout === "function") {
+    socket.timeout(2500).emit(
+      "player:resume",
+      {
+        roomCode,
+        displayName,
+        reconnectToken,
+      },
+      (err, res) => {
+        if (!err && res?.ok) {
+          if (res?.playerId) {
+            setPlayerId(res.playerId);
+          }
+
+          if (res?.reconnectToken) {
+            setReconnectToken(res.reconnectToken);
+          }
+        }
+
+        finish();
+      },
+    );
+  } else {
+    socket.emit(
+      "player:resume",
+      {
+        roomCode,
+        displayName,
+        reconnectToken,
+      },
+      (res) => {
+        if (res?.ok && res?.playerId) {
+          setPlayerId(res.playerId);
+        }
+
+        finish();
+      },
+    );
+  }
 }
 
 export function getSocket() {
@@ -81,7 +117,7 @@ export function getSocket() {
 
     auth: {
       protocolVersion: PROTOCOL_VERSION,
-    }
+    },
     // withCredentials: true,
   });
 
@@ -91,11 +127,11 @@ export function getSocket() {
     maybeResume();
   });
 
-// reconnect event is on the manager in v4
-socket.io.on("reconnect", () => {
-  resumeInFlight = false;
-  maybeResume();
-});
+  // reconnect event is on the manager in v4
+  socket.io.on("reconnect", () => {
+    resumeInFlight = false;
+    maybeResume();
+  });
   socket.on("connect_error", (err) => {
     console.warn("[socket] connect_error:", err?.message || err);
   });

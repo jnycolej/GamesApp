@@ -1,8 +1,17 @@
 import { useMemo, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSocket } from "@/shared/socket";
-import { getDisplayName, getPlayerKey } from "@/shared/playerIdentity";
+import { getSocket, rememberRoom } from "@/shared/socket";
+
+import { createRequestId } from "@/shared/requestId";
+
 import { useRoomChannel } from "../shared/useRoomState";
+import {
+  getDisplayName,
+  getPlayerId,
+  setPlayerId,
+  getReconnectToken,
+  setReconnectToken,
+} from "@/shared/playerIdentity";
 
 import { getSport, SPORTS } from "@/config/sports";
 import { buildInviteUrl, inviteShareText } from "@/features/room/utils/invite";
@@ -85,41 +94,89 @@ export default function GameLobby() {
     ensuredRef.current = { roomCode, done: true };
 
     const displayName = getDisplayName();
-    const key = getPlayerKey();
 
-    socket.emit("player:resume", { roomCode, displayName, key }, (res) => {
-      if (res?.ok && res.state) {
-        setRoom(res.state);
-        return;
-      }
+    const reconnectToken = getReconnectToken();
 
-      socket.emit("player:join", { roomCode, displayName, key }, (res2) => {
-        if (res2?.ok && res2.state) setRoom(res2.state);
-      });
-    });
+    const joinFresh = () => {
+      socket.emit(
+        "player:join",
+        {
+          roomCode,
+          displayName,
+          requestId: createRequestId(),
+        },
+        callback,
+        (res) => {
+          if (!res?.ok) {
+            return;
+          }
+
+          if (res?.playerId) {
+            setPlayerId(res.playerId);
+          }
+
+          if (res?.reconnectToken) {
+            setReconnectToken(res.reconnectToken);
+          }
+
+          rememberRoom(roomCode, displayName);
+
+          if (res?.state) {
+            setRoom(res.state);
+          }
+        },
+      );
+    };
+
+    if (!reconnectToken) {
+      joinFresh();
+      return;
+    }
+
+    socket.emit(
+      "player:resume",
+      {
+        roomCode,
+        displayName,
+        reconnectToken,
+      },
+      (res) => {
+        if (res?.ok) {
+          if (res?.playerId) {
+            setPlayerId(res.playerId);
+          }
+
+          // Useful if token rotation is
+          // added later.
+          if (res?.reconnectToken) {
+            setReconnectToken(res.reconnectToken);
+          }
+
+          rememberRoom(roomCode, displayName);
+
+          if (res?.state) {
+            setRoom(res.state);
+          }
+
+          return;
+        }
+
+        // Stored credential wasn't valid
+        // for this room. Join as a new player.
+        joinFresh();
+      },
+    );
   }, [roomCode, room?.code, socket, setRoom]);
-  //const myKey = getPlayerKey();
 
-  // const isHost = useMemo(() => {
-
-  //   if (!room) return false;
-
-  //   if (room.hostKey && room.hostKey === myKey) return true;
-
-  //   const me = room.players?.find(
-  //     (p) => p.key === myKey || p.playerKey === myKey,
-  //   );
-  //   if (!me) return false;
-
-  //   return me.id === room.hostId || me.isHost === true;
-  // }, [room, myKey]);
+  const myPlayerId = getPlayerId();
 
   const isHost = useMemo(() => {
-  if (!room) return false;
-  if (!socket?.id) return false;
+    if (!room || !myPlayerId) {
+      return false;
+    }
 
-  return room.hostId === socket.id;
-}, [room, socket.id]);
+    return room.hostId === myPlayerId;
+  }, [room?.hostId, myPlayerId]);
 
   // Your note says allow start even if alone — keep >= 1
   const canStart = useMemo(
@@ -130,12 +187,20 @@ export default function GameLobby() {
   const startAndDeal = () => {
     if (!canStart) return;
 
-    const key = getPlayerKey();
-    socket.emit("game:startAndDeal", { key }, (res) => {
-      if (!res?.ok) return alert(res?.error ?? "Failed to start");
-      sounds.playStartDeal();
-      nav(`/${game}/game`);
-    });
+    socket.emit(
+      "game:startAndDeal",
+      {
+        requestId: createRequestId(),
+      },
+      (res) => {
+        if (!res?.ok) {
+          return alert(res?.error ?? "Failed to start");
+        }
+
+        sounds.playStartDeal();
+        nav(`/${game}/game`);
+      },
+    );
   };
 
   return (
@@ -149,7 +214,8 @@ export default function GameLobby() {
             : `${game?.toUpperCase()} Game`}
         </h2>
         <h2 className="display-2 text-center text-shadow-lg text-shadow-stone-700 text-light">
-          ROOM - <span className="!font-bold">{room?.code ?? roomCode ?? ""}</span>
+          ROOM -{" "}
+          <span className="!font-bold">{room?.code ?? roomCode ?? ""}</span>
         </h2>
 
         <div className="d-flex justify-content-center mb-5">
@@ -161,7 +227,9 @@ export default function GameLobby() {
               className="alert alert-light mt-3 !bg-stone-50/90 !rounded-full d-flex gap-2 p-2 align-items-center"
               style={{ opacity: 0.95 }}
             >
-              <span className="ml-2 text-lg font-extrabold tracking-wider">Invite link:</span>
+              <span className="ml-2 text-lg font-extrabold tracking-wider">
+                Invite link:
+              </span>
 
               <button
                 className="border border-2 !font-bold !border-blue-600 hover:bg-blue-600 hover:text-stone-50 p-2 !rounded-full"
@@ -204,21 +272,24 @@ export default function GameLobby() {
           <hr />
           <ul className="gameLobby">
             {room?.players?.map((p) => (
-              <li className="text-light text-center text-2xl font-semibold" key={p.id}>
+              <li
+                className="text-light text-center text-2xl font-semibold"
+                key={p.id}
+              >
                 {p.name} {p.connected === false ? "(reconnecting...)" : ""}
               </li>
             ))}
           </ul>
 
-          {isHost ? (<div className="flex justify-center">
-
-            <button
-              className="text-center font-semibold tracking-wide !text-stone-50 inset-shadow-sm inset-shadow-red-100 text-shadow-stone-800 !text-shadow-sm px-4 !rounded-full !text-2xl bg-red-600"
-              onClick={startAndDeal}
-              disabled={!canStart}
-            >
-              Start & Deal
-            </button>
+          {isHost ? (
+            <div className="flex justify-center">
+              <button
+                className="text-center font-semibold tracking-wide !text-stone-50 inset-shadow-sm inset-shadow-red-100 text-shadow-stone-800 !text-shadow-sm px-4 !rounded-full !text-2xl bg-red-600"
+                onClick={startAndDeal}
+                disabled={!canStart}
+              >
+                Start & Deal
+              </button>
             </div>
           ) : (
             <p> </p>

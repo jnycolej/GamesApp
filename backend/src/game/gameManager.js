@@ -2,25 +2,46 @@ import { ErrorCodes } from "../protocol/errors.js";
 import { drawCard } from "../domain/deckService.js";
 
 export function createGameManager({ rooms }) {
+  function getPlayer(code, playerId) {
+    if (!playerId) {
+      return null;
+    }
 
-  function startAndDeal(code, requesterId, requesterKey = null) {
+    return rooms.getPlayerByPlayerId(code, playerId);
+  }
+
+  function startAndDeal(code, requesterPlayerId) {
     const room = rooms.getRoom(code);
 
     if (!room) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND }; // IMPORTANT
 
+    const requester = getPlayer(code, requesterPlayerId);
+
+    if (!requester) {
+      return {
+        ok: false,
+        error: ErrorCodes.PLAYER_NOT_FOUND,
+      };
+    }
+
     //Host gate
-    const isHost =
-      (room.hostKey && requesterKey && room.hostKey === requesterKey) ||
-      room.hostId === requesterId;
+    const isHost = room.hostId === requester.id;
 
     if (!isHost) {
-      return { ok: false, error: "not_host" };
+      return {
+        ok: false,
+        error: ErrorCodes.NOT_HOST,
+      };
     }
 
     const minPlayers = room.settings?.minPlayers ?? 1;
-    
+
     if (room.players.size < minPlayers) {
-      return { ok: false, error: "not_enough_players", need: minPlayers };
+      return {
+        ok: false,
+        error: ErrorCodes.NOT_ENOUGH_PLAYERS,
+        need: minPlayers,
+      };
     }
 
     room.phase = "playing";
@@ -36,7 +57,7 @@ export function createGameManager({ rooms }) {
     for (const player of room.players.values()) {
       player.hand = [];
       player.score = 0;
-      
+
       for (let i = 0; i < handSize; i++) {
         player.hand.push(drawCard(room));
         room.drawCount++;
@@ -51,11 +72,12 @@ export function createGameManager({ rooms }) {
     const room = rooms.getRoom(code);
     if (!room) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
-    const player = room.players.get(playerId); // <- use `player`
+    const player = getPlayer(code, playerId); // <- use `player`
     if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
-    if (room.phase !== "playing") return { ok: false, error: "not_playing" };
+    if (room.phase !== "playing")
+      return { ok: false, error: ErrorCodes.NOT_PLAYING };
     if (index == null || index < 0 || index >= player.hand.length) {
-      return { ok: false, error: "bad_index" };
+      return { ok: false, error: ErrorCodes.BAD_INDEX };
     }
 
     const picked = player.hand[index];
@@ -108,26 +130,29 @@ export function createGameManager({ rooms }) {
   function playCardById(code, playerId, cardId) {
     const room = rooms.getRoom(code);
     if (!room) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-    const player = room.players.get(playerId);
+    const player = getPlayer(code, playerId);
     if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
-    if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand" };
+    if (!Array.isArray(player.hand))
+      return { ok: false, error: ErrorCodes.NO_HAND };
     const idx = player.hand.findIndex((c) => c && c.id === cardId);
-    if (idx === -1) return { ok: false, error: "card_not_in_hand" };
+    if (idx === -1) return { ok: false, error: ErrorCodes.CARD_NOT_IN_HAND };
     return playCard(code, playerId, idx);
   }
 
   function sacrificeCard(code, playerId, cardId) {
     const room = rooms.getRoom(code);
     if (!room) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
-    if (room.phase !== "playing") return { ok: false, error: "not_playing" };
+    if (room.phase !== "playing")
+      return { ok: false, error: ErrorCodes.NOT_PLAYING };
 
-    const player = room.players.get(playerId);
+    const player = getPlayer(code, playerId);
     if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
-    if (!Array.isArray(player.hand)) return { ok: false, error: "no_hand" };
+    if (!Array.isArray(player.hand))
+      return { ok: false, error: ErrorCodes.NO_HAND };
 
     // find the card by its instance id
     const idx = player.hand.findIndex((c) => c && c.id === cardId);
-    if (idx === -1) return { ok: false, error: "card_not_in_hand" };
+    if (idx === -1) return { ok: false, error: ErrorCodes.CARD_NOT_IN_HAND };
 
     //score changed on sacrifice
     const picked = player.hand[idx];
@@ -184,14 +209,14 @@ export function createGameManager({ rooms }) {
 
     if (!room) return null;
 
-    const player = room.players.get(playerId);
+    const player = getPlayer(code, playerId);
     return player ? player.hand : null;
   }
 
   function getScore(code, playerId) {
     const room = rooms.getRoom(code);
     if (!room) return 0;
-    const player = room.players.get(playerId);
+    const player = getPlayer(code, playerId);
     return player ? player.score : 0;
   }
 
@@ -199,7 +224,7 @@ export function createGameManager({ rooms }) {
     const room = rooms.getRoom(code);
     if (!room) return false;
 
-    const player = room.players.get(playerId);
+    const player = getPlayer(code, playerId);
     if (!player) return false;
 
     const value = Number(score);
@@ -214,11 +239,12 @@ export function createGameManager({ rooms }) {
     const room = rooms.getRoom(code);
     if (!room) return { ok: false, error: ErrorCodes.ROOM_NOT_FOUND };
 
-    const player = room.players.get(playerId);
+    const player = getPlayer(code, playerId);
     if (!player) return { ok: false, error: ErrorCodes.NOT_IN_ROOM };
 
     const amount = Number(delta);
-    if (!Number.isFinite(amount)) return { ok: false, error: "bad_delta" };
+    if (!Number.isFinite(amount))
+      return { ok: false, error: ErrorCodes.BAD_DELTA };
 
     player.score += amount;
 
@@ -229,11 +255,25 @@ export function createGameManager({ rooms }) {
 
   function getOpponentsHands(code, requesterId) {
     const room = rooms.getRoom(code);
-    if (!room) return null;
-    if (!room.settings?.openHandsAllowed) return [];
+
+    if (!room) {
+      return null;
+    }
+
+    if (!room.settings?.openHandsAllowed) {
+      return [];
+    }
+
+    const requester = getPlayer(code, requesterId);
+
+    if (!requester) {
+      return null;
+    }
+
     return [...room.players.values()]
-      .filter((player) => player.id !== requesterId)
+      .filter((player) => player !== requester)
       .map((player) => ({
+        // Keep legacy public ID for now.
         id: player.id,
         name: player.name,
         hand: player.hand,
@@ -256,5 +296,5 @@ export function createGameManager({ rooms }) {
     adjustScore,
     getOpponentsHands,
     getVersion,
-  }
+  };
 }

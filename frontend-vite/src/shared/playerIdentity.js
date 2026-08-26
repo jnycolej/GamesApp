@@ -2,30 +2,76 @@
 
 const isBrowser = typeof window !== "undefined";
 
-export function getPlayerKey() {
-  if (!isBrowser) return "server-key";
+const PLAYER_ID_KEY = "playerId";
 
-  let k = localStorage.getItem("playerKey");
-  if (k) return k;
+const RECONNECT_TOKEN_KEY = "reconnectToken";
 
-  const gen =
-    (window.crypto &&
-      typeof window.crypto.randomUUID === "function" &&
-      window.crypto.randomUUID()) ||
-    `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`.toUpperCase();
+const DISPLAY_NAME_KEY = "displayName";
 
-  localStorage.setItem("playerKey", gen);
-  return gen;
+export function getPlayerId() {
+  if (!isBrowser) {
+    return null;
+  }
+
+  return localStorage.getItem(PLAYER_ID_KEY);
+}
+
+export function setPlayerId(playerId) {
+  if (!isBrowser || !playerId) {
+    return;
+  }
+
+  localStorage.setItem(PLAYER_ID_KEY, playerId);
+}
+
+export function clearPlayerId() {
+  if (!isBrowser) {
+    return;
+  }
+
+  localStorage.removeItem(PLAYER_ID_KEY);
+}
+
+export function getReconnectToken() {
+  if (!isBrowser) {
+    return null;
+  }
+
+  return localStorage.getItem(RECONNECT_TOKEN_KEY);
+}
+
+export function setReconnectToken(reconnectToken) {
+  if (!isBrowser || !reconnectToken) {
+    return;
+  }
+
+  localStorage.setItem(RECONNECT_TOKEN_KEY, reconnectToken);
+}
+
+export function clearReconnectToken() {
+  if (!isBrowser) {
+    return;
+  }
+
+  localStorage.removeItem(RECONNECT_TOKEN_KEY);
 }
 
 export function getDisplayName() {
-  if (!isBrowser) return "Player";
-  return localStorage.getItem("displayName") || "Player";
+  if (!isBrowser) {
+    return "Player";
+  }
+
+  return localStorage.getItem(DISPLAY_NAME_KEY) || "Player";
 }
 
 export function setDisplayName(name) {
-  if (!isBrowser) return (name || "").trim() || "Player";
   const safe = (name || "").trim() || "Player";
-  localStorage.setItem("displayName", safe);
+
+  if (!isBrowser) {
+    return safe;
+  }
+
+  localStorage.setItem(DISPLAY_NAME_KEY, safe);
+
   return safe;
 }

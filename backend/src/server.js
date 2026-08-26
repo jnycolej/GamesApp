@@ -10,7 +10,7 @@ import {registerHandlers} from "./sockets/registerHandlers.js";
 import { createSocketServer } from "./sockets/socketServer.js";
 import { protocolVersionMiddleware } from "./sockets/middleware/protocolVersion.js";
 
-import { createRoomManager } from "./roomManager.js";
+import { createRoomManager } from "./rooms/roomManager.js";
 import { createGameManager } from "./game/gameManager.js";
 import { createRoomLifecycle } from "./rooms/roomLifecycle.js";
 import { createRoomState } from "./rooms/roomState.js";
