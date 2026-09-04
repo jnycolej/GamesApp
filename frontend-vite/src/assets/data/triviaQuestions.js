@@ -6152,4 +6152,259 @@ export const triviaQuestions = [
     funFact:
       "Elko’s leadership and clutch performances were key to the Rebels’ championship.",
   },
+  {
+  id: 498,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "What year did Clemson win its first football national championship?",
+  options: ["1978", "1981", "1985", "1990"],
+  answer: "1981",
+  funFact:
+    "Clemson finished the 1981 season 12-0 and was the only undefeated and untied team in the nation.",
+},
+{
+  id: 499,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Who was Clemson's head coach during its 1981 national championship season?",
+  options: ["Frank Howard", "Danny Ford", "Dabo Swinney", "Tommy Bowden"],
+  answer: "Danny Ford",
+  funFact:
+    "Danny Ford led Clemson to a perfect 12-0 record during the Tigers' first national championship season.",
+},
+{
+  id: 500,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which team did Clemson defeat to finish its 1981 national championship season?",
+  options: ["Nebraska", "Georgia", "Alabama", "Oklahoma"],
+  answer: "Nebraska",
+  funFact:
+    "Clemson defeated Nebraska 22-15 in the Orange Bowl to complete its perfect 12-0 season.",
+},
+{
+  id: 501,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "What is the nickname commonly used for Clemson's Memorial Stadium?",
+  options: ["The Swamp", "Death Valley", "The Horseshoe", "The Jungle"],
+  answer: "Death Valley",
+  funFact:
+    "Clemson's Memorial Stadium has been known as Death Valley for decades and is famous for the Tigers' entrance down The Hill.",
+},
+{
+  id: 502,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "What object do Clemson players traditionally rub before running down The Hill?",
+  options: ["The Tiger Stone", "Howard's Rock", "The Victory Bell", "Ford's Rock"],
+  answer: "Howard's Rock",
+  funFact:
+    "Howard's Rock sits at the top of The Hill and has been part of Clemson's famous pregame tradition since the 1960s.",
+},
+{
+  id: 503,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Howard's Rock originally came from which location?",
+  options: [
+    "Death Valley, California",
+    "Clemson, South Carolina",
+    "Stone Mountain, Georgia",
+    "The Blue Ridge Mountains",
+  ],
+  answer: "Death Valley, California",
+  funFact:
+    "The rock was brought from Death Valley, California, and eventually given to Clemson coach Frank Howard.",
+},
+{
+  id: 504,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "In what year did Clemson players begin the tradition of rubbing Howard's Rock?",
+  options: ["1957", "1963", "1967", "1972"],
+  answer: "1967",
+  funFact:
+    "Howard's Rock was placed at The Hill in 1966, and Clemson players began rubbing it before games in 1967.",
+},
+{
+  id: 505,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which conference does Clemson football compete in?",
+  options: ["SEC", "ACC", "Big Ten", "Big 12"],
+  answer: "ACC",
+  funFact:
+    "Clemson was a charter member of the Atlantic Coast Conference when the league was formed in 1953.",
+},
+{
+  id: 506,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Who became Clemson's head coach during the 2008 season?",
+  options: ["Danny Ford", "Tommy Bowden", "Dabo Swinney", "Chad Morris"],
+  answer: "Dabo Swinney",
+  funFact:
+    "Dabo Swinney initially took over as interim head coach in 2008 before being named the full-time head coach.",
+},
+{
+  id: 507,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which quarterback led Clemson to the 2016 national championship?",
+  options: [
+    "Trevor Lawrence",
+    "Deshaun Watson",
+    "Tajh Boyd",
+    "Kelly Bryant",
+  ],
+  answer: "Deshaun Watson",
+  funFact:
+    "Deshaun Watson threw the game-winning touchdown pass with one second remaining in Clemson's national championship victory over Alabama.",
+},
+{
+  id: 508,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which team did Clemson defeat to win the 2016 national championship?",
+  options: ["Ohio State", "Georgia", "Alabama", "Oklahoma"],
+  answer: "Alabama",
+  funFact:
+    "Clemson defeated Alabama 35-31 to capture its first national championship since 1981.",
+},
+{
+  id: 509,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Who caught Clemson's game-winning touchdown in the 2016 national championship game?",
+  options: ["Mike Williams", "Hunter Renfrow", "Deon Cain", "Artavis Scott"],
+  answer: "Hunter Renfrow",
+  funFact:
+    "Hunter Renfrow caught a two-yard touchdown pass from Deshaun Watson with one second remaining to give Clemson a 35-31 victory over Alabama.",
+},
+{
+  id: 510,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Who was Clemson's starting quarterback during its undefeated 2018 national championship season?",
+  options: [
+    "Deshaun Watson",
+    "Kelly Bryant",
+    "Trevor Lawrence",
+    "DJ Uiagalelei",
+  ],
+  answer: "Trevor Lawrence",
+  funFact:
+    "Freshman Trevor Lawrence became Clemson's starting quarterback during the 2018 season and helped lead the Tigers to a 15-0 record.",
+},
+{
+  id: 511,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "What was Clemson's record during its 2018 national championship season?",
+  options: ["12-0", "13-1", "14-0", "15-0"],
+  answer: "15-0",
+  funFact:
+    "Clemson became the first major college football team since Penn in 1897 to finish a season 15-0.",
+},
+{
+  id: 512,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which team did Clemson defeat in the 2018 season's national championship game?",
+  options: ["Georgia", "Alabama", "Notre Dame", "Ohio State"],
+  answer: "Alabama",
+  funFact:
+    "Clemson defeated top-ranked Alabama 44-16 to complete a perfect 15-0 season.",
+},
+{
+  id: 513,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "How many football national championships had Clemson won through the 2025 season?",
+  options: ["2", "3", "4", "5"],
+  answer: "3",
+  funFact:
+    "Clemson's three recognized football national championships came in 1981, 2016, and 2018.",
+},
+{
+  id: 514,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which school is Clemson's traditional in-state football rival?",
+  options: ["Georgia", "South Carolina", "NC State", "Florida State"],
+  answer: "South Carolina",
+  funFact:
+    "Clemson and South Carolina have one of college football's longest-running in-state rivalries.",
+},
+{
+  id: 515,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "In what year did Clemson first field a football team?",
+  options: ["1889", "1892", "1896", "1901"],
+  answer: "1896",
+  funFact:
+    "Clemson began playing football in 1896, just a few years after the school was founded.",
+},
+{
+  id: 516,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which legendary Clemson coach is the namesake of Howard's Rock?",
+  options: ["Frank Howard", "Danny Ford", "Jess Neely", "John Heisman"],
+  answer: "Frank Howard",
+  funFact:
+    "Frank Howard spent 30 seasons as Clemson's head football coach from 1940 through 1969.",
+},
+{
+  id: 517,
+  teams: ["Clemson"],
+  league: "NCAA",
+  sport: "football",
+  question:
+    "Which famous coach led Clemson's football program from 1900 through 1903?",
+  options: ["Knute Rockne", "John Heisman", "Pop Warner", "Bear Bryant"],
+  answer: "John Heisman",
+  funFact:
+    "John Heisman coached Clemson before the trophy honoring him became college football's most famous individual award.",
+},
 ];
