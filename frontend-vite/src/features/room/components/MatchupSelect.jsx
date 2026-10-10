@@ -67,7 +67,7 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <InputGroupButton variant="" className="!font-semibold bg-zinc-900 !rounded-lg !text-lg">
+        <InputGroupButton variant="" className="!font-semibold bg-zinc-900 !rounded-lg !truncate !text-md ">
           {buttonLabel}
           <ChevronDown />
         </InputGroupButton>
@@ -85,7 +85,7 @@ export function MatchupSelect({ sportKey, selected, onSelect }) {
               <DropdownMenuRadioItem
                 key={o.key}
                 value={o.value}
-                className="bg-stone-100"
+                className="!bg-stone-100"
               >
                 {o.label}
               </DropdownMenuRadioItem>
